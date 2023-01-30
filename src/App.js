@@ -1,59 +1,43 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { useState, useEffect, useMemo } from "react";
-
-// react-router components
+import { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
-// @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
-
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
-
-// Material Dashboard 2 React example components
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
+<<<<<<< HEAD
 
 // Material Dashboard 2 React themes
+=======
+>>>>>>> e6be23706fc842dc17ff803c7fa2e1d726bb575a
 import theme from "assets/theme";
 import themeRTL from "assets/theme/theme-rtl";
-
-// Material Dashboard 2 React Dark Mode themes
 import themeDark from "assets/theme-dark";
 import themeDarkRTL from "assets/theme-dark/theme-rtl";
-
-// RTL plugins
-import rtlPlugin from "stylis-plugin-rtl";
+// import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
+<<<<<<< HEAD
 import createCache from "@emotion/cache";
 
 // Material Dashboard 2 React routes
+=======
+// import createCache from "@emotion/cache";
+import createCache from "@emotion/cache"; 
+>>>>>>> e6be23706fc842dc17ff803c7fa2e1d726bb575a
 import routes from "routes";
-
-// Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
+<<<<<<< HEAD
 
 // Images
 // import logo from "assets/images/logo-ct.png";
 // import brandDark from "assets/images/logo-ct-dark.png";
 // Sundar Logo
 import logosundar from "assets/images/Sundar Logo/logo.png";
+=======
+import brandWhite from "assets/images/logo-ct.png";
+import brandDark from "assets/images/logo-ct-dark.png";
+>>>>>>> e6be23706fc842dc17ff803c7fa2e1d726bb575a
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -68,18 +52,18 @@ export default function App() {
     darkMode,
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-  const [rtlCache, setRtlCache] = useState(null);
+  // const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
 
   // Cache for the rtl
-  useMemo(() => {
-    const cacheRtl = createCache({
-      key: "rtl",
-      stylisPlugins: [rtlPlugin],
-    });
+  // useMemo(() => {
+  //   const cacheRtl = createCache({
+  //     key: "rtl",
+  //     stylisPlugins: [rtlPlugin],
+  //   });
 
-    setRtlCache(cacheRtl);
-  }, []);
+  //   setRtlCache(cacheRtl);
+  // }, []);
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -104,6 +88,9 @@ export default function App() {
   useEffect(() => {
     document.body.setAttribute("dir", direction);
   }, [direction]);
+  //Login
+  useEffect(() => {
+  }, []);
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
@@ -147,6 +134,7 @@ export default function App() {
       </Icon>
     </MDBox>
   );
+<<<<<<< HEAD
 
   return direction === "rtl" ? (
     <CacheProvider value={rtlCache}>
@@ -174,6 +162,9 @@ export default function App() {
       </ThemeProvider>
     </CacheProvider>
   ) : (
+=======
+  return (
+>>>>>>> e6be23706fc842dc17ff803c7fa2e1d726bb575a
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
       {layout === "dashboard" && (
