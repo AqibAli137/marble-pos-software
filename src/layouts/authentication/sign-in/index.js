@@ -21,26 +21,29 @@ import MDButton from "components/MDButton";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import axios from "axios";
+import { loginUser } from "@features/User/userSlice";
+// import { RootState, AppDispatch } from "../../../store";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // Store calls
+  const dispatch = useDispatch <AppDispatch>('');
+  let empState = useSelector((store) => store.employee);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
-const values={
-  Email:email,
-  password:password,
-}
+  const values = {
+    Email: email,
+    password: password,
+  };
 
-  const handleSignIn=()=>{
-
-    axios.post('https://localhost:7016/api/Auth/Login',values).then(
-      res=>{console.log(res)}
-    )
-  }
+  const handleSignIn = () => {
+    axios.post("https://localhost:7016/api/Auth/Login", values).then((res) => {
+      dispatch(loginUser(res));
+    });
+  };
 
   return (
     <BasicLayout image={bgImage}>
@@ -80,10 +83,20 @@ const values={
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth onChange={e=>console.log(e.target.value)} />
+              <MDInput
+                type="email"
+                label="Email"
+                fullWidth
+                onChange={(e) => console.log(e.target.value)}
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password"  fullWidth  onChange={e=>setPassword(e.target.value)} />
+              <MDInput
+                type="password"
+                label="Password"
+                fullWidth
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -98,7 +111,7 @@ const values={
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth onClick={handleSignIn} >
+              <MDButton variant="gradient" color="info" fullWidth onClick={handleSignIn}>
                 sign in
               </MDButton>
             </MDBox>
