@@ -22,10 +22,12 @@ import App from "App";
 import { MaterialUIControllerProvider } from "context";
 
 ReactDOM.render(
+  <React.StrictMode>
   <BrowserRouter>
     <MaterialUIControllerProvider>
       <App />
     </MaterialUIControllerProvider>
-  </BrowserRouter>,
+  </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById("root")
 );
