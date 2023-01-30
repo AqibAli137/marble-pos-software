@@ -6,38 +6,19 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
-<<<<<<< HEAD
-
-// Material Dashboard 2 React themes
-=======
->>>>>>> e6be23706fc842dc17ff803c7fa2e1d726bb575a
 import theme from "assets/theme";
-import themeRTL from "assets/theme/theme-rtl";
+// import themeRTL from "assets/theme/theme-rtl";
 import themeDark from "assets/theme-dark";
-import themeDarkRTL from "assets/theme-dark/theme-rtl";
+// import themeDarkRTL from "assets/theme-dark/theme-rtl";
 // import rtlPlugin from "stylis-plugin-rtl";
-import { CacheProvider } from "@emotion/react";
-<<<<<<< HEAD
-import createCache from "@emotion/cache";
-
-// Material Dashboard 2 React routes
-=======
+// import { CacheProvider } from "@emotion/react";
 // import createCache from "@emotion/cache";
 import createCache from "@emotion/cache"; 
->>>>>>> e6be23706fc842dc17ff803c7fa2e1d726bb575a
 import routes from "routes";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
-<<<<<<< HEAD
-
-// Images
-// import logo from "assets/images/logo-ct.png";
-// import brandDark from "assets/images/logo-ct-dark.png";
-// Sundar Logo
 import logosundar from "assets/images/Sundar Logo/logo.png";
-=======
-import brandWhite from "assets/images/logo-ct.png";
-import brandDark from "assets/images/logo-ct-dark.png";
->>>>>>> e6be23706fc842dc17ff803c7fa2e1d726bb575a
+// import brandWhite from "assets/images/logo-ct.png";
+// import brandDark from "assets/images/logo-ct-dark.png";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -72,8 +53,6 @@ export default function App() {
       setOnMouseEnter(true);
     }
   };
-
-  // Close sidenav when mouse leave mini sidenav
   const handleOnMouseLeave = () => {
     if (onMouseEnter) {
       setMiniSidenav(dispatch, true);
@@ -81,18 +60,15 @@ export default function App() {
     }
   };
 
-  // Change the openConfigurator state
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
 
   // Setting the dir attribute for the body element
   useEffect(() => {
     document.body.setAttribute("dir", direction);
   }, [direction]);
-  //Login
   useEffect(() => {
   }, []);
 
-  // Setting page scroll to 0 when changing the route
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -134,37 +110,7 @@ export default function App() {
       </Icon>
     </MDBox>
   );
-<<<<<<< HEAD
-
-  return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? logosundar : logosundar}
-              brandName="Sundar Industrial Estate"
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-            <Configurator />
-            {configsButton}
-          </>
-        )}
-        {layout === "vr" && <Configurator />}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
-      </ThemeProvider>
-    </CacheProvider>
-  ) : (
-=======
   return (
->>>>>>> e6be23706fc842dc17ff803c7fa2e1d726bb575a
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
       {layout === "dashboard" && (
