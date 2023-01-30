@@ -30,7 +30,7 @@ import MDBox from "components/MDBox";
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 
-// Material Dashboard 2 React themesx
+// Material Dashboard 2 React themes
 import theme from "assets/theme";
 import themeRTL from "assets/theme/theme-rtl";
 
@@ -41,7 +41,7 @@ import themeDarkRTL from "assets/theme-dark/theme-rtl";
 // RTL plugins
 import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
-import createCache from "@emotion/cache"; 
+import createCache from "@emotion/cache";
 
 // Material Dashboard 2 React routes
 import routes from "routes";
@@ -50,8 +50,10 @@ import routes from "routes";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
-import brandWhite from "assets/images/logo-ct.png";
-import brandDark from "assets/images/logo-ct-dark.png";
+// import logo from "assets/images/logo-ct.png";
+// import brandDark from "assets/images/logo-ct-dark.png";
+// Sundar Logo
+import logosundar from "assets/images/Sundar Logo/logo.png";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -154,7 +156,7 @@ export default function App() {
           <>
             <Sidenav
               color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+              brand={(transparentSidenav && !darkMode) || whiteSidenav ? logosundar : logosundar}
               brandName="Sundar Industrial Estate"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
@@ -178,7 +180,7 @@ export default function App() {
         <>
           <Sidenav
             color={sidenavColor}
-            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brand={(transparentSidenav && !darkMode) || whiteSidenav ? logosundar : logosundar}
             brandName="Sundar Industrial Estate"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
