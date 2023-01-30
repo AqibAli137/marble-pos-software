@@ -6,6 +6,7 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 
 // Custom styles for the SidenavCollapse
+
 import {
   collapseItem,
   collapseIconBox,
