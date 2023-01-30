@@ -9,11 +9,13 @@ import Configurator from "examples/Configurator";
 import theme from "assets/theme";
 // import themeRTL from "assets/theme/theme-rtl";
 import themeDark from "assets/theme-dark";
+
 // import themeDarkRTL from "assets/theme-dark/theme-rtl";
 // import rtlPlugin from "stylis-plugin-rtl";
 // import { CacheProvider } from "@emotion/react";
 // import createCache from "@emotion/cache";
-import createCache from "@emotion/cache"; 
+// import createCache from "@emotion/cache";
+
 import routes from "routes";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 import logosundar from "assets/images/Sundar Logo/logo.png";
@@ -66,8 +68,7 @@ export default function App() {
   useEffect(() => {
     document.body.setAttribute("dir", direction);
   }, [direction]);
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;

@@ -23,8 +23,8 @@ function Cover() {
           mb={1}
           textAlign="center"
         >
-          <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Join us today
+          <MDTypography variant="h5" fontWeight="medium" color="white" mt={1}>
+            Sundar Industrial Estate
           </MDTypography>
           <MDTypography display="block" variant="button" color="white" my={1}>
             Enter your email and password to register
