@@ -7,6 +7,7 @@ import MDBox from "components/MDBox";
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 import theme from "assets/theme";
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import themeRTL from "assets/theme/theme-rtl";
 import themeDark from "assets/theme-dark";
 
