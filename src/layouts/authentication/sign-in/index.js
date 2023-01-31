@@ -2,18 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
-// import Grid from "@mui/material/Grid";
-// import MuiLink from "@mui/material/Link";
-// import FacebookIcon from "@mui/icons-material/Facebook";
-// import GitHubIcon from "@mui/icons-material/GitHub";
-// import GoogleIcon from "@mui/icons-material/Google";
-// import Grid from "@mui/material/Grid";
-// import MuiLink from "@mui/material/Link";
-// @mui icons
-// import FacebookIcon from "@mui/icons-material/Facebook";
-// import GitHubIcon from "@mui/icons-material/GitHub";
-// import GoogleIcon from "@mui/icons-material/Google";
-// Material Dashboard 2 React components
 import axios from "axios";
 import MDBox from "../../../components/MDBox";
 import MDTypography from "../../../components/MDTypography";
@@ -21,6 +9,8 @@ import MDInput from "../../../components/MDInput";
 import MDButton from "../../../components/MDButton";
 import BasicLayout from "../components/BasicLayout";
 import bgImage from "../../../assets/images/bg-sign-in-basic.jpeg";
+import { updateLoginUser } from "../../../@features/User/userSlice";
+import {useDispatch} from 'react-redux'
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
@@ -28,15 +18,11 @@ function Basic() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-const [localStorageuUser, setlocalStorageuUser] = useState(window.localStorage.getItem('localStorageuUser'));
-  // Store calls
-
   
 const dispatch = useDispatch('');
-let userState = useSelector(function (store) {
-    return store.user;
-});
+// let userState = useSelector(function (store) {
+//     return store.user;
+// });
 
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
