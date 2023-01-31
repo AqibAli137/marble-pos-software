@@ -6,7 +6,7 @@ import MDTypography from "../../../components/MDTypography";
 import MDInput from "../../../components/MDInput";
 import MDButton from "../../../components/MDButton";
 import BasicLayout from "../components/BasicLayout";
-import illustration14 from "assets/images/illustration/14.png";
+import illustration14 from "../../../assets/images/illustration/14.png";
 import Grid from "@mui/material/Grid";
 import logo from "../../../assets/images/Sundar Logo/logo.png";
 function Basic() {
