@@ -31,7 +31,7 @@ import PageLayout from "examples/LayoutContainers/PageLayout";
 // import Footer from "layouts/authentication/components/Footer";
 
 function CoverLayout({ coverHeight, image, children }) {
-  return (
+  return ( 
     <PageLayout>
       {/* <DefaultNavbar
         action={{
