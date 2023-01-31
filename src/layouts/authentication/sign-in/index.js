@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
+import { Link, useNavigate} from "react-router-dom";
 import Card from "@mui/material/Card";
+import Switch from "@mui/material/Switch";
+import axios from "axios";
 import MDBox from "../../../components/MDBox";
 import MDTypography from "../../../components/MDTypography";
 import MDInput from "../../../components/MDInput";
@@ -9,25 +12,44 @@ import BasicLayout from "../components/BasicLayout";
 import illustration14 from "../../../assets/images/illustration/14.png";
 import Grid from "@mui/material/Grid";
 import logo from "../../../assets/images/Sundar Logo/logo.png";
+import bgImage from "../../../assets/images/bg-sign-in-basic.jpeg";
+import { updateLoginUser } from "../../../@features/User/userSlice";
+import {useDispatch} from 'react-redux'
+
 function Basic() {
   const navigate = useNavigate();
   // const [rememberMe, setRememberMe] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  
+const dispatch = useDispatch('');
+// let userState = useSelector(function (store) {
+//     return store.user;
+// });
+
 
   // const handleSetRememberMe = () => setRememberMe(!rememberMe);
   const values = {
     Email: email,
-    password,
+    password: password,
   };
   console.log(values)
 
   const handleSignIn = () => {
-    // axios.post("https://localhost:7016/api/Auth/Login", values).then((res) => {
-    //   console.log(res);
-    // });
     navigate("/dashboard");
+    axios.post("https://localhost:7016/api/Auth/Login", values).then((res) => {
+      console.log(res)
+      if(res.data.user){
+        dispatch(updateLoginUser(res.data.user));
+        window.localStorage.setItem('loginUser', JSON.stringify(res.data.user));
+        console.log(window.localStorage.getItem('loginUser'))
+        navigate('/dashboard');
+      }
+    }).catch(
+      err=>{console.log(err)}
+    );
   };
 
   return (

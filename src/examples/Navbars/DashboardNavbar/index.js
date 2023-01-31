@@ -129,6 +129,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
                  <img src={boxes} alt="" />
                 </IconButton>
+              </Link>
+              <Link to="/authentication/sign-in">
+                <IconButton
+                  sx={navbarIconButton}
+                  size="small"
+                  disableRipple
+                  onClick={()=>{window.localStorage.removeItem("loginUser")}}
+                >
+                  <Icon sx={iconsStyle}>logout</Icon>
+                </IconButton>
+              </Link>
               <IconButton
                 size="small"
                 disableRipple

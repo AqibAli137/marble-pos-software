@@ -1,8 +1,7 @@
-import React from 'react'
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios'
 
-const initialState = {
+const InitialState = {
   name: '',
   isLoading: true,
   users: [],
@@ -10,21 +9,21 @@ const initialState = {
   initialUser:{}
 }
 
-export const userLogin = createAsyncThunk('user/userLogin', async (values: any, thunkAPI) => {
+export const userLogin = createAsyncThunk('user/userLogin', async (values, thunkAPI) => {
   const resp = await axios.post('https://localhost:7016/api/Auth/Login', values)
   return resp.data
 })
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState:InitialState,
   reducers: {
     changeName: (state, action) => {
       state.name = action.payload
     },
-    logoutUser: (state) => {
-      state.loggedInUser = {}
-    },
+    updateLoginUser: (state,action) => {
+      state.loggedInUser = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -42,5 +41,5 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {changeName, logoutUser} = userSlice.actions
+export const {changeName, updateLoginUser} = userSlice.actions
 export default userSlice.reducer

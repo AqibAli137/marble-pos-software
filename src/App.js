@@ -19,11 +19,12 @@ import themeDark from "./assets/theme-dark";
 import Configurator from "./examples/Configurator";
 import Sidenav from "./examples/Sidenav";
 import MDBox from "./components/MDBox";
+import {useSelector} from 'react-redux'
 // import brandWhite from "assets/images/logo-ct.png";
 // import brandDark from "assets/images/logo-ct-dark.png";
 
 export default function App() {
-  const [controller, dispatch] = useMaterialUIController();
+  const [controller, dispatch1] = useMaterialUIController();
   const {
     miniSidenav,
     direction,
@@ -35,34 +36,25 @@ export default function App() {
     darkMode,
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-  // const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
 
-  // Cache for the rtl
-  // useMemo(() => {
-  //   const cacheRtl = createCache({
-  //     key: "rtl",
-  //     stylisPlugins: [rtlPlugin],
-  //   });
-
-  //   setRtlCache(cacheRtl);
-  // }, []);
-
-  // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {
-      setMiniSidenav(dispatch, false);
+      setMiniSidenav(dispatch1, false);
       setOnMouseEnter(true);
     }
   };
   const handleOnMouseLeave = () => {
     if (onMouseEnter) {
-      setMiniSidenav(dispatch, true);
+      setMiniSidenav(dispatch1, true);
       setOnMouseEnter(false);
     }
   };
+  let userState = useSelector(function (store) {
+    return store.user;
+});
 
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
+  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch1, !openConfigurator);
 
   // Setting the dir attribute for the body element
   useEffect(() => {
@@ -129,10 +121,18 @@ export default function App() {
         </>
       )}
       {layout === "vr" && <Configurator />}
-      <Routes>
+      {
+        window.localStorage.getItem('loginUser') ? <Routes>
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
-      </Routes>
+      </Routes>:
+      <Routes>
+      {getRoutes(routes)}
+     { console.log(window.localStorage.getItem('loginUser'))}
+      <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
+    </Routes>
+      }
+      
     </ThemeProvider>
   );
 }
