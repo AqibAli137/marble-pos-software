@@ -12,13 +12,12 @@ import BasicLayout from "../components/BasicLayout";
 import illustration14 from "../../../assets/images/illustration/14.png";
 import Grid from "@mui/material/Grid";
 import logo from "../../../assets/images/Sundar Logo/logo.png";
-import bgImage from "../../../assets/images/bg-sign-in-basic.jpeg";
 import { updateLoginUser } from "../../../@features/User/userSlice";
 import {useDispatch} from 'react-redux'
 
 function Basic() {
-  const navigate = useNavigate();
-  // const [rememberMe, setRememberMe] = useState(false);
+  
+  const [rememberMe, setRememberMe] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,23 +27,17 @@ const dispatch = useDispatch('');
 // let userState = useSelector(function (store) {
 //     return store.user;
 // });
-
-
-  // const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  const handleSetRememberMe = () => setRememberMe(!rememberMe);
   const values = {
     Email: email,
     password: password,
   };
-  console.log(values)
 
   const handleSignIn = () => {
-    navigate("/dashboard");
     axios.post("https://localhost:7016/api/Auth/Login", values).then((res) => {
-      console.log(res)
       if(res.data.user){
         dispatch(updateLoginUser(res.data.user));
-        window.localStorage.setItem('loginUser', JSON.stringify(res.data.user));
-        console.log(window.localStorage.getItem('loginUser'))
+        rememberMe && window.localStorage.setItem('loginUser', JSON.stringify(res.data.user));
         navigate('/dashboard');
       }
     }).catch(
@@ -93,7 +86,7 @@ const dispatch = useDispatch('');
                 onChange={(e) => setPassword(e.target.value)}
               />
             </MDBox>
-            {/* <MDBox display="flex" alignItems="center" ml={-1}>
+            <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
               <MDTypography
                 variant="button"
@@ -104,7 +97,7 @@ const dispatch = useDispatch('');
               >
                 &nbsp;&nbsp;Remember me
               </MDTypography>
-            </MDBox> */}
+            </MDBox>
             <MDBox mt={4} mb={1}>
               <MDButton variant="gradient" color="info" fullWidth onClick={handleSignIn}>
                 sign in

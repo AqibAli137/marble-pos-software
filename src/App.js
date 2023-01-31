@@ -3,9 +3,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
-// import themeRTL from "assets/theme/theme-rtl";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 // import themeDarkRTL from "assets/theme-dark/theme-rtl";
 // import rtlPlugin from "stylis-plugin-rtl";
 // import createCache from "@emotion/cache";
@@ -128,7 +126,6 @@ export default function App() {
       </Routes>:
       <Routes>
       {getRoutes(routes)}
-     { console.log(window.localStorage.getItem('loginUser'))}
       <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
     </Routes>
       }
