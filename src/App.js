@@ -7,21 +7,14 @@ import MDBox from "components/MDBox";
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 import theme from "assets/theme";
-// import themeRTL from "assets/theme/theme-rtl";
 import themeDark from "assets/theme-dark";
-// import themeDarkRTL from "assets/theme-dark/theme-rtl";
-// import rtlPlugin from "stylis-plugin-rtl";
-// import { CacheProvider } from "@emotion/react";
-// import createCache from "@emotion/cache";
-import createCache from "@emotion/cache"; 
 import routes from "routes";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 import logosundar from "assets/images/Sundar Logo/logo.png";
-// import brandWhite from "assets/images/logo-ct.png";
-// import brandDark from "assets/images/logo-ct-dark.png";
+import { useSelector} from 'react-redux'
 
 export default function App() {
-  const [controller, dispatch] = useMaterialUIController();
+  const [controller, dispatch1] = useMaterialUIController();
   const {
     miniSidenav,
     direction,
@@ -33,34 +26,25 @@ export default function App() {
     darkMode,
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-  // const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
 
-  // Cache for the rtl
-  // useMemo(() => {
-  //   const cacheRtl = createCache({
-  //     key: "rtl",
-  //     stylisPlugins: [rtlPlugin],
-  //   });
-
-  //   setRtlCache(cacheRtl);
-  // }, []);
-
-  // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {
-      setMiniSidenav(dispatch, false);
+      setMiniSidenav(dispatch1, false);
       setOnMouseEnter(true);
     }
   };
   const handleOnMouseLeave = () => {
     if (onMouseEnter) {
-      setMiniSidenav(dispatch, true);
+      setMiniSidenav(dispatch1, true);
       setOnMouseEnter(false);
     }
   };
+  let userState = useSelector(function (store) {
+    return store.user;
+});
 
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
+  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch1, !openConfigurator);
 
   // Setting the dir attribute for the body element
   useEffect(() => {
@@ -128,10 +112,18 @@ export default function App() {
         </>
       )}
       {layout === "vr" && <Configurator />}
-      <Routes>
+      {
+        window.localStorage.getItem('loginUser') ? <Routes>
         {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
-      </Routes>
+        <Route path="*" element={<Navigate to="/dashboard" />} />
+      </Routes>:
+      <Routes>
+      {getRoutes(routes)}
+     { console.log(window.localStorage.getItem('loginUser'))}
+      <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
+    </Routes>
+      }
+      
     </ThemeProvider>
   );
 }

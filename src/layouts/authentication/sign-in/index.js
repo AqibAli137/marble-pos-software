@@ -1,19 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
-import Grid from "@mui/material/Grid";
-import MuiLink from "@mui/material/Link";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
-// import Grid from "@mui/material/Grid";
-// import MuiLink from "@mui/material/Link";
-// @mui icons
-// import FacebookIcon from "@mui/icons-material/Facebook";
-// import GitHubIcon from "@mui/icons-material/GitHub";
-// import GoogleIcon from "@mui/icons-material/Google";
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
@@ -21,17 +9,26 @@ import MDButton from "components/MDButton";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import axios from "axios";
-import { loginUser } from "@features/User/userSlice";
-// import { RootState, AppDispatch } from "../../../store";
+import { updateLoginUser } from "@features/User/userSlice";
+import {useDispatch,useSelector} from 'react-redux'
+
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+const [localStorageuUser, setlocalStorageuUser] = useState(window.localStorage.getItem('localStorageuUser'));
   // Store calls
-  const dispatch = useDispatch <AppDispatch>('');
-  let empState = useSelector((store) => store.employee);
+
+  
+const dispatch = useDispatch('');
+let userState = useSelector(function (store) {
+    return store.user;
+});
+
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
   const values = {
@@ -41,8 +38,16 @@ function Basic() {
 
   const handleSignIn = () => {
     axios.post("https://localhost:7016/api/Auth/Login", values).then((res) => {
-      dispatch(loginUser(res));
-    });
+      console.log(res)
+      if(res.data.user){
+        dispatch(updateLoginUser(res.data.user));
+        window.localStorage.setItem('loginUser', JSON.stringify(res.data.user));
+        console.log(window.localStorage.getItem('loginUser'))
+        navigate('/dashboard');
+      }
+    }).catch(
+      err=>{console.log(err)}
+    );
   };
 
   return (
@@ -87,7 +92,7 @@ function Basic() {
                 type="email"
                 label="Email"
                 fullWidth
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </MDBox>
             <MDBox mb={2}>
