@@ -17,6 +17,7 @@ import themeDark from "./assets/theme-dark";
 import Configurator from "./examples/Configurator";
 import Sidenav from "./examples/Sidenav";
 import MDBox from "./components/MDBox";
+import {useSelector} from 'react-redux'
 // import brandWhite from "assets/images/logo-ct.png";
 // import brandDark from "assets/images/logo-ct-dark.png";
 
