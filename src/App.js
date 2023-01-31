@@ -4,6 +4,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 // import themeRTL from "assets/theme/theme-rtl";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // import themeDarkRTL from "assets/theme-dark/theme-rtl";
 // import rtlPlugin from "stylis-plugin-rtl";
 // import createCache from "@emotion/cache";
