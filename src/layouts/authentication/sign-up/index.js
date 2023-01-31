@@ -6,11 +6,14 @@ import MDTypography from "../../../components/MDTypography";
 import MDInput from "../../../components/MDInput";
 import MDButton from "../../../components/MDButton";
 import CoverLayout from "../components/CoverLayout";
-import bgImage from "../../../assets/images/bg-sign-up-cover.jpeg";
+// import bgImage from "../../../assets/images/bg-sign-up-cover.jpeg";
+import illustration14 from "assets/images/illustration/14.png";
+import Grid from "@mui/material/Grid";
+import logo from "../../../assets/images/Sundar Logo/logo.png";
 
 function Cover() {
   return (
-    <CoverLayout image={bgImage}>
+    <CoverLayout image={illustration14}>
       <Card>
         <MDBox
           variant="gradient"
@@ -23,11 +26,13 @@ function Cover() {
           mb={1}
           textAlign="center"
         >
-          <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Join us today
-          </MDTypography>
-          <MDTypography display="block" variant="button" color="white" my={1}>
-            Enter your email and password to register
+          <Grid container justifyContent="center" sx={{ mt: 1, mb: 2 }}>
+            <a href="../../../assets/images/apple-icon.png">
+              <img width={100} src={logo} alt="" />
+            </a>
+          </Grid>
+          <MDTypography variant="h5" fontWeight="medium" color="white" mt={1}>
+            Sign Up Here
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
