@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 // import Grid from "@mui/material/Grid";
@@ -27,17 +27,36 @@ function Basic() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+const [localStorageuUser, setlocalStorageuUser] = useState(window.localStorage.getItem('localStorageuUser'));
+  // Store calls
+
+  
+const dispatch = useDispatch('');
+let userState = useSelector(function (store) {
+    return store.user;
+});
+
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
   const values = {
     Email: email,
-    password,
+    password: password,
   };
 
   const handleSignIn = () => {
     axios.post("https://localhost:7016/api/Auth/Login", values).then((res) => {
-      console.log(res);
-    });
+      console.log(res)
+      if(res.data.user){
+        dispatch(updateLoginUser(res.data.user));
+        window.localStorage.setItem('loginUser', JSON.stringify(res.data.user));
+        console.log(window.localStorage.getItem('loginUser'))
+        navigate('/dashboard');
+      }
+    }).catch(
+      err=>{console.log(err)}
+    );
   };
 
   return (
