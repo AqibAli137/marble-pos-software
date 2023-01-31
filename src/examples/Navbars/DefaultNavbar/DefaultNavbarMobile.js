@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Menu from "@mui/material/Menu";
-import MDBox from "components/MDBox";
-import DefaultNavbarLink from "examples/Navbars/DefaultNavbar/DefaultNavbarLink";
+import MDBox from "../../../components/MDBox";
+import DefaultNavbarLink from "./DefaultNavbarLink";
 
 function DefaultNavbarMobile({ open, close }) {
   const { width } = open && open.getBoundingClientRect();

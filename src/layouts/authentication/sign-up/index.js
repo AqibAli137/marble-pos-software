@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
-import CoverLayout from "layouts/authentication/components/CoverLayout";
-import bgImage from "assets/images/bg-sign-up-cover.jpeg";
+import MDBox from "../../../components/MDBox";
+import MDTypography from "../../../components/MDTypography";
+import MDInput from "../../../components/MDInput";
+import MDButton from "../../../components/MDButton";
+import CoverLayout from "../components/CoverLayout";
+import bgImage from "../../../assets/images/bg-sign-up-cover.jpeg";
 
 function Cover() {
   return (

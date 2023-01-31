@@ -26,14 +26,14 @@ import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "../../../../components/MDBox";
+import MDTypography from "../../../../components/MDTypography";
 
 // VerticalBarChart configurations
-import configs from "examples/Charts/BarCharts/VerticalBarChart/configs";
+import configs from "./configs";
 
 // Material Dashboard 2 React base styles
-import colors from "assets/theme/base/colors";
+import colors from "../../../../assets/theme/base/colors";
 
 function VerticalBarChart({ icon, title, description, height, chart }) {
   const chartDatasets = chart.datasets
