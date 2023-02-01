@@ -4,11 +4,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import themeDarkRTL from "assets/theme-dark/theme-rtl";
-// import rtlPlugin from "stylis-plugin-rtl";
-// import createCache from "@emotion/cache";
-// import createCache from "@emotion/cache";
-// import { CacheProvider } from "@emotion/react";
 import logosundar from "./assets/images/logos/mastercard.png";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "./context";
 import routes from "./routes";
@@ -18,8 +13,7 @@ import Configurator from "./examples/Configurator";
 import Sidenav from "./examples/Sidenav";
 import MDBox from "./components/MDBox";
 import {useSelector} from 'react-redux'
-// import brandWhite from "assets/images/logo-ct.png";
-// import brandDark from "assets/images/logo-ct-dark.png";
+import Basic from "./layouts/authentication/sign-in";
 
 export default function App() {
   const [controller, dispatch1] = useMaterialUIController();
@@ -127,6 +121,8 @@ export default function App() {
       <Routes>
       {getRoutes(routes)}
       <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
+      <Route path="/authentication/sign-in" element={<Basic />} />
+
     </Routes>
       }
       
