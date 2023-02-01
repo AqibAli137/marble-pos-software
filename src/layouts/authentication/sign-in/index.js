@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 import axios from "axios";
@@ -13,20 +13,22 @@ import illustration14 from "../../../assets/images/illustration/14.png";
 import Grid from "@mui/material/Grid";
 import logo from "../../../assets/images/Sundar Logo/logo.png";
 import { updateLoginUser } from "../../../@features/User/userSlice";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
+import MDSnackbar from "../../../components/MDSnackbar";
+
 
 function Basic() {
-  
   const [rememberMe, setRememberMe] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
-const dispatch = useDispatch('');
-// let userState = useSelector(function (store) {
-//     return store.user;
-// });
+  const closeErrorSB = () => setErrorSB(false);
+  const [errorSB, setErrorSB] = useState(false);
+  const dispatch = useDispatch("");
+  // let userState = useSelector(function (store) {
+  //     return store.user;
+  // });
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
   const values = {
     Email: email,
@@ -34,17 +36,31 @@ const dispatch = useDispatch('');
   };
 
   const handleSignIn = () => {
-    axios.post("https://localhost:7016/api/Auth/Login", values).then((res) => {
-      if(res.data.user){
-        dispatch(updateLoginUser(res.data.user));
-        rememberMe && window.localStorage.setItem('loginUser', JSON.stringify(res.data.user));
-        navigate('/dashboard');
-      }
-    }).catch(
-      err=>{console.log(err)}
-    );
-  };
+  //   axios
+  //     .post("https://localhost:7016/api/Auth/Login", values)
+  //     .then((res) => {
+  //       if (res.data.user) {
+  //         dispatch(updateLoginUser(res.data.user));
+  //         rememberMe && window.localStorage.setItem("loginUser", JSON.stringify(res.data.user));
+  //         navigate("/dashboard");
+  //       }
+  //       else{
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setErrorSB(true)
+  //     });
 
+  if(values.Email==='dev@webeasy.com' && values.password==='12345678'|| values.Email==='naveed@admin.com' && values.password==='1234' ){
+    window.localStorage.setItem("loginUser", 'User Save');
+    navigate("/dashboard");
+  }
+  else{
+    setErrorSB(true)
+  }
+  };
+  
+ 
   return (
     <BasicLayout image={illustration14}>
       <Card>
@@ -103,7 +119,7 @@ const dispatch = useDispatch('');
                 sign in
               </MDButton>
             </MDBox>
-            <MDBox mt={3} mb={1} textAlign="center">
+            {/* <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
                 Don&apos;t have an account?{" "}
                 <MDTypography
@@ -117,10 +133,21 @@ const dispatch = useDispatch('');
                   Sign up
                 </MDTypography>
               </MDTypography>
-            </MDBox>
+            </MDBox> */}
           </MDBox>
         </MDBox>
       </Card>
+    <MDSnackbar
+    color="error"
+    icon="warning"
+    title="User Not found"
+    content="Authentication was not verified"
+    dateTime="1sec ago"
+    open={errorSB}
+    onClose={closeErrorSB}
+    close={closeErrorSB}
+    bgWhite
+  />
     </BasicLayout>
   );
 }
