@@ -11,7 +11,7 @@ import MDButton from "../../../components/MDButton";
 import BasicLayout from "../components/BasicLayout";
 import illustration14 from "../../../assets/images/illustration/14.png";
 import Grid from "@mui/material/Grid";
-import logo from "../../../assets/images/Sundar Logo/logo.png";
+import logo from "../../../assets/images/Sundar Logo/logo.jpg";
 import { updateLoginUser } from "../../../@features/User/userSlice";
 import { useDispatch } from "react-redux";
 import MDSnackbar from "../../../components/MDSnackbar";

@@ -1,14 +1,7 @@
-import Grid from "@mui/material/Grid";
-import MDBox from "../../components/MDBox";
 import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
-import ReportsBarChart from "../../examples/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "../../examples/Charts/LineCharts/ReportsLineChart";
-import ComplexStatisticsCard from "../../examples/Cards/StatisticsCards/ComplexStatisticsCard";
-import reportsBarChartData from "./data/reportsBarChartData";
 import reportsLineChartData from "./data/reportsLineChartData";
-import Projects from "./components/Projects";
-import OrdersOverview from "./components/OrdersOverview";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
+import DashboardWraper from "../../marble-pos/DashboardWraper";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -16,7 +9,7 @@ function Dashboard() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox py={3}>
+      {/* <MDBox py={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
@@ -129,7 +122,8 @@ function Dashboard() {
             </Grid>
           </Grid>
         </MDBox>
-      </MDBox>
+      </MDBox>  */}
+      <DashboardWraper />
       {/* <Footer /> */}
     </DashboardLayout>
   );

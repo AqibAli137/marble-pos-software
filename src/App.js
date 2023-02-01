@@ -4,7 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logosundar from "./assets/images/logos/mastercard.png";
+import logosundar from "./assets/images/Sundar Logo/logo.jpg";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "./context";
 import routes from "./routes";
 import theme from "./assets/theme";
@@ -103,7 +103,7 @@ export default function App() {
           <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? logosundar : logosundar}
-            brandName="Sundar Industrial Estate"
+            brandName="سبحان ماربل"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
