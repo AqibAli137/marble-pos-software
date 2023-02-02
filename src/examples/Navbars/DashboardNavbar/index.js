@@ -20,6 +20,7 @@ import {
   setTransparentNavbar,
   setMiniSidenav,
   setOpenConfigurator,
+  setDirection,
 } from "../../../context";
 import graph from "../../../assets/social-logos/graph.svg";
 import rectle from "../../../assets/social-logos/rectle.svg";
@@ -32,6 +33,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
+
+  // direction RTL
+  // useEffect(() => {
+  //   setDirection(dispatch, "rtl");
+  //   return () => setDirection(dispatch, "ltr");
+  // }, []);
 
   useEffect(() => {
     if (fixedNavbar) {
@@ -64,7 +71,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
       sx={{ mt: 2 }}
     >
       <NotificationItem icon={<AccountCircleIcon />} title="My Profile" />
-      <NotificationItem icon={<SettingsIcon />} title="Account Setting" />
+      {/* <NotificationItem icon={<SettingsIcon />} title="Account Setting" /> */}
       <Link to="/authentication/sign-in">
         <div
           onClick={() => {
@@ -102,11 +109,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
-            <MDBox pr={1}>
+            {/* <MDBox pr={1}>
               <MDInput label="Search here" />
-            </MDBox>
+            </MDBox> */}
             <MDBox color={light ? "white" : "inherit"}>
-              <IconButton sx={navbarIconButton} size="small" disableRipple>
+              {/* <IconButton sx={navbarIconButton} size="small" disableRipple>
                 <img src={graph} alt="" />
               </IconButton>
               <IconButton sx={navbarIconButton} size="small" disableRipple>
@@ -116,7 +123,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
                   <img src={boxes} alt="" />
                 </IconButton>
-              </Link>
+              </Link> */}
 
               <IconButton
                 size="small"
@@ -131,13 +138,37 @@ function DashboardNavbar({ absolute, light, isMini }) {
               </IconButton>
               <IconButton
                 size="small"
+                className="p-2 rounded-5 bg-light mx-1"
                 disableRipple
                 color="inherit"
                 sx={navbarIconButton}
                 onClick={handleConfiguratorOpen}
               >
-                <img src={chat} alt="" />
+                <Icon fontSize="small" color="inherit">
+                  settings
+                </Icon>
               </IconButton>
+              {/* <MDBox
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                width="3.25rem"
+                height="3.25rem"
+                bgColor="white"
+                shadow="sm"
+                borderRadius="50%"
+                position="fixed"
+                right="2rem"
+                bottom="2rem"
+                zIndex={99}
+                color="dark"
+                sx={{ cursor: "pointer" }}
+                onClick={handleConfiguratorOpen}
+              >
+                <Icon fontSize="small" color="inherit">
+                  settings
+                </Icon>
+              </MDBox> */}
               <IconButton
                 size="small"
                 disableRipple

@@ -2,6 +2,7 @@ import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
 import reportsLineChartData from "./data/reportsLineChartData";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import DashboardWraper from "../../marble-pos/DashboardWraper";
+import { useMaterialUIController, setDirection } from "../../context";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;

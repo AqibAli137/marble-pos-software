@@ -6,6 +6,8 @@ import IconButton from '@mui/material/IconButton'
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import { AppDispatch, RootState } from "../store";
 import { updateOrderList } from "../@features/SaleItems/SaleItemSlice";
+import MDButton from "../components/MDButton";
+import { Button } from "@mui/material";
 
 const items = [
   { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500,TotalAmount:50 * 500 },
@@ -75,6 +77,20 @@ const SaleDashboard=()=> {
       dataIndex: 'YourBill',
     }
   ];
+  const oldData=[
+    {ItemName:'item 1',
+    ItemQuantity:354,
+    SetPrice:87,
+    YourBill:78698},
+    {ItemName:'item 2',
+    ItemQuantity:54,
+    SetPrice:57,
+    YourBill:56960},
+    {ItemName:'item 1',
+    ItemQuantity:78,
+    SetPrice:45,
+    YourBill:95680}
+  ]
   
 
   return (
@@ -209,11 +225,26 @@ const SaleDashboard=()=> {
         <div className="col">
           {/* <OrderTable TableData={saleItem} /> */}
           {/* This is place of all orders records, display from database and also new orders..!*/}
+          <div style={{backgroundColor: 'rgba(0, 128, 0, 0.164)'}} className='row p-3'>
+              <h3 className='text-center'>Customer Old Record</h3>
+          </div>
+        <Table columns={columns} dataSource={oldData} />
+          <div style={{backgroundColor: 'rgba(0, 128, 0, 0.164)'}} className='row p-3'>
+              <h3 className='text-center'>New Order</h3>
+          </div>
         <Table columns={columns} dataSource={saleItem} />
         </div>
         <div className="col">
           {/* Show Print Order List, also need style at top of this table */}
+          <div style={{backgroundColor: 'rgba(0, 128, 0, 0.164)'}} className='row p-3'>
+              <h3 className='text-center'>Order print</h3>
+          </div>
         <Table columns={columns} dataSource={saleItem} />
+        <div className='d-flex justify-content-center'>
+        <Button  variant="contained" className="text-white">
+          Print
+        </Button>
+          </div>
         </div>
     </div>
     </>
