@@ -13,6 +13,8 @@ const items = [
   { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500,TotalAmount:50 * 500 },
   { ItemName: "Item 2", CostOfItem: 60, TotalQuantity: 320,TotalAmount:60 * 320 },
   { ItemName: "Item 3", CostOfItem: 90, TotalQuantity: 150,TotalAmount:90 * 150 },
+  { ItemName: "Item 4", CostOfItem: 60, TotalQuantity: 450,TotalAmount:60 * 450 },
+  { ItemName: "Item 5", CostOfItem: 150, TotalQuantity: 850,TotalAmount:150 * 850 },
 ];
 
 const SaleDashboard=()=> {
@@ -115,13 +117,14 @@ const SaleDashboard=()=> {
               <td>
                 <div className="d-flex align-items-center">
                   <div className="d-flex justify-content-start flex-column">
-                    <span className="fw-bold text-muted d-block">
+                    {/* <span className="fw-bold text-muted d-block"> */}
                       <select
                         onChange={(e)=>{ChangeDropdown(e.target.value)}}
                         className=" form-select form-control "
                         data-kt-select2="true"
                         data-placeholder="Select option"
                         data-allow-clear="true"
+                        
                       >
                         {items.map((item) => (
                           <option key={item.ItemName} value={item.ItemName}>
@@ -129,7 +132,7 @@ const SaleDashboard=()=> {
                           </option>
                         ))}
                       </select>
-                    </span>
+                    {/* </span> */}
                   </div>
                 </div>
               </td>

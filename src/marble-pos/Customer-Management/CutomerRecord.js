@@ -1,9 +1,11 @@
-import {Table} from 'antd'
-import Typography from '@mui/material/Typography'
-import {useEffect, useState} from 'react'
-import {useNavigate} from 'react-router-dom'
-import IconButton from '@mui/material/IconButton'
-import {AiOutlineDelete} from 'react-icons/ai'
+import { Table } from "antd";
+import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
+
+
+
 const Customers = [
   {
     Id: 4323,
@@ -79,68 +81,81 @@ const Customers = [
         YourBill: 45500,
       },
     ],
-  }
+  },
 ];
 const CutomerRecord = () => {
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'Name',
-      key: 'Name',
+      title: "Name",
+      dataIndex: "Name",
+      key: "Name",
     },
     {
-      title: 'Address',
-      dataIndex: 'Address',
-      key: 'Address',
+      title: "Address",
+      dataIndex: "Address",
+      key: "Address",
     },
     {
-      title: 'Phone No',
-      dataIndex: 'PhoneNo',
-      key: 'PhoneNo',
+      title: "Phone No",
+      dataIndex: "PhoneNo",
+      key: "PhoneNo",
     },
 
     {
-      title: 'Payment Rcv',
-      dataIndex: 'PaymentRcv',
-      key: 'PaymentRcv',
+      title: "Payment Rcv",
+      dataIndex: "PaymentRcv",
+      key: "PaymentRcv",
     },
     {
-      title: 'Pending Payment',
-      dataIndex: 'PendingPayment',
-      key: 'PendingPayment',
+      title: "Pending Payment",
+      dataIndex: "PendingPayment",
+      key: "PendingPayment",
     },
     {
-      title: 'Action',
-      dataIndex: '',
-      key: 'x',
+      title: "Action",
+      dataIndex: "",
+      key: "x",
       render: () => (
         <>
-          <div className='d-flex justify-content-center'>
-            <IconButton aria-label='delete'>
-              <AiOutlineDelete />
-            </IconButton>
+          <div className="d-flex justify-content-center">
+            <select
+              className=" form-select form-control "
+              data-kt-select2="true"
+              data-placeholder="Select option"
+              data-allow-clear="true"
+            >
+                <option>
+                Print All
+                </option>
+                <option>
+                View Khata
+                </option>
+                <option>
+                Payment
+                </option>
+            </select>
           </div>
         </>
       ),
     },
-  ]
-  const [companies, setcompanies] = useState([])
-  const navigate = useNavigate()
+  ];
+  const [companies, setcompanies] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const getCompanies = async () => {
       // const companies = await getCompaniesAsync()
       // if (companies) {
-        setcompanies(Customers)
+      setcompanies(Customers);
       // }
-    }
-    getCompanies()
-  }, [])
+    };
+    getCompanies();
+  }, []);
   const tableData = companies.map((item, index) => {
     return {
       ...item,
       key: index,
-    }
-  })
+    };
+  });
 
   return (
     <Table
@@ -148,45 +163,42 @@ const CutomerRecord = () => {
       expandable={{
         expandedRowRender: (record) => (
           <>
-            <Typography className='mt-3 fw-bold fs-3' variant='h1' gutterBottom component='div'>
-               Customers Record
+            <Typography className="mt-3 fw-bold fs-3" variant="h1" gutterBottom component="div">
+              Customers Record
             </Typography>
-            <table className='table table-striped table-row-gray-300 align-middle gs-0 gy-4 w-100'>
-              <thead className='fw-bolder'>
-                <th className='min-w-10px text-center'>ItemName</th>
-                <th className='min-w-10px text-center'>ItemQuantity</th>
-                <th className='min-w-10px text-center'>SetPrice</th>
-                <th className='min-w-10px text-center'>YourBill</th>
-                <th className='min-w-10px text-center'>Action</th>
+            <table className="table table-striped table-row-gray-300 align-middle gs-0 gy-4 w-100">
+              <thead className="fw-bolder">
+                <th className="min-w-10px text-center">ItemName</th>
+                <th className="min-w-10px text-center">ItemQuantity</th>
+                <th className="min-w-10px text-center">SetPrice</th>
+                <th className="min-w-10px text-center">YourBill</th>
+                <th className="min-w-10px text-center">Action</th>
               </thead>
               {/* Owners details */}
               <tbody>
                 {record.CustomerOrders.map((ordersRow) => (
-                  <tr className='p-0 m-0'>
-                    <td className='p-0 m-0'>
-                      <span className=' text-center d-block fs-6'>
-                        {ordersRow.ItemName}
-                      </span>
+                  <tr className="p-0 m-0">
+                    <td className="p-0 m-0">
+                      <span className=" text-center d-block fs-6">{ordersRow.ItemName}</span>
                     </td>
-                    <td className='p-0 m-0'>
-                      <span className=' text-center d-block fs-6'>
-                        {ordersRow.ItemQuantity}
-                      </span>
+                    <td className="p-0 m-0">
+                      <span className=" text-center d-block fs-6">{ordersRow.ItemQuantity}</span>
                     </td>
-                    <td className='p-0 m-0'>
-                      <span className='text-center text-dark d-block fs-6'>
+                    <td className="p-0 m-0">
+                      <span className="text-center text-dark d-block fs-6">
                         {ordersRow.SetPrice}
                       </span>
                     </td>
-                    <td className='text-center p-0 m-0'>
-                      <span className=' text-dark d-block fs-6'>{ordersRow.YourBill}</span>
+                    <td className="text-center p-0 m-0">
+                      <span className=" text-dark d-block fs-6">{ordersRow.YourBill}</span>
                     </td>
 
-                    <td className='text-center p-0 m-0'>
-                      <div className='d-flex justify-content-center'>
-                        <IconButton aria-label='delete'>
+                    <td className="text-center p-0 m-0">
+                      <div className="d-flex justify-content-center">
+                        {/* <IconButton aria-label='delete'>
                           <AiOutlineDelete />
-                        </IconButton>
+                        </IconButton> */}
+                        {/* select one */}
                       </div>
                     </td>
                   </tr>
@@ -195,10 +207,10 @@ const CutomerRecord = () => {
             </table>
           </>
         ),
-        rowExpandable: (record) => record.name !== 'Not Expandable',
+        rowExpandable: (record) => record.name !== "Not Expandable",
       }}
       dataSource={tableData}
     />
-  )
-}
-export default CutomerRecord
+  );
+};
+export default CutomerRecord;
