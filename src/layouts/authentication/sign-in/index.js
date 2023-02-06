@@ -16,7 +16,6 @@ import { updateLoginUser } from "../../../@features/User/userSlice";
 import { useDispatch } from "react-redux";
 import MDSnackbar from "../../../components/MDSnackbar";
 
-
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
 
@@ -36,31 +35,33 @@ function Basic() {
   };
 
   const handleSignIn = () => {
-  //   axios
-  //     .post("https://localhost:7016/api/Auth/Login", values)
-  //     .then((res) => {
-  //       if (res.data.user) {
-  //         dispatch(updateLoginUser(res.data.user));
-  //         rememberMe && window.localStorage.setItem("loginUser", JSON.stringify(res.data.user));
-  //         navigate("/dashboard");
-  //       }
-  //       else{
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       setErrorSB(true)
-  //     });
+    //   axios
+    //     .post("https://localhost:7016/api/Auth/Login", values)
+    //     .then((res) => {
+    //       if (res.data.user) {
+    //         dispatch(updateLoginUser(res.data.user));
+    //         rememberMe && window.localStorage.setItem("loginUser", JSON.stringify(res.data.user));
+    //         navigate("/dashboard");
+    //       }
+    //       else{
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       setErrorSB(true)
+    //     });
 
-  if(values.Email==='dev@webeasy.com' && values.password==='12345678'|| values.Email==='naveed@admin.com' && values.password==='1234' ){
-    window.localStorage.setItem("loginUser", 'User Save');
-    navigate("/dashboard");
-  }
-  else{
-    setErrorSB(true)
-  }
+    if (
+      (values.Email === "dev@webeasy.com" && values.password === "12345678") ||
+      (values.Email === "naveed@admin.com" && values.password === "1234") ||
+      (values.Email === "test@admin.com" && values.password === "test1234")
+    ) {
+      window.localStorage.setItem("loginUser", "User Save");
+      navigate("/dashboard");
+    } else {
+      setErrorSB(true);
+    }
   };
-  
- 
+
   return (
     <BasicLayout image={illustration14}>
       <Card>
@@ -137,17 +138,17 @@ function Basic() {
           </MDBox>
         </MDBox>
       </Card>
-    <MDSnackbar
-    color="error"
-    icon="warning"
-    title="User Not found"
-    content="Authentication was not verified"
-    dateTime="1sec ago"
-    open={errorSB}
-    onClose={closeErrorSB}
-    close={closeErrorSB}
-    bgWhite
-  />
+      <MDSnackbar
+        color="error"
+        icon="warning"
+        title="User Not found"
+        content="Authentication was not verified"
+        dateTime="1sec ago"
+        open={errorSB}
+        onClose={closeErrorSB}
+        close={closeErrorSB}
+        bgWhite
+      />
     </BasicLayout>
   );
 }
