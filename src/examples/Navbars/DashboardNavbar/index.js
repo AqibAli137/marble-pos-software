@@ -113,18 +113,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
               <MDInput label="Search here" />
             </MDBox> */}
             <MDBox color={light ? "white" : "inherit"}>
-              {/* <IconButton sx={navbarIconButton} size="small" disableRipple>
-                <img src={graph} alt="" />
-              </IconButton>
-              <IconButton sx={navbarIconButton} size="small" disableRipple>
-                <img src={rectle} alt="" />
-              </IconButton>
-              <Link to="/authentication/sign-in">
-                <IconButton sx={navbarIconButton} size="small" disableRipple>
-                  <img src={boxes} alt="" />
-                </IconButton>
-              </Link> */}
-
               <IconButton
                 size="small"
                 disableRipple
@@ -137,14 +125,14 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 </Icon>
               </IconButton>
               <IconButton
-                size="small"
+                size="medium"
                 className="p-2 rounded-5 bg-light mx-1"
                 disableRipple
                 color="inherit"
                 sx={navbarIconButton}
                 onClick={handleConfiguratorOpen}
               >
-                <Icon fontSize="small" color="inherit">
+                <Icon fontSize="medium" color="inherit">
                   settings
                 </Icon>
               </IconButton>
@@ -182,6 +170,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 <img alt="Logo" src={UserAvatar} height={40} className="rounded" />
               </IconButton>
               {renderMenu()}
+              
             </MDBox>
           </MDBox>
         )}

@@ -1,0 +1,6 @@
+.ActiveEffect:active{
+    transform: scale(96%);
+    }
+    .HoverEffect:hover{
+        transform: scale(96%);
+        }

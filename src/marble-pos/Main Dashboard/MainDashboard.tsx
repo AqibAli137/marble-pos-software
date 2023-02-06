@@ -1,3 +1,4 @@
+import Button from "@mui/material/Button";
 import React, { useEffect, useState } from "react";
 
 const MainDashboard = () => {
@@ -143,7 +144,11 @@ const MainDashboard = () => {
                 </div>
               </td>
               <td>
-                <button>Submit</button>
+              <div className='d-flex justify-content-between px-3'>
+        <Button  variant="contained" className="text-white ActiveEffect">
+          submit
+        </Button>
+          </div>
               </td>
             </tr>
           </tbody>

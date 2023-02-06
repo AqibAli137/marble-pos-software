@@ -1,0 +1,7 @@
+.clipiPath{
+    background-color: #161a34;
+    clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);
+}
+.gradientStyle{
+    background: linear-gradient(194.12deg, #43945B 10.05%, #16110D 174.31%);
+}

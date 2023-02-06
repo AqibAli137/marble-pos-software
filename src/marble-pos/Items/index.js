@@ -4,6 +4,7 @@ import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import { RegisterItem } from "./RegisterItems";
 import { Divider } from '@mui/material'
 import AddStock from './AddStock'
+import LocalFooter from '../../layouts/Advatisment/LocalFooter';
 
 function ItemWrapper() {
 
@@ -29,7 +30,10 @@ function ItemWrapper() {
     </div>
     </>
       {/* <Footer /> */}
+    <LocalFooter />
+
     </DashboardLayout>
+    
   );
 }
 

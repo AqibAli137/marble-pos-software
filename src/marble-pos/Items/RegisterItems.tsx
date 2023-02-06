@@ -115,9 +115,11 @@ export function RegisterItem() {
                   />
                 </div>
               </div>
-              <Button variant='contained' >
-              Submit
-            </Button>
+              <div className='d-flex justify-content-center'>
+        <Button  variant="contained" className="text-white ActiveEffect">
+          submit
+        </Button>
+          </div>
             </form>
           </div>
         </div>
