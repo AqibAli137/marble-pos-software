@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FirstTable from "./TodoList/FirstTable";
 import { Table } from "antd";
@@ -8,8 +8,11 @@ import { AppDispatch, RootState } from "../store";
 import { updateOrderList } from "../@features/SaleItems/SaleItemSlice";
 import { Button } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
-import '../app.css'
+import "../app.css";
 import Invoicer from "./InvoiceView/Invoicer";
+import { useReactToPrint } from "react-to-print";
+import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
+
 
 const items = [
   { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -64,7 +67,11 @@ const SaleDashboard = () => {
     let newArray = saleItem.filter((item: any) => item !== saleState.localObject);
     setSaleItem(newArray);
   }, [saleState.localObject]);
-  
+
+  const dataToPrintRef = React.useRef<HTMLInputElement>(null);
+  const handlePrint = useReactToPrint({
+    content: () => dataToPrintRef.current!,
+  });
   const columns = [
     {
       title: "Date",
@@ -179,7 +186,7 @@ const SaleDashboard = () => {
                           value={SelectPrice}
                           type="number"
                           min="1"
-                           step="1"
+                          step="1"
                           onChange={(e) => {
                             setSelectPrice(parseFloat(e.target.value));
                           }}
@@ -192,14 +199,16 @@ const SaleDashboard = () => {
                 <td className="pb-1 px-1">
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block m-0" >{yourBill}</span>
+                      <span className="fw-bold text-muted d-block m-0">{yourBill}</span>
                     </div>
                   </div>
                 </td>
                 <td className="pb-1 px-1">
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block m-0">{selectedItem.CostOfItem}</span>
+                      <span className="fw-bold text-muted d-block m-0">
+                        {selectedItem.CostOfItem}
+                      </span>
                     </div>
                   </div>
                 </td>
@@ -215,7 +224,9 @@ const SaleDashboard = () => {
                 <td className="pb-1 px-1">
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block m-0">{selectedItem.TotalAmount}</span>
+                      <span className="fw-bold text-muted d-block m-0">
+                        {selectedItem.TotalAmount}
+                      </span>
                     </div>
                   </div>
                 </td>
@@ -255,19 +266,29 @@ const SaleDashboard = () => {
         </div>
         <div className="col">
           {/* Show Print Order List, also need style at top of this table */}
-          <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
-            <h3 className="text-center">Order print</h3>
+            <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
+              <h3 className="text-center">Order print</h3>
+            </div>
+          <div className="" ref={dataToPrintRef}>
+            <Invoicer />
+            <Table columns={columns} dataSource={saleItem} />
           </div>
-          <Invoicer />
-          <Table columns={columns} dataSource={saleItem} />
           <div className="d-flex justify-content-between px-3">
-            <div className="">
+            <div className="mt-2">
               <span>With Amount</span>
               <Checkbox {...label} defaultChecked />
             </div>
-            <Button variant="contained" className="text-white ActiveEffect">
+            <IconButton
+            onClick={handlePrint}
+            style={{
+              color: '#2d709f',
+            }}
+          >
+            <LocalPrintshopIcon fontSize="large" />
+          </IconButton>
+            {/* <Button variant="contained" className="text-white ActiveEffect" onClick={handlePrint}>
               Print
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
