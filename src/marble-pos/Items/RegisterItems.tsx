@@ -81,6 +81,8 @@ export function RegisterItem() {
                   <input
                     type='number'
                     value={itemQuantity}
+                    step="1"
+                    min="100"
                     onChange={(e)=>{setItemQuantity(parseInt(e.target.value))}}
                     className='form-control form-control-lg rounded-3 text-center'
                   />
@@ -96,7 +98,9 @@ export function RegisterItem() {
                   <input
                     type='number'
                     value={itemCost}
-                    onChange={(e)=>{setItemCost(parseInt(e.target.value))}}
+                    step="1"
+                    min="1"
+                    onChange={(e)=>{setItemCost(parseFloat(e.target.value))}}
                     className='form-control form-control-lg rounded-3 text-center'
                   />
                 </div>

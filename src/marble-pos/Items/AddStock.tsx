@@ -100,8 +100,10 @@ const AddStock=()=> {
                     <span className="fw-bold text-muted d-block">
                       <input
                         type="number"
+                        min="1"
+                        step="100"
                         value={SelectQuantity}
-                        onChange={(e)=>{setSelectQuantity(parseInt(e.target.value))}}
+                        onChange={(e)=>{setSelectQuantity(parseFloat(e.target.value))}}
                         className="form-control form-control-md rounded-3 text-center"
                       />
                     </span>
@@ -114,9 +116,11 @@ const AddStock=()=> {
                     <span className="fw-bold text-muted d-block">
                       <input
                       value={SelectPrice}
-                      onChange={(e)=>{setSelectPrice(parseInt(e.target.value))}}
-                        type="number"
-                        className="form-control form-control-md rounded-3 text-center"
+                      min="1"
+                      step="1"
+                      onChange={(e)=>{setSelectPrice(parseFloat(e.target.value))}}
+                      type="number"
+                      className="form-control form-control-md rounded-3 text-center"
                       />
                     </span>
                   </div>

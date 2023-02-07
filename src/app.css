@@ -1,6 +1,11 @@
-.ActiveEffect:active{
-    transform: scale(96%);
-    }
-    .HoverEffect:hover{
-        transform: scale(96%);
-        }
+.ActiveEffect:active {
+  transform: scale(96%);
+}
+.HoverEffect:hover {
+  transform: scale(96%);
+}
+
+input[type=number]:hover::-webkit-inner-spin-button {  
+    width: 50px;
+    height: 50px;
+}
