@@ -64,6 +64,7 @@ const SaleDashboard = () => {
     let newArray = saleItem.filter((item: any) => item !== saleState.localObject);
     setSaleItem(newArray);
   }, [saleState.localObject]);
+  
   const columns = [
     {
       title: "Date",

@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import {useNavigate} from 'react-router-dom'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
-import {Button, TextField} from '@mui/material'
-// import Logo from '../../assets/images/Sundar Logo/Sundar logo.jpg'
+// import {useNavigate} from 'react-router-dom'
+import {Button} from '@mui/material'
 
 
 export function RegisterItem() {
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [itemName,setItemName]=useState('')
   const [itemQuantity,setItemQuantity]=useState(1)
   const [itemCost,setItemCost]=useState(50)
