@@ -7,14 +7,13 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
 import MDBox from "../../../components/MDBox";
-import MDInput from "../../../components/MDInput";
 import Breadcrumbs from "../../Breadcrumbs";
 import NotificationItem from "../../Items/NotificationItem";
 import UserAvatar from "../../../assets/images/avatars/ahmedsb.png";
 import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import SettingsIcon from "@mui/icons-material/Settings";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { BsArrowsFullscreen } from "react-icons/bs";
 import {
   useMaterialUIController,
   setTransparentNavbar,
@@ -33,7 +32,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
-
+  const [fullScreen, setFullScreen] = useState(false);
   // direction RTL
   // useEffect(() => {
   //   setDirection(dispatch, "rtl");
@@ -97,6 +96,16 @@ function DashboardNavbar({ absolute, light, isMini }) {
     },
   });
 
+  var elem = document.getElementById("root");
+  const handleScreenView = () => {
+    if (fullScreen) {
+      document.exitFullscreen();
+      setFullScreen(false);
+    } else {
+      elem.requestFullscreen();
+      setFullScreen(true);
+    }
+  };
   return (
     <AppBar
       position={absolute ? "absolute" : navbarType}
@@ -136,6 +145,16 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   settings
                 </Icon>
               </IconButton>
+              <IconButton
+                size="medium"
+                className="p-2 rounded-5 bg-light mx-1"
+                disableRipple
+                color="inherit"
+                sx={navbarIconButton}
+                onClick={handleScreenView}
+              >
+                <BsArrowsFullscreen />
+              </IconButton>
               {/* <MDBox
                 display="flex"
                 justifyContent="center"
@@ -170,7 +189,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 <img alt="Logo" src={UserAvatar} height={40} className="rounded" />
               </IconButton>
               {renderMenu()}
-              
             </MDBox>
           </MDBox>
         )}

@@ -11,11 +11,12 @@ const FirstTable = (props: {TableData: []}) => {
 
   const handleDeleteUser2 = async (tableRow: any) => {
     dispatch(updateLocalObj(tableRow))
+    
   }
 
   return (
     <div>
-      <table className='w-100  table-row-dashed table-row-gray-300 align-middle gs-0 gy-4'>
+      <table className='w-100 table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 table-responsive'>
         <thead>
           <tr className='' style={{borderBottom: '1pt solid black'}}>
           <th className="text-center pb-2">Name</th>

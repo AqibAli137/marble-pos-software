@@ -6,13 +6,12 @@ import IconButton from "@mui/material/IconButton";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import { AppDispatch, RootState } from "../store";
 import { updateOrderList } from "../@features/SaleItems/SaleItemSlice";
-import { Button } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import "../app.css";
 import Invoicer from "./InvoiceView/Invoicer";
 import { useReactToPrint } from "react-to-print";
-import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
-
+import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
+import { OrderTableColumns } from "./ColumnData";
 
 const items = [
   { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -56,7 +55,7 @@ const SaleDashboard = () => {
 
   const AddSaleItem = async () => {
     setSaleItem([...saleItem, newSaleItem]);
-    dispatch(updateOrderList(saleItem));
+    dispatch(updateOrderList([...saleItem, newSaleItem]));
     setItemAddSpanShow(true);
 
     setInterval(() => {
@@ -66,34 +65,35 @@ const SaleDashboard = () => {
   useEffect(() => {
     let newArray = saleItem.filter((item: any) => item !== saleState.localObject);
     setSaleItem(newArray);
+    dispatch(updateOrderList(newArray));
   }, [saleState.localObject]);
 
   const dataToPrintRef = React.useRef<HTMLInputElement>(null);
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
   });
-  const columns = [
-    {
-      title: "Date",
-      dataIndex: "OrderDate",
-    },
-    {
-      title: "Name",
-      dataIndex: "ItemName",
-    },
-    {
-      title: "Quantity",
-      dataIndex: "ItemQuantity",
-    },
-    {
-      title: "Price",
-      dataIndex: "SetPrice",
-    },
-    {
-      title: "Bill",
-      dataIndex: "YourBill",
-    },
-  ];
+  // const columns = [
+  //   {
+  //     title: "Date",
+  //     dataIndex: "OrderDate",
+  //   },
+  //   {
+  //     title: "Name",
+  //     dataIndex: "ItemName",
+  //   },
+  //   {
+  //     title: "Quantity",
+  //     dataIndex: "ItemQuantity",
+  //   },
+  //   {
+  //     title: "Price",
+  //     dataIndex: "SetPrice",
+  //   },
+  //   {
+  //     title: "Bill",
+  //     dataIndex: "YourBill",
+  //   },
+  // ];
   const oldData = [
     {
       OrderDate: "08/6/2022, 11am",
@@ -140,12 +140,12 @@ const SaleDashboard = () => {
                 <td className="pb-1 px-1">
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
-                      {/* <span className="fw-bold text-muted d-block"> */}
+                      {/* <span className="fw-bold d-block"> */}
                       <select
                         onChange={(e) => {
                           ChangeDropdown(e.target.value);
                         }}
-                        className="form-control form-control-md px-3 rounded-3 m-0"
+                        className="form-control form-control-md px-3 rounded-3 fw-bold m-0"
                         data-kt-select2="true"
                         data-placeholder="Select option"
                         data-allow-clear="true"
@@ -163,16 +163,22 @@ const SaleDashboard = () => {
                 <td className="pb-1 px-1">
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block">
+                      <span className="fw-bold d-block">
                         <input
                           type="number"
                           value={SelectQuantity}
-                          min="1"
+                          min="0"
                           step="10"
+                          max={selectedItem.TotalQuantity}
                           onChange={(e) => {
-                            setSelectQuantity(parseInt(e.target.value));
+                            if (
+                              parseInt(e.target.value) === selectedItem.TotalQuantity ||
+                              parseInt(e.target.value) < selectedItem.TotalQuantity
+                            ) {
+                              setSelectQuantity(parseInt(e.target.value));
+                            }
                           }}
-                          className="form-control form-control-md text-center rounded-3 m-0"
+                          className="form-control form-control-md text-center rounded-3 fw-bold m-0"
                         />
                       </span>
                     </div>
@@ -181,50 +187,55 @@ const SaleDashboard = () => {
                 <td className="pb-1 px-1">
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block">
+                      <span className="fw-bold d-block">
                         <input
                           value={SelectPrice}
                           type="number"
-                          min="1"
+                          min="0"
                           step="1"
                           onChange={(e) => {
-                            setSelectPrice(parseFloat(e.target.value));
+                            if (
+                              parseInt(e.target.value) === 100000 ||
+                              parseInt(e.target.value) < 100000
+                            ) {
+                              setSelectPrice(parseFloat(e.target.value));
+                            }
                           }}
-                          className="form-control form-control-md text-center rounded-3 m-0"
+                          className="form-control form-control-md text-center rounded-3 fw-bold m-0"
                         />
                       </span>
                     </div>
                   </div>
                 </td>
                 <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center justify-content-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block m-0">{yourBill}</span>
+                      <span className="fw-bold d-block m-0">{yourBill}</span>
                     </div>
                   </div>
                 </td>
                 <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center justify-content-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block m-0">
+                      <span className="fw-bold d-block m-0">
                         {selectedItem.CostOfItem}
                       </span>
                     </div>
                   </div>
                 </td>
                 <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center justify-content-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block m-0">
+                      <span className="fw-bold d-block m-0">
                         {selectedItem.TotalQuantity}
                       </span>
                     </div>
                   </div>
                 </td>
                 <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center justify-content-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block m-0">
+                      <span className="fw-bold d-block m-0">
                         {selectedItem.TotalAmount}
                       </span>
                     </div>
@@ -258,38 +269,16 @@ const SaleDashboard = () => {
           <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
             <h3 className="text-center">Customer Old Record</h3>
           </div>
-          <Table columns={columns} dataSource={oldData} />
+          <Table columns={OrderTableColumns} dataSource={oldData} />
           <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
             <h3 className="text-center">New Order</h3>
           </div>
-          <Table columns={columns} dataSource={saleItem} />
+          <Table columns={OrderTableColumns} dataSource={saleItem} />
         </div>
         <div className="col">
-          {/* Show Print Order List, also need style at top of this table */}
-            <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
-              <h3 className="text-center">Order print</h3>
-            </div>
-          <div className="" ref={dataToPrintRef}>
+          <div className="">
             <Invoicer />
-            <Table columns={columns} dataSource={saleItem} />
-          </div>
-          <div className="d-flex justify-content-between px-3">
-            <div className="mt-2">
-              <span>With Amount</span>
-              <Checkbox {...label} defaultChecked />
             </div>
-            <IconButton
-            onClick={handlePrint}
-            style={{
-              color: '#2d709f',
-            }}
-          >
-            <LocalPrintshopIcon fontSize="large" />
-          </IconButton>
-            {/* <Button variant="contained" className="text-white ActiveEffect" onClick={handlePrint}>
-              Print
-            </Button> */}
-          </div>
         </div>
       </div>
     </>
