@@ -9,8 +9,6 @@ import Otherpage from "./Otherpage";
 const AppRoutes: FC = () => {
   return (
     <div className="app">
-    <DashboardLayout>
-      
       <Routes>
         <Route path="authentication/sign-in" element={<Basic />} />
         {window.localStorage.getItem("userLogin") ? (
@@ -28,7 +26,6 @@ const AppRoutes: FC = () => {
           <Route path="/*" element={<Navigate to="authentication/sign-in" />} />
         )}
       </Routes>
-    </DashboardLayout>
     </div>
   );
 };

@@ -9,6 +9,3 @@ input[type=number]:hover::-webkit-inner-spin-button {
     width: 30px;
     height: 30px;
 }
-body{
-  overflow-y: scroll !important;
-}
