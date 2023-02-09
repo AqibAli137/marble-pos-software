@@ -137,8 +137,11 @@ const CutomerRecord = () => {
     setModalOpen(true);
     setAnchorEl(null);
   };
-  const handleViewKhata =()=>{
+  const handleNewOrder =()=>{
     navigate('/dashboard')
+  }
+  const handleGatPass =()=>{
+
   }
   const columns = [
     {
@@ -169,8 +172,8 @@ const CutomerRecord = () => {
     },
     {
       title: "Action",
-      dataIndex: "",
-      key: "x",
+      dataIndex: "action",
+      key: "action",
       render: () => (
         <>
           <div className="d-flex justify-content-center">
@@ -209,7 +212,6 @@ const CutomerRecord = () => {
               >
                 <MonetizationOnIcon />
                 <span className="mx-2" onClick={handlePopOver}>
-                  {" "}
                   Payment
                 </span>
               </Button>
@@ -220,9 +222,20 @@ const CutomerRecord = () => {
                 className="shadow-none"
                 // onClick={handleDeleteUser.bind(this, usr)}
               >
-                <div className="" onClick={handleViewKhata}>
+                <div className="" onClick={handleNewOrder.bind(this,)}>
 
-                <ViewComfyIcon /> <span className="mx-2"> view khata</span>
+                <ViewComfyIcon /> <span className="mx-2"> New Order</span>
+                </div>
+              </Button>
+              <Button
+                variant="text"
+                className="shadow-none"
+                // onClick={handleDeleteUser.bind(this, usr)}
+              >
+                <div className="" onClick={(e)=>{console.log(e.target);
+                }}>
+
+                <ViewComfyIcon /> <span className="mx-2">Gat-Pass</span>
                 </div>
               </Button>
             </Menu>
@@ -281,8 +294,8 @@ const CutomerRecord = () => {
               </thead>
               {/* Owners details */}
               <tbody>
-                {record.CustomerOrders.map((ordersRow: any) => (
-                  <tr className="p-0 m-0">
+                {record.CustomerOrders.map((ordersRow: any, index:any) => (
+                  <tr key={index} className="p-0 m-0">
                     <td className="p-0 m-0">
                       <span className=" text-center d-block fs-6">{ordersRow.OrderDate}</span>
                     </td>

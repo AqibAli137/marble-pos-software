@@ -35,29 +35,15 @@ function Basic() {
   };
 
   const handleSignIn = () => {
-    //   axios
-    //     .post("https://localhost:7016/api/Auth/Login", values)
-    //     .then((res) => {
-    //       if (res.data.user) {
-    //         dispatch(updateLoginUser(res.data.user));
-    //         rememberMe && window.localStorage.setItem("loginUser", JSON.stringify(res.data.user));
-    //         navigate("/dashboard");
-    //       }
-    //       else{
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       setErrorSB(true)
-    //     });
-
     if (
-      (values.Email === "dev@webeasy.com" && values.password === "12345678") ||
+      (values.Email === "dev@webeasy.com" && values.password === "0") ||
       (values.Email === "naveed@admin.com" && values.password === "1234") ||
       (values.Email === "test@admin.com" && values.password === "test123")||
       (values.Email === "aqib@gmail.com" && values.password === "Aqib123")
 
     ) {
-      window.localStorage.setItem("loginUser", "User Save");
+      window.localStorage.setItem("userLogin", "User Login");
+      rememberMe && window.localStorage.setItem("userRemamber", "User Remamber");
       navigate("/dashboard");
     } else {
       setErrorSB(true);

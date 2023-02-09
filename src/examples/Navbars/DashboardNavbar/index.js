@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -33,11 +33,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
   const [fullScreen, setFullScreen] = useState(false);
-  // direction RTL
-  // useEffect(() => {
-  //   setDirection(dispatch, "rtl");
-  //   return () => setDirection(dispatch, "ltr");
-  // }, []);
+  const nevigate = useNavigate();
 
   useEffect(() => {
     if (fixedNavbar) {
@@ -70,16 +66,14 @@ function DashboardNavbar({ absolute, light, isMini }) {
       sx={{ mt: 2 }}
     >
       <NotificationItem icon={<AccountCircleIcon />} title="My Profile" />
-      {/* <NotificationItem icon={<SettingsIcon />} title="Account Setting" /> */}
-      <Link to="/authentication/sign-in">
         <div
           onClick={() => {
-            window.localStorage.removeItem("loginUser");
+            window.localStorage.clear();
+          nevigate('/authentication/sign-in');
           }}
         >
           <NotificationItem icon={<ExitToAppIcon />} title="Sign Out" />
         </div>
-      </Link>
     </Menu>
   );
 
@@ -155,27 +149,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
               >
                 <BsArrowsFullscreen />
               </IconButton>
-              {/* <MDBox
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                width="3.25rem"
-                height="3.25rem"
-                bgColor="white"
-                shadow="sm"
-                borderRadius="50%"
-                position="fixed"
-                right="2rem"
-                bottom="2rem"
-                zIndex={99}
-                color="dark"
-                sx={{ cursor: "pointer" }}
-                onClick={handleConfiguratorOpen}
-              >
-                <Icon fontSize="small" color="inherit">
-                  settings
-                </Icon>
-              </MDBox> */}
               <IconButton
                 size="small"
                 disableRipple

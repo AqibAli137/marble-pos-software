@@ -14,6 +14,7 @@ import Sidenav from "./examples/Sidenav";
 import MDBox from "./components/MDBox";
 import {useSelector} from 'react-redux'
 import Basic from "./layouts/authentication/sign-in";
+import { AppRoutes } from "./AppRoute/AppRoutes";
 
 export default function App() {
   const [controller, dispatch1] = useMaterialUIController();
@@ -71,61 +72,41 @@ export default function App() {
 
       return null;
     });
-
-  const configsButton = (
-    <MDBox
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      width="3.25rem"
-      height="3.25rem"
-      bgColor="white"
-      shadow="sm"
-      borderRadius="50%"
-      position="fixed"
-      right="2rem"
-      bottom="2rem"
-      zIndex={99}
-      color="dark"
-      sx={{ cursor: "pointer" }}
-      onClick={handleConfiguratorOpen}
-    >
-      <Icon fontSize="small" color="inherit">
-        settings
-      </Icon>
-    </MDBox>
-  );
   return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
-      {layout === "dashboard" && (
+      {window.localStorage.getItem("userLogin") ? (
+        layout === "dashboard" && (
+          <>
+            <Sidenav
+              color={sidenavColor}
+              brand={(transparentSidenav && !darkMode) || whiteSidenav ? logosundar : logosundar}
+              brandName="Sundar Industrial Estate"
+              routes={routes}
+              onMouseEnter={handleOnMouseEnter}
+              onMouseLeave={handleOnMouseLeave}
+            />
+            <Configurator />
+            <Routes>
+              <Route path="" element={<Navigate to="dashboard" />} />
+            </Routes>
+          </>
+        )
+      ) : (
         <>
-          <Sidenav
-            color={sidenavColor}
-            brand={(transparentSidenav && !darkMode) || whiteSidenav ? logosundar : logosundar}
-            brandName="سبحان ماربل"
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-          <Configurator />
-          {/* {configsButton} */}
+          <Routes>
+            <Route path="" element={<Navigate to="/authentication/sign-in" />} />
+            <Route path="/*" element={<AppRoutes />} />
+          </Routes>
         </>
       )}
-      {layout === "vr" && <Configurator />}
-      {
-        window.localStorage.getItem('loginUser') ? <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
-      </Routes>:
-      <Routes>
-      {getRoutes(routes)}
-      <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
-      <Route path="/authentication/sign-in" element={<Basic />} />
 
-    </Routes>
-      }
-      
+      {window.localStorage.getItem("userLogin") && (
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<AppRoutes />} />
+        </Routes>
+      )}
     </ThemeProvider>
   );
 }
