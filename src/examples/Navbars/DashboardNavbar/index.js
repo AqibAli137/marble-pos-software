@@ -13,7 +13,7 @@ import UserAvatar from "../../../assets/images/avatars/ahmedsb.png";
 import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { BsArrowsFullscreen } from "react-icons/bs";
+// import { BsArrowsFullscreen } from "react-icons/bs";
 import {
   useMaterialUIController,
   setTransparentNavbar,
@@ -21,10 +21,6 @@ import {
   setOpenConfigurator,
   setDirection,
 } from "../../../context";
-import graph from "../../../assets/social-logos/graph.svg";
-import rectle from "../../../assets/social-logos/rectle.svg";
-import boxes from "../../../assets/social-logos/boxes.svg";
-import chat from "../../../assets/social-logos/chat.svg";
 
 function DashboardNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
@@ -32,7 +28,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
-  const [fullScreen, setFullScreen] = useState(false);
+  // const [fullScreen, setFullScreen] = useState(false);
   const nevigate = useNavigate();
 
   useEffect(() => {
@@ -90,16 +86,16 @@ function DashboardNavbar({ absolute, light, isMini }) {
     },
   });
 
-  var elem = document.getElementById("root");
-  const handleScreenView = () => {
-    if (fullScreen) {
-      document.exitFullscreen();
-      setFullScreen(false);
-    } else {
-      elem.requestFullscreen();
-      setFullScreen(true);
-    }
-  };
+  // var elem = document.getElementById("root");
+  // const handleScreenView = () => {
+  //   if (fullScreen) {
+  //     document.exitFullscreen();
+  //     setFullScreen(false);
+  //   } else {
+  //     elem.requestFullscreen();
+  //     setFullScreen(true);
+  //   }
+  // };
   return (
     <AppBar
       position={absolute ? "absolute" : navbarType}
@@ -139,7 +135,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   settings
                 </Icon>
               </IconButton>
-              <IconButton
+              {/* <IconButton
                 size="medium"
                 className="p-2 rounded-5 bg-light mx-1"
                 disableRipple
@@ -148,7 +144,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 onClick={handleScreenView}
               >
                 <BsArrowsFullscreen />
-              </IconButton>
+              </IconButton> */}
               <IconButton
                 size="small"
                 disableRipple
