@@ -5,7 +5,6 @@ import App from "./App";
 import { Provider } from 'react-redux';
 import { store } from './store';
 
-
 // Material Dashboard 2 React Context Provider
 import { MaterialUIControllerProvider } from "./context";
 

@@ -263,10 +263,10 @@ const SaleDashboard = () => {
         <FirstTable TableData={saleItem} />
       </div>
       <div className="row mt-5">
-        <div className="col">
+        <div className="col-12">
           {/* <OrderTable TableData={saleItem} /> */}
           {/* This is place of all orders records, display from database and also new orders..!*/}
-          <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
+          <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row">
             <h3 className="text-center">Customer Old Record</h3>
           </div>
           <Table columns={OrderTableColumns} dataSource={oldData} />
@@ -275,7 +275,7 @@ const SaleDashboard = () => {
           </div>
           <Table columns={OrderTableColumns} dataSource={saleItem} />
         </div>
-        <div className="col">
+        <div className="col-12">
           <div className="">
             <Invoicer />
             </div>

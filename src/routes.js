@@ -3,6 +3,7 @@ import Icon from "@mui/material/Icon";
 import Dashboard from './layouts/dashboard';
 import CustomerWraper from './marble-pos/Customer-Management';
 import ItemWrapper from './marble-pos/Items';
+import Tabs from "./marble-pos/Customer-Management/CustomerTabsView/CustomerTabs"
 // import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const routes = [
@@ -29,6 +30,14 @@ const routes = [
     icon: <Icon fontSize="medium">add_circle_icon</Icon>,
     route: "/item",
     component: <ItemWrapper />,
+  },
+  {
+    type: "collapse",
+    name: "Tabs",
+    key: "tabs",
+    icon: <Icon fontSize="medium">add_circle_icon</Icon>,
+    route: "/tabs",
+    component: <Tabs/>,
   }
 ];
 

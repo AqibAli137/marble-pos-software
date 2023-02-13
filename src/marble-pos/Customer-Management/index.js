@@ -1,7 +1,8 @@
 import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
-import CutomerRecord from "./CutomerRecord";
+import CustomerTable from "./CustomerTable"
 import LocalFooter from "../../layouts/Advatisment/LocalFooter";
+
 
 function CustomerWraper() {
 
@@ -9,8 +10,7 @@ function CustomerWraper() {
     <DashboardLayout>
       <DashboardNavbar />
       
-      <CutomerRecord />
-      {/* <Footer /> */}
+      <CustomerTable />
       <LocalFooter />
     </DashboardLayout>
   );
