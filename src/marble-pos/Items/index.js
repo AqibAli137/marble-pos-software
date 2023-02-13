@@ -2,10 +2,12 @@ import React from "react";
 import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import { RegisterItem } from "./RegisterItems";
-import { Divider } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 import AddStock from "./AddStock";
 import LocalFooter from "../../layouts/Advatisment/LocalFooter";
 import Charts from "../../Charts/Charts";
+import MDBox from "../../components/MDBox";
+import ComplexStatisticsCard from "../../examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 function ItemWrapper() {
   return (
@@ -21,6 +23,68 @@ function ItemWrapper() {
           />
         </div>
       </div>
+      <Grid container spacing={3} className='d-flex justify-content-center'>
+          <Grid item xs={12} md={6} lg={4}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                color="dark"
+                icon="weekend"
+                title="Total Investment"
+                count='9767845'
+                percentage={{
+                  color: "success",
+                  amount: "+55%",
+                  label: "than lask week",
+                }}
+              />
+            </MDBox>
+          </Grid>
+          
+          <Grid item xs={12} md={6} lg={4}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                color="success"
+                icon="store"
+                title="Total Sale"
+                count="5346000"
+                percentage={{
+                  color: "success",
+                  amount: "+1%",
+                  label: "than yesterday",
+                }}
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                icon="leaderboard"
+                title="Profit"
+                count="230780"
+                percentage={{
+                  color: "success",
+                  amount: "+3%",
+                  label: "than last month",
+                }}
+              />
+            </MDBox>
+          </Grid>
+          {/* <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                color="primary"
+                icon="person_add"
+                title="Followers"
+                count="+91"
+                percentage={{
+                  color: "success",
+                  amount: "",
+                  label: "Just updated",
+                }}
+              />
+            </MDBox>
+          </Grid> */}
+        </Grid>
       <>
         <div className="d-flex justify-content-center">
           <div className="">
@@ -38,6 +102,7 @@ function ItemWrapper() {
           </div>
         </div>
       </>
+      
       {/* <Footer /> */}
       <LocalFooter />
     </DashboardLayout>

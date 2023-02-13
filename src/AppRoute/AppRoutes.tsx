@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import DashboardLayout from "../examples/LayoutContainers/DashboardLayout";
 import Basic from "../layouts/authentication/sign-in";
 import { ErrorsPage } from "../layouts/errors/ErrorsPage";
