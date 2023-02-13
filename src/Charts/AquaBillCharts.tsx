@@ -77,7 +77,7 @@ const AquaBillChart: React.FC<Props> = ({ className, chartColor, chartHeight, st
     },
 
     title: {
-      text: "Aqua Bills",
+      text: "Bills Record",
       align: "center",
       style: {
         fontWeight: "Bold",
