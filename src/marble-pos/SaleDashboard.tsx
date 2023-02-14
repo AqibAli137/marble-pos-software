@@ -12,6 +12,9 @@ import Invoicer from "./InvoiceView/Invoicer";
 import { useReactToPrint } from "react-to-print";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import { OrderTableColumns } from "./ColumnData";
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
 
 const items = [
   { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -21,7 +24,12 @@ const items = [
   { ItemName: "Item 5", CostOfItem: 150, TotalQuantity: 850, TotalAmount: 150 * 850 },
 ];
 
+
+
 const SaleDashboard = () => {
+
+
+
   const [selectedItem, setSelectedItem] = useState(items[0]);
 
   const [SelectQuantity, setSelectQuantity] = useState(1);
@@ -117,59 +125,67 @@ const SaleDashboard = () => {
       YourBill: 95680,
     },
   ];
+  const currencies = [
+    {
+      value: 'Item 1',
+      label: 'Item 1',
+    },
+    {
+      value: 'Item 2',
+      label: 'Item 2',
+    },
+    {
+      value: 'Item 3',
+      label: 'Item 3',
+    },
+    {
+      value: 'Item 4',
+      label: 'Item 4',
+    },
+  ];
 
   return (
     <>
       <div>
-        <h2 className="text-center justify-content-center">Entry for Order</h2>
-        <div className="table-responsive w-100">
-          <table className="table p-0 m-0">
-            <thead>
-              <tr className="p-0 m-0">
-                <th className="min-w-100px ">Item Name</th>
-                <th className="min-w-100px ">Set Quantity</th>
-                <th className="min-w-100px ">Set Price</th>
-                <th className="min-w-100px ">Your Bill</th>
-                <th className="min-w-100px ">Cost/Ft/No</th>
-                <th className="min-w-100px ">Total Quantity</th>
-                <th className="min-w-100px ">Total Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="tr p-0 m-0">
-                <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center">
-                    <div className="d-flex justify-content-start flex-column">
-                      {/* <span className="fw-bold d-block"> */}
-                      <select
-                        onChange={(e) => {
-                          ChangeDropdown(e.target.value);
-                        }}
-                        className="form-control form-control-md px-3 rounded-3 fw-bold m-0"
-                        data-kt-select2="true"
-                        data-placeholder="Select option"
-                        data-allow-clear="true"
-                      >
-                        {items.map((item) => (
-                          <option key={item.ItemName} value={item.ItemName}>
-                            {item.ItemName}
-                          </option>
-                        ))}
-                      </select>
-                      {/* </span> */}
-                    </div>
-                  </div>
-                </td>
-                <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center">
-                    <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold d-block">
-                        <input
-                          type="number"
-                          value={SelectQuantity}
-                          min="0"
-                          step="10"
-                          max={selectedItem.TotalQuantity}
+        <h2 className="fs-3">Customer Order</h2>
+        <Box
+      component="form"
+      sx={{
+        display:"flex",
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+      <TextField
+          id="outlined-select-currency-native"
+          onChange={(e) => {
+            ChangeDropdown(e.target.value);
+          }}
+          select
+          label="Native select"
+          defaultValue="EUR"
+          SelectProps={{
+            native: true,
+          }}
+          helperText="Please select your item"
+        >
+          {currencies.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+        </div>
+        <div>
+        <TextField
+          id="filled-multiline-flexible"
+          label="Set Quantity"
+          value={SelectQuantity}
+                          // min="0"
+                          // step="10"
+                          // max={selectedItem.TotalQuantity}
                           onChange={(e) => {
                             if (
                               parseInt(e.target.value) === selectedItem.TotalQuantity ||
@@ -178,80 +194,55 @@ const SaleDashboard = () => {
                               setSelectQuantity(parseInt(e.target.value));
                             }
                           }}
-                          className="form-control form-control-md text-center rounded-3 fw-bold m-0"
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center">
-                    <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold d-block">
-                        <input
-                          value={SelectPrice}
-                          type="number"
-                          min="0"
-                          step="1"
-                          onChange={(e) => {
-                            if (
-                              parseInt(e.target.value) === 100000 ||
-                              parseInt(e.target.value) < 100000
-                            ) {
-                              setSelectPrice(parseFloat(e.target.value));
-                            }
-                          }}
-                          className="form-control form-control-md text-center rounded-3 fw-bold m-0"
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold d-block m-0">{yourBill}</span>
-                    </div>
-                  </div>
-                </td>
-                <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold d-block m-0">
-                        {selectedItem.CostOfItem}
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold d-block m-0">
-                        {selectedItem.TotalQuantity}
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td className="pb-1 px-1">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold d-block m-0">
-                        {selectedItem.TotalAmount}
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td className="pb-1 px-1 m-0">
-                  {/* <IconButton aria-label="delete">
-                    <AddTaskIcon fontSize="large" className="text-success m-0" onClick={AddSaleItem} />
-                  </IconButton> */}
-                  <IconButton aria-label="delete">
+          multiline
+          // maxRows={4}
+        />
+        <TextField
+          id="outlined-textarea"
+          label="Set Price"
+          placeholder="Set Your Price Here"
+          multiline
+          value={SelectPrice}
+          type="number"
+          // min="0"
+          // step="1"
+          onChange={(e) => {
+            if (
+              parseInt(e.target.value) === 100000 ||
+              parseInt(e.target.value) < 100000
+            ) {
+              setSelectPrice(parseFloat(e.target.value));
+            }
+          }}
+        />
+        </div>
+        </Box>
+        <div className="table-responsive w-100">
+        <table className="table table-striped table-dark">
+  <thead>
+    <tr className="fs-6">
+      <th scope="col">Your Bill</th>
+      <th scope="col">Cost/Ft/No</th>
+      <th scope="col">Total Quantity</th>
+      <th scope="col">Total Amount</th>
+      <th scope="col">Add</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="fs-6">
+      <td>{yourBill}</td>
+      <td>{selectedItem.CostOfItem}</td>
+      <td>{selectedItem.TotalQuantity}</td>
+      <td>{selectedItem.TotalAmount}</td>
+      <td>
+      <IconButton aria-label="delete">
                     <AddTaskIcon fontSize="medium" className="text-success" onClick={AddSaleItem} />
                   </IconButton>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
         </div>
       </div>
       {ItemAddSpanShow && (
@@ -264,13 +255,11 @@ const SaleDashboard = () => {
       </div>
       <div className="row mt-5">
         <div className="col-12">
-          {/* <OrderTable TableData={saleItem} /> */}
-          {/* This is place of all orders records, display from database and also new orders..!*/}
-          <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row">
-            <h3 className="text-center">Customer Old Record</h3>
+          <div className="row bg-dark text-white py-2 px-0">
+            <h3 className="text-center fs-4">Customer Old Record</h3>
           </div>
           <Table columns={OrderTableColumns} dataSource={oldData} />
-          <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
+          <div className="row bg-dark text-white py-2">
             <h3 className="text-center">New Order</h3>
           </div>
           <Table columns={OrderTableColumns} dataSource={saleItem} />

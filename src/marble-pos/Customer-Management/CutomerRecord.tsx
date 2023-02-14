@@ -224,7 +224,7 @@ const CutomerRecord = () => {
               >
                 <div className="" onClick={handleNewOrder.bind(this,)}>
 
-                <ViewComfyIcon /> <span className="mx-2"> New Order</span>
+                <ViewComfyIcon /> <span className="mx-2 fs-4"> New Order</span>
                 </div>
               </Button>
               <Button

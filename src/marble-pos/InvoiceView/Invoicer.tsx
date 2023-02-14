@@ -33,10 +33,9 @@ const Invoicer = () => {
 
   return (
     <>
-    <div className="row urdu" >
-      <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
-        <h3 className="text-center">Order print</h3>
-      </div>
+    
+    <div className="row urdu my-5" >
+     
       <div ref={dataToPrintRef}>
         
         <Component/>

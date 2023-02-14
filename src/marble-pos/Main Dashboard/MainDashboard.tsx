@@ -49,7 +49,7 @@ const MainDashboard = () => {
   useEffect(() => {}, [itemValue]);
   return (
     <div>
-      <h2 className="text-center justify-content-center">Entry for Order</h2>
+      <h2 className="">Entry for Order</h2>
       <div className="table-responsive w-100">
         <table className="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 w-100">
           <thead>
