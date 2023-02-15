@@ -4,7 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logosundar from "./assets/images/Sundar Logo/logo.jpg";
+import subhanLogo from "./assets/sm-assets/sm-logo2.jpg";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "./context";
 import routes from "./routes";
 import theme from "./assets/theme";
@@ -80,15 +80,15 @@ export default function App() {
           <>
             <Sidenav
               color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? logosundar : logosundar}
-              brandName="Sundar Industrial Estate"
+              brand={(transparentSidenav && !darkMode) || whiteSidenav ? subhanLogo : subhanLogo}
+              brandName="Subhan Marble"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
             <Configurator />
             <Routes>
-              <Route path="" element={<Navigate to="sale-items" />} />
+              <Route path="" element={<Navigate to="sale" />} />
             </Routes>
           </>
         )

@@ -75,10 +75,13 @@ const CustomerTable = () => {
     setAnchorEl(null);
   };
   const handleNewOrder = () => {
-    navigate("/sale-items");
+    navigate("/sale");
   };
   const handleDetails = (row: any) => {
     navigate("/explore");
+  };
+  const handleReturns = (row: any) => {
+    navigate("/returns");
   };
   const handleSearch = (event: any) => {
     setSearch(event.target.value);
@@ -184,6 +187,12 @@ const CustomerTable = () => {
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleDetails.bind(this, dat)}>
                             <ViewComfyIcon /> <span className="mx-2">Check Details</span>
+                          </div>
+                        </Button>
+                        <br />
+                        <Button variant="text" className="shadow-none ActiveEffect">
+                          <div className="" onClick={handleReturns.bind(this, dat)}>
+                            <ViewComfyIcon /> <span className="mx-2">Return Items</span>
                           </div>
                         </Button>
                         {/* </div> */}

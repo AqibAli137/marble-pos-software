@@ -11,7 +11,7 @@ import MDButton from "../../../components/MDButton";
 import BasicLayout from "../components/BasicLayout";
 import illustration14 from "../../../assets/images/illustration/14.png";
 import Grid from "@mui/material/Grid";
-import logo from "../../../assets/images/Sundar Logo/logo.jpg";
+import subhanLogo from "../../../assets/sm-assets/sm-logo2.jpg";
 import { useDispatch } from "react-redux";
 import MDSnackbar from "../../../components/MDSnackbar";
 
@@ -37,13 +37,12 @@ function Basic() {
     if (
       (values.Email === "dev@webeasy.com" && values.password === "0") ||
       (values.Email === "naveed@admin.com" && values.password === "1234") ||
-      (values.Email === "test@admin.com" && values.password === "test123")||
+      (values.Email === "test@admin.com" && values.password === "test123") ||
       (values.Email === "aqib@gmail.com" && values.password === "Aqib123")
-
     ) {
       window.localStorage.setItem("userLogin", "User Login");
       rememberMe && window.localStorage.setItem("userRemamber", "User Remamber");
-      navigate("/sale-items");
+      navigate("/sale");
     } else {
       setErrorSB(true);
     }
@@ -64,9 +63,14 @@ function Basic() {
           textAlign="center"
         >
           <Grid container justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-            <a href="../../../assets/images/apple-icon.png">
-              <img width={100} src={logo} alt="" />
-            </a>
+          <Link to="/">
+              <img
+                src={subhanLogo}
+                alt="Subhan Marble"
+                style={{ width: "100px", height: "100px" }}
+                className="rounded-5"
+              />
+              </Link>
           </Grid>
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1} mb={1}>
             Sign in

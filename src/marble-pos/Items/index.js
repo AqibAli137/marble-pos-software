@@ -5,7 +5,6 @@ import { RegisterItem } from "./RegisterItems";
 import { Divider, Grid } from "@mui/material";
 import AddStock from "./AddStock";
 import LocalFooter from "../../layouts/Advatisment/LocalFooter";
-import Charts from "../../Charts/Charts";
 import MDBox from "../../components/MDBox";
 import ComplexStatisticsCard from "../../examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
@@ -13,7 +12,7 @@ function ItemWrapper() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <div className="row gy-5 g-xl-8 mb-4">
+      {/* <div className="row gy-5 g-xl-8 mb-4">
         <div className="col-xxl-12 col-xl-12">
           <Charts
             className="card-xl-stretch mb-xl-8"
@@ -22,8 +21,8 @@ function ItemWrapper() {
             strokeColor="#cb1e46"
           />
         </div>
-      </div>
-      <Grid container spacing={3} className='d-flex justify-content-center'>
+      </div> */}
+      <Grid container spacing={3} className='d-flex justify-content-center my-2'>
           <Grid item xs={12} md={6} lg={4}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard

@@ -2,7 +2,7 @@
 import { Route, Link, Routes, Outlet } from "react-router-dom";
 import { Error500 } from "./components/Error500";
 import { Error404 } from "./components/Error404";
-import sundarlogo from "../../assets/images/sm-logo.png";
+import subhanLogo from "../../assets/sm-assets/sm-logo2.jpg";
 
 const ErrorsLayout = () => {
   return (
@@ -10,7 +10,9 @@ const ErrorsLayout = () => {
       <div className=" " >
         <div className="d-flex flex-column flex-column-fluid text-center p-10 py-lg-20">
           <Link to="/">
-            <img alt="Logo" src={sundarlogo} className="h-100px mb-5" />
+            <img alt="Logo" 
+                  style={{width:'250px', height:'250px'}}
+            src={subhanLogo} className="rounded-5" />
           </Link>
 
           <div className="pt-lg-10 mb-10">

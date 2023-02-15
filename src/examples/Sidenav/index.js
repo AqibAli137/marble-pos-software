@@ -16,6 +16,8 @@ import {
   setWhiteSidenav,
 } from "../../context";
 import SidenavRoot from "./SidenavRoot";
+import subhanLogo from "../../assets/sm-assets/sm-logo2.jpg";
+
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const [controller, dispatch] = useMaterialUIController();
@@ -121,7 +123,13 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           </MDTypography>
         </MDBox>
         <MDBox component={NavLink} to="/" display="flex" alignItems="center">
-          {brand && <MDBox component="img" src={brand} alt="Brand" width="2rem" />}
+          {brand && 
+          <Link to="/">
+          <img alt="Logo" 
+                style={{width:'40px', height:'40px'}}
+          src={subhanLogo} className="rounded-5" />
+        </Link>
+          }
           <MDBox
             width={!brandName && "100%"}
             sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 // import {useNavigate} from 'react-router-dom'
 import {Button} from '@mui/material'
-
+import Logo from '../../assets/sm-assets/sm-logo2.jpg'
 
 export function RegisterItem() {
   // const navigate = useNavigate()
@@ -18,12 +18,13 @@ export function RegisterItem() {
       <div className='px-13'>
         <div className='row'>
           <div className='col-12 col-lg-3 col-sm-3 col-md-3 text-center d-flex align-items-center'>
-            <div className='d-flex align-items-center'>
+            <div className='d-flex align-items-center justify-content-center'>
               <div>
                 <img
                   alt='Logo'
-                  // src={Logo}
-                  className='h-100px mb-6'
+                  src={Logo}
+                  className='rounded-5'
+                  style={{width:'220px', height:'220px'}}
                 />
                 <div className='d-flex justify-content-center'>
                   <h3 className='col-12 text-center'>

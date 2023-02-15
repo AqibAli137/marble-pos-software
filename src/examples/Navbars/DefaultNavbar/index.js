@@ -1,29 +1,13 @@
-
-
 import { useState, useEffect } from "react";
-
-// react-router components
 import { Link } from "react-router-dom";
-
-// prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
-
-// @mui material components
 import Container from "@mui/material/Container";
 import Icon from "@mui/material/Icon";
-
-// Material Dashboard 2 React components
 import MDBox from "../../../components/MDBox";
 import MDTypography from "../../../components/MDTypography";
-import MDButton from "../../../components/MDButton";
-
-// Material Dashboard 2 React example components
 import DefaultNavbarLink from "./DefaultNavbarLink";
 import DefaultNavbarMobile from "./DefaultNavbarMobile";
-
-// Material Dashboard 2 React base styles
 import breakpoints from "../../../assets/theme/base/breakpoints";
-// Material Dashboard 2 React context
 import { useMaterialUIController } from "../../../context";
 
 function DefaultNavbar({ transparent, light }) {
@@ -96,11 +80,11 @@ function DefaultNavbar({ transparent, light }) {
           pl={{ xs: 0, lg: 1 }}
         >
           <MDTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
-            Sundar Industrial Estate
+            Subhan Marble
           </MDTypography>
         </MDBox>
         <MDBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>
-          <DefaultNavbarLink icon="donut_large" name="Sale Items" route="/sale-items" light={light} />
+          <DefaultNavbarLink icon="donut_large" name="Sale Items" route="/sale" light={light} />
           <DefaultNavbarLink icon="donut_large" name="Customer Record" route="/cutomer-record" light={light} />
           <DefaultNavbarLink icon="donut_large" name="Admin Dashboard" route="/admin-dashboard" light={light} />
         </MDBox>
@@ -133,24 +117,6 @@ DefaultNavbar.defaultProps = {
 DefaultNavbar.propTypes = {
   transparent: PropTypes.bool,
   light: PropTypes.bool,
-  // action: PropTypes.oneOfType([
-  //   PropTypes.bool,
-  //   PropTypes.shape({
-  //     type: PropTypes.oneOf(["external", "internal"]).isRequired,
-  //     route: PropTypes.string.isRequired,
-  //     color: PropTypes.oneOf([
-  //       "primary",
-  //       "secondary",
-  //       "info",
-  //       "success",
-  //       "warning",
-  //       "error",
-  //       "dark",
-  //       "light",
-  //     ]),
-  //     label: PropTypes.string.isRequired,
-  //   }),
-  // ]),
 };
 
 export default DefaultNavbar;

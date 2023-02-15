@@ -23,7 +23,7 @@ function DefaultNavbarMobile({ open, close }) {
       MenuListProps={{ style: { width: `calc(${width}px - 4rem)` } }}
     >
       <MDBox px={0.5}>
-        <DefaultNavbarLink icon="donut_large" name="Sale Items" route="/sale-items" />
+        <DefaultNavbarLink icon="donut_large" name="Sale Items" route="/sale" />
         <DefaultNavbarLink icon="donut_large" name="Cutomer Record" route="/cutomer-record" />
         <DefaultNavbarLink icon="donut_large" name="Admin Dashboard" route="/admin-dashboard" />
       </MDBox>

@@ -85,17 +85,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
       return colorValue;
     },
   });
-
-  // var elem = document.getElementById("root");
-  // const handleScreenView = () => {
-  //   if (fullScreen) {
-  //     document.exitFullscreen();
-  //     setFullScreen(false);
-  //   } else {
-  //     elem.requestFullscreen();
-  //     setFullScreen(true);
-  //   }
-  // };
+  
   return (
     <AppBar
       position={absolute ? "absolute" : navbarType}
@@ -135,16 +125,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   settings
                 </Icon>
               </IconButton>
-              {/* <IconButton
-                size="medium"
-                className="p-2 rounded-5 bg-light mx-1"
-                disableRipple
-                color="inherit"
-                sx={navbarIconButton}
-                onClick={handleScreenView}
-              >
-                <BsArrowsFullscreen />
-              </IconButton> */}
               <IconButton
                 size="small"
                 disableRipple
@@ -155,7 +135,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 variant="contained"
                 onClick={handleOpenMenu}
               >
-                <img alt="Logo" src={UserAvatar} height={40} className="rounded" />
+                <img alt="Logo" src={UserAvatar} height={40} className="rounded-3" />
               </IconButton>
               {renderMenu()}
             </MDBox>

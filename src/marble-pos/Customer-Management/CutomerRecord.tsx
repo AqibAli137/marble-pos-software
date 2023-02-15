@@ -138,7 +138,7 @@ const CutomerRecord = () => {
     setAnchorEl(null);
   };
   const handleNewOrder =()=>{
-    navigate('/sale-items')
+    navigate('/sale')
   }
   const handleGatPass =()=>{
 

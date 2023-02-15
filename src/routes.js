@@ -6,26 +6,26 @@ import ItemWrapper from './marble-pos/Items';
 const routes = [
   {
     type: "collapse",
-    name: "Sale Items",
-    key: "saleItems",
+    name: "New Sale",
+    key: "sale",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/sale-items",
+    route: "/sale",
     component: <Dashboard />,
   },
   {
     type: "collapse",
     name: "Cutomer Record",
-    key: "cutomerRecord",
+    key: "customer",
     icon: <Icon fontSize="small">group</Icon>,
-    route: "/customer-iecord",
+    route: "/customer",
     component: <CustomerWraper />,
   },
   {
     type: "collapse",
     name: "Admin Dashboard",
-    key: "adminDashboard",
+    key: "admin",
     icon: <Icon fontSize="medium">add_circle_icon</Icon>,
-    route: "/admin-dashboard",
+    route: "/admin",
     component: <ItemWrapper />,
   }
   

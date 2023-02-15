@@ -8,6 +8,7 @@ import AddIcCallIcon from '@mui/icons-material/AddIcCall'
 const LocalFooter = () => {
   return (
     <>
+
         <div className='text-white py-3 text-center gradientStyle'>
           <div
             className='d-flex justify-content-center position-relative'

@@ -4,6 +4,7 @@ import DashboardLayout from "../examples/LayoutContainers/DashboardLayout";
 import Basic from "../layouts/authentication/sign-in";
 import { ErrorsPage } from "../layouts/errors/ErrorsPage";
 import Tabs from "../marble-pos/Customer-Management/CustomerTabsView/CustomerTabs";
+import ReturnItems from "../marble-pos/Returns/ReturnItems";
 import MorePages from "./MorePages";
 import Otherpage from "./Otherpage";
 
@@ -14,11 +15,11 @@ const AppRoutes: FC = () => {
         <Route path="authentication/sign-in" element={<Basic />} />
         {window.localStorage.getItem("userLogin") ? (
           <>
-          <Route path="" element={<Navigate to="sale-items" />} />
+          <Route path="" element={<Navigate to="sale" />} />
           {/* add new pages routes */}
             <Route path="morePages" element={<MorePages />} />
             <Route path="/explore" element={<Tabs />} />
-
+            <Route path="/returns" element={<ReturnItems />} />
             {/* Error Pages */}
             <Route path="error/404" element={<ErrorsPage />} />
             <Route path="/*" element={<Navigate to="error/404" />} />

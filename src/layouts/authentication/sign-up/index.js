@@ -9,7 +9,7 @@ import CoverLayout from "../components/CoverLayout";
 // import bgImage from "../../../assets/images/bg-sign-up-cover.jpeg";
 import illustration14 from "../../../assets/images/illustration/14.png";
 import Grid from "@mui/material/Grid";
-import logo from "../../../assets/images/Sundar Logo/logo.png";
+import logo from "../../../assets/sm-assets/sm-logo2.jpg";
 
 function Cover() {
   return (
