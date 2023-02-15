@@ -16,7 +16,40 @@ const FirstTable = (props: {TableData: []}) => {
 
   return (
     <div>
-      <table className='w-100 table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 table-responsive'>
+       <table className="table table-striped table-secondary">
+  <thead>
+    <tr className='text-center fs-6'>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Bill</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {tblData.map((item: any, index: number) => (
+     <tr className='tr text-center fs-6' key={index}>
+     <td>{item.ItemName}</td>
+     <td>{item.ItemQuantity}</td>
+     <td>{item.SetPrice}</td>
+     <td>{item.YourBill}</td>
+     <td>
+     <IconButton aria-label='delete'>
+                   <HighlightOffIcon
+                     fontSize='small'
+                     className='text-danger'
+                     onClick={handleDeleteUser2.bind(this, item, index)}
+                   />
+                 </IconButton>
+     </td>
+   </tr>
+  ))
+}
+   
+
+  </tbody>
+</table>
+      {/* <table className='w-100 table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 table-responsive'>
         <thead>
           <tr className='' style={{borderBottom: '1pt solid black'}}>
           <th className="text-center pb-2">Name</th>
@@ -63,7 +96,7 @@ const FirstTable = (props: {TableData: []}) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   )
 }
