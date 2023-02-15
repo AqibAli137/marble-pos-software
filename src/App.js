@@ -88,7 +88,7 @@ export default function App() {
             />
             <Configurator />
             <Routes>
-              <Route path="" element={<Navigate to="dashboard" />} />
+              <Route path="" element={<Navigate to="sale-items" />} />
             </Routes>
           </>
         )

@@ -6,42 +6,28 @@ import IconButton from "@mui/material/IconButton";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import { AppDispatch, RootState } from "../store";
 import { updateOrderList } from "../@features/SaleItems/SaleItemSlice";
-import Checkbox from "@mui/material/Checkbox";
 import "../app.css";
 import Invoicer from "./InvoiceView/Invoicer";
 import { useReactToPrint } from "react-to-print";
-import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import { OrderTableColumns } from "./ColumnData";
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
 
 const items = [
   { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
   { ItemName: "Item 2", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
-  { ItemName: "Item 3", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
+  { ItemName: "Item 3", CostOfItem: 90, TotalQuantity: 150333, TotalAmount: 90 * 150 },
   { ItemName: "Item 4", CostOfItem: 60, TotalQuantity: 450, TotalAmount: 60 * 450 },
   { ItemName: "Item 5", CostOfItem: 150, TotalQuantity: 850, TotalAmount: 150 * 850 },
 ];
 
-
-
 const SaleDashboard = () => {
-
-
-
   const [selectedItem, setSelectedItem] = useState(items[0]);
-
   const [SelectQuantity, setSelectQuantity] = useState(1);
   const [SelectPrice, setSelectPrice] = useState(60);
   const [yourBill, setYourBill] = useState(60);
-
   const [saleItem, setSaleItem] = useState([] as any);
   const [ItemAddSpanShow, setItemAddSpanShow] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   let saleState = useSelector((store: RootState) => store.sale);
-
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   useEffect(() => {
     setYourBill(SelectQuantity * SelectPrice);
@@ -80,28 +66,7 @@ const SaleDashboard = () => {
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
   });
-  // const columns = [
-  //   {
-  //     title: "Date",
-  //     dataIndex: "OrderDate",
-  //   },
-  //   {
-  //     title: "Name",
-  //     dataIndex: "ItemName",
-  //   },
-  //   {
-  //     title: "Quantity",
-  //     dataIndex: "ItemQuantity",
-  //   },
-  //   {
-  //     title: "Price",
-  //     dataIndex: "SetPrice",
-  //   },
-  //   {
-  //     title: "Bill",
-  //     dataIndex: "YourBill",
-  //   },
-  // ];
+
   const oldData = [
     {
       OrderDate: "08/6/2022, 11am",
@@ -125,124 +90,105 @@ const SaleDashboard = () => {
       YourBill: 95680,
     },
   ];
-  const currencies = [
-    {
-      value: 'Item 1',
-      label: 'Item 1',
-    },
-    {
-      value: 'Item 2',
-      label: 'Item 2',
-    },
-    {
-      value: 'Item 3',
-      label: 'Item 3',
-    },
-    {
-      value: 'Item 4',
-      label: 'Item 4',
-    },
-  ];
 
   return (
     <>
       <div>
-        <h2 className="fs-3">Customer Order</h2>
-        <Box
-      component="form"
-      sx={{
-        display:"flex",
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-      <TextField
-          id="outlined-select-currency-native"
-          onChange={(e) => {
-            ChangeDropdown(e.target.value);
-          }}
-          select
-          label="Native select"
-          defaultValue="EUR"
-          SelectProps={{
-            native: true,
-          }}
-          helperText="Please select your item"
-        >
-          {currencies.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
+        <div className="d-flex justify-content-center">
+          <h2 className="fs-3 text-center">Customer Order</h2>
         </div>
-        <div>
-        <TextField
-          id="filled-multiline-flexible"
-          label="Set Quantity"
-          value={SelectQuantity}
-                          // min="0"
-                          // step="10"
-                          // max={selectedItem.TotalQuantity}
-                          onChange={(e) => {
-                            if (
-                              parseInt(e.target.value) === selectedItem.TotalQuantity ||
-                              parseInt(e.target.value) < selectedItem.TotalQuantity
-                            ) {
-                              setSelectQuantity(parseInt(e.target.value));
-                            }
-                          }}
-          multiline
-          // maxRows={4}
-        />
-        <TextField
-          id="outlined-textarea"
-          label="Set Price"
-          placeholder="Set Your Price Here"
-          multiline
-          value={SelectPrice}
-          type="number"
-          // min="0"
-          // step="1"
-          onChange={(e) => {
-            if (
-              parseInt(e.target.value) === 100000 ||
-              parseInt(e.target.value) < 100000
-            ) {
-              setSelectPrice(parseFloat(e.target.value));
-            }
-          }}
-        />
+        <div className="row mb-3">
+          <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+            <div className="d-flex justify-content-between">
+              <span>Select Item</span>
+              <span className="fw-bold d-block">
+                <select
+                  onChange={(e) => {
+                    ChangeDropdown(e.target.value);
+                  }}
+                  className="form-control form-control-md px-3 rounded-3 fw-bold m-0"
+                  data-kt-select2="true"
+                  data-placeholder="Select option"
+                  data-allow-clear="true"
+                >
+                  {items.map((item) => (
+                    <option key={item.ItemName} value={item.ItemName}>
+                      {item.ItemName}
+                    </option>
+                  ))}
+                </select>
+              </span>
+            </div>
+          </div>
+
+          <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+            <div className="d-flex justify-content-between">
+              <span>Set Quantity</span>
+              <span className="fw-bold d-block">
+                <input
+                  type="number"
+                  value={SelectQuantity}
+                  min="0"
+                  step="10"
+                  max={selectedItem.TotalQuantity}
+                  onChange={(e) => {
+                    if (
+                      parseInt(e.target.value) === selectedItem.TotalQuantity ||
+                      parseInt(e.target.value) < selectedItem.TotalQuantity
+                    ) {
+                      setSelectQuantity(parseInt(e.target.value));
+                    }
+                  }}
+                  className="form-control form-control-md text-center rounded-3 fw-bold m-0"
+                />
+              </span>
+            </div>
+          </div>
+          <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+            <div className="d-flex justify-content-between">
+              <span>Set Price</span>
+              <span className="fw-bold d-block">
+                <input
+                  value={SelectPrice}
+                  type="number"
+                  min="0"
+                  step="1"
+                  onChange={(e) => {
+                    if (parseInt(e.target.value) === 100000 || parseInt(e.target.value) < 100000) {
+                      setSelectPrice(parseFloat(e.target.value));
+                    }
+                  }}
+                  className="form-control form-control-md text-center rounded-3 fw-bold m-0"
+                />
+              </span>
+            </div>
+          </div>
         </div>
-        </Box>
         <div className="table-responsive w-100">
-        <table className="table table-striped table-dark">
-  <thead>
-    <tr className="fs-6">
-      <th scope="col">Your Bill</th>
-      <th scope="col">Cost/Ft/No</th>
-      <th scope="col">Total Quantity</th>
-      <th scope="col">Total Amount</th>
-      <th scope="col">Add</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr className="fs-6">
-      <td>{yourBill}</td>
-      <td>{selectedItem.CostOfItem}</td>
-      <td>{selectedItem.TotalQuantity}</td>
-      <td>{selectedItem.TotalAmount}</td>
-      <td>
-      <IconButton aria-label="delete">
+          <table className="table table-striped table-dark">
+            <thead>
+              <tr className="fs-6">
+                <th scope="col">Your Bill</th>
+                <th scope="col">Cost/Ft/No</th>
+                <th scope="col">Total Quantity</th>
+                <th scope="col">Total Amount</th>
+                <th scope="col">Add</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="fs-6">
+                <td>{yourBill}</td>
+                <td>{selectedItem.CostOfItem}</td>
+                <td>{selectedItem.TotalQuantity}</td>
+                <td>{selectedItem.TotalAmount}</td>
+                <td>
+                  <IconButton aria-label="delete">
                     <AddTaskIcon fontSize="medium" className="text-success" onClick={AddSaleItem} />
                   </IconButton>
-      </td>
-    </tr>
-
-  </tbody>
-</table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       {ItemAddSpanShow && (
@@ -267,7 +213,7 @@ const SaleDashboard = () => {
         <div className="col-12">
           <div className="">
             <Invoicer />
-            </div>
+          </div>
         </div>
       </div>
     </>

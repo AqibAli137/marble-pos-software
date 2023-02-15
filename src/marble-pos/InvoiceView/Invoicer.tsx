@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Table } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -7,24 +7,26 @@ import IconButton from "@mui/material/IconButton";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import Checkbox from "@mui/material/Checkbox";
 import { useReactToPrint } from "react-to-print";
-import './invoicer.css'
-import Component from "./Component";
+import "./invoicer.css";
+import marbleheader from "../../assets/Bills/Fauget.png";
+import Headnumbers from "../../assets/Bills/Add a heading.png";
+
 const Invoicer = () => {
   let OrderListState = useSelector((store: RootState) => store.sale);
   const [saleItem, setSaleItem] = useState([] as any);
-  const [amountInTable, setAmountInTable] = useState(false);
+  const [amountInTable, setAmountInTable] = useState(true);
   const [headerShow, setHeaderShow] = useState(false);
+  const [total, setTotal] = useState(0);
 
-  const dataToPrintRef = React.useRef<HTMLInputElement>(null);
+  const dataToPrintRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     setSaleItem(OrderListState.orderList);
   }, [OrderListState.orderList]);
   useEffect(() => {
     setSaleItem(OrderListState.orderList);
   }, []);
-  useEffect(() => {
-    setSaleItem(OrderListState.orderList);
-  }, [OrderListState.orderList]);
+
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
   });
@@ -33,53 +35,89 @@ const Invoicer = () => {
 
   return (
     <>
-    
-    <div className="row urdu my-5" >
-     
-      <div ref={dataToPrintRef}>
-        
-        <Component/>
-        {/* <div className="row">
-        <table>
-          <thead>
-            <tr>
-              <th>Quantity</th>
-              <th>Details</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Product 1</td>
-              <td>Lorem ipsum dolor sit amet</td>
-              <td>$10.00</td>
-              <td>2</td>
-              <td>$20.00</td>
-            </tr>
-            <tr>
-              <td>Product 2</td>
-              <td>Consectetur adipiscing elit</td>
-              <td>$20.00</td>
-              <td>1</td>
-              <td>$20.00</td>
-            </tr>
-            <tr>
-              <td>Product 3</td>
-              <td>Sed do eiusmod tempor incididunt</td>
-              <td>$30.00</td>
-              <td>3</td>
-              <td>$90.00</td>
-            </tr>
-          </tbody>
-        </table>
-        </div> */}
+      <div className="row urdu my-5">
+        <div ref={dataToPrintRef}>
+          <div className="container">
+            <div className="card">
+              <div className="row">
+                <img src={marbleheader} alt="" style={{ width: "100%" }} />
+              </div>
+              <div className="card-body">
+                <div className="row mb-4">
+                  <div className="col-sm-6">
+                    <h6 className="mb-3">From:</h6>
+                    <div>
+                      <strong>Naveed Akhtar</strong>
+                    </div>
+                    <div>Kamoke</div>
+                    <div>Full Address here</div>
+                    <div>Phone: +92301-6428683</div>
+                  </div>
+
+                  <div className="col-sm-6">
+                    <h6 className="mb-3">To:</h6>
+                    <div>
+                      <strong>Arbaz Ahmad</strong>
+                    </div>
+                    <div>Address : Muridke</div>
+                    <div>Full Address here</div>
+                    <div>Phone: +92306-321****</div>
+                  </div>
+                </div>
+
+                <div className="table-responsive-sm">
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Item Name</th>
+                        {amountInTable && <th className="right">Unit Cost</th>}
+                        <th className="center">Quantity</th>
+                        {amountInTable && <th className="right">Bill</th>}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {saleItem.map((item: any) => (
+                        <tr>
+                          <td>{new Date().toLocaleString() + ""}</td>
+                          <td>{item.ItemName}</td>
+                          <td>{item.ItemQuantity}</td>
+                          {amountInTable && <td>{item.SetPrice}</td>}
+                          {amountInTable && <td>{item.YourBill}</td>}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="row">
+                  <div className="col-lg-4 col-sm-5"></div>
+
+                  <div className="col-lg-4 col-sm-5 ml-auto">
+                    <table className="table table-clear">
+                      <tbody>
+                        <tr>
+                          <td className="left">
+                            <strong>Total</strong>
+                          </td>
+                          <td className="right">
+                            <strong>{total}</strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <img src={Headnumbers} alt="" style={{ width: "100%" }} />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
       <div className="d-flex justify-content-between px-3">
         <div className="mt-2">
-          <span>With Amount</span>
+          <span>WithOut Amount</span>
           {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}
           <Checkbox
             {...label}
@@ -99,7 +137,7 @@ const Invoicer = () => {
           <LocalPrintshopIcon fontSize="large" />
         </IconButton>
       </div>
-      </>
+    </>
   );
 };
 

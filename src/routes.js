@@ -1,18 +1,15 @@
-import React from 'react'
 import Icon from "@mui/material/Icon";
 import Dashboard from './layouts/dashboard';
 import CustomerWraper from './marble-pos/Customer-Management';
 import ItemWrapper from './marble-pos/Items';
-import Tabs from "./marble-pos/Customer-Management/CustomerTabsView/CustomerTabs"
-// import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const routes = [
   {
     type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
+    name: "Sale Items",
+    key: "saleItems",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
+    route: "/sale-items",
     component: <Dashboard />,
   },
   {
@@ -20,25 +17,18 @@ const routes = [
     name: "Cutomer Record",
     key: "cutomerRecord",
     icon: <Icon fontSize="small">group</Icon>,
-    route: "/customer",
+    route: "/customer-iecord",
     component: <CustomerWraper />,
   },
   {
     type: "collapse",
-    name: "Item",
-    key: "item",
+    name: "Admin Dashboard",
+    key: "adminDashboard",
     icon: <Icon fontSize="medium">add_circle_icon</Icon>,
-    route: "/item",
+    route: "/admin-dashboard",
     component: <ItemWrapper />,
-  },
-  {
-    type: "collapse",
-    name: "Tabs",
-    key: "tabs",
-    icon: <Icon fontSize="medium">add_circle_icon</Icon>,
-    route: "/tabs",
-    component: <Tabs/>,
   }
+  
 ];
 
 export default routes;

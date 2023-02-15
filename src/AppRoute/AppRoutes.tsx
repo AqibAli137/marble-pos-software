@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import DashboardLayout from "../examples/LayoutContainers/DashboardLayout";
 import Basic from "../layouts/authentication/sign-in";
 import { ErrorsPage } from "../layouts/errors/ErrorsPage";
+import Tabs from "../marble-pos/Customer-Management/CustomerTabsView/CustomerTabs";
 import MorePages from "./MorePages";
 import Otherpage from "./Otherpage";
 
@@ -13,10 +14,10 @@ const AppRoutes: FC = () => {
         <Route path="authentication/sign-in" element={<Basic />} />
         {window.localStorage.getItem("userLogin") ? (
           <>
-          <Route path="" element={<Navigate to="dashboard" />} />
+          <Route path="" element={<Navigate to="sale-items" />} />
           {/* add new pages routes */}
             <Route path="morePages" element={<MorePages />} />
-
+            <Route path="/explore" element={<Tabs />} />
 
             {/* Error Pages */}
             <Route path="error/404" element={<ErrorsPage />} />

@@ -43,7 +43,7 @@ function Basic() {
     ) {
       window.localStorage.setItem("userLogin", "User Login");
       rememberMe && window.localStorage.setItem("userRemamber", "User Remamber");
-      navigate("/dashboard");
+      navigate("/sale-items");
     } else {
       setErrorSB(true);
     }
@@ -107,21 +107,6 @@ function Basic() {
                 sign in
               </MDButton>
             </MDBox>
-            {/* <MDBox mt={3} mb={1} textAlign="center">
-              <MDTypography variant="button" color="text">
-                Don&apos;t have an account?{" "}
-                <MDTypography
-                  component={Link}
-                  to="/authentication/sign-up"
-                  variant="button"
-                  color="info"
-                  fontWeight="medium"
-                  textGradient
-                >
-                  Sign up
-                </MDTypography>
-              </MDTypography>
-            </MDBox> */}
           </MDBox>
         </MDBox>
       </Card>
