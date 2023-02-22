@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import subhanLogo from "./assets/sm-assets/sm-logo2.jpg";
-import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "./context";
+import { useMaterialUIController, setMiniSidenav, setOpenConfigurator,setDirection } from "./context";
 import routes from "./routes";
 import theme from "./assets/theme";
 import themeDark from "./assets/theme-dark";
@@ -15,6 +15,7 @@ import MDBox from "./components/MDBox";
 import {useSelector} from 'react-redux'
 import Basic from "./layouts/authentication/sign-in";
 import { AppRoutes } from "./AppRoute/AppRoutes";
+
 
 export default function App() {
   const [controller, dispatch1] = useMaterialUIController();
@@ -53,8 +54,20 @@ export default function App() {
   useEffect(() => {
     document.body.setAttribute("dir", direction);
   }, [direction]);
-  useEffect(() => {}, []);
 
+
+
+
+  // Changing the direction to rtl
+  // useEffect(() => {
+  //   setDirection(dispatch1, "rtl");
+
+  //   return () => setDirection(dispatch1, "ltr");
+  // }, []);
+
+
+
+  
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
