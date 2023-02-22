@@ -2,6 +2,7 @@ import Icon from "@mui/material/Icon";
 import Dashboard from './layouts/dashboard';
 import CustomerWraper from './marble-pos/Customer-Management';
 import ItemWrapper from './marble-pos/Items';
+import StockRecord from "./marble-pos/Items/StockTable";
 
 const routes = [
   {
@@ -27,6 +28,14 @@ const routes = [
     icon: <Icon fontSize="medium">add_circle_icon</Icon>,
     route: "/admin",
     component: <ItemWrapper />,
+  },
+  {
+    type: "collapse",
+    name: "Items Stock",
+    key: "stock",
+    icon: <Icon fontSize="medium">add_circle_icon</Icon>,
+    route: "/stock",
+    component: <StockRecord />,
   }
   
 ];
