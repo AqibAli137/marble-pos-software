@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import LocalFooter from "../../layouts/Advatisment/LocalFooter";
 import { AppDispatch, RootState } from "../../store";
-
+import '../../app.css'
 const ReturnItems = () => {
   const items = [
     { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -33,7 +33,90 @@ const ReturnItems = () => {
   return (
     <div className="">
       <DashboardLayout>
-        <div>
+        <div className="main urdu">
+          <div style={{ background: "#d9ede1" }} className="row">
+            <div className="col-12 text-center">
+              <h1 className="my-3">
+                <span>
+                  سبحان ماربل اینڈ گرینائٹ <span className="fs-6">جی ٹی روڈ کاموکی</span>
+                </span>
+              </h1>
+            </div>
+            <div className="col-12 text-center">
+              <h5 className="my-3">
+                {" "}
+                <span className="fs6">
+                  {" "}
+                  ہمارے ہاں ہر قسم کی ماربل دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
+                </span>
+              </h5>
+            </div>
+          </div>
+          <div className="my-2">
+          <div style={{ background: "#d9ede1" }} className="row">
+            <div className="col-12 text-center py-3">
+            <span>
+            ماربل کی واپسی کے لیے
+            </span>
+            </div>
+            </div>
+          </div>
+          <div className="row mt-1">
+            <table className="table table-bordered">
+              <thead>
+                <tr className="fs-6 text-center">
+                  <th>action </th>
+                  <th>تعداد </th>
+                  <th>نام جنس </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="text-center">
+                  <td>
+                    <Button variant="contained" className="ActiveEffect text-white">
+                      <span className="mx-2">ماربل واپس</span>
+                    </Button>
+                  </td>
+                  <td>
+                    <input
+                      className="form-control text-center"
+                      type="number"
+                      value={SelectQuantity}
+                      min="0"
+                      step="10"
+                      max={selectedItem.TotalQuantity}
+                      onChange={(e) => {
+                        if (
+                          parseInt(e.target.value) === selectedItem.TotalQuantity ||
+                          parseInt(e.target.value) < selectedItem.TotalQuantity
+                        ) {
+                          setSelectQuantity(parseInt(e.target.value));
+                        }
+                      }}
+                    />
+                  </td>
+                  <td className="d-flex justify-content-center">
+                    <select
+                      className="form-control text-center"
+                      style={{ width: "100px" }}
+                      onChange={(e) => {
+                        ChangeDropdown(e.target.value);
+                      }}
+                    >
+                      {items.map((item) => (
+                        <option key={item.ItemName} value={item.ItemName}>
+                          {item.ItemName}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                </tr>
+                {/* Add more rows here */}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {/* <div>
           <div className="d-flex justify-content-center">
             <h2 className="fs-3 text-center">Return Items</h2>
           </div>
@@ -93,10 +176,10 @@ const ReturnItems = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="mt-5">
+        </div> */}
+        {/* <div className="mt-5">
           <LocalFooter />
-        </div>
+        </div> */}
       </DashboardLayout>
     </div>
   );

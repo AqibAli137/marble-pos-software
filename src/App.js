@@ -51,19 +51,19 @@ export default function App() {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch1, !openConfigurator);
 
   // Setting the dir attribute for the body element
-  useEffect(() => {
-    document.body.setAttribute("dir", direction);
-  }, [direction]);
+  // useEffect(() => {
+  //   document.body.setAttribute("dir", direction);
+  // }, [direction]);
 
 
 
 
   // Changing the direction to rtl
-  // useEffect(() => {
-  //   setDirection(dispatch1, "rtl");
+  useEffect(() => {
+    setDirection(dispatch1, "rtl");
 
-  //   return () => setDirection(dispatch1, "ltr");
-  // }, []);
+    return () => setDirection(dispatch1, "ltr");
+  }, []);
 
 
 
