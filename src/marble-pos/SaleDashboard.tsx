@@ -10,6 +10,9 @@ import "../app.css";
 import Invoicer from "./InvoiceView/Invoicer";
 import { useReactToPrint } from "react-to-print";
 import { OrderTableColumns } from "./ColumnData";
+import SalesTable from "./salestableComponent/SalesTable";
+import GatePass from "./salestableComponent/GatePass";
+import KhataTafseel from "./salestableComponent/KhataTafseel";
 
 const items = [
   { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -92,127 +95,175 @@ const SaleDashboard = () => {
   ];
 
   return (
-    <>
-      <div>
-        <div className="d-flex justify-content-center">
-          <h2 className="fs-3 text-center">Customer Order</h2>
-        </div>
-        <div className="row mb-3">
-          <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-            <div className="d-flex justify-content-between">
-              <span>Select Item</span>
-              <span className="fw-bold d-block">
-                <select
-                  onChange={(e) => {
-                    ChangeDropdown(e.target.value);
-                  }}
-                  className="form-control form-control-md px-3 rounded-3 fw-bold m-0"
-                  data-kt-select2="true"
-                  data-placeholder="Select option"
-                  data-allow-clear="true"
-                >
-                  {items.map((item) => (
-                    <option key={item.ItemName} value={item.ItemName}>
-                      {item.ItemName}
-                    </option>
-                  ))}
-                </select>
-              </span>
-            </div>
-          </div>
+    // <>
+    //   <div>
+    //     <div className="d-flex justify-content-center">
+    //       <h2 className="fs-3 text-center">Customer Order</h2>
+    //     </div>
+    //     <div className="row mb-3">
+    //       <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+    //         <div className="d-flex justify-content-between">
+    //           <span>Select Item</span>
+    //           <span className="fw-bold d-block">
+    //             <select
+    //               onChange={(e) => {
+    //                 ChangeDropdown(e.target.value);
+    //               }}
+    //               className="form-control form-control-md px-3 rounded-3 fw-bold m-0"
+    //               data-kt-select2="true"
+    //               data-placeholder="Select option"
+    //               data-allow-clear="true"
+    //             >
+    //               {items.map((item) => (
+    //                 <option key={item.ItemName} value={item.ItemName}>
+    //                   {item.ItemName}
+    //                 </option>
+    //               ))}
+    //             </select>
+    //           </span>
+    //         </div>
+    //       </div>
 
-          <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-            <div className="d-flex justify-content-between">
-              <span>Set Quantity</span>
-              <span className="fw-bold d-block">
-                <input
-                  type="number"
-                  value={SelectQuantity}
-                  min="0"
-                  step="10"
-                  max={selectedItem.TotalQuantity}
-                  onChange={(e) => {
-                    if (
-                      parseInt(e.target.value) === selectedItem.TotalQuantity ||
-                      parseInt(e.target.value) < selectedItem.TotalQuantity
-                    ) {
-                      setSelectQuantity(parseInt(e.target.value));
-                    }
-                  }}
-                  className="form-control form-control-md text-center rounded-3 fw-bold m-0"
-                />
+    //       <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+    //         <div className="d-flex justify-content-between">
+    //           <span>Set Quantity</span>
+    //           <span className="fw-bold d-block">
+    //             <input
+    //               type="number"
+    //               value={SelectQuantity}
+    //               min="0"
+    //               step="10"
+    //               max={selectedItem.TotalQuantity}
+    //               onChange={(e) => {
+    //                 if (
+    //                   parseInt(e.target.value) === selectedItem.TotalQuantity ||
+    //                   parseInt(e.target.value) < selectedItem.TotalQuantity
+    //                 ) {
+    //                   setSelectQuantity(parseInt(e.target.value));
+    //                 }
+    //               }}
+    //               className="form-control form-control-md text-center rounded-3 fw-bold m-0"
+    //             />
+    //           </span>
+    //         </div>
+    //       </div>
+    //       <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+    //         <div className="d-flex justify-content-between">
+    //           <span>Set Price</span>
+    //           <span className="fw-bold d-block">
+    //             <input
+    //               value={SelectPrice}
+    //               type="number"
+    //               min="0"
+    //               step="1"
+    //               onChange={(e) => {
+    //                 if (parseInt(e.target.value) === 100000 || parseInt(e.target.value) < 100000) {
+    //                   setSelectPrice(parseFloat(e.target.value));
+    //                 }
+    //               }}
+    //               className="form-control form-control-md text-center rounded-3 fw-bold m-0"
+    //             />
+    //           </span>
+    //         </div>
+    //       </div>
+    //     </div>
+    //     <div className="table-responsive w-100">
+    //       <table className="table table-striped table-dark">
+    //         <thead>
+    //           <tr className="fs-6">
+    //             <th scope="col">Your Bill</th>
+    //             <th scope="col">Cost/Ft/No</th>
+    //             <th scope="col">Total Quantity</th>
+    //             <th scope="col">Total Amount</th>
+    //             <th scope="col">Add</th>
+    //           </tr>
+    //         </thead>
+    //         <tbody>
+    //           <tr className="fs-6">
+    //             <td>{yourBill}</td>
+    //             <td>{selectedItem.CostOfItem}</td>
+    //             <td>{selectedItem.TotalQuantity}</td>
+    //             <td>{selectedItem.TotalAmount}</td>
+    //             <td>
+    //               <IconButton aria-label="delete">
+    //                 <AddTaskIcon fontSize="medium" className="text-success" onClick={AddSaleItem} />
+    //               </IconButton>
+    //             </td>
+    //           </tr>
+    //         </tbody>
+    //       </table>
+    //     </div>
+    //   </div>
+    //   {ItemAddSpanShow && (
+    //     <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
+    //       <h3 className="text-center">Record is added in list</h3>
+    //     </div>
+    //   )}
+    //   <div>
+    //     <FirstTable TableData={saleItem} />
+    //   </div>
+    //   <div className="row mt-5">
+    //     <div className="col-12">
+    //       <div className="row bg-dark text-white py-2 px-0">
+    //         <h3 className="text-center fs-4">Customer Old Record</h3>
+    //       </div>
+    //       <Table columns={OrderTableColumns} dataSource={oldData} />
+    //       <div className="row bg-dark text-white py-2">
+    //         <h3 className="text-center">New Order</h3>
+    //       </div>
+    //       <Table columns={OrderTableColumns} dataSource={saleItem} />
+    //     </div>
+    //     <div className="col-12">
+    //       <div className="">
+    //         <Invoicer />
+    //       </div>
+    //     </div>
+    //   </div>
+    // </>
+    <>
+      <div className="main urdu">
+        <div style={{ background: "#d9ede1" }} className="row">
+          <div className="col-12 text-center">
+            <h1 className="my-3">
+              <span>
+                خاص ماربل کراچی <span className="fs-6">مانگو روڈ</span>
               </span>
-            </div>
+             
+            </h1>
           </div>
-          <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-            <div className="d-flex justify-content-between">
-              <span>Set Price</span>
-              <span className="fw-bold d-block">
-                <input
-                  value={SelectPrice}
-                  type="number"
-                  min="0"
-                  step="1"
-                  onChange={(e) => {
-                    if (parseInt(e.target.value) === 100000 || parseInt(e.target.value) < 100000) {
-                      setSelectPrice(parseFloat(e.target.value));
-                    }
-                  }}
-                  className="form-control form-control-md text-center rounded-3 fw-bold m-0"
-                />
+          <div className="col-12 text-center">
+            <h5 className="my-3"> <span className="fs6">
+           {" " } ہمرے ہاں ہر کسم کی ماربل دستیاب ہیں
+              .{" "} <span>موبائل نمبر-03123121322</span> 
               </span>
-            </div>
+              </h5>      
           </div>
         </div>
-        <div className="table-responsive w-100">
-          <table className="table table-striped table-dark">
-            <thead>
-              <tr className="fs-6">
-                <th scope="col">Your Bill</th>
-                <th scope="col">Cost/Ft/No</th>
-                <th scope="col">Total Quantity</th>
-                <th scope="col">Total Amount</th>
-                <th scope="col">Add</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="fs-6">
-                <td>{yourBill}</td>
-                <td>{selectedItem.CostOfItem}</td>
-                <td>{selectedItem.TotalQuantity}</td>
-                <td>{selectedItem.TotalAmount}</td>
-                <td>
-                  <IconButton aria-label="delete">
-                    <AddTaskIcon fontSize="medium" className="text-success" onClick={AddSaleItem} />
-                  </IconButton>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="row">
+          <div style={{ background: "#d9ede1" }} className="col-12 text-center my-3 p-3">
+            <span className="name"> نام خریدار </span>
+            <span> آفریدی صاحب </span>
+            <span> فیصل آباد </span>
+          </div>
+        </div>
+        <div className="row">
+        <SalesTable />
         </div>
       </div>
-      {ItemAddSpanShow && (
-        <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
-          <h3 className="text-center">Record is added in list</h3>
-        </div>
-      )}
-      <div>
-        <FirstTable TableData={saleItem} />
-      </div>
-      <div className="row mt-5">
-        <div className="col-12">
-          <div className="row bg-dark text-white py-2 px-0">
-            <h3 className="text-center fs-4">Customer Old Record</h3>
+      <div className="row">
+        
+        <div className="col">
+          <div style={{height:"500px",overflow:"scroll"}}>
+          <KhataTafseel/>
           </div>
-          <Table columns={OrderTableColumns} dataSource={oldData} />
-          <div className="row bg-dark text-white py-2">
-            <h3 className="text-center">New Order</h3>
-          </div>
-          <Table columns={OrderTableColumns} dataSource={saleItem} />
         </div>
-        <div className="col-12">
-          <div className="">
-            <Invoicer />
+        <div className="col">
+          <div style={{height:"500px",overflow:"scroll"}}>
+            {
+              ["","","",""].map(i=>(
+                <GatePass/>
+              ))
+            }
           </div>
         </div>
       </div>
