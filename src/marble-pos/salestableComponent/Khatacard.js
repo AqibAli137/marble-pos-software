@@ -2,38 +2,38 @@ import { Card, CardContent, Typography } from '@mui/material';
 
 function  Khatacard() {
   return (
-    <div className='my-3 row d-flex justify-content-center align-item-center'>
-        <Card sx={{width:"90%"}}>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Total Amount
+    <div className='my-3 row d-flex justify-content-center align-item-center '>
+        <Card sx={{width:"90%"}} style={{fontFamily:"'Noto Nastaliq Urdu', serif"}}>
+      <CardContent className='d-flex flex-row-reverse align-items-center'>
+        <Typography className='mx-2' gutterBottom variant="h6" component="div" style={{fontFamily:"'Noto Nastaliq Urdu', serif"}}>
+       : ٹوٹل رقم 
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Rs. 1000
-        </Typography>
-      </CardContent>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Received Amount
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Rs. 500
+        <Typography className='mx-2' variant="body2" color="text.secondary">
+           1000
         </Typography>
       </CardContent>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Remaining Amount
+      <CardContent className='d-flex flex-row-reverse align-items-center'>
+        <Typography className='mx-2' gutterBottom variant="h6" component="div" style={{fontFamily:"'Noto Nastaliq Urdu', serif"}}>
+        : وصول رقم
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Rs. 500
+        <Typography className='mx-2' variant="body2" color="text.secondary">
+         500
         </Typography>
       </CardContent>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Compliance
+      <CardContent className='d-flex flex-row-reverse align-items-center'>
+        <Typography className='mx-2' gutterBottom variant="h6" component="div" style={{fontFamily:"'Noto Nastaliq Urdu', serif"}}>
+        :بقایا رقم
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Yes
+        <Typography className='mx-2' variant="body2" color="text.secondary">
+           500
+        </Typography>
+      </CardContent>
+      <CardContent className='d-flex flex-row-reverse align-items-center'>
+        <Typography className='mx-2' gutterBottom variant="h6" component="div" style={{fontFamily:"'Noto Nastaliq Urdu', serif"}}>
+       : رعایت
+        </Typography>
+        <Typography className='mx-2' variant="body2" color="text.secondary">
+          0
         </Typography>
       </CardContent>
     </Card>
