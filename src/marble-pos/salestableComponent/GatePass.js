@@ -23,7 +23,7 @@ function GatePass() {
           </div>
           <div className="col-12 text-center">
             <h6 className="my-3"> <span className="fs6">
-           {" " } ہمارے ہاں ہر کسم کی ماربل دستیاب ہیں
+           {" " } ہمارے ہاں ہر قسم کی ماربل دستیاب ہیں
               .{" "} <span>موبائل نمبر-03123121322</span> 
               </span>
               </h6>      
