@@ -9,7 +9,7 @@ const DashboardWraper = () => {
       <div style={{height:"100vh"}} className="d-flex justify-content-between flex-column ">
     <SaleDashboard />
     {/* <Todomain /> */}
-    <LocalFooter />
+    {/* <LocalFooter /> */}
 
       </div>
     </div>

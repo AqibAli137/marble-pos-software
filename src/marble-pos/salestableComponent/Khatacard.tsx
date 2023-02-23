@@ -1,6 +1,6 @@
 import { Card, CardContent, Typography } from '@mui/material';
 
-function  Khatacard() {
+const  Khatacard=()=> {
   return (
     <div className='my-3 row d-flex justify-content-center align-item-center '>
         <Card sx={{width:"90%"}} style={{fontFamily:"'Noto Nastaliq Urdu', serif"}}>

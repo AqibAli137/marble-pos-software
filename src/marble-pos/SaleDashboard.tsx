@@ -13,6 +13,7 @@ import { OrderTableColumns } from "./ColumnData";
 import SalesTable from "./salestableComponent/SalesTable";
 import GatePass from "./salestableComponent/GatePass";
 import KhataTafseel from "./salestableComponent/KhataTafseel";
+import NewGatePass from "./salestableComponent/NewGatPass";
 
 const items = [
   { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -27,6 +28,10 @@ const SaleDashboard = () => {
   const [SelectQuantity, setSelectQuantity] = useState(1);
   const [SelectPrice, setSelectPrice] = useState(60);
   const [yourBill, setYourBill] = useState(60);
+  const [selectItemCost, setSelectItemCost] = useState(60);
+  const [stockPrice, setStockPrice] = useState(500 * 50);
+
+  const [profit, setProfit] = useState(10);
   const [saleItem, setSaleItem] = useState([] as any);
   const [ItemAddSpanShow, setItemAddSpanShow] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -34,6 +39,7 @@ const SaleDashboard = () => {
 
   useEffect(() => {
     setYourBill(SelectQuantity * SelectPrice);
+    setProfit(SelectQuantity * SelectPrice - selectedItem.CostOfItem * SelectQuantity);
   }, [SelectQuantity, SelectPrice]);
 
   const ChangeDropdown = (val: any) => {
@@ -42,7 +48,12 @@ const SaleDashboard = () => {
     setYourBill(60);
     setSelectPrice(60);
     setSelectQuantity(1);
+    // setSelectItemCost();
   };
+  useEffect(() => {
+    setStockPrice(selectedItem.CostOfItem * selectedItem.TotalQuantity);
+    setProfit(SelectPrice - selectedItem.CostOfItem);
+  }, [selectedItem]);
   const newSaleItem = {
     ItemName: selectedItem.ItemName,
     ItemQuantity: SelectQuantity,
@@ -57,7 +68,7 @@ const SaleDashboard = () => {
 
     setInterval(() => {
       setItemAddSpanShow(false);
-    }, 3000);
+    }, 5000);
   };
   useEffect(() => {
     let newArray = saleItem.filter((item: any) => item !== saleState.localObject);
@@ -207,7 +218,7 @@ const SaleDashboard = () => {
     //       <div className="row bg-dark text-white py-2 px-0">
     //         <h3 className="text-center fs-4">Customer Old Record</h3>
     //       </div>
-    //       <Table columns={OrderTableColumns} dataSource={oldData} />
+          // <Table columns={OrderTableColumns} dataSource={oldData} />
     //       <div className="row bg-dark text-white py-2">
     //         <h3 className="text-center">New Order</h3>
     //       </div>
@@ -226,17 +237,18 @@ const SaleDashboard = () => {
           <div className="col-12 text-center">
             <h1 className="my-3">
               <span>
-                خاص ماربل کراچی <span className="fs-6">مانگو روڈ</span>
+                سبحان ماربل اینڈ گرینائٹ <span className="fs-6">جی ٹی روڈ کاموکی</span>
               </span>
-             
             </h1>
           </div>
           <div className="col-12 text-center">
-            <h5 className="my-3"> <span className="fs6">
-           {" " } ہمارے ہاں ہر قسم کی ماربل دستیاب ہیں
-              .{" "} <span>موبائل نمبر-03123121322</span> 
+            <h5 className="my-3">
+              {" "}
+              <span className="fs6">
+                {" "}
+                ہمارے ہاں ہر قسم کی ماربل دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
               </span>
-              </h5>      
+            </h5>
           </div>
         </div>
         <div className="row">
@@ -247,23 +259,119 @@ const SaleDashboard = () => {
           </div>
         </div>
         <div className="row">
-        <SalesTable />
+          {/* <SalesTable /> */}
+          <table className="table table-bordered">
+            <thead>
+              <tr className="fs-6 text-center">
+                <th>action </th>
+                <th>بقیہ مال کی قیمت </th>
+                <th> خرید ریٹ </th>
+                <th>بقیہ مال</th>
+                <th>بچت </th>
+                <th>قیمت </th>
+                <th>ریٹ </th>
+                <th>تعداد </th>
+                <th>نام جنس </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="">
+                <td>
+                  <IconButton aria-label="delete">
+                    <AddTaskIcon fontSize="medium" className="text-success" onClick={AddSaleItem} />
+                  </IconButton>
+                </td>
+                <td>
+                  <div className="form-control">{stockPrice}</div>
+                </td>
+                <td>
+                  <div className="form-control">{selectedItem.CostOfItem}</div>
+                </td>
+                <td>
+                  <div className="form-control">{selectedItem.TotalQuantity}</div>
+                </td>
+                <td>
+                  <div className="form-control">{profit}</div>
+                </td>
+                <td>
+                  <div className="form-control">{yourBill}</div>
+                </td>
+                <td>
+                  <input
+                    value={SelectPrice}
+                    type="number"
+                    min="0"
+                    step="1"
+                    onChange={(e) => {
+                      if (
+                        parseInt(e.target.value) === 100000 ||
+                        parseInt(e.target.value) < 100000
+                      ) {
+                        setSelectPrice(parseFloat(e.target.value));
+                      }
+                    }}
+                    className="form-control"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    className="form-control"
+                    type="number"
+                    value={SelectQuantity}
+                    min="0"
+                    step="10"
+                    max={selectedItem.TotalQuantity}
+                    onChange={(e) => {
+                      if (
+                        parseInt(e.target.value) === selectedItem.TotalQuantity ||
+                        parseInt(e.target.value) < selectedItem.TotalQuantity
+                      ) {
+                        setSelectQuantity(parseInt(e.target.value));
+                      }
+                    }}
+                  />
+                </td>
+                <td>
+                  <select
+                    className="form-control"
+                    style={{ width: "100px" }}
+                    onChange={(e) => {
+                      ChangeDropdown(e.target.value);
+                    }}
+                  >
+                    {items.map((item) => (
+                      <option key={item.ItemName} value={item.ItemName}>
+                        {item.ItemName}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+              </tr>
+              {/* Add more rows here */}
+            </tbody>
+          </table>
         </div>
       </div>
+     {ItemAddSpanShow && (
+        <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3 main urdu">
+          <h3 className="text-center">ریکارڈ فہرست میں شامل کیا گیا ہے۔</h3>
+        </div>
+      )}
+      <FirstTable TableData={saleItem} />
+
       <div className="row">
-        
         <div className="col">
-          <div style={{height:"500px",overflow:"scroll"}}>
-          <KhataTafseel/>
+          <div style={{ height: "500px", overflow: "scroll" }}>
+            <KhataTafseel />
           </div>
         </div>
         <div className="col">
-          <div style={{height:"500px",overflow:"scroll"}}>
-            {
-              ["","","",""].map(i=>(
-                <GatePass/>
-              ))
-            }
+          <div style={{ height: "500px", overflow: "scroll" }}>
+            {["", "", "", ""].map((i) => (
+              <GatePass />
+            ))}
+              <NewGatePass />
           </div>
         </div>
       </div>
