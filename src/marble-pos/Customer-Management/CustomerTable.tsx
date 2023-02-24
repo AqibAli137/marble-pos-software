@@ -14,6 +14,7 @@ const CustomerTable = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage] = useState(5);
+  const [value, setvalue] = useState(null)
   const [data, setData] = useState([
     {
       Id: 4323,
@@ -122,6 +123,7 @@ const CustomerTable = () => {
               <tr className="text-center" >
                 <th className="text-center">عمل</th>
                 <th>کل</th>
+                <th>زیر التواء رقم</th>
                 <th>زیر التواء</th>
                 <th>ادائیگی موصول</th>
                 <th>فون نمبر</th>
@@ -157,7 +159,7 @@ const CustomerTable = () => {
                         onClose={handleClose}
                         anchorOrigin={{
                           vertical: "top",
-                          horizontal: "left",
+                          horizontal: "right",
                         }}
                         transformOrigin={{
                           vertical: "top",
@@ -165,35 +167,38 @@ const CustomerTable = () => {
                         }}
                       >
                         {/* <div className="bg-dark"> */}
-                        <Button variant="text" type="button" className="shadow-none ActiveEffect">
-                          <MonetizationOnIcon />
-                          <span className="mx-2" onClick={handlePopOver}>
-                            Payment
+                        <Button variant="text" type="button" className="shadow-none ActiveEffect ">
+                          <span className="mx-2 urdu" onClick={handlePopOver}>
+                          ادائیگی
                           </span>
+                          <MonetizationOnIcon />
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleNewOrder.bind(this)}>
-                            <ViewComfyIcon /> <span className="mx-2"> New Order</span>
+                          <span className="mx-2 urdu">نیا آرڈر</span>
+                            <ViewComfyIcon /> 
                           </div>
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleDetails.bind(this, dat)}>
-                            <ViewComfyIcon /> <span className="mx-2">Check Details</span>
+                          <span className="mx-2 urdu">تفصیلات چیک کریں۔</span>
+                            <ViewComfyIcon /> 
                           </div>
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleReturns.bind(this, dat)}>
-                            <ViewComfyIcon /> <span className="mx-2">Return Items</span>
+                          <span className="mx-2 urdu">آئٹمز واپس کریں۔</span>
+                            <ViewComfyIcon /> 
                           </div>
                         </Button>
                         {/* </div> */}
                       </Menu>
                       <Modal show={ModalOpen} onHide={closeModal}>
                         <Modal.Header>
-                          <Modal.Title>Payment Received</Modal.Title>
+                          <Modal.Title > ادائیگی موصول </Modal.Title>
                         </Modal.Header>
                         <PayementRCV />
                         <Modal.Footer className="text-center">
@@ -205,6 +210,7 @@ const CustomerTable = () => {
                     </div>
                   </td>
                   <td>{dat.TotalAmount}</td>
+                  <td style={{color:"white"}}  className={index===3 || index===0?"bg-danger":"bg-success"}>{index===3 || index===0?"زیر التواء نہیں":"زیر التواء "}</td>
                   <td>{dat.PendingPayment}</td>
                   <td>{dat.PaymentRcv}</td>
                   <td>{dat.PhoneNo}</td>

@@ -11,7 +11,7 @@ const PayementRCV = () => {
           <div className="text-center">
             <div className="">
               <div className="d-flex justify-content-center">
-                <h3 className=" text-center">Only For Admin Use</h3>
+                <h3 className=" text-center urdu">صرف ایڈمن کے استعمال کے لیے</h3>
               </div>
             </div>
           </div>
@@ -36,8 +36,9 @@ const PayementRCV = () => {
                   <TextField
                     size="small"
                     id="outlined-basic"
-                    label="Enter Amount"
+                    label="رقم درج کریں۔"
                     type="number"
+                    className="urdu"
                     variant="outlined"
                     //   value={nameValue}
                     //   onChange={(e) => {
@@ -49,7 +50,8 @@ const PayementRCV = () => {
                   <TextField
                     size="small"
                     id="outlined-basic"
-                    label="Admin Password"
+                    className="urdu"
+                    label="ایڈمن پاس ورڈ"
                     variant="outlined"
                     type="password"
                     //   value={nameValue}
@@ -60,11 +62,11 @@ const PayementRCV = () => {
                 </div>
               </div>
               <div className="d-flex justify-content-between">
-                <Button variant="contained" className="text-white ActiveEffect my-3">
-                  Payement Rcv
+                <Button variant="contained" className="text-white ActiveEffect my-3 urdu">
+                ادائیگی وصول کریں۔
                 </Button>
-                <Button variant="contained" className="text-white ActiveEffect my-3">
-                  Discount
+                <Button variant="contained" className="text-white ActiveEffect my-3 urdu">
+                رعایت
                 </Button>
               </div>
             </form>
