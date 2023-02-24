@@ -90,12 +90,11 @@ function ItemWrapper() {
             <RegisterItem />
           </div>
         </div>
-        <div className="mt-4">
-          <Divider textAlign="center">
-            <span className="fw-bold text-muted d-block">For Add Stock</span>
-          </Divider>
+        <hr />
+        <div className="mt-5 p-0">
+            <h3 style={{color:"grey"}} className="fw-bold text-center urdu mx-5">اسٹاک شامل کرنے کے لیے</h3>
         </div>
-        <div className="d-flex justify-content-center mt-3">
+        <div className="d-flex justify-content-center mt-5">
           <div className="">
             <AddStock />
           </div>

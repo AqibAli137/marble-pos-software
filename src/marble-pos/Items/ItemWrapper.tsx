@@ -13,7 +13,7 @@ const ItemWrapper = () => {
     </div>
     <div className="mt-4">
     <Divider textAlign="center"><span className='fw-bold text-muted d-block'>
-      For Add Stock
+    اسٹاک شامل کرنے کے لیے
       </span></Divider>    
     </div>
     <div className='d-flex justify-content-center'>

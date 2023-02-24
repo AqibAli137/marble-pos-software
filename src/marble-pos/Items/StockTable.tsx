@@ -34,7 +34,7 @@ const StockRecord = () => {
   return (
     <DashboardLayout>
     <div>
-      <Row className="mt-3">
+      <Row className="mt-3 urdu">
         <Col md={12}>
           <InputGroup className="mb-3">
             <FormControl
@@ -48,7 +48,7 @@ const StockRecord = () => {
       </Row>
       <Row>
         <Col md={12} className="">
-          <Table hover className="bg-white p-3 rounded-4 urdu">
+          <Table hover className="bg-transparent p-3 rounded-4 urdu table-bordered">
             <thead>
               <tr className="text-end">
                 <th>کل رقم</th>
@@ -64,8 +64,7 @@ const StockRecord = () => {
                   <td>{dat.TotalQuantity}</td>
                   <td>{dat.CostOfItem}</td>
                   <td>{dat.ItemName}</td>
-                  <td>
-                  </td>
+                 
                 </tr>
               ))}
             </tbody>

@@ -117,7 +117,7 @@ const CustomerTable = () => {
       </Row>
       <Row>
         <Col md={12} className="urdu">
-          <Table hover className="bg-white p-3 rounded-4">
+          <Table hover className="bg-transparent p-3 rounded-4 table-bordered">
             <thead>
               <tr className="text-center" >
                 <th className="text-center">عمل</th>

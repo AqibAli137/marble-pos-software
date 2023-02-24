@@ -35,11 +35,12 @@ export function RegisterItem() {
             </div>
           </div>
           <div
-            className='col-12 col-lg-9 card col-sm-9 col-md-9 rounded-4'
+            className='col-12 col-lg-9 card col-sm-9 col-md-9 border-left p-3 my-2'
             style={{
               paddingLeft: 40,
               paddingRight: 50,
               paddingTop: 30,
+              background:"rgb(217, 237, 225)"
             }}
           >
             <div className=' text-center'>
@@ -116,9 +117,9 @@ export function RegisterItem() {
                 </div>
               </div>
               <div className='d-flex justify-content-center'>
-        <Button  variant="contained" className="text-white ActiveEffect">
+        <button   className="btn bg-primary text-white ActiveEffect urdu p-2 px-4">
         جمع کرائیں
-        </Button>
+        </button>
           </div>
             </form>
           </div>
