@@ -210,7 +210,7 @@ const CustomerTable = () => {
                     </div>
                   </td>
                   <td>{dat.TotalAmount}</td>
-                  <td style={{color:"white"}}  className={index===3 || index===0?"bg-danger":"bg-success"}>{index===3 || index===0?"زیر التواء نہیں":"زیر التواء "}</td>
+                  <td style={{color:"white"}}  className={index===3 || index===0?"bg-success":"bg-danger"}>{index===3 || index===0?"زیر التواء نہیں":"زیر التواء رقم"}</td>
                   <td>{dat.PendingPayment}</td>
                   <td>{dat.PaymentRcv}</td>
                   <td>{dat.PhoneNo}</td>
