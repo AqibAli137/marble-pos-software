@@ -120,10 +120,10 @@ const CustomerTable = () => {
         <Col md={12} className="urdu">
           <Table hover className="bg-transparent p-3 rounded-4 table-bordered">
             <thead>
-              <tr className="text-center greyCol" >
+              <tr className="text-center bg-white" >
                 <th className="py-3">عمل</th>
                 <th className="py-3">کل</th>
-                <th className="py-3">زیر التواء رقم</th>
+                <th className="py-3"> زیر غور  </th>
                 <th className="py-3">زیر التواء</th>
                 <th className="py-3">ادائیگی موصول</th>
                 <th className="py-3">فون نمبر</th>
@@ -133,7 +133,7 @@ const CustomerTable = () => {
             </thead>
             <tbody>
               {currentData.map((dat, index) => (
-                <tr className={index===3 || index===0?"success":"danger"} style={{textAlign:"center"}} key={index} >
+                <tr className={index===3 || index===0?"success":index===2?"danger":"bg-mute"} style={{textAlign:"center"}} key={index} >
                    <td className="d-flex justify-content-center">
                     {/* <Button variant="contained" className="text-white ActiveEffect my-3">
                       Payment Rcv
@@ -210,7 +210,8 @@ const CustomerTable = () => {
                     </div>
                   </td>
                   <td>{dat.TotalAmount}</td>
-                  <td  >{index===3 || index===0?"زیر التواء نہیں":"زیر التواء رقم"}</td>
+                  <td  >{index===3 || index===0?"    ادا کردیا " :index===2? "ادا نہیں کیا":"شروع نہیں"}</td>
+                 
                   <td>{dat.PendingPayment}</td>
                   <td>{dat.PaymentRcv}</td>
                   <td>{dat.PhoneNo}</td>
