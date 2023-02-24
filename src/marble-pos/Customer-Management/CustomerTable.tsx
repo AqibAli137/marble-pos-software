@@ -9,7 +9,7 @@ import { Modal } from "react-bootstrap";
 import PayementRCV from "./Payement";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useNavigate } from "react-router-dom";
-
+import "./customertable.css"
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -120,20 +120,20 @@ const CustomerTable = () => {
         <Col md={12} className="urdu">
           <Table hover className="bg-transparent p-3 rounded-4 table-bordered">
             <thead>
-              <tr className="text-center" >
-                <th className="text-center">عمل</th>
-                <th>کل</th>
-                <th>زیر التواء رقم</th>
-                <th>زیر التواء</th>
-                <th>ادائیگی موصول</th>
-                <th>فون نمبر</th>
-                <th>پتہ</th>
-                <th>نام</th>
+              <tr className="text-center greyCol" >
+                <th className="py-3">عمل</th>
+                <th className="py-3">کل</th>
+                <th className="py-3">زیر التواء رقم</th>
+                <th className="py-3">زیر التواء</th>
+                <th className="py-3">ادائیگی موصول</th>
+                <th className="py-3">فون نمبر</th>
+                <th className="py-3">پتہ</th>
+                <th className="py-3">نام</th>
               </tr>
             </thead>
             <tbody>
               {currentData.map((dat, index) => (
-                <tr key={index} className="text-center">
+                <tr className={index===3 || index===0?"success":"danger"} style={{textAlign:"center"}} key={index} >
                    <td className="d-flex justify-content-center">
                     {/* <Button variant="contained" className="text-white ActiveEffect my-3">
                       Payment Rcv
@@ -210,7 +210,7 @@ const CustomerTable = () => {
                     </div>
                   </td>
                   <td>{dat.TotalAmount}</td>
-                  <td style={{color:"white"}}  className={index===3 || index===0?"bg-success":"bg-danger"}>{index===3 || index===0?"زیر التواء نہیں":"زیر التواء رقم"}</td>
+                  <td  >{index===3 || index===0?"زیر التواء نہیں":"زیر التواء رقم"}</td>
                   <td>{dat.PendingPayment}</td>
                   <td>{dat.PaymentRcv}</td>
                   <td>{dat.PhoneNo}</td>
