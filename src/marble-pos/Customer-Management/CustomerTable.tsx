@@ -103,12 +103,12 @@ const CustomerTable = () => {
 
   return (
     <div>
-      <Row className="mt-3">
+      <Row className="mt-3 urdu">
         <Col md={12}>
-          <InputGroup className="mb-3">
+          <InputGroup className="mb-3 urdu">
             <FormControl
-              placeholder="Search by Name or Phone No"
-              aria-label="Search by Name or Phone No"
+              placeholder="نام یا فون نمبر سے تلاش کریں۔"
+              aria-label="نام یا فون نمبر سے تلاش کریں۔"
               aria-describedby="basic-addon2"
               onChange={handleSearch}
             />
@@ -116,29 +116,23 @@ const CustomerTable = () => {
         </Col>
       </Row>
       <Row>
-        <Col md={12} className="">
+        <Col md={12} className="urdu">
           <Table hover className="bg-white p-3 rounded-4">
             <thead>
-              <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Phone No</th>
-                <th>Payment Rcv</th>
-                <th>Pending</th>
-                <th>Tottal</th>
-                <th>Action</th>
+              <tr className="text-center" >
+                <th className="text-center">عمل</th>
+                <th>کل</th>
+                <th>زیر التواء</th>
+                <th>ادائیگی موصول</th>
+                <th>فون نمبر</th>
+                <th>پتہ</th>
+                <th>نام</th>
               </tr>
             </thead>
             <tbody>
               {currentData.map((dat, index) => (
-                <tr key={index}>
-                  <td>{dat.Name}</td>
-                  <td>{dat.Address}</td>
-                  <td>{dat.PhoneNo}</td>
-                  <td>{dat.PaymentRcv}</td>
-                  <td>{dat.PendingPayment}</td>
-                  <td>{dat.TotalAmount}</td>
-                  <td>
+                <tr key={index} className="text-center">
+                   <td className="d-flex justify-content-center">
                     {/* <Button variant="contained" className="text-white ActiveEffect my-3">
                       Payment Rcv
                     </Button> */}
@@ -210,6 +204,13 @@ const CustomerTable = () => {
                       </Modal>
                     </div>
                   </td>
+                  <td>{dat.TotalAmount}</td>
+                  <td>{dat.PendingPayment}</td>
+                  <td>{dat.PaymentRcv}</td>
+                  <td>{dat.PhoneNo}</td>
+                  <td>{dat.Address}</td>
+                 
+                  <td>{dat.Name}</td>
                 </tr>
               ))}
             </tbody>

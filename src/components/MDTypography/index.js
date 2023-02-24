@@ -13,7 +13,7 @@ import MDTypographyRoot from "./MDTypographyRoot";
 
 const MDTypography = forwardRef(
   (
-    { color, fontWeight, textTransform, verticalAlign, textGradient, opacity, children, ...rest },
+    { color, fontWeight, textTransform, verticalAlign,fontFamily, textGradient, opacity, children, ...rest },
     ref
   ) => {
     const [controller] = useMaterialUIController();
@@ -21,6 +21,7 @@ const MDTypography = forwardRef(
 
     return (
       <MDTypographyRoot
+      
         {...rest}
         ref={ref}
         ownerState={{
@@ -28,6 +29,7 @@ const MDTypography = forwardRef(
           textTransform,
           verticalAlign,
           fontWeight,
+          fontFamily,
           opacity,
           textGradient,
           darkMode,
@@ -43,6 +45,7 @@ const MDTypography = forwardRef(
 MDTypography.defaultProps = {
   color: "dark",
   fontWeight: false,
+  fontFamily:"'Noto Nastaliq Urdu', serif",
   textTransform: "none",
   verticalAlign: "unset",
   textGradient: false,

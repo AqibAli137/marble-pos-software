@@ -92,9 +92,10 @@ export default function App() {
         layout === "dashboard" && (
           <>
             <Sidenav
+              
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? subhanLogo : subhanLogo}
-              brandName="Subhan Marble"
+              brandName="سبحان ماربل"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}

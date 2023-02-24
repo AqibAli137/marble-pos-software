@@ -22,18 +22,18 @@ function ItemWrapper() {
           />
         </div>
       </div> */}
-      <Grid container spacing={3} className='d-flex justify-content-center my-2'>
+      <Grid container spacing={3} className='d-flex justify-content-center my-2 urdu'>
           <Grid item xs={12} md={6} lg={4}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="dark"
                 icon="weekend"
-                title="Total Investment"
+                title="کل سرمایہ کاری"
                 count='9767845'
                 percentage={{
                   color: "success",
                   amount: "+55%",
-                  label: "than lask week",
+                  label: "گزشتہ ہفتے کے مقابلے میں",
                 }}
               />
             </MDBox>
@@ -44,12 +44,12 @@ function ItemWrapper() {
               <ComplexStatisticsCard
                 color="success"
                 icon="store"
-                title="Total Sale"
+                title="کل فروخت"
                 count="5346000"
                 percentage={{
                   color: "success",
                   amount: "+1%",
-                  label: "than yesterday",
+                  label: "کل سے",
                 }}
               />
             </MDBox>
@@ -58,12 +58,12 @@ function ItemWrapper() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 icon="leaderboard"
-                title="Profit"
+                title="منافع"
                 count="230780"
                 percentage={{
                   color: "success",
                   amount: "+3%",
-                  label: "than last month",
+                  label: "پچھلے مہینے کے مقابلے میں",
                 }}
               />
             </MDBox>

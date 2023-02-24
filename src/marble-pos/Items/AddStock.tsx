@@ -54,18 +54,18 @@ const AddStock = () => {
     <>
       <div>
         {/* <h2 className="text-center justify-content-center">Stock Entry</h2> */}
-        <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3 mt-3">
-          <h3 className="text-center">Add Your New Stock</h3>
+        <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3 mt-3 urdu">
+          <h3 className="text-center">اپنا نیا اسٹاک شامل کریں۔</h3>
         </div>
         <div className="table-responsive w-100">
           <table className="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 w-100">
             <thead>
-              <tr className="fw-bolder text-muted">
-                <th className="min-w-100px text-center ">Item Name</th>
-                <th className="min-w-100px text-center ">New Quantity</th>
-                <th className="min-w-100px text-center ">Price</th>
-                <th className="min-w-100px text-center ">Present Quantity</th>
-                <th className="min-w-100px text-center ">Total Amount</th>
+              <tr className="fw-bolder text-muted urdu">
+                <th className="min-w-100px text-center ">شے کا نام</th>
+                <th className="min-w-100px text-center ">نئی مقدار</th>
+                <th className="min-w-100px text-center ">قیمت</th>
+                <th className="min-w-100px text-center ">موجودہ مقدار</th>
+                <th className="min-w-100px text-center ">کل رقم</th>
               </tr>
             </thead>
             <tbody>
