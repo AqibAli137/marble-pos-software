@@ -9,7 +9,12 @@ import { Modal } from "react-bootstrap";
 import PayementRCV from "./Payement";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useNavigate } from "react-router-dom";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import NativeSelect from '@mui/material/NativeSelect';
 import "./customertable.css"
+import NewDropDowns from "./NewDropDowns";
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -105,7 +110,7 @@ const CustomerTable = () => {
   return (
     <div>
       <Row className="mt-3 urdu">
-        <Col md={12}>
+        <Col lg={8}>
           <InputGroup className="mb-3 urdu">
             <FormControl
               placeholder="نام یا فون نمبر سے تلاش کریں۔"
@@ -114,6 +119,9 @@ const CustomerTable = () => {
               onChange={handleSearch}
             />
           </InputGroup>
+        </Col>
+        <Col lg={4}>
+        <NewDropDowns/>
         </Col>
       </Row>
       <Row>
