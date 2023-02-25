@@ -12,3 +12,17 @@ input[type=number]:hover::-webkit-inner-spin-button {
     width: 30px;
     height: 30px;
 }
+
+.table-hover tbody tr:hover td {
+  /* background: rgb(39, 212, 212); */
+  color: white;
+}
+
+
+.table-hover thead tr:hover th {
+  background: rgb(63, 60, 92);
+  color: white;
+}
+.table-hover tbody tr:hover .buttonColor{
+  color: white !important;
+}

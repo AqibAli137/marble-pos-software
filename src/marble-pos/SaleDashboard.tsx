@@ -258,9 +258,9 @@ const SaleDashboard = () => {
             <span> فیصل آباد </span>
           </div>
         </div>
-        <div className="row">
+        <div className="row table-responsive">
           {/* <SalesTable /> */}
-          <table className="table table-bordered">
+          <table className="table table-bordered ">
             <thead>
               <tr className="fs-6 text-center">
                 <th>action </th>

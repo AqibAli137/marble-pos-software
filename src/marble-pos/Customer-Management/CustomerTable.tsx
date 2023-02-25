@@ -9,17 +9,17 @@ import { Modal } from "react-bootstrap";
 import PayementRCV from "./Payement";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useNavigate } from "react-router-dom";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import NativeSelect from '@mui/material/NativeSelect';
-import "./customertable.css"
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import NativeSelect from "@mui/material/NativeSelect";
+import "./customertable.css";
 import NewDropDowns from "./NewDropDowns";
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage] = useState(5);
-  const [value, setvalue] = useState(null)
+  const [value, setvalue] = useState(null);
   const [data, setData] = useState([
     {
       Id: 4323,
@@ -28,8 +28,38 @@ const CustomerTable = () => {
       PhoneNo: "0304847589",
       IsActive: true,
       PaymentRcv: 100000,
-      PendingPayment: 30000,
+      PendingPayment: 33000,
       TotalAmount: 123300,
+    },
+    {
+      Id: 4323,
+      Name: "Yasir",
+      Address: "TDM",
+      PhoneNo: "0303098778",
+      IsActive: true,
+      PaymentRcv: 123300,
+      PendingPayment: 0,
+      TotalAmount: 123300,
+    },
+    {
+      Id: 4323,
+      Name: "Arbaz Ahmad",
+      Address: "MDK",
+      PhoneNo: "0304987589",
+      IsActive: true,
+      PaymentRcv: 0,
+      PendingPayment: 0,
+      TotalAmount: 0,
+    },
+    {
+      Id: 4323,
+      Name: "Naveed",
+      Address: "Kmk",
+      PhoneNo: "0304847589",
+      IsActive: true,
+      PaymentRcv: 100000,
+      PendingPayment: 0,
+      TotalAmount: 100000,
     },
     {
       Id: 4323,
@@ -43,22 +73,52 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Arbaz Ahmad",
-      Address: "MDK",
-      PhoneNo: "0304987589",
+      Name: "Aqib",
+      Address: "Kmk",
+      PhoneNo: "0304847589",
       IsActive: true,
-      PaymentRcv: 300000,
-      PendingPayment: 86100,
+      PaymentRcv: 100000,
+      PendingPayment: 30000,
       TotalAmount: 123300,
     },
     {
       Id: 4323,
-      Name: "Arbaz Ahmad",
-      Address: "MDK",
-      PhoneNo: "0304987589",
+      Name: "Naveed",
+      Address: "Kmk",
+      PhoneNo: "0304847589",
       IsActive: true,
-      PaymentRcv: 300000,
-      PendingPayment: 86100,
+      PaymentRcv: 0,
+      PendingPayment: 0,
+      TotalAmount: 0,
+    },
+    {
+      Id: 4323,
+      Name: "Yasir",
+      Address: "TDM",
+      PhoneNo: "0303098778",
+      IsActive: true,
+      PaymentRcv: 50000,
+      PendingPayment: 130000,
+      TotalAmount: 123300,
+    },
+    {
+      Id: 4323,
+      Name: "Naveed",
+      Address: "Kmk",
+      PhoneNo: "0304847589",
+      IsActive: true,
+      PaymentRcv: 100000,
+      PendingPayment: 30000,
+      TotalAmount: 123300,
+    },
+    {
+      Id: 4323,
+      Name: "Aqib",
+      Address: "TDM",
+      PhoneNo: "0303098778",
+      IsActive: true,
+      PaymentRcv: 50000,
+      PendingPayment: 130000,
       TotalAmount: 123300,
     },
   ]);
@@ -121,17 +181,17 @@ const CustomerTable = () => {
           </InputGroup>
         </Col>
         <Col lg={4}>
-        <NewDropDowns/>
+          <NewDropDowns />
         </Col>
       </Row>
       <Row>
         <Col md={12} className="urdu">
-          <Table hover className="bg-transparent p-3 rounded-4 table-bordered">
+          <Table hover className="bg-transparent p-3 rounded-4 table-bordered h-100" responsive>
             <thead>
-              <tr className="text-center bg-white" >
+              <tr className="text-center bg-white">
                 <th className="py-3">عمل</th>
                 <th className="py-3">کل</th>
-                <th className="py-3"> زیر غور  </th>
+                <th className="py-3"> زیر غور </th>
                 <th className="py-3">زیر التواء</th>
                 <th className="py-3">ادائیگی موصول</th>
                 <th className="py-3">فون نمبر</th>
@@ -141,8 +201,18 @@ const CustomerTable = () => {
             </thead>
             <tbody>
               {currentData.map((dat, index) => (
-                <tr className={index===3 || index===0?"success":index===2?"danger":"bg-mute"} style={{textAlign:"center"}} key={index} >
-                   <td className="d-flex justify-content-center">
+                <tr
+                  className={
+                    dat.TotalAmount === 0
+                      ? "danger"
+                      : dat.PendingPayment === 0
+                      ? "success"
+                      : "greyCol"
+                  }
+                  // style={{ textAlign: "center" }}
+                  key={index}
+                >
+                  <td className="d-flex justify-content-center">
                     {/* <Button variant="contained" className="text-white ActiveEffect my-3">
                       Payment Rcv
                     </Button> */}
@@ -153,6 +223,7 @@ const CustomerTable = () => {
                         aria-haspopup="true"
                         aria-expanded={open ? "true" : undefined}
                         onClick={handleClick}
+                        className="text-black buttonColor"
                       >
                         Actions
                       </Button>
@@ -177,36 +248,36 @@ const CustomerTable = () => {
                         {/* <div className="bg-dark"> */}
                         <Button variant="text" type="button" className="shadow-none ActiveEffect ">
                           <span className="mx-2 urdu" onClick={handlePopOver}>
-                          ادائیگی
+                            ادائیگی
                           </span>
                           <MonetizationOnIcon />
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleNewOrder.bind(this)}>
-                          <span className="mx-2 urdu">نیا آرڈر</span>
-                            <ViewComfyIcon /> 
+                            <span className="mx-2 urdu">نیا آرڈر</span>
+                            <ViewComfyIcon />
                           </div>
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleDetails.bind(this, dat)}>
-                          <span className="mx-2 urdu">تفصیلات چیک کریں۔</span>
-                            <ViewComfyIcon /> 
+                            <span className="mx-2 urdu">تفصیلات چیک کریں۔</span>
+                            <ViewComfyIcon />
                           </div>
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleReturns.bind(this, dat)}>
-                          <span className="mx-2 urdu">آئٹمز واپس کریں۔</span>
-                            <ViewComfyIcon /> 
+                            <span className="mx-2 urdu">آئٹمز واپس کریں۔</span>
+                            <ViewComfyIcon />
                           </div>
                         </Button>
                         {/* </div> */}
                       </Menu>
                       <Modal show={ModalOpen} onHide={closeModal}>
                         <Modal.Header>
-                          <Modal.Title > ادائیگی موصول </Modal.Title>
+                          <Modal.Title> ادائیگی موصول </Modal.Title>
                         </Modal.Header>
                         <PayementRCV />
                         <Modal.Footer className="text-center">
@@ -218,13 +289,19 @@ const CustomerTable = () => {
                     </div>
                   </td>
                   <td>{dat.TotalAmount}</td>
-                  <td  >{index===3 || index===0?"    ادا کردیا " :index===2? "ادا نہیں کیا":"شروع نہیں"}</td>
-                 
+                  <td>
+                    {index === 3 || index === 0
+                      ? "    ادا کردیا "
+                      : index === 2
+                      ? "ادا نہیں کیا"
+                      : "شروع نہیں"}
+                  </td>
+
                   <td>{dat.PendingPayment}</td>
                   <td>{dat.PaymentRcv}</td>
                   <td>{dat.PhoneNo}</td>
                   <td>{dat.Address}</td>
-                 
+
                   <td>{dat.Name}</td>
                 </tr>
               ))}
