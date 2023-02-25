@@ -56,7 +56,7 @@ const ExampleCardsList = () => {
     <Container fluid className="p-0">
       <Row className="d-flex overflow-auto">
         {data.map((dat, idx) => (
-          <Col key={idx} xs={12} className="my-3">
+          <Col key={idx} xs={12} className="my-3 urdu">
             <Card className="w-100">
               <Card.Header as="h5">{dat.ItemName}</Card.Header>
               <ListGroup variant="flush">

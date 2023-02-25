@@ -34,12 +34,12 @@ const StockRecord = () => {
   return (
     <DashboardLayout>
     <div>
-      <Row className="mt-3">
+      <Row className="mt-3 urdu">
         <Col md={12}>
           <InputGroup className="mb-3">
             <FormControl
-              placeholder="Search by Name or Phone No"
-              aria-label="Search by Name or Phone No"
+              placeholder="نام یا فون نمبر سے تلاش کریں۔"
+              aria-label="نام یا فون نمبر سے تلاش کریں۔"
               aria-describedby="basic-addon2"
               onChange={handleSearch}
             />
@@ -48,24 +48,23 @@ const StockRecord = () => {
       </Row>
       <Row>
         <Col md={12} className="">
-          <Table hover className="bg-white p-3 rounded-4">
+          <Table hover className="bg-transparent p-3 rounded-4 urdu table-bordered">
             <thead>
-              <tr>
-                <th>Item Name</th>
-                <th>Cost Of Item</th>
-                <th>Total Quantity</th>
-                <th>Total Amount</th>
+              <tr className="text-end">
+                <th>کل رقم</th>
+                <th>کل مقدار</th>
+                <th>آئٹم کی قیمت</th>
+                <th>شے کا نام</th>
               </tr>
             </thead>
             <tbody>
               {currentData.map((dat, index) => (
-                <tr key={index}>
-                  <td>{dat.ItemName}</td>
-                  <td>{dat.CostOfItem}</td>
-                  <td>{dat.TotalQuantity}</td>
+                <tr className="text-end" key={index}>
                   <td>{dat.TotalAmount}</td>
-                  <td>
-                  </td>
+                  <td>{dat.TotalQuantity}</td>
+                  <td>{dat.CostOfItem}</td>
+                  <td>{dat.ItemName}</td>
+                 
                 </tr>
               ))}
             </tbody>

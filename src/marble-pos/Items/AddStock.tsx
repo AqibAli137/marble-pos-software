@@ -54,41 +54,60 @@ const AddStock = () => {
     <>
       <div>
         {/* <h2 className="text-center justify-content-center">Stock Entry</h2> */}
-        <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3 mt-3">
-          <h3 className="text-center">Add Your New Stock</h3>
+        <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3 mt-3 urdu">
+          <h3 className="text-center">اپنا نیا اسٹاک شامل کریں۔</h3>
         </div>
         <div className="table-responsive w-100">
           <table className="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 w-100">
             <thead>
-              <tr className="fw-bolder text-muted">
-                <th className="min-w-100px text-center ">Item Name</th>
-                <th className="min-w-100px text-center ">New Quantity</th>
-                <th className="min-w-100px text-center ">Price</th>
-                <th className="min-w-100px text-center ">Present Quantity</th>
-                <th className="min-w-100px text-center ">Total Amount</th>
+              <tr className="fw-bolder text-muted urdu">
+                <th></th>
+                <th className="min-w-100px text-center ">کل رقم</th>
+                <th className="min-w-100px text-center ">موجودہ مقدار</th>
+                <th className="min-w-100px text-center ">قیمت</th>
+                <th className="min-w-100px text-center ">نئی مقدار</th>
+                <th className="min-w-100px text-center ">شے کا نام</th>
               </tr>
             </thead>
             <tbody>
               <tr className="tr">
+              <td>
+                  <IconButton aria-label="delete">
+                    <AddTaskIcon fontSize="large" className="text-success" onClick={AddSaleItem} />
+                  </IconButton>
+                </td>
+                <td>
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="d-flex justify-content-center">
+                      <span className="fw-bold text-muted d-block ">
+                        {selectedItem.TotalAmount}
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="d-flex justify-content-start flex-column">
+                      <span className="fw-bold text-muted d-block">
+                        {selectedItem.TotalQuantity}
+                      </span>
+                    </div>
+                  </div>
+                </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
                       <span className="fw-bold text-muted d-block">
-                        <select
+                        <input
+                          value={SelectPrice}
+                          min="1"
+                          step="1"
                           onChange={(e) => {
-                            ChangeDropdown(e.target.value);
+                            setSelectPrice(parseFloat(e.target.value));
                           }}
-                          className=" form-select form-control "
-                          data-kt-select2="true"
-                          data-placeholder="Select option"
-                          data-allow-clear="true"
-                        >
-                          {items.map((item) => (
-                            <option key={item.ItemName} value={item.ItemName}>
-                              {item.ItemName}
-                            </option>
-                          ))}
-                        </select>
+                          type="number"
+                          className="form-control form-control-md rounded-3 text-center"
+                        />
                       </span>
                     </div>
                   </div>
@@ -115,43 +134,30 @@ const AddStock = () => {
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
                       <span className="fw-bold text-muted d-block">
-                        <input
-                          value={SelectPrice}
-                          min="1"
-                          step="1"
+                        <select
                           onChange={(e) => {
-                            setSelectPrice(parseFloat(e.target.value));
+                            ChangeDropdown(e.target.value);
                           }}
-                          type="number"
-                          className="form-control form-control-md rounded-3 text-center"
-                        />
+                          className=" form-select form-control "
+                          data-kt-select2="true"
+                          data-placeholder="Select option"
+                          data-allow-clear="true"
+                        >
+                          {items.map((item) => (
+                            <option key={item.ItemName} value={item.ItemName}>
+                              {item.ItemName}
+                            </option>
+                          ))}
+                        </select>
                       </span>
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block">
-                        {selectedItem.TotalQuantity}
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="d-flex justify-content-center">
-                      <span className="fw-bold text-muted d-block ">
-                        {selectedItem.TotalAmount}
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <IconButton aria-label="delete">
-                    <AddTaskIcon fontSize="large" className="text-success" onClick={AddSaleItem} />
-                  </IconButton>
-                </td>
+               
+               
+               
+               
+               
               </tr>
             </tbody>
           </table>

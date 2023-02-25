@@ -4,6 +4,9 @@
 .HoverEffect:hover {
   transform: scale(96%);
 }
+.urdu{
+  font-family: 'Noto Nastaliq Urdu', serif;
+}
 
 input[type=number]:hover::-webkit-inner-spin-button {  
     width: 30px;

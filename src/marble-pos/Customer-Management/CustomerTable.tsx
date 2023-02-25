@@ -9,11 +9,17 @@ import { Modal } from "react-bootstrap";
 import PayementRCV from "./Payement";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useNavigate } from "react-router-dom";
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import NativeSelect from '@mui/material/NativeSelect';
+import "./customertable.css"
+import NewDropDowns from "./NewDropDowns";
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage] = useState(5);
+  const [value, setvalue] = useState(null)
   const [data, setData] = useState([
     {
       Id: 4323,
@@ -103,42 +109,40 @@ const CustomerTable = () => {
 
   return (
     <div>
-      <Row className="mt-3">
-        <Col md={12}>
-          <InputGroup className="mb-3">
+      <Row className="mt-3 urdu">
+        <Col lg={8}>
+          <InputGroup className="mb-3 urdu">
             <FormControl
-              placeholder="Search by Name or Phone No"
-              aria-label="Search by Name or Phone No"
+              placeholder="نام یا فون نمبر سے تلاش کریں۔"
+              aria-label="نام یا فون نمبر سے تلاش کریں۔"
               aria-describedby="basic-addon2"
               onChange={handleSearch}
             />
           </InputGroup>
         </Col>
+        <Col lg={4}>
+        <NewDropDowns/>
+        </Col>
       </Row>
       <Row>
-        <Col md={12} className="">
-          <Table hover className="bg-white p-3 rounded-4">
+        <Col md={12} className="urdu">
+          <Table hover className="bg-transparent p-3 rounded-4 table-bordered">
             <thead>
-              <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Phone No</th>
-                <th>Payment Rcv</th>
-                <th>Pending</th>
-                <th>Tottal</th>
-                <th>Action</th>
+              <tr className="text-center bg-white" >
+                <th className="py-3">عمل</th>
+                <th className="py-3">کل</th>
+                <th className="py-3"> زیر غور  </th>
+                <th className="py-3">زیر التواء</th>
+                <th className="py-3">ادائیگی موصول</th>
+                <th className="py-3">فون نمبر</th>
+                <th className="py-3">پتہ</th>
+                <th className="py-3">نام</th>
               </tr>
             </thead>
             <tbody>
               {currentData.map((dat, index) => (
-                <tr key={index}>
-                  <td>{dat.Name}</td>
-                  <td>{dat.Address}</td>
-                  <td>{dat.PhoneNo}</td>
-                  <td>{dat.PaymentRcv}</td>
-                  <td>{dat.PendingPayment}</td>
-                  <td>{dat.TotalAmount}</td>
-                  <td>
+                <tr className={index===3 || index===0?"success":index===2?"danger":"bg-mute"} style={{textAlign:"center"}} key={index} >
+                   <td className="d-flex justify-content-center">
                     {/* <Button variant="contained" className="text-white ActiveEffect my-3">
                       Payment Rcv
                     </Button> */}
@@ -163,7 +167,7 @@ const CustomerTable = () => {
                         onClose={handleClose}
                         anchorOrigin={{
                           vertical: "top",
-                          horizontal: "left",
+                          horizontal: "right",
                         }}
                         transformOrigin={{
                           vertical: "top",
@@ -171,35 +175,38 @@ const CustomerTable = () => {
                         }}
                       >
                         {/* <div className="bg-dark"> */}
-                        <Button variant="text" type="button" className="shadow-none ActiveEffect">
-                          <MonetizationOnIcon />
-                          <span className="mx-2" onClick={handlePopOver}>
-                            Payment
+                        <Button variant="text" type="button" className="shadow-none ActiveEffect ">
+                          <span className="mx-2 urdu" onClick={handlePopOver}>
+                          ادائیگی
                           </span>
+                          <MonetizationOnIcon />
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleNewOrder.bind(this)}>
-                            <ViewComfyIcon /> <span className="mx-2"> New Order</span>
+                          <span className="mx-2 urdu">نیا آرڈر</span>
+                            <ViewComfyIcon /> 
                           </div>
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleDetails.bind(this, dat)}>
-                            <ViewComfyIcon /> <span className="mx-2">Check Details</span>
+                          <span className="mx-2 urdu">تفصیلات چیک کریں۔</span>
+                            <ViewComfyIcon /> 
                           </div>
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleReturns.bind(this, dat)}>
-                            <ViewComfyIcon /> <span className="mx-2">Return Items</span>
+                          <span className="mx-2 urdu">آئٹمز واپس کریں۔</span>
+                            <ViewComfyIcon /> 
                           </div>
                         </Button>
                         {/* </div> */}
                       </Menu>
                       <Modal show={ModalOpen} onHide={closeModal}>
                         <Modal.Header>
-                          <Modal.Title>Payment Received</Modal.Title>
+                          <Modal.Title > ادائیگی موصول </Modal.Title>
                         </Modal.Header>
                         <PayementRCV />
                         <Modal.Footer className="text-center">
@@ -210,6 +217,15 @@ const CustomerTable = () => {
                       </Modal>
                     </div>
                   </td>
+                  <td>{dat.TotalAmount}</td>
+                  <td  >{index===3 || index===0?"    ادا کردیا " :index===2? "ادا نہیں کیا":"شروع نہیں"}</td>
+                 
+                  <td>{dat.PendingPayment}</td>
+                  <td>{dat.PaymentRcv}</td>
+                  <td>{dat.PhoneNo}</td>
+                  <td>{dat.Address}</td>
+                 
+                  <td>{dat.Name}</td>
                 </tr>
               ))}
             </tbody>

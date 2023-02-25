@@ -1,0 +1,9 @@
+.success{
+    background-color: rgb(217, 237, 225);
+}
+.danger{
+    background-color: rgba(255, 157, 173, 0.144);
+}
+.greyCol{
+    background-color:rgba(128, 128, 128, 0.233) ;
+}

@@ -7,7 +7,7 @@ import StockRecord from "./marble-pos/Items/StockTable";
 const routes = [
   {
     type: "collapse",
-    name: "New Sale",
+    name: "نئی فروخت",
     key: "sale",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/sale",
@@ -15,7 +15,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Cutomer Record",
+    name: "کسٹمر ریکارڈ",
     key: "customer",
     icon: <Icon fontSize="small">group</Icon>,
     route: "/customer",
@@ -23,7 +23,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Admin Dashboard",
+    name: "ایڈمن ڈیش بورڈ",
     key: "admin",
     icon: <Icon fontSize="medium">add_circle_icon</Icon>,
     route: "/admin",
@@ -31,7 +31,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Items Stock",
+    name: "اشیاء اسٹاک",
     key: "stock",
     icon: <Icon fontSize="medium">add_circle_icon</Icon>,
     route: "/stock",
