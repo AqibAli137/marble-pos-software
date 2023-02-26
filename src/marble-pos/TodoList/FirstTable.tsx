@@ -18,7 +18,7 @@ const FirstTable = (props: { TableData: [] }) => {
       <table className="table table-striped table-secondary">
         <thead>
           <tr className="fs-6 text-center">
-            <th>action </th>
+            <th>منسوخ </th>
             <th>قیمت </th>
             <th>ریٹ </th>
             <th>تعداد </th>

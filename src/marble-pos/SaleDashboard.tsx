@@ -1,19 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FirstTable from "./TodoList/FirstTable";
-import { Table } from "antd";
 import IconButton from "@mui/material/IconButton";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import { AppDispatch, RootState } from "../store";
 import { updateOrderList } from "../@features/SaleItems/SaleItemSlice";
 import "../app.css";
-import Invoicer from "./InvoiceView/Invoicer";
 import { useReactToPrint } from "react-to-print";
-import { OrderTableColumns } from "./ColumnData";
-import SalesTable from "./salestableComponent/SalesTable";
 import GatePass from "./salestableComponent/GatePass";
 import KhataTafseel from "./salestableComponent/KhataTafseel";
-import NewGatePass from "./salestableComponent/NewGatPass";
 
 const items = [
   { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -260,10 +255,10 @@ const SaleDashboard = () => {
         </div>
         <div className="row table-responsive">
           {/* <SalesTable /> */}
-          <table className="table table-bordered ">
+          <table className="table table-bordered bg-light">
             <thead>
               <tr className="fs-6 text-center">
-                <th>action </th>
+                <th>ٹھیک ہے </th>
                 <th>بقیہ مال کی قیمت </th>
                 <th> خرید ریٹ </th>
                 <th>بقیہ مال</th>
@@ -371,7 +366,6 @@ const SaleDashboard = () => {
             {["", "", "", ""].map((i) => (
               <GatePass />
             ))}
-              <NewGatePass />
           </div>
         </div>
       </div>
