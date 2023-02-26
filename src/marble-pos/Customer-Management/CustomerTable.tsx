@@ -34,7 +34,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "یاسر علی",
-      Address: "ٹپیالا دوست محمد",
+      Address: "TDM",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 123300,
@@ -44,7 +44,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "ارباز احمد",
-      Address: "مریدکے سٹی",
+      Address: "MDK",
       PhoneNo: "0304987589",
       IsActive: true,
       PaymentRcv: 0,
@@ -64,7 +64,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "یاسر علی",
-      Address: "ٹپیالا دوست محمد",
+      Address: "TDM",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 50000,
@@ -94,7 +94,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "یاسر علی",
-      Address: "ٹپیالا دوست محمد",
+      Address: "TDM",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 50000,
@@ -114,7 +114,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "Aqib",
-      Address: "ٹپیالا دوست محمد",
+      Address: "TDM",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 50000,
