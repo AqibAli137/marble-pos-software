@@ -9,6 +9,7 @@ import "../app.css";
 import { useReactToPrint } from "react-to-print";
 import GatePass from "./salestableComponent/GatePass";
 import KhataTafseel from "./salestableComponent/KhataTafseel";
+import NewGatePass from "./salestableComponent/NewGatPass";
 
 const items = [
   { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -366,6 +367,7 @@ const SaleDashboard = () => {
             {["", "", "", ""].map((i) => (
               <GatePass />
             ))}
+            <NewGatePass />
           </div>
         </div>
       </div>
