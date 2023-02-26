@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, FormControl, InputGroup, Form, Row, Col, Pagination } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@mui/material";
@@ -17,9 +17,9 @@ import "./customertable.css";
 import NewDropDowns from "./NewDropDowns";
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [dataPerPage] = useState(5);
-  const [value, setvalue] = useState(null);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [dataPerPage] = useState(5);
+  // const [value, setvalue] = useState(null);
   const [data, setData] = useState([
     {
       Id: 4323,
@@ -34,7 +34,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "یاسر علی",
-      Address: "TDM",
+      Address: "ٹپیالہ دوست محمد",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 123300,
@@ -44,7 +44,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "ارباز احمد",
-      Address: "MDK",
+      Address: "مریدکی سٹی",
       PhoneNo: "0304987589",
       IsActive: true,
       PaymentRcv: 0,
@@ -64,7 +64,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "یاسر علی",
-      Address: "TDM",
+      Address: "ٹپیالہ دوست محمد",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 50000,
@@ -73,7 +73,7 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Aqib",
+      Name: "عاقب خالد",
       Address: "کاموکی",
       PhoneNo: "0304847589",
       IsActive: true,
@@ -94,7 +94,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "یاسر علی",
-      Address: "TDM",
+      Address: "ٹپیالہ دوست محمد",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 50000,
@@ -113,8 +113,8 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Aqib",
-      Address: "TDM",
+      Name: "عاقب خالد",
+      Address: "ٹپیالہ دوست محمد",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 50000,
@@ -123,10 +123,13 @@ const CustomerTable = () => {
     },
   ]);
 
+  const [dropdownData, setDropdownData] = useState("All Data");
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [ModalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
+  const [FilterCustomers, setFilterCustomers] = useState(data);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -143,29 +146,50 @@ const CustomerTable = () => {
   const handleNewOrder = () => {
     navigate("/sale");
   };
-  const handleDetails = (row: any) => {
-    navigate("/explore");
-  };
+  // const handleDetails = (row: any) => {
+  //   navigate("/explore");
+  // };
   const handleReturns = (row: any) => {
     navigate("/returns");
   };
-  const handleSearch = (event: any) => {
-    setSearch(event.target.value);
-  };
 
-  const filteredData = data.filter(
-    (dat) =>
-      dat.Name.toLowerCase().includes(search.toLowerCase()) ||
-      dat.PhoneNo.toLowerCase().includes(search.toLowerCase())
-  );
+  useEffect(() => {
+    const newList = data.filter(
+      (dat) =>
+        dat.Name.toLowerCase().includes(search.toLowerCase()) ||
+        dat.PhoneNo.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilterCustomers(newList);
+  }, [search]);
 
-  const indexOfLastData = currentPage * dataPerPage;
-  const indexOfFirstData = indexOfLastData - dataPerPage;
-  const currentData = filteredData.slice(indexOfFirstData, indexOfLastData);
+  useEffect(() => {
+    const newList = data.filter((dat) =>
+      dropdownData === "No Start"
+        ? dat.TotalAmount === 0
+        : dropdownData === "Have Pending"
+        ? dat.PendingPayment != 0
+        : dropdownData === "No Pending"
+        ? dat.PendingPayment === 0 && dat.TotalAmount != 0
+        : dat.Id != 0
+    );
+    console.log(newList);
 
-  const paginate = (pageNumber: any) => {
-    console.log(pageNumber);
-  };
+    setFilterCustomers(newList);
+  }, [dropdownData]);
+
+  // const filteredData = data.filter(
+  //   (dat) =>
+  //     dat.Name.toLowerCase().includes(search.toLowerCase()) ||
+  //     dat.PhoneNo.toLowerCase().includes(search.toLowerCase())
+  // );
+
+  // const indexOfLastData = currentPage * dataPerPage;
+  // const indexOfFirstData = indexOfLastData - dataPerPage;
+  // const currentData = filteredData.slice(indexOfFirstData, indexOfLastData);
+
+  // const paginate = (pageNumber: any) => {
+  //   console.log(pageNumber);
+  // };
 
   return (
     <div>
@@ -173,19 +197,35 @@ const CustomerTable = () => {
         <Col lg={8}>
           <InputGroup className="mb-3 urdu">
             <FormControl
+              className="text-end"
               placeholder="نام یا فون نمبر سے تلاش کریں۔"
               aria-label="نام یا فون نمبر سے تلاش کریں۔"
               aria-describedby="basic-addon2"
-              onChange={handleSearch}
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
             />
           </InputGroup>
         </Col>
         <Col lg={4}>
-          <NewDropDowns />
+          {/* <NewDropDowns /> */}
+          <select
+            className="form-select urdu fs-6 text-end"
+            aria-label="Default select example"
+            onChange={(e) => {
+              setDropdownData(e.target.value);
+            }}
+          >
+            <option value="All Data">کل</option>
+            <option value="No Start">شروع نہیں </option>
+            <option value="Have Pending">ادا نہیں کیا </option>
+            <option value="No Pending">ادا کردیا </option>
+          </select>
         </Col>
       </Row>
       <Row>
-        <Col md={12} className="urdu">
+        <Col md={12} className="urdu" style={{ height: "80vh", overflow: "scroll" }}>
           <Table hover className="bg-transparent p-3 rounded-4 table-bordered h-100" responsive>
             <thead>
               <tr className="text-center bg-white">
@@ -200,7 +240,7 @@ const CustomerTable = () => {
               </tr>
             </thead>
             <tbody>
-              {currentData.map((dat, index) => (
+              {FilterCustomers.map((dat, index) => (
                 <tr
                   className={
                     dat.TotalAmount === 0
@@ -260,12 +300,12 @@ const CustomerTable = () => {
                           </div>
                         </Button>
                         <br />
-                        <Button variant="text" className="shadow-none ActiveEffect">
+                        {/* <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleDetails.bind(this, dat)}>
                             <span className="mx-2 urdu">تفصیلات چیک کریں۔</span>
                             <ViewComfyIcon />
                           </div>
-                        </Button>
+                        </Button> */}
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleReturns.bind(this, dat)}>
@@ -289,7 +329,7 @@ const CustomerTable = () => {
                     </div>
                   </td>
                   <td>{dat.TotalAmount}</td>
-                  <td>
+                  <td className="text-end">
                     {index === 3 || index === 0
                       ? "    ادا کردیا "
                       : index === 2
@@ -300,9 +340,9 @@ const CustomerTable = () => {
                   <td>{dat.PendingPayment}</td>
                   <td>{dat.PaymentRcv}</td>
                   <td>{dat.PhoneNo}</td>
-                  <td>{dat.Address}</td>
+                  <td className="text-end">{dat.Address}</td>
 
-                  <td>{dat.Name}</td>
+                  <td className="text-end">{dat.Name}</td>
                 </tr>
               ))}
             </tbody>

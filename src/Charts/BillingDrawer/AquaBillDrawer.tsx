@@ -34,7 +34,7 @@ const AquaBillDrawer = () => {
     },
     {
       BillNo: "BA8974823",
-      OwnerName: "Aqib",
+      OwnerName: "عاقب خالد",
       Amount: "7520",
       Status: "Paid",
       PendingBill: "0",
