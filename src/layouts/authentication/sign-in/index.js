@@ -36,7 +36,7 @@ function Basic() {
   const handleSignIn = () => {
     if (
       (values.Email === "dev@webeasy.com" && values.password === "0") ||
-      (values.Email === "naveed@admin.com" && values.password === "1234") ||
+      (values.Email === "نوید اختر@admin.com" && values.password === "1234") ||
       (values.Email === "test@admin.com" && values.password === "test123") ||
       (values.Email === "aqib@gmail.com" && values.password === "Aqib123")
     ) {

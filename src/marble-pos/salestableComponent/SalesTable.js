@@ -46,9 +46,9 @@ function SalesTable() {
             <td>
               <select className="form-control" style={{width:"100px"}}>
                 <option>منتخب کریں۔</option>
-                <option>Item 1</option>
-                <option>Item 2</option>
-                <option>Item 3</option>
+                <option>سنی سرمئی</option>
+                <option>بادل</option>
+                <option>سکیٹنگ</option>
               </select>
             </td>
          

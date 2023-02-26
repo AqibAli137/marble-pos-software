@@ -4,31 +4,31 @@ import React, { useEffect, useState } from "react";
 const MainDashboard = () => {
   const myItem = [
     {
-      itemName: "item 1",
+      itemName: "سنی سرمئی",
       pricePerFt: 55,
       itemQuantity: 800,
       totalPrice: 55 * 800,
     },
     {
-      itemName: "item 2",
+      itemName: "بادل",
       pricePerFt: 50,
       itemQuantity: 400,
       totalPrice: 50 * 400,
     },
     {
-      itemName: "item 3",
+      itemName: "سکیٹنگ",
       pricePerFt: 90,
       itemQuantity: 100,
       totalPrice: 90 * 100,
     },
     {
-      itemName: "item 4",
+      itemName: "ٹویٹرا",
       pricePerFt: 110,
       itemQuantity: 300,
       totalPrice: 110 * 300,
     },
     {
-      itemName: "item 5",
+      itemName: "کالا ماربل",
       pricePerFt: 60,
       itemQuantity: 434,
       totalPrice: 60 * 434,

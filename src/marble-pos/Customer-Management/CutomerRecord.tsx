@@ -13,8 +13,8 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 const Customers = [
   {
     Id: 4323,
-    Name: "Naveed",
-    Address: "Kmk",
+    Name: "نوید اختر",
+    Address: "کاموکی",
     PhoneNo: "0304847589",
     IsActive: true,
     PaymentRcv: 100000,
@@ -23,7 +23,7 @@ const Customers = [
       {
         OrderDate: "12/05/2022 , 5pm",
         Id: 323,
-        ItemName: "Item 1",
+        ItemName: "سنی سرمئی",
         ItemQuantity: 100,
         SetPrice: 70,
         YourBill: 70000,
@@ -31,7 +31,7 @@ const Customers = [
       {
         OrderDate: "09/01/2022 , 3pm",
         Id: 324,
-        ItemName: "Item 2",
+        ItemName: "بادل",
         ItemQuantity: 50,
         SetPrice: 95,
         YourBill: 45500,
@@ -40,8 +40,8 @@ const Customers = [
   },
   {
     Id: 4323,
-    Name: "Yasir",
-    Address: "TDM",
+    Name: "یاسر علی",
+    Address: "ٹپیالا دوست محمد",
     PhoneNo: "0303098778",
     IsActive: true,
     PaymentRcv: 50000,
@@ -50,7 +50,7 @@ const Customers = [
       {
         OrderDate: "12/05/2022 , 2pm",
         Id: 323,
-        ItemName: "Item 3",
+        ItemName: "سکیٹنگ",
         ItemQuantity: 200,
         SetPrice: 60,
         YourBill: 120000,
@@ -58,7 +58,7 @@ const Customers = [
       {
         OrderDate: "1/07/2022 , 11am",
         Id: 324,
-        ItemName: "Item 1",
+        ItemName: "سنی سرمئی",
         ItemQuantity: 190,
         SetPrice: 95,
         YourBill: 179500,
@@ -67,8 +67,8 @@ const Customers = [
   },
   {
     Id: 4323,
-    Name: "Arbaz Ahmad",
-    Address: "MDK",
+    Name: "ارباز احمد",
+    Address: "مریدکے سٹی",
     PhoneNo: "0304987589",
     IsActive: true,
     PaymentRcv: 300000,
@@ -77,7 +77,7 @@ const Customers = [
       {
         OrderDate: "2/08/2022 , 12pm",
         Id: 323,
-        ItemName: "Item 1",
+        ItemName: "سنی سرمئی",
         ItemQuantity: 100,
         SetPrice: 70,
         YourBill: 70000,
@@ -85,7 +85,7 @@ const Customers = [
       {
         OrderDate: "9/05/2022, 1pm",
         Id: 324,
-        ItemName: "Item 2",
+        ItemName: "بادل",
         ItemQuantity: 50,
         SetPrice: 95,
         YourBill: 45500,
@@ -94,8 +94,8 @@ const Customers = [
   },
   {
     Id: 4323,
-    Name: "Arbaz Ahmad",
-    Address: "MDK",
+    Name: "ارباز احمد",
+    Address: "مریدکے سٹی",
     PhoneNo: "0304987589",
     IsActive: true,
     PaymentRcv: 300000,
@@ -104,7 +104,7 @@ const Customers = [
       {
         OrderDate: "2/08/2022 , 12pm",
         Id: 323,
-        ItemName: "Item 1",
+        ItemName: "سنی سرمئی",
         ItemQuantity: 100,
         SetPrice: 70,
         YourBill: 70000,
@@ -112,7 +112,7 @@ const Customers = [
       {
         OrderDate: "9/05/2022, 1pm",
         Id: 324,
-        ItemName: "Item 2",
+        ItemName: "بادل",
         ItemQuantity: 50,
         SetPrice: 95,
         YourBill: 45500,

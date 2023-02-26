@@ -20,21 +20,21 @@ const KhataTafseel = () => {
   const oldData = [
     {
       OrderDate: "08/6/2022, 11am",
-      ItemName: "item 1",
+      ItemName: "سنی سرمئی",
       ItemQuantity: 354,
       SetPrice: 87,
       YourBill: 78698,
     },
     {
       OrderDate: "09/1/2022, 7pm",
-      ItemName: "item 2",
+      ItemName: "بادل",
       ItemQuantity: 54,
       SetPrice: 57,
       YourBill: 56960,
     },
     {
       OrderDate: "11/9/2022, 5pm",
-      ItemName: "item 1",
+      ItemName: "سنی سرمئی",
       ItemQuantity: 78,
       SetPrice: 45,
       YourBill: 95680,
@@ -65,8 +65,8 @@ const KhataTafseel = () => {
     <div className="">
     <div className="container urdu fs-6 bg-white my-3 border" ref={dataToPrintRef}>
       <div className="" >
-        <div className="gatepass text-center p-4  ">
-          <h1 className="fs-3">کھاتہ تفصیل</h1>
+        <div className="gatepass text-center p-3  ">
+          <h3 className="fs-5">کھاتہ تفصیل</h3>
         </div>
         <div>
           <div style={{ background: "#d9ede1" }} className="row">
@@ -91,7 +91,7 @@ const KhataTafseel = () => {
         <div>
           <div className="row">
             <div style={{ background: "#d9ede1" }} className="col-12 text-center my-3 p-3">
-              <span className="name"> نام خریدار </span>
+              <span className="name"> نام خریدار :  </span>
               <span> آفریدی صاحب </span>
               <span> فیصل آباد </span>. <span>موبائل نمبر-03016428683</span>
             </div>

@@ -47,7 +47,7 @@ const Invoicer = () => {
                   <div className="col-sm-6">
                     <h6 className="mb-3">From:</h6>
                     <div>
-                      <strong>Naveed Akhtar</strong>
+                      <strong>نوید اختر Akhtar</strong>
                     </div>
                     <div>Kamoke</div>
                     <div>Full Address here</div>
@@ -57,7 +57,7 @@ const Invoicer = () => {
                   <div className="col-sm-6">
                     <h6 className="mb-3">To:</h6>
                     <div>
-                      <strong>Arbaz Ahmad</strong>
+                      <strong>ارباز احمد</strong>
                     </div>
                     <div>Address : Muridke</div>
                     <div>Full Address here</div>

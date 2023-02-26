@@ -16,11 +16,11 @@ import KhataTafseel from "./salestableComponent/KhataTafseel";
 import NewGatePass from "./salestableComponent/NewGatPass";
 
 const items = [
-  { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
-  { ItemName: "Item 2", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
-  { ItemName: "Item 3", CostOfItem: 90, TotalQuantity: 150333, TotalAmount: 90 * 150 },
-  { ItemName: "Item 4", CostOfItem: 60, TotalQuantity: 450, TotalAmount: 60 * 450 },
-  { ItemName: "Item 5", CostOfItem: 150, TotalQuantity: 850, TotalAmount: 150 * 850 },
+  { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
+  { ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
+  { ItemName: "سکیٹنگ", CostOfItem: 90, TotalQuantity: 150333, TotalAmount: 90 * 150 },
+  { ItemName: "ٹویٹرا", CostOfItem: 60, TotalQuantity: 450, TotalAmount: 60 * 450 },
+  { ItemName: "کالا ماربل", CostOfItem: 150, TotalQuantity: 850, TotalAmount: 150 * 850 },
 ];
 
 const SaleDashboard = () => {
@@ -84,21 +84,21 @@ const SaleDashboard = () => {
   const oldData = [
     {
       OrderDate: "08/6/2022, 11am",
-      ItemName: "item 1",
+      ItemName: "سنی سرمئی",
       ItemQuantity: 354,
       SetPrice: 87,
       YourBill: 78698,
     },
     {
       OrderDate: "09/1/2022, 7pm",
-      ItemName: "item 2",
+      ItemName: "بادل",
       ItemQuantity: 54,
       SetPrice: 57,
       YourBill: 56960,
     },
     {
       OrderDate: "11/9/2022, 5pm",
-      ItemName: "item 1",
+      ItemName: "سنی سرمئی",
       ItemQuantity: 78,
       SetPrice: 45,
       YourBill: 95680,
@@ -218,7 +218,7 @@ const SaleDashboard = () => {
     //       <div className="row bg-dark text-white py-2 px-0">
     //         <h3 className="text-center fs-4">Customer Old Record</h3>
     //       </div>
-          // <Table columns={OrderTableColumns} dataSource={oldData} />
+    //       <Table columns={OrderTableColumns} dataSource={oldData} />
     //       <div className="row bg-dark text-white py-2">
     //         <h3 className="text-center">New Order</h3>
     //       </div>
@@ -246,14 +246,14 @@ const SaleDashboard = () => {
               {" "}
               <span className="fs6">
                 {" "}
-                ہمارے ہاں ہر قسم کی ماربل دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
+                . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع  ورا ٘ ٹی دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
               </span>
             </h5>
           </div>
         </div>
         <div className="row">
           <div style={{ background: "#d9ede1" }} className="col-12 text-center my-3 p-3">
-            <span className="name"> نام خریدار </span>
+            <span className="name"> نام خریدار :  </span>
             <span> آفریدی صاحب </span>
             <span> فیصل آباد </span>
           </div>

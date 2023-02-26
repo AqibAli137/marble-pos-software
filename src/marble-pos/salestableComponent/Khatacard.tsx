@@ -36,6 +36,15 @@ const  Khatacard=()=> {
           0
         </Typography>
       </CardContent>
+      <CardContent className='d-flex flex-row-reverse align-items-center'>
+        <Typography className='mx-2' gutterBottom variant="h6" component="div" style={{fontFamily:"'Noto Nastaliq Urdu', serif"}}>
+       : بچت	
+        </Typography>
+        <Typography className='mx-2' variant="body2" color="text.secondary">
+          0
+        </Typography>
+      </CardContent>
+      
     </Card>
     </div>
     

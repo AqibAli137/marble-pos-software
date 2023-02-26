@@ -23,8 +23,8 @@ const CustomerTable = () => {
   const [data, setData] = useState([
     {
       Id: 4323,
-      Name: "Naveed",
-      Address: "Kmk",
+      Name: "نوید اختر",
+      Address: "کاموکی",
       PhoneNo: "0304847589",
       IsActive: true,
       PaymentRcv: 100000,
@@ -33,8 +33,8 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Yasir",
-      Address: "TDM",
+      Name: "یاسر علی",
+      Address: "ٹپیالا دوست محمد",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 123300,
@@ -43,8 +43,8 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Arbaz Ahmad",
-      Address: "MDK",
+      Name: "ارباز احمد",
+      Address: "مریدکے سٹی",
       PhoneNo: "0304987589",
       IsActive: true,
       PaymentRcv: 0,
@@ -53,8 +53,8 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Naveed",
-      Address: "Kmk",
+      Name: "نوید اختر",
+      Address: "کاموکی",
       PhoneNo: "0304847589",
       IsActive: true,
       PaymentRcv: 100000,
@@ -63,8 +63,8 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Yasir",
-      Address: "TDM",
+      Name: "یاسر علی",
+      Address: "ٹپیالا دوست محمد",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 50000,
@@ -74,7 +74,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "Aqib",
-      Address: "Kmk",
+      Address: "کاموکی",
       PhoneNo: "0304847589",
       IsActive: true,
       PaymentRcv: 100000,
@@ -83,8 +83,8 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Naveed",
-      Address: "Kmk",
+      Name: "نوید اختر",
+      Address: "کاموکی",
       PhoneNo: "0304847589",
       IsActive: true,
       PaymentRcv: 0,
@@ -93,8 +93,8 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Yasir",
-      Address: "TDM",
+      Name: "یاسر علی",
+      Address: "ٹپیالا دوست محمد",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 50000,
@@ -103,8 +103,8 @@ const CustomerTable = () => {
     },
     {
       Id: 4323,
-      Name: "Naveed",
-      Address: "Kmk",
+      Name: "نوید اختر",
+      Address: "کاموکی",
       PhoneNo: "0304847589",
       IsActive: true,
       PaymentRcv: 100000,
@@ -114,7 +114,7 @@ const CustomerTable = () => {
     {
       Id: 4323,
       Name: "Aqib",
-      Address: "TDM",
+      Address: "ٹپیالا دوست محمد",
       PhoneNo: "0303098778",
       IsActive: true,
       PaymentRcv: 50000,

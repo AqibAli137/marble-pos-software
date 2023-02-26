@@ -20,8 +20,8 @@ const GatePass = () => {
     <div className="">
       <div ref={dataToPrintRef} className="container urdu fs-6 bg-white my-3 borders">
         <div className="pb-1">
-          <div className="gatepass text-center p-4  ">
-            <h1 className="fs-3">گیٹ پاس</h1>
+          <div className="gatepass text-center p-3  ">
+            <h3 className="fs-5">گیٹ پاس</h3>
           </div>
           <div>
             <div style={{ background: "#d9ede1" }} className="row">
@@ -37,7 +37,7 @@ const GatePass = () => {
                   {" "}
                   <span className="fs6">
                     {" "}
-                    ہمارے ہاں ہر قسم کی ماربل دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
+                    . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع  ورا ٘ ٹی دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
                   </span>
                 </h6>
               </div>
@@ -49,7 +49,7 @@ const GatePass = () => {
                 <p style={{ fontSize: "12px" }}>
                   {" "}
                   <span> تاریخ :١٢/١٢/٢٠٢٢</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="name"> نام خریدار :</span>
+                  <span className="name"> نام خریدار :  :</span>
                   <span> آفریدی صاحب </span>&nbsp;&nbsp;&nbsp;&nbsp;
                   <span> فیصل آباد </span>&nbsp;&nbsp;&nbsp;&nbsp; .{" "}
                   <span>موبائل نمبر-03016428683</span>

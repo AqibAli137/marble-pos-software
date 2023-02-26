@@ -5,9 +5,9 @@ import AddTaskIcon from "@mui/icons-material/AddTask";
 import { AppDispatch, RootState } from "../../store";
 
 const items = [
-  { ItemName: "Item 1", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
-  { ItemName: "Item 2", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
-  { ItemName: "Item 3", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
+  { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
+  { ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
+  { ItemName: "سکیٹنگ", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
 ];
 
 const AddStock = () => {
