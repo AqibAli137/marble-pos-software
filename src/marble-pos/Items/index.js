@@ -22,7 +22,7 @@ function ItemWrapper() {
           />
         </div>
       </div> */}
-      <Grid container spacing={3} className='d-flex justify-content-center my-2 urdu'>
+      {/* <Grid container spacing={3} className='d-flex justify-content-center my-2 urdu'>
           <Grid item xs={12} md={6} lg={4}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
@@ -68,7 +68,7 @@ function ItemWrapper() {
               />
             </MDBox>
           </Grid>
-          {/* <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="primary"
@@ -82,8 +82,8 @@ function ItemWrapper() {
                 }}
               />
             </MDBox>
-          </Grid> */}
-        </Grid>
+          </Grid>
+        </Grid> */}
       <>
         <div className="d-flex justify-content-center">
           <div className="">

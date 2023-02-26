@@ -58,15 +58,15 @@ const AddStock = () => {
           <h3 className="text-center">اپنا نیا اسٹاک شامل کریں۔</h3>
         </div>
         <div className="table-responsive w-100">
-          <table className="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 w-100">
+          <table className="table table-row-dashed bg-white table-row-gray-300 align-middle gs-0 gy-4 w-100">
             <thead>
-              <tr className="fw-bolder text-muted urdu">
+              <tr className="fw-bolder text-dark urdu ">
                 <th></th>
-                <th className="min-w-100px text-center ">کل رقم</th>
-                <th className="min-w-100px text-center ">موجودہ مقدار</th>
-                <th className="min-w-100px text-center ">قیمت</th>
-                <th className="min-w-100px text-center ">نئی مقدار</th>
-                <th className="min-w-100px text-center ">شے کا نام</th>
+                <th className="min-w-100px text-center text-dark ">کل رقم</th>
+                <th className="min-w-100px text-center text-dark ">موجودہ مقدار</th>
+                <th className="min-w-100px text-center text-dark ">قیمت</th>
+                <th className="min-w-100px text-center text-dark ">نئی مقدار</th>
+                <th className="min-w-100px text-center text-dark ">شے کا نام</th>
               </tr>
             </thead>
             <tbody>
@@ -79,7 +79,7 @@ const AddStock = () => {
                 <td>
                   <div className="d-flex align-items-center justify-content-center">
                     <div className="d-flex justify-content-center">
-                      <span className="fw-bold text-muted d-block ">
+                      <span className="fw-bold text-dark d-block ">
                         {selectedItem.TotalAmount}
                       </span>
                     </div>
@@ -88,7 +88,7 @@ const AddStock = () => {
                 <td>
                   <div className="d-flex align-items-center justify-content-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block">
+                      <span className="fw-bold text-dark d-block">
                         {selectedItem.TotalQuantity}
                       </span>
                     </div>
@@ -97,7 +97,7 @@ const AddStock = () => {
                 <td>
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block">
+                      <span className="fw-bold text-dark d-block">
                         <input
                           value={SelectPrice}
                           min="1"
@@ -115,7 +115,7 @@ const AddStock = () => {
                 <td>
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block">
+                      <span className="fw-bold text-dark d-block">
                         <input
                           type="number"
                           min="1"
@@ -133,7 +133,7 @@ const AddStock = () => {
                 <td>
                   <div className="d-flex align-items-center">
                     <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-muted d-block">
+                      <span className="fw-bold text-dark d-block main urdu">
                         <select
                           onChange={(e) => {
                             ChangeDropdown(e.target.value);

@@ -6,9 +6,6 @@ import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
 import '../../app.css'
 
 const StockRecord = () => {
-  const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [dataPerPage] = useState(5);
   const items = [
     { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500,RealTotalDiscount:4343, TotalAmount: 50 * 500 },
     { ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320,RealTotalDiscount:4343, TotalAmount: 60 * 320 },
@@ -23,44 +20,26 @@ const StockRecord = () => {
     { ItemName: "ٹویٹرا", CostOfItem: 60, TotalQuantity: 450,RealTotalDiscount:4343, TotalAmount: 60 * 450 },
     { ItemName: "کالا ماربل", CostOfItem: 150, TotalQuantity: 850,RealTotalDiscount:4343, TotalAmount: 150 * 850 },
   ];
-  const handleSearch = (event: any) => {
-    setSearch(event.target.value);
-  };
-
-  const filteredData = items.filter(
-    (dat) =>
-      dat.ItemName.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const indexOfLastData = currentPage * dataPerPage;
-  const indexOfFirstData = indexOfLastData - dataPerPage;
-  const currentData = filteredData.slice(indexOfFirstData, indexOfLastData);
-
-  const paginate = (pageNumber: any) => {
-    console.log(pageNumber);
-  };
+  
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
 
-    <div>
-      <Row className="mt-3 urdu">
-        <Col md={12}>
-          <InputGroup className="mb-3">
-            <FormControl
-              placeholder="نام سے تلاش کریں۔"
-              aria-label="نام سے تلاش کریں۔"
-              aria-describedby="basic-addon2"
-              onChange={handleSearch}
-            />
-          </InputGroup>
-        </Col>
-      </Row>
+    <div className="urdu">
+    <div style={{ background: "#d9ede1" }} className="row">
+          <div className="col-12 text-center">
+            <h1 className="my-3">
+              <span>
+                سبحان ماربل اینڈ گرینائٹ <span className="fs-6">جی ٹی روڈ کاموکی</span>
+              </span>
+            </h1>
+          </div>
+        </div>
+      
       <Row>
-        <Col md={12} className="" >
-          <div className="" style={{overflow: "scroll"}}>
-          <Table hover  className="bg-transparent p-3 urdu table-bordered">
+        <Col md={12} className="urdu" style={{ height: "80vh", overflow: "scroll" }} >
+          <Table hover  className="bg-transparent urdu table-bordered rrounded-3">
             <thead>
               <tr className="text-end bg-white text-center ">
                 <th>کل بچت</th>
@@ -71,7 +50,7 @@ const StockRecord = () => {
               </tr>
             </thead>
             <tbody>
-              {currentData.map((dat, index) => (
+              {items.map((dat, index) => (
                 <tr className="text-end bg-white text-center" key={index}>
                   <td>{dat.RealTotalDiscount}</td>
                   <td>{dat.TotalAmount}</td>
@@ -83,25 +62,8 @@ const StockRecord = () => {
               ))}
             </tbody>
           </Table>
-          </div>
         </Col>
       </Row>
-      {/* <Row className="mt-3">
-        <Col md={12}>
-          <Pagination
-            className="justify-content-center"
-            activePage={currentPage}
-            itemsCountPerPage={dataPerPage}
-            totalItemsCount={filteredData.length}
-            pageRangeDisplayed={5}
-            onChange={(pageNumber) => paginate(pageNumber)}
-            hideDisabled
-            itemClass="page-item"
-            linkClass="page-link"
-          />
-        </Col>
-      </Row> */}
-
     </div>
     </DashboardLayout>
   );
