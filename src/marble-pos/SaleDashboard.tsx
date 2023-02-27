@@ -10,6 +10,7 @@ import { useReactToPrint } from "react-to-print";
 import GatePass from "./salestableComponent/GatePass";
 import KhataTafseel from "./salestableComponent/KhataTafseel";
 import NewGatePass from "./salestableComponent/NewGatPass";
+import { Divider } from "@mui/material";
 
 const items = [
   { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -258,43 +259,77 @@ const SaleDashboard = () => {
           {/* <SalesTable /> */}
           <table className="table table-bordered bg-light">
             <thead>
-              <tr className="fs-6 text-center">
-                <th>ٹھیک ہے </th>
-                <th>بقیہ مال کی قیمت </th>
-                <th> خرید ریٹ </th>
-                <th>بقیہ مال</th>
-                <th>بچت </th>
-                <th>قیمت </th>
-                <th>ریٹ </th>
-                <th>تعداد </th>
-                <th>نام جنس </th>
+              <tr className="fs-5 text-center">
+                <th className="py-4">ٹھیک ہے </th>
+                <th className="py-4">بقیہ مال کی قیمت </th>
+                <th className="py-4"> خرید ریٹ </th>
+                <th className="py-4">بقیہ مال</th>
+                <th className="py-4">بچت </th>
+                <th className="py-4">قیمت </th>
+                <th className="py-4">ریٹ </th>
+                <th className="py-4">تعداد </th>
+                <th className="py-4">نام جنس </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="">
-                <td>
-                  <IconButton aria-label="delete">
+              <tr>
+                <td
+                  style={{ maxWidth: "max-content",  minWidth:"max-content" }}
+                  className="text-center"
+                >
+                  <IconButton
+                  
+                  aria-label="delete" className="text-center">
                     <AddTaskIcon fontSize="medium" className="text-success" onClick={AddSaleItem} />
                   </IconButton>
                 </td>
-                <td>
-                  <div className="form-control">{stockPrice}</div>
+                <td
+                
+                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
+                >
+                  <div className="form-control text-center"
+                  
+                  >{stockPrice}</div>
                 </td>
-                <td>
-                  <div className="form-control">{selectedItem.CostOfItem}</div>
+                <td
+                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
+                
+                >
+                  <div className="form-control text-center"
+                  
+                  >{selectedItem.CostOfItem}</div>
                 </td>
-                <td>
-                  <div className="form-control">{selectedItem.TotalQuantity}</div>
+                <td
+                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
+                
+                >
+                  <div className="form-control text-center"
+                  
+                  >{selectedItem.TotalQuantity}</div>
                 </td>
-                <td>
-                  <div className="form-control">{profit}</div>
+                <td
+                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
+                
+                >
+                  <div className="form-control text-center"
+                  
+                  >{profit}</div>
                 </td>
-                <td>
-                  <div className="form-control">{yourBill}</div>
+                <td
+                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
+                
+                >
+                  <div className="form-control text-center"
+                  
+                  >{yourBill}</div>
                 </td>
-                <td>
+                <td
+                
+                  style={{ maxWidth: "80px",  minWidth:"70px" }}
+                >
                   <input
                     value={SelectPrice}
+                    
                     type="number"
                     min="0"
                     step="1"
@@ -306,15 +341,20 @@ const SaleDashboard = () => {
                         setSelectPrice(parseFloat(e.target.value));
                       }
                     }}
-                    className="form-control"
+                    className="form-control text-center"
                   />
                 </td>
 
-                <td>
+                <td
+                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
+                
+                >
                   <input
-                    className="form-control"
+                    className="form-control text-center"
+
                     type="number"
                     value={SelectQuantity}
+
                     min="0"
                     step="10"
                     max={selectedItem.TotalQuantity}
@@ -328,18 +368,25 @@ const SaleDashboard = () => {
                     }}
                   />
                 </td>
-                <td>
+                <td
+                  style={{ maxWidth: "200px", minWidth:'max-content'}}
+                  className="form-control"
+                  >
                   <select
-                    className="form-control"
-                    style={{ width: "100px" }}
+                    className=" text-end w-100 border-0 mr-2 rounded-3 "
                     onChange={(e) => {
                       ChangeDropdown(e.target.value);
                     }}
-                  >
+                    >
                     {items.map((item) => (
-                      <option key={item.ItemName} value={item.ItemName}>
+                      <>
+                      <option 
+                      
+                      key={item.ItemName} value={item.ItemName} className="py-2">
                         {item.ItemName}
                       </option>
+                        <Divider />
+                        </>
                     ))}
                   </select>
                 </td>
