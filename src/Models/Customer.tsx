@@ -3,8 +3,8 @@ export type Customer = {
   Name: string
   Address: string
   PhoneNo: string
-  IsActive: boolean
   PaymentRcv:number
+  IsActive: boolean
   PendingPayment:number
   TotalBill:number
   Discount: number
@@ -12,7 +12,7 @@ export type Customer = {
 }
 export const initialCustomer: Customer = {
   Id: 0,
-  Name: '',
+  Name: '', 
   Address: '',
   PhoneNo: '',
   IsActive: false,

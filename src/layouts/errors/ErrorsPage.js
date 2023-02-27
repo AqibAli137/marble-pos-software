@@ -7,12 +7,14 @@ import subhanLogo from "../../assets/sm-assets/sm-logo2.jpg";
 const ErrorsLayout = () => {
   return (
     <div className="d-flex vh-100 align-items-center justify-content-center flex-column">
-      <div className=" " >
+      <div className=" ">
         <div className="d-flex flex-column flex-column-fluid text-center p-10 py-lg-20">
           <Link to="/">
-            <img alt="Logo" 
-                  style={{width:'250px', height:'250px'}}
-            src={subhanLogo} className="rounded-5" />
+            <img
+              alt="Logo"
+              style={{ width: "220px", height: "220px", borderRadius: "100%" }}
+              src={subhanLogo}
+            />
           </Link>
 
           <div className="pt-lg-10 mb-10">

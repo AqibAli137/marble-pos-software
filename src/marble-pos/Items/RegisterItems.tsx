@@ -20,7 +20,9 @@ export function RegisterItem() {
           <div className="col-12 col-lg-3 col-sm-3 col-md-3 text-center d-flex align-items-center">
             <div className="d-flex align-items-center justify-content-center">
               <div>
-                <img alt="Logo" src={Logo} className="rounded-5" style={{ width: "130px" }} />
+                <img alt="Logo" src={Logo} 
+                style={{width:'120px', height:'120px', borderRadius:"100%"}}
+                />
                 <div className="d-flex justify-content-center">
                   <h3 style={{ lineHeight: "50px" }} className="col-12 text-center my-3">
                     براہ کرم آئٹم کی تفصیلات فراہم کریں۔

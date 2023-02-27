@@ -17,6 +17,7 @@ import {
 } from "../../context";
 import SidenavRoot from "./SidenavRoot";
 import subhanLogo from "../../assets/sm-assets/sm-logo2.jpg";
+import '../../app.css'
 
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
@@ -127,8 +128,8 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           {brand && 
           <Link to="/">
           <img alt="Logo" 
-                style={{width:'40px', height:'40px'}}
-          src={subhanLogo} className="rounded-5" />
+                style={{width:'120px', height:'120px', borderRadius:"100%"}}
+          src={subhanLogo} />
         </Link>
           }
           <MDBox

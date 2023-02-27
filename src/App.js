@@ -15,6 +15,7 @@ import MDBox from "./components/MDBox";
 import {useSelector} from 'react-redux'
 import Basic from "./layouts/authentication/sign-in";
 import { AppRoutes } from "./AppRoute/AppRoutes";
+import './app.css'
 
 
 export default function App() {
@@ -86,7 +87,7 @@ export default function App() {
       return null;
     });
   return (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
+    <ThemeProvider theme={darkMode ? themeDark : theme} className="urdu">
       <CssBaseline />
       {window.localStorage.getItem("userLogin") ? (
         layout === "dashboard" && (
@@ -95,7 +96,7 @@ export default function App() {
               
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? subhanLogo : subhanLogo}
-              brandName="سبحان ماربل"
+              // brandName="سبحان ماربل"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}

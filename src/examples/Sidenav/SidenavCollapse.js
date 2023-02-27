@@ -3,7 +3,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Icon from "@mui/material/Icon";
-
+import '../../app.css'
 // Custom styles for the SidenavCollapse
 
 import { useMaterialUIController } from "../../context";
@@ -22,7 +22,7 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
 
   return (
-    <ListItem component="li">
+    <ListItem component="li" className="urdu">
       <MDBox
         {...rest}
         sx={(theme) =>
