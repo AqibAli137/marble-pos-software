@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import IconButton from "@mui/material/IconButton";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import { AppDispatch, RootState } from "../../store";
+import { Divider } from "@mui/material";
+import '../../app.css'
+import { Item } from "../../Models/Item";
+import axios from "axios";
 
 const items = [
-  { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
-  { ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
-  { ItemName: "سکیٹنگ", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
+  {Id:11, ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
+  {Id:12, ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
+  {Id:1013, ItemName: "سکیٹنگ", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
 ];
 
 const AddStock = () => {
@@ -40,14 +44,34 @@ const AddStock = () => {
     YourBill: yourBill,
   };
 
+  const ItemRecord: Item={
+    Id: selectedItem.Id,
+    ItemName: selectedItem.ItemName,
+    CostOfItem: SelectPrice,
+    RealItemCost: SelectPrice,
+    TotalQuantity: SelectQuantity,
+    TotalAmount: 0,
+    TypeOfItem: ""
+  }
   const AddSaleItem = async () => {
     // setSaleItem([...saleItem, newSaleItem])
-
-    setItemAddSpanShow(true);
-
-    setInterval(() => {
-      setItemAddSpanShow(false);
-    }, 3000);
+    {
+     SelectQuantity === 0  || SelectPrice === 0
+        ? alert("براہ کرم مکمل تفصیلات درج کریں۔")
+        : axios
+            .put(`https://localhost:7005/api/Item/${selectedItem.Id}`, ItemRecord)
+            .then((res) => {
+              alert("آپ کا نیا آئٹم ریکارڈ کامیابی سے Save ہو گیا۔");
+              setItemAddSpanShow(true);
+          
+              setInterval(() => {
+                setItemAddSpanShow(false);
+              }, 3000);
+            })
+            .catch((err) => {
+              alert("کچھ غلطی ہے، دوبارہ کوشش کریں۔");
+            });
+    }
   };
 
   return (
@@ -132,24 +156,30 @@ const AddStock = () => {
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
-                    <div className="d-flex justify-content-start flex-column">
-                      <span className="fw-bold text-dark d-block main urdu">
-                        <select
-                          onChange={(e) => {
-                            ChangeDropdown(e.target.value);
-                          }}
-                          className=" form-select form-control "
-                          data-kt-select2="true"
-                          data-placeholder="Select option"
-                          data-allow-clear="true"
-                        >
-                          {items.map((item) => (
-                            <option key={item.ItemName} value={item.ItemName}>
-                              {item.ItemName}
-                            </option>
-                          ))}
-                        </select>
-                      </span>
+                    <div 
+                     style={{ maxWidth: "200px", minWidth:'max-content'}}
+                     className="form-control urdu"
+                    >
+                      {/* <span className="fw-bold text-dark d-block form-control urdu border-0"> */}
+                      <select
+                    className=" text-end w-100 border-0 mr-2 rounded-3 "
+                    onChange={(e) => {
+                      ChangeDropdown(e.target.value);
+                    }}
+                    >
+                    {items.map((item) => (
+                      <>
+                     
+                      <option 
+                      
+                      key={item.ItemName} value={item.ItemName} className="py-2">
+                        {item.ItemName}
+                      </option>
+                        <Divider />
+                        </>
+                    ))}
+                  </select>
+                      {/* </span> */}
                     </div>
                   </div>
                 </td>
