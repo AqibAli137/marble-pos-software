@@ -1,11 +1,10 @@
 import { Button, TextField } from "@mui/material";
-import React from "react";
-import { number } from "yup";
+import '../../app.css'
 
 const PayementRCV = () => {
   return (
     <div>
-      <div className="mt-2 pt-0">
+      <div className="mt-2 pt-0 urdu">
         {/* Logo */}
         <div className="d-flex justify-content-center">
           <div className="text-center">
@@ -36,7 +35,7 @@ const PayementRCV = () => {
                   <TextField
                     size="small"
                     id="outlined-basic"
-                    label="رقم درج کریں۔"
+                    label="رقم موصول"
                     type="number"
                     className="urdu"
                     variant="outlined"
@@ -47,6 +46,20 @@ const PayementRCV = () => {
                   />
                 </div>
                 <div className="col col-12 col-sm-6 col-md-6 col-lg-6">
+                  <TextField
+                    size="small"
+                    id="outlined-basic"
+                    label="رعایت۔"
+                    type="number"
+                    className="urdu"
+                    variant="outlined"
+                    //   value={nameValue}
+                    //   onChange={(e) => {
+                    //     setNameValue(e.target.value)
+                    //   }}
+                  />
+                </div>
+                <div className="col col-12 col-sm-6 col-md-6 col-lg-6 urdu">
                   <TextField
                     size="small"
                     id="outlined-basic"
@@ -63,10 +76,7 @@ const PayementRCV = () => {
               </div>
               <div className="d-flex justify-content-between">
                 <Button variant="contained" className="text-white ActiveEffect my-3 urdu">
-                ادائیگی وصول کریں۔
-                </Button>
-                <Button variant="contained" className="text-white ActiveEffect my-3 urdu">
-                رعایت
+                وصول کریں۔
                 </Button>
               </div>
             </form>
