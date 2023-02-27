@@ -6,16 +6,9 @@ export type Customer = {
   IsActive: boolean
   PaymentRcv:number
   PendingPayment:number
-  CustomerOrders:[
-    {
-        Id:number
-        ItemName:string
-        ItemQuantity:number
-        SetPrice:number
-        YourBill:number
-    }
-  ]
-
+  TotalBill:number
+  Discount: number
+  ProfitFromCustomer: number
 }
 export const initialCustomer: Customer = {
   Id: 0,
@@ -25,13 +18,7 @@ export const initialCustomer: Customer = {
   IsActive: false,
   PaymentRcv: 0,
   PendingPayment: 0,
-  CustomerOrders: [
-    {
-      Id:0,
-      ItemName:'',
-      ItemQuantity:0,
-      SetPrice:0,
-      YourBill:0
-  }
-  ]
+  TotalBill: 0,
+  Discount: 0,
+  ProfitFromCustomer: 0
 }
