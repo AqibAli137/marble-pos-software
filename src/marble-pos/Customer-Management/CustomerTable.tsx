@@ -2,126 +2,42 @@ import React, { useEffect, useState } from "react";
 import { Table, FormControl, InputGroup, Form, Row, Col, Pagination } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@mui/material";
-import { Checkbox, Menu } from "@mui/material";
+import { Menu } from "@mui/material";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ViewComfyIcon from "@mui/icons-material/ViewComfy";
 import { Modal } from "react-bootstrap";
 import PayementRCV from "./Payement";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useNavigate } from "react-router-dom";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import NativeSelect from "@mui/material/NativeSelect";
 import "./customertable.css";
-import NewDropDowns from "./NewDropDowns";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { UpdateAllCustomers, UpdateNewOrderCustomer } from "../../@features/Customer/CustomerSlice";
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [dataPerPage] = useState(5);
-  // const [value, setvalue] = useState(null);
-  const [data, setData] = useState([
-    {
-      Id: 4323,
-      Name: "نوید اختر",
-      Address: "کاموکی",
-      PhoneNo: "0304847589",
-      IsActive: true,
-      PaymentRcv: 100000,
-      PendingPayment: 33000,
-      TotalAmount: 123300,
-    },
-    {
-      Id: 4323,
-      Name: "یاسر علی",
-      Address: "ٹپیالہ دوست محمد",
-      PhoneNo: "0303098778",
-      IsActive: true,
-      PaymentRcv: 123300,
-      PendingPayment: 0,
-      TotalAmount: 123300,
-    },
-    {
-      Id: 4323,
-      Name: "ارباز احمد",
-      Address: "مریدکی سٹی",
-      PhoneNo: "0304987589",
-      IsActive: true,
-      PaymentRcv: 0,
-      PendingPayment: 0,
-      TotalAmount: 0,
-    },
-    {
-      Id: 4323,
-      Name: "نوید اختر",
-      Address: "کاموکی",
-      PhoneNo: "0304847589",
-      IsActive: true,
-      PaymentRcv: 100000,
-      PendingPayment: 0,
-      TotalAmount: 100000,
-    },
-    {
-      Id: 4323,
-      Name: "یاسر علی",
-      Address: "ٹپیالہ دوست محمد",
-      PhoneNo: "0303098778",
-      IsActive: true,
-      PaymentRcv: 50000,
-      PendingPayment: 130000,
-      TotalAmount: 123300,
-    },
-    {
-      Id: 4323,
-      Name: "عاقب خالد",
-      Address: "کاموکی",
-      PhoneNo: "0304847589",
-      IsActive: true,
-      PaymentRcv: 100000,
-      PendingPayment: 30000,
-      TotalAmount: 123300,
-    },
-    {
-      Id: 4323,
-      Name: "نوید اختر",
-      Address: "کاموکی",
-      PhoneNo: "0304847589",
-      IsActive: true,
-      PaymentRcv: 0,
-      PendingPayment: 0,
-      TotalAmount: 0,
-    },
-    {
-      Id: 4323,
-      Name: "یاسر علی",
-      Address: "ٹپیالہ دوست محمد",
-      PhoneNo: "0303098778",
-      IsActive: true,
-      PaymentRcv: 50000,
-      PendingPayment: 130000,
-      TotalAmount: 123300,
-    },
-    {
-      Id: 4323,
-      Name: "نوید اختر",
-      Address: "کاموکی",
-      PhoneNo: "0304847589",
-      IsActive: true,
-      PaymentRcv: 100000,
-      PendingPayment: 30000,
-      TotalAmount: 123300,
-    },
-    {
-      Id: 4323,
-      Name: "عاقب خالد",
-      Address: "ٹپیالہ دوست محمد",
-      PhoneNo: "0303098778",
-      IsActive: true,
-      PaymentRcv: 50000,
-      PendingPayment: 130000,
-      TotalAmount: 123300,
-    },
-  ]);
+  const [getData, setGetData] = useState([] as any);
+
+
+
+  let CustomerState = useSelector((store: RootState) => store.Customer);
+  
+  const dispatch = useDispatch<AppDispatch>();
+  const [FilterCustomers, setFilterCustomers] = useState([] as any);
+  const [allData,setAllData]=useState([] as any);
+  
+  useEffect(() => {
+    axios.get("https://localhost:7005/api/Customer").then((res) => {
+      console.log(res.data);
+      setFilterCustomers(res.data);
+      dispatch(UpdateAllCustomers(res.data));
+      setAllData(res.data)
+      // dispatch(UpdateSelectedItem(res.data[0]))
+      setGetData(res.data);
+
+    })
+  }, []);
+  
 
   const [dropdownData, setDropdownData] = useState("All Data");
 
@@ -129,7 +45,6 @@ const CustomerTable = () => {
   const open = Boolean(anchorEl);
   const [ModalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
-  const [FilterCustomers, setFilterCustomers] = useState(data);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -143,33 +58,37 @@ const CustomerTable = () => {
     setModalOpen(true);
     setAnchorEl(null);
   };
-  const handleNewOrder = () => {
-    navigate("/sale");
+  const handleNewOrder = (dat: any) => {
+    // dispatch(UpdateNewOrderCustomer(dat)) &&
+    // navigate("/sale");
+    console.log(dat);
+    
   };
   // const handleDetails = (row: any) => {
   //   navigate("/explore");
   // };
   const handleReturns = (row: any) => {
+
     navigate("/returns");
   };
 
   useEffect(() => {
-    const newList = data.filter(
-      (dat) =>
-        dat.Name.toLowerCase().includes(search.toLowerCase()) ||
-        dat.PhoneNo.toLowerCase().includes(search.toLowerCase())
+    const newList = allData.filter(
+      (dat : any) =>
+        dat.name.toLowerCase().includes(search.toLowerCase()) ||
+        dat.phoneNo.toLowerCase().includes(search.toLowerCase())
     );
     setFilterCustomers(newList);
   }, [search]);
 
   useEffect(() => {
-    const newList = data.filter((dat) =>
+    const newList = allData.filter((dat : any) =>
       dropdownData === "No Start"
-        ? dat.TotalAmount === 0
+        ? dat.totalAmount === 0
         : dropdownData === "Have Pending"
-        ? dat.PendingPayment != 0
+        ? dat.pendingPayment != 0
         : dropdownData === "No Pending"
-        ? dat.PendingPayment === 0 && dat.TotalAmount != 0
+        ? dat.pendingPayment === 0 && dat.totalAmount != 0
         : dat.Id != 0
     );
     console.log(newList);
@@ -240,12 +159,12 @@ const CustomerTable = () => {
               </tr>
             </thead>
             <tbody>
-              {FilterCustomers.map((dat, index) => (
+              {FilterCustomers.map((dat : any, index : any) => (
                 <tr
                   className={
-                    dat.TotalAmount === 0
+                    dat.totalAmount === 0
                       ? "danger"
-                      : dat.PendingPayment === 0
+                      : dat.pendingPayment === 0
                       ? "success"
                       : "greyCol"
                   }
@@ -294,7 +213,7 @@ const CustomerTable = () => {
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
-                          <div className="" onClick={handleNewOrder.bind(this)}>
+                          <div className="" onClick={()=>{handleNewOrder(dat.id)}}>
                             <span className="mx-2 urdu">نیا آرڈر</span>
                             <ViewComfyIcon />
                           </div>
@@ -328,7 +247,7 @@ const CustomerTable = () => {
                       </Modal>
                     </div>
                   </td>
-                  <td>{dat.TotalAmount}</td>
+                  <td>{dat.totalBill}</td>
                   <td className="text-end">
                     {index === 3 || index === 0
                       ? "    ادا کردیا "
@@ -337,12 +256,12 @@ const CustomerTable = () => {
                       : "شروع نہیں"}
                   </td>
 
-                  <td>{dat.PendingPayment}</td>
-                  <td>{dat.PaymentRcv}</td>
-                  <td>{dat.PhoneNo}</td>
-                  <td className="text-end">{dat.Address}</td>
+                  <td>{dat.pendingPayment}</td>
+                  <td>{dat.paymentRcv}</td>
+                  <td>{dat.phoneNo}</td>
+                  <td className="text-end">{dat.address}</td>
 
-                  <td className="text-end">{dat.Name}</td>
+                  <td className="text-end">{dat.name}</td>
                 </tr>
               ))}
             </tbody>
@@ -369,3 +288,7 @@ const CustomerTable = () => {
 };
 
 export default CustomerTable;
+function dispatch(arg0: any) {
+  throw new Error("Function not implemented.");
+}
+

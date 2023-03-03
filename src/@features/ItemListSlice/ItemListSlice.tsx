@@ -9,7 +9,7 @@ const initialSaleItemState = {
 }
 
 export const ItemListSlice = createSlice({
-  name: 'sale',
+  name: 'item',
   initialState: initialSaleItemState,
   reducers: {
     UpdateAllItems: (state, {payload}) => {

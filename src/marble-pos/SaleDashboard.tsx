@@ -26,6 +26,8 @@ const items = [
 const SaleDashboard = () => {
   let saleState = useSelector((store: RootState) => store.sale);
   let ItemState = useSelector((store: RootState) => store.Item);
+  let CustomerState = useSelector((store: RootState) => store.Customer);
+
   // const [selectedItem, setSelectedItem] = useState(AllItem[0]);
   const [SelectQuantity, setSelectQuantity] = useState(1);
   const [SelectPrice, setSelectPrice] = useState(60);
@@ -36,15 +38,21 @@ const SaleDashboard = () => {
   const [profit, setProfit] = useState(10);
   const [saleItem, setSaleItem] = useState([] as any);
   const [ItemAddSpanShow, setItemAddSpanShow] = useState(false);
+  
+  const [thisCustomer, setThisCustomer] = useState({} as any);
+  
   const dispatch = useDispatch<AppDispatch>();
+
+
 
   useEffect(() => {
     axios.get("https://localhost:7005/api/Item").then((res) => {
-      console.log(res.data);
       dispatch(UpdateAllItems(res.data))
       dispatch(UpdateSelectedItem(res.data[0]))
-
     })
+    setThisCustomer(CustomerState.NewOrderCustomer)
+    console.log(CustomerState.NewOrderCustomer);
+    
   }, []);
 
   useEffect(() => {
@@ -61,6 +69,7 @@ const SaleDashboard = () => {
     setSelectQuantity(1);
     // setSelectItemCost();
   };
+  
   useEffect(() => {
     setStockPrice(ItemState.SelectedItem.costOfItem * ItemState.SelectedItem.totalQuantity);
     setProfit(SelectPrice - ItemState.SelectedItem.costOfItem);
