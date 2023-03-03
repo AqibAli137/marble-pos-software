@@ -11,7 +11,7 @@ import axios from "axios";
 const items = [
   {Id:11, ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
   {Id:12, ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
-  {Id:1013, ItemName: "سکیٹنگ", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
+  {Id:1013, ItemName: "ٹیسٹ ماربل", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
 ];
 
 const AddStock = () => {
@@ -59,7 +59,7 @@ const AddStock = () => {
      SelectQuantity === 0  || SelectPrice === 0
         ? alert("براہ کرم مکمل تفصیلات درج کریں۔")
         : axios
-            .put(`https://localhost:7005/api/Item/${selectedItem.Id}`, ItemRecord)
+            .put('https://localhost:7005/api/Item', ItemRecord)
             .then((res) => {
               alert("آپ کا نیا آئٹم ریکارڈ کامیابی سے Save ہو گیا۔");
               setItemAddSpanShow(true);
