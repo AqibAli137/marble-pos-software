@@ -11,6 +11,9 @@ import GatePass from "./salestableComponent/GatePass";
 import KhataTafseel from "./salestableComponent/KhataTafseel";
 import NewGatePass from "./salestableComponent/NewGatPass";
 import { Divider } from "@mui/material";
+import axios from "axios";
+import { UpdateAllItems,UpdateSelectedItem } from "../@features/ItemListSlice/ItemListSlice";
+import { Item } from "../Models/Item";
 
 const items = [
   { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
@@ -21,7 +24,9 @@ const items = [
 ];
 
 const SaleDashboard = () => {
-  const [selectedItem, setSelectedItem] = useState(items[0]);
+  let saleState = useSelector((store: RootState) => store.sale);
+  let ItemState = useSelector((store: RootState) => store.Item);
+  // const [selectedItem, setSelectedItem] = useState(AllItem[0]);
   const [SelectQuantity, setSelectQuantity] = useState(1);
   const [SelectPrice, setSelectPrice] = useState(60);
   const [yourBill, setYourBill] = useState(60);
@@ -32,27 +37,37 @@ const SaleDashboard = () => {
   const [saleItem, setSaleItem] = useState([] as any);
   const [ItemAddSpanShow, setItemAddSpanShow] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
-  let saleState = useSelector((store: RootState) => store.sale);
+
+  useEffect(() => {
+    axios.get("https://localhost:7005/api/Item").then((res) => {
+      console.log(res.data);
+      // setAllItem(res.data);
+      dispatch(UpdateAllItems(res.data))
+      dispatch(UpdateSelectedItem(res.data[0]))
+
+    })
+  }, []);
 
   useEffect(() => {
     setYourBill(SelectQuantity * SelectPrice);
-    setProfit(SelectQuantity * SelectPrice - selectedItem.CostOfItem * SelectQuantity);
+    setProfit(SelectQuantity * SelectPrice - ItemState.SelectedItem.costOfItem * SelectQuantity);
   }, [SelectQuantity, SelectPrice]);
 
   const ChangeDropdown = (val: any) => {
-    const selectedItem = items.find((item) => item.ItemName === val);
-    setSelectedItem(selectedItem as any);
+    const selectedItem = ItemState.ListOfItems.find((item : any) => item.itemName === val);
+    dispatch(UpdateSelectedItem(selectedItem))
+    // setSelectedItem(selectedItem as any);
     setYourBill(60);
     setSelectPrice(60);
     setSelectQuantity(1);
     // setSelectItemCost();
   };
   useEffect(() => {
-    setStockPrice(selectedItem.CostOfItem * selectedItem.TotalQuantity);
-    setProfit(SelectPrice - selectedItem.CostOfItem);
-  }, [selectedItem]);
+    setStockPrice(ItemState.SelectedItem.costOfItem * ItemState.SelectedItem.totalQuantity);
+    setProfit(SelectPrice - ItemState.SelectedItem.costOfItem);
+  }, [ItemState.SelectedItem]);
   const newSaleItem = {
-    ItemName: selectedItem.ItemName,
+    ItemName: ItemState.SelectedItem.itemName,
     ItemQuantity: SelectQuantity,
     SetPrice: SelectPrice,
     YourBill: yourBill,
@@ -78,156 +93,9 @@ const SaleDashboard = () => {
     content: () => dataToPrintRef.current!,
   });
 
-  const oldData = [
-    {
-      OrderDate: "08/6/2022, 11am",
-      ItemName: "سنی سرمئی",
-      ItemQuantity: 354,
-      SetPrice: 87,
-      YourBill: 78698,
-    },
-    {
-      OrderDate: "09/1/2022, 7pm",
-      ItemName: "بادل",
-      ItemQuantity: 54,
-      SetPrice: 57,
-      YourBill: 56960,
-    },
-    {
-      OrderDate: "11/9/2022, 5pm",
-      ItemName: "سنی سرمئی",
-      ItemQuantity: 78,
-      SetPrice: 45,
-      YourBill: 95680,
-    },
-  ];
-
+  
   return (
-    // <>
-    //   <div>
-    //     <div className="d-flex justify-content-center">
-    //       <h2 className="fs-3 text-center">Customer Order</h2>
-    //     </div>
-    //     <div className="row mb-3">
-    //       <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-    //         <div className="d-flex justify-content-between">
-    //           <span>Select Item</span>
-    //           <span className="fw-bold d-block">
-    //             <select
-    //               onChange={(e) => {
-    //                 ChangeDropdown(e.target.value);
-    //               }}
-    //               className="form-control form-control-md px-3 rounded-3 fw-bold m-0"
-    //               data-kt-select2="true"
-    //               data-placeholder="Select option"
-    //               data-allow-clear="true"
-    //             >
-    //               {items.map((item) => (
-    //                 <option key={item.ItemName} value={item.ItemName}>
-    //                   {item.ItemName}
-    //                 </option>
-    //               ))}
-    //             </select>
-    //           </span>
-    //         </div>
-    //       </div>
-
-    //       <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-    //         <div className="d-flex justify-content-between">
-    //           <span>Set Quantity</span>
-    //           <span className="fw-bold d-block">
-    //             <input
-    //               type="number"
-    //               value={SelectQuantity}
-    //               min="0"
-    //               step="10"
-    //               max={selectedItem.TotalQuantity}
-    //               onChange={(e) => {
-    //                 if (
-    //                   parseInt(e.target.value) === selectedItem.TotalQuantity ||
-    //                   parseInt(e.target.value) < selectedItem.TotalQuantity
-    //                 ) {
-    //                   setSelectQuantity(parseInt(e.target.value));
-    //                 }
-    //               }}
-    //               className="form-control form-control-md text-center rounded-3 fw-bold m-0"
-    //             />
-    //           </span>
-    //         </div>
-    //       </div>
-    //       <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-    //         <div className="d-flex justify-content-between">
-    //           <span>Set Price</span>
-    //           <span className="fw-bold d-block">
-    //             <input
-    //               value={SelectPrice}
-    //               type="number"
-    //               min="0"
-    //               step="1"
-    //               onChange={(e) => {
-    //                 if (parseInt(e.target.value) === 100000 || parseInt(e.target.value) < 100000) {
-    //                   setSelectPrice(parseFloat(e.target.value));
-    //                 }
-    //               }}
-    //               className="form-control form-control-md text-center rounded-3 fw-bold m-0"
-    //             />
-    //           </span>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div className="table-responsive w-100">
-    //       <table className="table table-striped table-dark">
-    //         <thead>
-    //           <tr className="fs-6">
-    //             <th scope="col">Your Bill</th>
-    //             <th scope="col">Cost/Ft/No</th>
-    //             <th scope="col">Total Quantity</th>
-    //             <th scope="col">Total Amount</th>
-    //             <th scope="col">Add</th>
-    //           </tr>
-    //         </thead>
-    //         <tbody>
-    //           <tr className="fs-6">
-    //             <td>{yourBill}</td>
-    //             <td>{selectedItem.CostOfItem}</td>
-    //             <td>{selectedItem.TotalQuantity}</td>
-    //             <td>{selectedItem.TotalAmount}</td>
-    //             <td>
-    //               <IconButton aria-label="delete">
-    //                 <AddTaskIcon fontSize="medium" className="text-success" onClick={AddSaleItem} />
-    //               </IconButton>
-    //             </td>
-    //           </tr>
-    //         </tbody>
-    //       </table>
-    //     </div>
-    //   </div>
-    //   {ItemAddSpanShow && (
-    //     <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3">
-    //       <h3 className="text-center">Record is added in list</h3>
-    //     </div>
-    //   )}
-    //   <div>
-    //     <FirstTable TableData={saleItem} />
-    //   </div>
-    //   <div className="row mt-5">
-    //     <div className="col-12">
-    //       <div className="row bg-dark text-white py-2 px-0">
-    //         <h3 className="text-center fs-4">Customer Old Record</h3>
-    //       </div>
-    //       <Table columns={OrderTableColumns} dataSource={oldData} />
-    //       <div className="row bg-dark text-white py-2">
-    //         <h3 className="text-center">New Order</h3>
-    //       </div>
-    //       <Table columns={OrderTableColumns} dataSource={saleItem} />
-    //     </div>
-    //     <div className="col-12">
-    //       <div className="">
-    //         <Invoicer />
-    //       </div>
-    //     </div>
-    //   </div>
-    // </>
+   
     <>
       <div className="main urdu">
         <div style={{ background: "#d9ede1" }} className="row">
@@ -243,14 +111,15 @@ const SaleDashboard = () => {
               {" "}
               <span className="fs6">
                 {" "}
-                . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع  ورا ٘ ٹی دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
+                . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع ورا ٘ ٹی دستیاب ہیں .{" "}
+                <span>موبائل نمبر-03016428683</span>
               </span>
             </h5>
           </div>
         </div>
         <div className="row">
           <div style={{ background: "#d9ede1" }} className="col-12 text-center my-3 p-3">
-            <span className="name"> نام خریدار :  </span>
+            <span className="name"> نام خریدار : </span>
             <span> آفریدی صاحب </span>
             <span> فیصل آباد </span>
           </div>
@@ -274,62 +143,31 @@ const SaleDashboard = () => {
             <tbody>
               <tr>
                 <td
-                  style={{ maxWidth: "max-content",  minWidth:"max-content" }}
+                  style={{ maxWidth: "max-content", minWidth: "max-content" }}
                   className="text-center"
                 >
-                  <IconButton
-                  
-                  aria-label="delete" className="text-center">
+                  <IconButton aria-label="delete" className="text-center">
                     <AddTaskIcon fontSize="medium" className="text-success" onClick={AddSaleItem} />
                   </IconButton>
                 </td>
-                <td
-                
-                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
-                >
-                  <div className="form-control text-center"
-                  
-                  >{stockPrice}</div>
+                <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
+                  <div className="form-control text-center">{stockPrice}</div>
                 </td>
-                <td
-                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
-                
-                >
-                  <div className="form-control text-center"
-                  
-                  >{selectedItem.CostOfItem}</div>
+                <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
+                  <div className="form-control text-center">{ItemState.SelectedItem.costOfItem}</div>
                 </td>
-                <td
-                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
-                
-                >
-                  <div className="form-control text-center"
-                  
-                  >{selectedItem.TotalQuantity}</div>
+                <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
+                  <div className="form-control text-center">{ItemState.SelectedItem.totalQuantity}</div>
                 </td>
-                <td
-                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
-                
-                >
-                  <div className="form-control text-center"
-                  
-                  >{profit}</div>
+                <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
+                  <div className="form-control text-center">{profit}</div>
                 </td>
-                <td
-                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
-                
-                >
-                  <div className="form-control text-center"
-                  
-                  >{yourBill}</div>
+                <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
+                  <div className="form-control text-center">{yourBill}</div>
                 </td>
-                <td
-                
-                  style={{ maxWidth: "80px",  minWidth:"70px" }}
-                >
+                <td style={{ maxWidth: "80px", minWidth: "70px" }}>
                   <input
                     value={SelectPrice}
-                    
                     type="number"
                     min="0"
                     step="1"
@@ -345,48 +183,38 @@ const SaleDashboard = () => {
                   />
                 </td>
 
-                <td
-                  style={{ maxWidth: "80px",  minWidth:"max-content" }}
-                
-                >
+                <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
                   <input
                     className="form-control text-center"
-
                     type="number"
                     value={SelectQuantity}
-
                     min="0"
                     step="10"
-                    max={selectedItem.TotalQuantity}
+                    max={ItemState.SelectedItem.totalQuantity}
                     onChange={(e) => {
                       if (
-                        parseInt(e.target.value) === selectedItem.TotalQuantity ||
-                        parseInt(e.target.value) < selectedItem.TotalQuantity
+                        parseInt(e.target.value) === ItemState.SelectedItem.totalQuantity ||
+                        parseInt(e.target.value) < ItemState.SelectedItem.totalQuantity
                       ) {
                         setSelectQuantity(parseInt(e.target.value));
                       }
                     }}
                   />
                 </td>
-                <td
-                  style={{ maxWidth: "200px", minWidth:'max-content'}}
-                  className="form-control"
-                  >
+                <td style={{ maxWidth: "200px", minWidth: "max-content" }} className="form-control">
                   <select
                     className=" text-end w-100 border-0 mr-2 rounded-3 "
                     onChange={(e) => {
                       ChangeDropdown(e.target.value);
                     }}
-                    >
-                    {items.map((item) => (
+                  >
+                    {ItemState.ListOfItems.map((item : any) => (
                       <>
-                      <option 
-                      
-                      key={item.ItemName} value={item.ItemName} className="py-2">
-                        {item.ItemName}
-                      </option>
+                        <option key={item.itemName} value={item.itemName} className="py-2">
+                          {item.itemName}
+                        </option>
                         <Divider />
-                        </>
+                      </>
                     ))}
                   </select>
                 </td>
@@ -396,7 +224,7 @@ const SaleDashboard = () => {
           </table>
         </div>
       </div>
-     {ItemAddSpanShow && (
+      {ItemAddSpanShow && (
         <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3 main urdu">
           <h3 className="text-center">ریکارڈ فہرست میں شامل کیا گیا ہے۔</h3>
         </div>
