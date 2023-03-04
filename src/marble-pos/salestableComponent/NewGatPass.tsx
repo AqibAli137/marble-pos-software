@@ -102,21 +102,21 @@ const NewGatePass = () => {
           <table className="table table-bordered">
             <thead>
               <tr className="fs-6 text-center">
-                <th> تاریخ</th>
                 {amountInTable && <th>رقم </th>}
                 {amountInTable && <th>ریٹ </th>}
                 <th>تعداد </th>
                 <th>نام جنس </th>
+                <th> تاریخ</th>
               </tr>
             </thead>
             <tbody>
               {saleItem.map((item: any) => (
                 <tr>
-                  <td>{new Date().toLocaleString() + ""}</td>
                   {amountInTable && <td>{item.YourBill}</td>}
                   {amountInTable && <td>{item.SetPrice}</td>}
                   <td>{item.ItemQuantity}</td>
                   <td>{item.ItemName}</td>
+                  <td>{new Date().toLocaleString() + ""}</td>
                 </tr>
               ))}
               {/* Add more rows here */}

@@ -68,12 +68,12 @@ const GatePass = () => {
           <div>
             <div className="row">
               <div style={{ background: "#d9ede1" }} className="col-12 text-center my-3 p-3">
-                <p style={{ fontSize: "12px" }}>
-                  <span> تاریخ :١٢/١٢/٢٠٢٢</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                <p style={{ fontSize: "16px" }}>
+                  {/* <span> تاریخ :{new Date().toLocaleString() + ""}</span> &nbsp;&nbsp;&nbsp;&nbsp; */}
                   <span className="name"> نام خریدار : :</span>
-                  <span> آفریدی صاحب </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <span> فیصل آباد </span>&nbsp;&nbsp;&nbsp;&nbsp; .
-                  <span>موبائل نمبر-03016428683</span>
+                  <span> {CustomerState.NewOrderCustomer.name} </span>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span> {CustomerState.NewOrderCustomer.address}</span>&nbsp;&nbsp;&nbsp;&nbsp; .
+                  <span>موبائل نمبر-{CustomerState.NewOrderCustomer.phoneNo}</span>
                 </p>
               </div>
             </div>
@@ -81,19 +81,17 @@ const GatePass = () => {
           <table className="table table-bordered">
             <thead>
               <tr className="fs-6 text-center">
-                <th> تاریخ</th>
                 {amountInTable && <th>رقم </th>}
                 {amountInTable && <th>ریٹ </th>}
                 <th>تعداد </th>
                 <th>نام جنس </th>
+                <th> تاریخ</th>
               </tr>
             </thead>
             <tbody>
               {OrdersState.SelectedOrders.map((listItem: any, index: any) => {
                 <tr className="text-center" key={index}>
-                  <td>
-                    <p>{listItem.orderDate}</p>
-                  </td>
+                  
                   {amountInTable && (
                     <td>
                       <p>{listItem.yourbill}</p>
@@ -109,6 +107,9 @@ const GatePass = () => {
                   </td>
                   <td>
                     <p>{listItem.itemName}</p>
+                  </td>
+                  <td>
+                    <p>{listItem.orderDate}</p>
                   </td>
                 </tr>;
               })}
