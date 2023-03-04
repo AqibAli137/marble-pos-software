@@ -6,12 +6,16 @@ import IconButton from "@mui/material/IconButton";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import axios from "axios";
+import { CustomerOrder } from "../../Models/CustomerOrder";
 // import "./invoicer.css";
 
 const NewGatePass = () => {
   const dataToPrintRef = useRef<HTMLInputElement>(null);
   const [amountInTable, setAmountInTable] = useState(true);
   let OrderListState = useSelector((store: RootState) => store.sale);
+  let NewCustomerState = useSelector((store: RootState) => store.Customer);
+
   const [saleItem, setSaleItem] = useState([] as any);
   const [headerShow, setHeaderShow] = useState(false);
   const [total, setTotal] = useState(0);
@@ -26,6 +30,30 @@ const NewGatePass = () => {
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
   });
+  // const NewOrderList:CustomerOrder={
+  //   Id: 0,
+  //   ItemId: 0,
+  //   CustomerId: NewCustomerState.NewOrderCustomer.id,
+  //   ItemName: "",
+  //   ItemQuantity: OrderListState.orderList.ItemQuantity,
+  //   OrderDate: "",
+  //   SetPrice: 0,
+  //   Yourbill: 0,
+  //   GatePassNumber: "",
+  //   Profit: 0
+  // }
+  const handleApi = () => {
+    console.log("api click");
+    axios
+      .post(
+        `https://localhost:7005/api/CustomerOrder/NewOrder/${NewCustomerState.NewOrderCustomer.id}`,
+        OrderListState.orderList    
+      )
+      .then((res) => {});
+    // console.log(OrderListState.orderList);
+    // console.log(NewCustomerState.NewOrderCustomer.id);
+    
+  };
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -47,10 +75,11 @@ const NewGatePass = () => {
               </div>
               <div className="col-12 text-center">
                 <h6 className="my-3">
-                  {" "}
+                  
                   <span className="fs6">
-                    {" "}
-                    ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع  ورا ٘ ٹی دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
+                    
+                    ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع ورا ٘ ٹی دستیاب ہیں .
+                    <span>موبائل نمبر-03016428683</span>
                   </span>
                 </h6>
               </div>
@@ -60,12 +89,13 @@ const NewGatePass = () => {
             <div className="row">
               <div style={{ background: "#d9ede1" }} className="col-12 text-center my-3 p-3">
                 <p style={{ fontSize: "12px" }}>
-                  {" "}
-                  <span> تاریخ :١٢/١٢/٢٠٢٢</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="name"> نام خریدار :  :</span>
-                  <span> آفریدی صاحب </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <span> فیصل آباد </span>&nbsp;&nbsp;&nbsp;&nbsp; .{" "}
-                  <span>موبائل نمبر-03016428683</span>
+                  
+                  {/* <span> تاریخ :{new Date().toLocaleString() + ""}</span> &nbsp;&nbsp;&nbsp;&nbsp; */}
+                  <span className="name"> نام خریدار : :</span>
+                  <span> {NewCustomerState.NewOrderCustomer.name} </span>&nbsp;&nbsp;&nbsp;&nbsp;
+                  {/* <span> : </span> */}
+                  <span> {NewCustomerState.NewOrderCustomer.address}</span>&nbsp;&nbsp;&nbsp;&nbsp; .
+                  <span>موبائل نمبر-{NewCustomerState.NewOrderCustomer.phoneNo}</span>
                 </p>
               </div>
             </div>
@@ -109,7 +139,10 @@ const NewGatePass = () => {
           />
         </div>
         <IconButton
-          onClick={handlePrint}
+          onClick={() => {
+            handleApi();
+            handlePrint();
+          }}
           style={{
             color: "#2d709f",
           }}

@@ -7,17 +7,24 @@ import { Divider } from "@mui/material";
 import '../../app.css'
 import { Item } from "../../Models/Item";
 import axios from "axios";
+import { UpdateAllItems, UpdateSelectedItem } from "../../@features/ItemListSlice/ItemListSlice";
 
-const items = [
-  {Id:11, ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
-  {Id:12, ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
-  {Id:1013, ItemName: "ٹیسٹ ماربل", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
-];
+// const items = [
+//   {Id:11, ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
+//   {Id:12, ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
+//   {Id:1013, ItemName: "ٹیسٹ ماربل", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
+// ];
 
 const AddStock = () => {
-  const [selectedItem, setSelectedItem] = useState(items[0]);
+  // let CustomerState = useSelector((store: RootState) => store.Customer);
+  let ItemState = useSelector((store: RootState) => store.Item);
+
+
+  // const [selectedItem, setSelectedItem] = useState(ItemState.SelectedItem[0]);
 
   const [SelectQuantity, setSelectQuantity] = useState(1);
+  const [thisCustomer, setThisCustomer] = useState({} as any);
+
   const [SelectPrice, setSelectPrice] = useState(60);
   const [yourBill, setYourBill] = useState(60);
 
@@ -27,26 +34,36 @@ const AddStock = () => {
   let saleState = useSelector((store: RootState) => store.sale);
 
   useEffect(() => {
+    axios.get("https://localhost:7005/api/Item").then((res) => {
+      dispatch(UpdateAllItems(res.data))
+      dispatch(UpdateSelectedItem(res.data[0]))
+    })
+    // setThisCustomer(CustomerState.NewOrderCustomer)
+
+    // console.log(CustomerState.NewOrderCustomer);
+  }, []);
+  
+  useEffect(() => {
     setYourBill(SelectQuantity * SelectPrice);
   }, [SelectQuantity, SelectPrice]);
 
   const ChangeDropdown = (val: any) => {
-    const selectedItem = items.find((item) => item.ItemName === val);
-    setSelectedItem(selectedItem as any);
+    const selectedItem = ItemState.ListOfItems.find((item:any) => item.itemName === val);
+    dispatch(UpdateSelectedItem(selectedItem as any));
     setYourBill(60);
     setSelectPrice(60);
     setSelectQuantity(1);
   };
   const newSaleItem = {
-    ItemName: selectedItem.ItemName,
+    ItemName: ItemState.SelectedItem.itemName,
     ItemQuantity: SelectQuantity,
     SetPrice: SelectPrice,
     YourBill: yourBill,
   };
 
   const ItemRecord: Item={
-    Id: selectedItem.Id,
-    ItemName: selectedItem.ItemName,
+    Id: ItemState.SelectedItem.id,
+    ItemName: ItemState.SelectedItem.itemName,
     CostOfItem: SelectPrice,
     RealItemCost: SelectPrice,
     TotalQuantity: SelectQuantity,
@@ -104,7 +121,7 @@ const AddStock = () => {
                   <div className="d-flex align-items-center justify-content-center">
                     <div className="d-flex justify-content-center">
                       <span className="fw-bold text-dark d-block ">
-                        {selectedItem.TotalAmount}
+                        {ItemState.SelectedItem.totalAmount}
                       </span>
                     </div>
                   </div>
@@ -113,7 +130,7 @@ const AddStock = () => {
                   <div className="d-flex align-items-center justify-content-center">
                     <div className="d-flex justify-content-start flex-column">
                       <span className="fw-bold text-dark d-block">
-                        {selectedItem.TotalQuantity}
+                        {ItemState.SelectedItem.totalQuantity}
                       </span>
                     </div>
                   </div>
@@ -167,13 +184,13 @@ const AddStock = () => {
                       ChangeDropdown(e.target.value);
                     }}
                     >
-                    {items.map((item) => (
+                    {ItemState.ListOfItems.map((item:any) => (
                       <>
                      
                       <option 
                       
-                      key={item.ItemName} value={item.ItemName} className="py-2">
-                        {item.ItemName}
+                      key={item.itemName} value={item.itemName} className="py-2">
+                        {item.itemName}
                       </option>
                         <Divider />
                         </>

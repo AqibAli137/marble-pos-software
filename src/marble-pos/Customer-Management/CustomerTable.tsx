@@ -18,26 +18,22 @@ const CustomerTable = () => {
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([] as any);
 
-
-
   let CustomerState = useSelector((store: RootState) => store.Customer);
-  
+
   const dispatch = useDispatch<AppDispatch>();
   const [FilterCustomers, setFilterCustomers] = useState([] as any);
-  const [allData,setAllData]=useState([] as any);
-  
+  const [allData, setAllData] = useState([] as any);
+
   useEffect(() => {
     axios.get("https://localhost:7005/api/Customer").then((res) => {
       console.log(res.data);
       setFilterCustomers(res.data);
       dispatch(UpdateAllCustomers(res.data));
-      setAllData(res.data)
+      setAllData(res.data);
       // dispatch(UpdateSelectedItem(res.data[0]))
       setGetData(res.data);
-
-    })
+    });
   }, []);
-  
 
   const [dropdownData, setDropdownData] = useState("All Data");
 
@@ -59,22 +55,20 @@ const CustomerTable = () => {
     setAnchorEl(null);
   };
   const handleNewOrder = (dat: any) => {
-    // dispatch(UpdateNewOrderCustomer(dat)) &&
-    // navigate("/sale");
-    console.log(dat);
-    
+    dispatch(UpdateNewOrderCustomer(dat)) &&
+    navigate("/sale");
+    // console.log(dat);
   };
   // const handleDetails = (row: any) => {
   //   navigate("/explore");
   // };
   const handleReturns = (row: any) => {
-
     navigate("/returns");
   };
 
   useEffect(() => {
     const newList = allData.filter(
-      (dat : any) =>
+      (dat: any) =>
         dat.name.toLowerCase().includes(search.toLowerCase()) ||
         dat.phoneNo.toLowerCase().includes(search.toLowerCase())
     );
@@ -82,7 +76,7 @@ const CustomerTable = () => {
   }, [search]);
 
   useEffect(() => {
-    const newList = allData.filter((dat : any) =>
+    const newList = allData.filter((dat: any) =>
       dropdownData === "No Start"
         ? dat.totalAmount === 0
         : dropdownData === "Have Pending"
@@ -159,7 +153,7 @@ const CustomerTable = () => {
               </tr>
             </thead>
             <tbody>
-              {FilterCustomers.map((dat : any, index : any) => (
+              {FilterCustomers.map((dat: any, index: any) => (
                 <tr
                   className={
                     dat.totalAmount === 0
@@ -168,14 +162,49 @@ const CustomerTable = () => {
                       ? "success"
                       : "greyCol"
                   }
-                  // style={{ textAlign: "center" }}
+                  style={{ textAlign: "center" }}
                   key={index}
                 >
                   <td className="d-flex justify-content-center">
-                    {/* <Button variant="contained" className="text-white ActiveEffect my-3">
-                      Payment Rcv
-                    </Button> */}
-                    <div className="d-flex justify-content-center">
+                    <div className="text-black buttonColor">
+                      <Button
+                        variant="text"
+                        type="button"
+                        className="shadow-none ActiveEffect text-black buttonColor"
+                      >
+                        <span className=" urdu" onClick={handlePopOver}>
+                          ادائیگی
+                        </span>
+                        <MonetizationOnIcon />
+                      </Button>
+
+                      <Button
+                        variant="text"
+                        className="shadow-none ActiveEffect text-black buttonColor"
+                      >
+                        <div className="" onClick={handleReturns.bind(this, dat)}>
+                          <span className=" urdu">آئٹمز واپس کریں۔</span>
+                          <ViewComfyIcon />
+                        </div>
+                      </Button>
+                      <Button
+                        variant="text"
+                        className="shadow-none ActiveEffect text-black buttonColor"
+                      >
+                        <div className="">
+                          <span
+                            onClick={() => {
+                              handleNewOrder(dat);
+                            }}
+                            className=" urdu"
+                          >
+                            نیا آرڈر
+                          </span>
+                          <ViewComfyIcon />
+                        </div>
+                      </Button>
+                    </div>
+                    {/* <div className="d-flex justify-content-center">
                       <Button
                         id="demo-positioned-button"
                         aria-controls={open ? "demo-positioned-menu" : undefined}
@@ -204,7 +233,7 @@ const CustomerTable = () => {
                           horizontal: "left",
                         }}
                       >
-                        {/* <div className="bg-dark"> */}
+                       
                         <Button variant="text" type="button" className="shadow-none ActiveEffect ">
                           <span className="mx-2 urdu" onClick={handlePopOver}>
                             ادائیگی
@@ -213,18 +242,13 @@ const CustomerTable = () => {
                         </Button>
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
-                          <div className="" onClick={()=>{handleNewOrder(dat.id)}}>
-                            <span className="mx-2 urdu">نیا آرڈر</span>
+                          <div className="" >
+                            <span onClick={()=>{handleNewOrder(dat.id)}} className="mx-2 urdu">نیا آرڈر</span>
                             <ViewComfyIcon />
                           </div>
                         </Button>
                         <br />
-                        {/* <Button variant="text" className="shadow-none ActiveEffect">
-                          <div className="" onClick={handleDetails.bind(this, dat)}>
-                            <span className="mx-2 urdu">تفصیلات چیک کریں۔</span>
-                            <ViewComfyIcon />
-                          </div>
-                        </Button> */}
+                       
                         <br />
                         <Button variant="text" className="shadow-none ActiveEffect">
                           <div className="" onClick={handleReturns.bind(this, dat)}>
@@ -232,7 +256,7 @@ const CustomerTable = () => {
                             <ViewComfyIcon />
                           </div>
                         </Button>
-                        {/* </div> */}
+                        
                       </Menu>
                       <Modal show={ModalOpen} onHide={closeModal}>
                         <Modal.Header>
@@ -245,7 +269,7 @@ const CustomerTable = () => {
                           </div>
                         </Modal.Footer>
                       </Modal>
-                    </div>
+                    </div> */}
                   </td>
                   <td>{dat.totalBill}</td>
                   <td className="text-end">
@@ -291,4 +315,3 @@ export default CustomerTable;
 function dispatch(arg0: any) {
   throw new Error("Function not implemented.");
 }
-

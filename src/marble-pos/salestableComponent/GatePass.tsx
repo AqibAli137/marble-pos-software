@@ -4,9 +4,14 @@ import { useReactToPrint } from "react-to-print";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 // import "./invoicer.css";
 
 const GatePass = () => {
+
+  let GatPassState = useSelector((store: RootState) => store.GatPass);
+
   const dataToPrintRef = useRef<HTMLInputElement>(null);
   const [amountInTable, setAmountInTable] = useState(true);
 

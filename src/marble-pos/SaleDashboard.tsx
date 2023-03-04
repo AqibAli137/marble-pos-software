@@ -12,21 +12,16 @@ import KhataTafseel from "./salestableComponent/KhataTafseel";
 import NewGatePass from "./salestableComponent/NewGatPass";
 import { Divider } from "@mui/material";
 import axios from "axios";
-import { UpdateAllItems,UpdateSelectedItem } from "../@features/ItemListSlice/ItemListSlice";
+import { UpdateAllItems, UpdateSelectedItem } from "../@features/ItemListSlice/ItemListSlice";
 import { Item } from "../Models/Item";
-
-const items = [
-  { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
-  { ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
-  { ItemName: "سکیٹنگ", CostOfItem: 90, TotalQuantity: 150333, TotalAmount: 90 * 150 },
-  { ItemName: "ٹویٹرا", CostOfItem: 60, TotalQuantity: 450, TotalAmount: 60 * 450 },
-  { ItemName: "کالا ماربل", CostOfItem: 150, TotalQuantity: 850, TotalAmount: 150 * 850 },
-];
+import { CustomerOrder } from "../Models/CustomerOrder";
+import { UpdateAllGatPass, UpdateCustomerGatPass } from "../@features/GatPass/GatPassSlice";
 
 const SaleDashboard = () => {
   let saleState = useSelector((store: RootState) => store.sale);
   let ItemState = useSelector((store: RootState) => store.Item);
   let CustomerState = useSelector((store: RootState) => store.Customer);
+  let GatPassState = useSelector((store: RootState) => store.GatPass);
 
   // const [selectedItem, setSelectedItem] = useState(AllItem[0]);
   const [SelectQuantity, setSelectQuantity] = useState(1);
@@ -38,21 +33,30 @@ const SaleDashboard = () => {
   const [profit, setProfit] = useState(10);
   const [saleItem, setSaleItem] = useState([] as any);
   const [ItemAddSpanShow, setItemAddSpanShow] = useState(false);
-  
+
   const [thisCustomer, setThisCustomer] = useState({} as any);
-  
+
   const dispatch = useDispatch<AppDispatch>();
-
-
 
   useEffect(() => {
     axios.get("https://localhost:7005/api/Item").then((res) => {
-      dispatch(UpdateAllItems(res.data))
-      dispatch(UpdateSelectedItem(res.data[0]))
-    })
-    setThisCustomer(CustomerState.NewOrderCustomer)
+      dispatch(UpdateAllItems(res.data));
+      dispatch(UpdateSelectedItem(res.data[0]));
+    });
+
+    axios.get("https://localhost:7005/api/GatePass").then((res) => {
+      dispatch(UpdateAllGatPass(res.data));
+
+      dispatch(
+        UpdateCustomerGatPass(
+          res.data.filter((item: any) => item.customerId === CustomerState.NewOrderCustomer.id)
+        )
+      );
+    });
+
+    setThisCustomer(CustomerState.NewOrderCustomer);
+
     console.log(CustomerState.NewOrderCustomer);
-    
   }, []);
 
   useEffect(() => {
@@ -61,24 +65,30 @@ const SaleDashboard = () => {
   }, [SelectQuantity, SelectPrice]);
 
   const ChangeDropdown = (val: any) => {
-    const selectedItem = ItemState.ListOfItems.find((item : any) => item.itemName === val);
-    dispatch(UpdateSelectedItem(selectedItem))
+    const selectedItem = ItemState.ListOfItems.find((item: any) => item.itemName === val);
+    dispatch(UpdateSelectedItem(selectedItem));
     // setSelectedItem(selectedItem as any);
     setYourBill(60);
     setSelectPrice(60);
     setSelectQuantity(1);
     // setSelectItemCost();
   };
-  
+
   useEffect(() => {
     setStockPrice(ItemState.SelectedItem.costOfItem * ItemState.SelectedItem.totalQuantity);
     setProfit(SelectPrice - ItemState.SelectedItem.costOfItem);
   }, [ItemState.SelectedItem]);
-  const newSaleItem = {
+  const newSaleItem: CustomerOrder = {
+    Id: 0,
+    ItemId: ItemState.SelectedItem.id,
+    CustomerId: CustomerState.NewOrderCustomer.id,
     ItemName: ItemState.SelectedItem.itemName,
     ItemQuantity: SelectQuantity,
+    OrderDate: new Date().toLocaleString() + "",
     SetPrice: SelectPrice,
     YourBill: yourBill,
+    GatePassNumber: "",
+    Profit: 0,
   };
 
   const AddSaleItem = async () => {
@@ -101,9 +111,7 @@ const SaleDashboard = () => {
     content: () => dataToPrintRef.current!,
   });
 
-  
   return (
-   
     <>
       <div className="main urdu">
         <div style={{ background: "#d9ede1" }} className="row">
@@ -128,8 +136,8 @@ const SaleDashboard = () => {
         <div className="row">
           <div style={{ background: "#d9ede1" }} className="col-12 text-center my-3 p-3">
             <span className="name"> نام خریدار : </span>
-            <span> آفریدی صاحب </span>
-            <span> فیصل آباد </span>
+            <span>{CustomerState.NewOrderCustomer.name} </span>
+            <span> {CustomerState.NewOrderCustomer.address} </span>
           </div>
         </div>
         <div className="row table-responsive">
@@ -162,10 +170,14 @@ const SaleDashboard = () => {
                   <div className="form-control text-center">{stockPrice}</div>
                 </td>
                 <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
-                  <div className="form-control text-center">{ItemState.SelectedItem.costOfItem}</div>
+                  <div className="form-control text-center">
+                    {ItemState.SelectedItem.costOfItem}
+                  </div>
                 </td>
                 <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
-                  <div className="form-control text-center">{ItemState.SelectedItem.totalQuantity}</div>
+                  <div className="form-control text-center">
+                    {ItemState.SelectedItem.totalQuantity}
+                  </div>
                 </td>
                 <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
                   <div className="form-control text-center">{profit}</div>
@@ -216,7 +228,7 @@ const SaleDashboard = () => {
                       ChangeDropdown(e.target.value);
                     }}
                   >
-                    {ItemState.ListOfItems.map((item : any) => (
+                    {ItemState.ListOfItems.map((item: any) => (
                       <>
                         <option key={item.itemName} value={item.itemName} className="py-2">
                           {item.itemName}
@@ -247,7 +259,7 @@ const SaleDashboard = () => {
         </div>
         <div className="col">
           <div style={{ height: "500px", overflow: "scroll" }}>
-            {["", "", "", ""].map((i) => (
+            {GatPassState.NewOrderGatPass.map((gatPass:any) => (
               <GatePass />
             ))}
             <NewGatePass />

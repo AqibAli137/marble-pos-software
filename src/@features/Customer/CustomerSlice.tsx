@@ -4,7 +4,6 @@ const initialSaleCustomerstate = {
   isLoading: true,
   ListOfCustomers:[] as any,
   NewOrderCustomer:{} as any,
-
 }
 
 export const CustomerSlice = createSlice({
