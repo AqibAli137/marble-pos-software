@@ -43,7 +43,6 @@ const NewGatePass = () => {
   //   Profit: 0
   // }
   const handleApi = () => {
-    console.log("api click");
     axios
       .post(
         `https://localhost:7005/api/CustomerOrder/NewOrder/${NewCustomerState.NewOrderCustomer.id}`,

@@ -1,16 +1,34 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useReactToPrint } from "react-to-print";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import axios from "axios";
+import { UpdateAllOrders, UpdateSelectedOrders } from "../../@features/Orders/OrdersSlice";
 // import "./invoicer.css";
 
 const GatePass = () => {
-
   let GatPassState = useSelector((store: RootState) => store.GatPass);
+  let CustomerState = useSelector((store: RootState) => store.Customer);
+  let OrdersState = useSelector((store: RootState) => store.Orders);
+
+  const [customerAllOrders, setCustomerAllOrders] = useState([] as any);
+  const dispatch = useDispatch<AppDispatch>();
+
+  // useEffect(() => {
+  //   axios.get("https://localhost:7005/api/CustomerOrder").then((res) => {
+  //     dispatch(UpdateAllOrders(res.data));
+  //     // UpdateSelectedOrders(
+  //     //   res.data.filter((item: any) => item.customerId === CustomerState.NewOrderCustomer.id)
+  //     // );
+  //   });
+  // }, []);
+
+  useEffect(() => {
+  }, []);
 
   const dataToPrintRef = useRef<HTMLInputElement>(null);
   const [amountInTable, setAmountInTable] = useState(true);
@@ -39,10 +57,9 @@ const GatePass = () => {
               </div>
               <div className="col-12 text-center">
                 <h6 className="my-3">
-                  {" "}
                   <span className="fs6">
-                    {" "}
-                    . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع  ورا ٘ ٹی دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
+                    . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع ورا ٘ ٹی دستیاب ہیں .
+                    <span>موبائل نمبر-03016428683</span>
                   </span>
                 </h6>
               </div>
@@ -52,11 +69,10 @@ const GatePass = () => {
             <div className="row">
               <div style={{ background: "#d9ede1" }} className="col-12 text-center my-3 p-3">
                 <p style={{ fontSize: "12px" }}>
-                  {" "}
                   <span> تاریخ :١٢/١٢/٢٠٢٢</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="name"> نام خریدار :  :</span>
+                  <span className="name"> نام خریدار : :</span>
                   <span> آفریدی صاحب </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <span> فیصل آباد </span>&nbsp;&nbsp;&nbsp;&nbsp; .{" "}
+                  <span> فیصل آباد </span>&nbsp;&nbsp;&nbsp;&nbsp; .
                   <span>موبائل نمبر-03016428683</span>
                 </p>
               </div>
@@ -73,27 +89,29 @@ const GatePass = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="text-center">
-                <td>
-                  <p>08/6/2022, 11am</p>
-                </td>
-                {amountInTable && (
+              {OrdersState.SelectedOrders.map((listItem: any, index: any) => {
+                <tr className="text-center" key={index}>
                   <td>
-                    <p>123</p>
+                    <p>{listItem.orderDate}</p>
                   </td>
-                )}
-                {amountInTable && (
+                  {amountInTable && (
+                    <td>
+                      <p>{listItem.yourbill}</p>
+                    </td>
+                  )}
+                  {amountInTable && (
+                    <td>
+                      <p>{listItem.setPrice}</p>
+                    </td>
+                  )}
                   <td>
-                    <p>57</p>
+                    <p>{listItem.itemQuantity}</p>
                   </td>
-                )}
-                <td>
-                  <p>10</p>
-                </td>
-                <td>
-                  <p>ماربل</p>
-                </td>
-              </tr>
+                  <td>
+                    <p>{listItem.itemName}</p>
+                  </td>
+                </tr>;
+              })}
               {/* Add more rows here */}
             </tbody>
           </table>
@@ -126,3 +144,6 @@ const GatePass = () => {
 };
 
 export default GatePass;
+function dispatch(arg0: any) {
+  throw new Error("Function not implemented.");
+}

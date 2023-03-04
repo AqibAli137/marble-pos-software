@@ -4,6 +4,7 @@ import aquaReducer from "./@features/AquaBill/AquaBillSlice";
 import ItemListSlice from "./@features/ItemListSlice/ItemListSlice";
 import CustomerSlice from "./@features/Customer/CustomerSlice";
 import GatPassSlice from "./@features/GatPass/GatPassSlice";
+import OrdersSlice from "./@features/Orders/OrdersSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     aquaBill: aquaReducer,
     Item : ItemListSlice,
     Customer : CustomerSlice,
-    GatPass:GatPassSlice
+    GatPass:GatPassSlice,
+    Orders:OrdersSlice
   },
 });
 

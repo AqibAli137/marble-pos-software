@@ -15,13 +15,19 @@ import axios from "axios";
 import { UpdateAllItems, UpdateSelectedItem } from "../@features/ItemListSlice/ItemListSlice";
 import { Item } from "../Models/Item";
 import { CustomerOrder } from "../Models/CustomerOrder";
-import { UpdateAllGatPass, UpdateCustomerGatPass } from "../@features/GatPass/GatPassSlice";
+import {
+  UpdateAllGatPass,
+  UpdateCustomerGatPass,
+  UpdateGatPassNumber,
+} from "../@features/GatPass/GatPassSlice";
+import { UpdateSelectedOrders } from "../@features/Orders/OrdersSlice";
 
 const SaleDashboard = () => {
   let saleState = useSelector((store: RootState) => store.sale);
   let ItemState = useSelector((store: RootState) => store.Item);
   let CustomerState = useSelector((store: RootState) => store.Customer);
   let GatPassState = useSelector((store: RootState) => store.GatPass);
+  let OrdersState = useSelector((store: RootState) => store.Orders);
 
   // const [selectedItem, setSelectedItem] = useState(AllItem[0]);
   const [SelectQuantity, setSelectQuantity] = useState(1);
@@ -54,9 +60,19 @@ const SaleDashboard = () => {
       );
     });
 
-    setThisCustomer(CustomerState.NewOrderCustomer);
+    axios.get("https://localhost:7005/api/CustomerOrder").then((res) => {
+      dispatch(UpdateSelectedOrders(
+        res.data.filter((item: any) => item.customerId === CustomerState.NewOrderCustomer.id)
+      ));
 
-    console.log(CustomerState.NewOrderCustomer);
+      // dispatch(
+      //   UpdateCustomerGatPass(
+      //     res.data.filter((item: any) => item.customerId === CustomerState.NewOrderCustomer.id)
+      //   )
+      // );
+    });
+
+    setThisCustomer(CustomerState.NewOrderCustomer);
   }, []);
 
   useEffect(() => {
@@ -259,8 +275,12 @@ const SaleDashboard = () => {
         </div>
         <div className="col">
           <div style={{ height: "500px", overflow: "scroll" }}>
-            {GatPassState.NewOrderGatPass.map((gatPass:any) => (
-              <GatePass />
+            {GatPassState.NewOrderGatPass.map((gatPass: any) => (
+              // dispatch(UpdateGatPassNumber(gatPass.gatePassNo)),
+              // GatPassState.NewOrderGatPass.filter((item: any) => item.gatePassNo !== OrdersState.ListOfOrders.gatePassNo),
+              <>
+                <GatePass />
+              </>
             ))}
             <NewGatePass />
           </div>

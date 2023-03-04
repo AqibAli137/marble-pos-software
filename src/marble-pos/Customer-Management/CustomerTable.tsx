@@ -26,7 +26,6 @@ const CustomerTable = () => {
 
   useEffect(() => {
     axios.get("https://localhost:7005/api/Customer").then((res) => {
-      console.log(res.data);
       setFilterCustomers(res.data);
       dispatch(UpdateAllCustomers(res.data));
       setAllData(res.data);
@@ -85,7 +84,6 @@ const CustomerTable = () => {
         ? dat.pendingPayment === 0 && dat.totalAmount != 0
         : dat.Id != 0
     );
-    console.log(newList);
 
     setFilterCustomers(newList);
   }, [dropdownData]);

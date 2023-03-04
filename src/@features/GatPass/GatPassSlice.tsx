@@ -4,6 +4,7 @@ const initialGatPassState = {
   isLoading: true,
   ListOfGatPass:[] as any,
   NewOrderGatPass:[] as any,
+  GatPassNumber:''
 }
 
 export const GatPassSlice = createSlice({
@@ -15,7 +16,11 @@ export const GatPassSlice = createSlice({
     },
     UpdateCustomerGatPass: (state, {payload}) => {
       state.NewOrderGatPass = payload
+    },
+    UpdateGatPassNumber: (state, {payload}) => {
+      state.GatPassNumber = payload
     }
+
 
   },
   extraReducers: (builder) => {},
@@ -23,6 +28,7 @@ export const GatPassSlice = createSlice({
 
 export const {
   UpdateAllGatPass,
-  UpdateCustomerGatPass
+  UpdateCustomerGatPass,
+  UpdateGatPassNumber
 } = GatPassSlice.actions
 export default GatPassSlice.reducer

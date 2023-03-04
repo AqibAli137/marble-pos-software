@@ -17,7 +17,6 @@ const StockRecord = () => {
 
   useEffect(() => {
     axios.get("https://localhost:7005/api/Item").then((res) => {
-      console.log(res.data);
       dispatch(UpdateAllItems(res.data));
       dispatch(UpdateSelectedItem(res.data[0]));
     });
