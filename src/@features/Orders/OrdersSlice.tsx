@@ -4,7 +4,8 @@ import axios from 'axios'
 const initialOrdersState = {
   isLoading: true,
   ListOfOrders:[] as any,
-  SelectedOrders: [] as any
+  SelectedOrders: [] as any,
+  gatePassOrders:[] as any
 }
 
 export const OrdersSlice = createSlice({
@@ -17,13 +18,16 @@ export const OrdersSlice = createSlice({
     UpdateSelectedOrders: (state, {payload}) => {
         state.SelectedOrders = payload
       },
-   
+      UpdateGatePassOrders: (state, {payload}) => {
+        state.gatePassOrders = payload
+      },
   },
   extraReducers: (builder) => {},
 })
 
 export const {
   UpdateAllOrders,
-  UpdateSelectedOrders
+  UpdateSelectedOrders,
+  UpdateGatePassOrders
 } = OrdersSlice.actions
 export default OrdersSlice.reducer

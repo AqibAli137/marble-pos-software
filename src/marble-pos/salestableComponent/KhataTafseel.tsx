@@ -1,60 +1,46 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
-import { RootState } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import Khatacard from "./Khatacard";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import "../../app.css";
+import { UpdateProfitShow } from "../../@features/Customer/CustomerSlice";
 
 const KhataTafseel = () => {
   let saleState = useSelector((store: RootState) => store.sale);
   let NewCustomerState = useSelector((store: RootState) => store.Customer);
-  const [newSaleItem, setNewSaleItem] = useState(saleState.orderList);
+  let OrdersState = useSelector((store: RootState) => store.Orders);
 
-  useEffect(() => {
-    setNewSaleItem(saleState.orderList);
-  }, [saleState.orderList]);
 
-  const oldData = [
-    {
-      OrderDate: "08/6/2022, 11am",
-      ItemName: "سنی سرمئی",
-      ItemQuantity: 354,
-      SetPrice: 87,
-      YourBill: 78698,
-    },
-    {
-      OrderDate: "09/1/2022, 7pm",
-      ItemName: "بادل",
-      ItemQuantity: 54,
-      SetPrice: 57,
-      YourBill: 56960,
-    },
-    {
-      OrderDate: "11/9/2022, 5pm",
-      ItemName: "سنی سرمئی",
-      ItemQuantity: 78,
-      SetPrice: 45,
-      YourBill: 95680,
-    },
-  ];
+  // const [newSaleItem, setNewSaleItem] = useState(saleState.orderList);
+
+  // useEffect(() => {
+  //   setNewSaleItem(saleState.orderList);
+  // }, [saleState.orderList]);
 
   const dataToPrintRef = useRef<HTMLInputElement>(null);
   const [amountInTable, setAmountInTable] = useState(true);
-  let OrderListState = useSelector((store: RootState) => store.sale);
-  const [saleItem, setSaleItem] = useState([] as any);
-  const [headerShow, setHeaderShow] = useState(false);
-  const [total, setTotal] = useState(0);
+  const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    setSaleItem(OrderListState.orderList);
-  }, [OrderListState.orderList]);
-  useEffect(() => {
-    setSaleItem(OrderListState.orderList);
-  }, []);
+
+  const [withOutProfit, setWithOutProfit] = useState(true);
+
+  let OrderListState = useSelector((store: RootState) => store.sale);
+  // const [saleItem, setSaleItem] = useState([] as any);
+  // const [headerShow, setHeaderShow] = useState(false);
+  // const [total, setTotal] = useState(0);
+
+  // useEffect(() => {
+  //   setSaleItem(OrderListState.orderList);
+  // }, [OrderListState.orderList]);
+  // useEffect(() => {
+  //   setSaleItem(OrderListState.orderList);
+  // }, []);
+  
 
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
@@ -110,61 +96,54 @@ const KhataTafseel = () => {
               </tr>
             </thead>
             <tbody>
-              {oldData.map((i) => (
+              {OrdersState.SelectedOrders.map((i:any) => (
                 <tr className="">
                   <td>
-                    <p>{i.OrderDate}</p>
+                    <p>{i.orderDate}</p>
                   </td>
                   {amountInTable && (
                     <td>
-                      <p>{i.YourBill}</p>
+                      <p>{i.yourbill}</p>
                     </td>
                   )}
                   {amountInTable && (
                     <td>
-                      <p>{i.SetPrice}</p>
+                      <p>{i.setPrice}</p>
                     </td>
                   )}
                   <td>
-                    <p>{i.ItemQuantity}</p>
+                    <p>{i.itemQuantity}</p>
                   </td>
                   <td>
-                    <p>{i.ItemName}</p>
+                    <p>{i.itemName}</p>
                   </td>
                 </tr>
               ))}
-              {/* {newSaleItem.map((i : any) => (
-              <tr className="">
-                <td>
-                  <p>{new Date().toLocaleString() + ""}</p>
-                </td>
-                {amountInTable && <td>
-                  <p>{i.YourBill}</p>
-                </td>}
-                {amountInTable && <td>
-                  <p>{i.SetPrice}</p>
-                </td>}
-                <td>
-                  <p>{i.ItemQuantity}</p>
-                </td>
-                <td>
-                  <p>{i.ItemName}</p>
-                </td>
-              </tr>
-            ))} */}
-              {/* Add more rows here */}
             </tbody>
           </table>
           <Khatacard />
         </div>
       </div>
-      <div className="d-flex justify-content-between px-3">
+      <div className="d-flex justify-content-between p-3">
         <div className="mt-2">
-          <span>WithOut Amount</span>
+          <span className="urdu main">بغیر ریٹ کے</span>
           {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}
           <Checkbox
             {...label}
             onChange={() => setAmountInTable(!amountInTable)}
+            style={{
+              backgroundColor: "#2d705f",
+              marginLeft: "5px",
+            }}
+          />
+        </div>
+        <div className="mt-2">
+        <span className="urdu main">بغیر بچت کے</span>
+
+          {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}
+          <Checkbox
+            {...label}
+            onChange={() => dispatch(UpdateProfitShow(!NewCustomerState.WithOutProfit))}
             style={{
               backgroundColor: "#2d705f",
               marginLeft: "5px",

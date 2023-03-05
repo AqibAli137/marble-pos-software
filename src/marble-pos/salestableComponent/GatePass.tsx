@@ -7,28 +7,50 @@ import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import axios from "axios";
-import { UpdateAllOrders, UpdateSelectedOrders } from "../../@features/Orders/OrdersSlice";
+import { UpdateAllOrders, UpdateGatePassOrders, UpdateSelectedOrders } from "../../@features/Orders/OrdersSlice";
 // import "./invoicer.css";
 
-const GatePass = () => {
+const GatePass = (prop: { gatPassNumber: string }) => {
+  const Number = prop.gatPassNumber;
+
   let GatPassState = useSelector((store: RootState) => store.GatPass);
   let CustomerState = useSelector((store: RootState) => store.Customer);
   let OrdersState = useSelector((store: RootState) => store.Orders);
 
-  const [customerAllOrders, setCustomerAllOrders] = useState([] as any);
+  // const [gatPassOrders, setGatPassOrders] = useState([] as any);
   const dispatch = useDispatch<AppDispatch>();
 
-  // useEffect(() => {
-  //   axios.get("https://localhost:7005/api/CustomerOrder").then((res) => {
-  //     dispatch(UpdateAllOrders(res.data));
-  //     // UpdateSelectedOrders(
-  //     //   res.data.filter((item: any) => item.customerId === CustomerState.NewOrderCustomer.id)
-  //     // );
-  //   });
-  // }, []);
-
   useEffect(() => {
-  }, []);
+
+    let gatPassOrders= OrdersState.SelectedOrders.filter(
+      (item: any) => item.gatePassNumber === Number
+      )
+      UpdateGatePassOrders(gatPassOrders);
+      console.log(OrdersState.SelectedOrders);
+      console.log('ok');
+      
+      
+    }, []);
+
+    // axios.get("https://localhost:7005/api/CustomerOrder").then((res) => {
+    //   dispatch(UpdateAllOrders(res.data));
+    //   let gatPassOrders = res.data.filter(
+    //     (item: any) => item.gatePassNumber === Number && item.customerId===CustomerState.NewOrderCustomer.id
+    //   );
+    //   console.log(Number);
+      
+    //   console.log(gatPassOrders);
+    //   let gatPassOrders=OrdersState.SelectedOrders.filter(
+    //     (item: any) => item.gatePassNumber === Number
+    //   )
+    //   UpdateSelectedOrders(gatPassOrders);
+    //   setGatPassOrders(gatPassOrders)
+    // });
+  // const [list, setList] = useState(OrdersState.SelectedOrders);
+  // useEffect(() => {
+  //   console.log(OrdersState.SelectedOrders);
+  //   setList(OrdersState.SelectedOrders);
+  // }, []);
 
   const dataToPrintRef = useRef<HTMLInputElement>(null);
   const [amountInTable, setAmountInTable] = useState(true);
@@ -89,30 +111,30 @@ const GatePass = () => {
               </tr>
             </thead>
             <tbody>
-              {OrdersState.SelectedOrders.map((listItem: any, index: any) => {
+              {OrdersState.SelectedOrders.map((item:any,index:any)=>(
+                item.gatePassNumber === prop.gatPassNumber &&
                 <tr className="text-center" key={index}>
-                  
-                  {amountInTable && (
-                    <td>
-                      <p>{listItem.yourbill}</p>
-                    </td>
-                  )}
-                  {amountInTable && (
-                    <td>
-                      <p>{listItem.setPrice}</p>
-                    </td>
-                  )}
+                {amountInTable && (
                   <td>
-                    <p>{listItem.itemQuantity}</p>
+                    <p>{item.yourbill}</p>
                   </td>
+                )}
+                {amountInTable && (
                   <td>
-                    <p>{listItem.itemName}</p>
+                    <p>{item.setPrice}</p>
                   </td>
-                  <td>
-                    <p>{listItem.orderDate}</p>
-                  </td>
-                </tr>;
-              })}
+                )}
+                <td>
+                  <p>{item.itemQuantity}</p>
+                </td>
+                <td>
+                  <p>{item.itemName}</p>
+                </td>
+                <td>
+                  <p>{item.orderDate}</p>
+                </td>
+              </tr>
+              ))}
               {/* Add more rows here */}
             </tbody>
           </table>
@@ -145,6 +167,3 @@ const GatePass = () => {
 };
 
 export default GatePass;
-function dispatch(arg0: any) {
-  throw new Error("Function not implemented.");
-}

@@ -49,13 +49,15 @@ const CustomerTable = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-  const handlePopOver = () => {
+  const handlePopOver = (dataa: any) => {
+    console.log(dataa);
+
     setModalOpen(true);
     setAnchorEl(null);
   };
+
   const handleNewOrder = (dat: any) => {
-    dispatch(UpdateNewOrderCustomer(dat)) &&
-    navigate("/sale");
+    dispatch(UpdateNewOrderCustomer(dat)) && navigate("/sale");
     // console.log(dat);
   };
   // const handleDetails = (row: any) => {
@@ -75,17 +77,37 @@ const CustomerTable = () => {
   }, [search]);
 
   useEffect(() => {
-    const newList = allData.filter((dat: any) =>
-      dropdownData === "No Start"
-        ? dat.totalAmount === 0
-        : dropdownData === "Have Pending"
-        ? dat.pendingPayment != 0
-        : dropdownData === "No Pending"
-        ? dat.pendingPayment === 0 && dat.totalAmount != 0
-        : dat.Id != 0
+    console.log(allData);
+
+    const NotStart = allData.filter((dat: any) => dat.totalBill === 0);
+    const ContinueRecord = allData.filter(
+      (dat: any) => dat.pendingPayment != 0 && dat.totalBill != 0
+    );
+    const ZeroRecord = allData.filter(
+      (dat: any) => dat.pendingPayment === 0 && dat.totalBill != 0
     );
 
-    setFilterCustomers(newList);
+    dropdownData === "No Start" &&  setFilterCustomers(NotStart);
+
+    dropdownData === "Continue" &&  setFilterCustomers(ContinueRecord);
+
+    dropdownData === "Zero" &&  setFilterCustomers(ZeroRecord);
+
+    dropdownData === "All Data" &&  setFilterCustomers(allData);
+
+    
+
+      // const newList = allData.filter((dat: any) =>
+      //   dropdownData === "No Start"
+      //     ? dat.totalAmount === 0
+      //     : dropdownData === "continue"
+      //     ? dat.pendingPayment != 0 && dat.totalAmount != 0
+      //     : dropdownData === "Zero"
+      //     ? dat.pendingPayment === 0 && dat.totalAmount != 0
+      //     : dat.Id != 0
+      // );
+
+      // setFilterCustomers(newList);
   }, [dropdownData]);
 
   // const filteredData = data.filter(
@@ -128,10 +150,10 @@ const CustomerTable = () => {
               setDropdownData(e.target.value);
             }}
           >
-            <option value="All Data">کل</option>
-            <option value="No Start">شروع نہیں </option>
-            <option value="Have Pending">ادا نہیں کیا </option>
-            <option value="No Pending">ادا کردیا </option>
+            <option value="All Data">کل کسٹمر</option>
+            <option value="No Start">ابھی شروع نہیں ہوا</option>
+            <option value="Continue">جاری رہے</option>
+            <option value="Zero">کھاتا نیل ہو گیا</option>
           </select>
         </Col>
       </Row>
@@ -154,7 +176,7 @@ const CustomerTable = () => {
               {FilterCustomers.map((dat: any, index: any) => (
                 <tr
                   className={
-                    dat.totalAmount === 0
+                    dat.totalAmount === 0 && dat.pendingPayment === 0
                       ? "danger"
                       : dat.pendingPayment === 0
                       ? "success"
@@ -167,13 +189,17 @@ const CustomerTable = () => {
                     <div className="text-black buttonColor">
                       <Button
                         variant="text"
-                        type="button"
                         className="shadow-none ActiveEffect text-black buttonColor"
                       >
-                        <span className=" urdu" onClick={handlePopOver}>
-                          ادائیگی
-                        </span>
-                        <MonetizationOnIcon />
+                        <div
+                          className=""
+                          onClick={() => {
+                            handlePopOver(dat);
+                          }}
+                        >
+                          <span className=" urdu">ادائیگی</span>
+                          <ViewComfyIcon />
+                        </div>
                       </Button>
 
                       <Button
@@ -272,7 +298,7 @@ const CustomerTable = () => {
                   <td>{dat.totalBill}</td>
                   <td className="text-end">
                     {index === 3 || index === 0
-                      ? "    ادا کردیا "
+                      ? "ادا کردیا"
                       : index === 2
                       ? "ادا نہیں کیا"
                       : "شروع نہیں"}
@@ -290,6 +316,17 @@ const CustomerTable = () => {
           </Table>
         </Col>
       </Row>
+      <Modal show={ModalOpen} onHide={closeModal}>
+        <Modal.Header>
+          <Modal.Title> ادائیگی موصول </Modal.Title>
+        </Modal.Header>
+        <PayementRCV />
+        <Modal.Footer className="text-center">
+          <div onClick={() => setModalOpen(false)}>
+            <ExitToAppIcon color="error" fontSize="medium" />
+          </div>
+        </Modal.Footer>
+      </Modal>
       {/* <Row className="mt-3">
         <Col md={12}>
           <Pagination
@@ -310,6 +347,3 @@ const CustomerTable = () => {
 };
 
 export default CustomerTable;
-function dispatch(arg0: any) {
-  throw new Error("Function not implemented.");
-}

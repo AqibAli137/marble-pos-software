@@ -52,25 +52,23 @@ const SaleDashboard = () => {
 
     axios.get("https://localhost:7005/api/GatePass").then((res) => {
       dispatch(UpdateAllGatPass(res.data));
+      // console.log(res.data);
 
-      dispatch(
-        UpdateCustomerGatPass(
-          res.data.filter((item: any) => item.customerId === CustomerState.NewOrderCustomer.id)
-        )
+      let gatPassFilter = res.data.filter(
+        (item: any) => item.customerId === CustomerState.NewOrderCustomer.id
       );
+      // console.log(gatPassFilter);
+
+      dispatch(UpdateCustomerGatPass(gatPassFilter));
     });
 
     axios.get("https://localhost:7005/api/CustomerOrder").then((res) => {
-      dispatch(UpdateSelectedOrders(
-        res.data.filter((item: any) => item.customerId === CustomerState.NewOrderCustomer.id)
-      ));
-
-      // dispatch(
-      //   UpdateCustomerGatPass(
-      //     res.data.filter((item: any) => item.customerId === CustomerState.NewOrderCustomer.id)
-      //   )
-      // );
+      let filterCustomerorder = res.data.filter(
+        (item: any) => item.customerId === CustomerState.NewOrderCustomer.id
+      );
+      dispatch(UpdateSelectedOrders(filterCustomerorder));
     });
+    // console.log(GatPassState.NewOrderGatPass);
 
     setThisCustomer(CustomerState.NewOrderCustomer);
   }, []);
@@ -276,11 +274,7 @@ const SaleDashboard = () => {
         <div className="col">
           <div style={{ height: "500px", overflow: "scroll" }}>
             {GatPassState.NewOrderGatPass.map((gatPass: any) => (
-              // dispatch(UpdateGatPassNumber(gatPass.gatePassNo)),
-              // GatPassState.NewOrderGatPass.filter((item: any) => item.gatePassNo !== OrdersState.ListOfOrders.gatePassNo),
-              <>
-                <GatePass />
-              </>
+                <GatePass gatPassNumber={gatPass.gatePassNo}  />
             ))}
             <NewGatePass />
           </div>

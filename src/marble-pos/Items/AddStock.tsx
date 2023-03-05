@@ -9,12 +9,6 @@ import { Item } from "../../Models/Item";
 import axios from "axios";
 import { UpdateAllItems, UpdateSelectedItem } from "../../@features/ItemListSlice/ItemListSlice";
 
-// const items = [
-//   {Id:11, ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
-//   {Id:12, ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
-//   {Id:1013, ItemName: "ٹیسٹ ماربل", CostOfItem: 90, TotalQuantity: 150, TotalAmount: 90 * 150 },
-// ];
-
 const AddStock = () => {
   // let CustomerState = useSelector((store: RootState) => store.Customer);
   let ItemState = useSelector((store: RootState) => store.Item);
@@ -54,12 +48,12 @@ const AddStock = () => {
     setSelectPrice(60);
     setSelectQuantity(1);
   };
-  const newSaleItem = {
-    ItemName: ItemState.SelectedItem.itemName,
-    ItemQuantity: SelectQuantity,
-    SetPrice: SelectPrice,
-    YourBill: yourBill,
-  };
+  // const newSaleItem = {
+  //   ItemName: ItemState.SelectedItem.itemName,
+  //   ItemQuantity: SelectQuantity,
+  //   SetPrice: SelectPrice,
+  //   YourBill: yourBill,
+  // };
 
   const ItemRecord: Item={
     Id: ItemState.SelectedItem.id,
