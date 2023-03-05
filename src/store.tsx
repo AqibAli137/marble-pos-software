@@ -5,6 +5,8 @@ import ItemListSlice from "./@features/ItemListSlice/ItemListSlice";
 import CustomerSlice from "./@features/Customer/CustomerSlice";
 import GatPassSlice from "./@features/GatPass/GatPassSlice";
 import OrdersSlice from "./@features/Orders/OrdersSlice";
+import PaymentRcvSlice from "./@features/Payment/PaymentSlice";
+
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +15,8 @@ export const store = configureStore({
     Item : ItemListSlice,
     Customer : CustomerSlice,
     GatPass:GatPassSlice,
-    Orders:OrdersSlice
+    Orders:OrdersSlice,
+    PaymentRcv: PaymentRcvSlice,
   },
 });
 

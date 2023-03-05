@@ -17,7 +17,7 @@ const NewGatePass = () => {
   let NewCustomerState = useSelector((store: RootState) => store.Customer);
 
   const [saleItem, setSaleItem] = useState([] as any);
-  const [headerShow, setHeaderShow] = useState(false);
+  const [EditName, setEditName] = useState('empty');
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -30,28 +30,16 @@ const NewGatePass = () => {
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
   });
-  // const NewOrderList:CustomerOrder={
-  //   Id: 0,
-  //   ItemId: 0,
-  //   CustomerId: NewCustomerState.NewOrderCustomer.id,
-  //   ItemName: "",
-  //   ItemQuantity: OrderListState.orderList.ItemQuantity,
-  //   OrderDate: "",
-  //   SetPrice: 0,
-  //   Yourbill: 0,
-  //   GatePassNumber: "",
-  //   Profit: 0
-  // }
+  
   const handleApi = () => {
     axios
       .post(
         `https://localhost:7005/api/CustomerOrder/NewOrder/${NewCustomerState.NewOrderCustomer.id}`,
-        OrderListState.orderList    
+        OrderListState.orderList
       )
       .then((res) => {});
     // console.log(OrderListState.orderList);
     // console.log(NewCustomerState.NewOrderCustomer.id);
-    
   };
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -74,9 +62,7 @@ const NewGatePass = () => {
               </div>
               <div className="col-12 text-center">
                 <h6 className="my-3">
-                  
                   <span className="fs6">
-                    
                     ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع ورا ٘ ٹی دستیاب ہیں .
                     <span>موبائل نمبر-03016428683</span>
                   </span>
@@ -88,13 +74,12 @@ const NewGatePass = () => {
             <div className="row">
               <div style={{ background: "#d9ede1" }} className="col-12 text-center my-3 p-3">
                 <p style={{ fontSize: "12px" }}>
-                  
                   {/* <span> تاریخ :{new Date().toLocaleString() + ""}</span> &nbsp;&nbsp;&nbsp;&nbsp; */}
                   <span className="name"> نام خریدار : :</span>
                   <span> {NewCustomerState.NewOrderCustomer.name} </span>&nbsp;&nbsp;&nbsp;&nbsp;
                   {/* <span> : </span> */}
-                  <span> {NewCustomerState.NewOrderCustomer.address}</span>&nbsp;&nbsp;&nbsp;&nbsp; .
-                  <span>موبائل نمبر-{NewCustomerState.NewOrderCustomer.phoneNo}</span>
+                  <span> {NewCustomerState.NewOrderCustomer.address}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                  .<span>موبائل نمبر-{NewCustomerState.NewOrderCustomer.phoneNo}</span>
                 </p>
               </div>
             </div>
@@ -114,8 +99,15 @@ const NewGatePass = () => {
                 <tr>
                   {amountInTable && <td>{item.YourBill}</td>}
                   {amountInTable && <td>{item.SetPrice}</td>}
-                  <td>{item.ItemQuantity}</td>
-                  <td>{item.ItemName}</td>
+                  <td>
+                    {item.ItemQuantity}</td>
+                  <td className="text-center">
+                    <div className="form-control text-center w-100 border-0"
+                    style={{maxWidth: "200px", minWidth: "200px" , overflow:"hidden", alignItems:"center"}}
+                    contentEditable="true">
+                    {item.ItemName}
+                    </div>
+                  </td>
                   <td>{new Date().toLocaleString() + ""}</td>
                 </tr>
               ))}

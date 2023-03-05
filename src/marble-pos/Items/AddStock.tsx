@@ -10,19 +10,10 @@ import axios from "axios";
 import { UpdateAllItems, UpdateSelectedItem } from "../../@features/ItemListSlice/ItemListSlice";
 
 const AddStock = () => {
-  // let CustomerState = useSelector((store: RootState) => store.Customer);
   let ItemState = useSelector((store: RootState) => store.Item);
-
-
-  // const [selectedItem, setSelectedItem] = useState(ItemState.SelectedItem[0]);
-
   const [SelectQuantity, setSelectQuantity] = useState(1);
-  const [thisCustomer, setThisCustomer] = useState({} as any);
-
   const [SelectPrice, setSelectPrice] = useState(60);
   const [yourBill, setYourBill] = useState(60);
-
-  const [saleItem, setSaleItem] = useState([] as any);
   const [ItemAddSpanShow, setItemAddSpanShow] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   let saleState = useSelector((store: RootState) => store.sale);

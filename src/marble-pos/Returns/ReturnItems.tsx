@@ -1,35 +1,47 @@
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import LocalFooter from "../../layouts/Advatisment/LocalFooter";
 import { AppDispatch, RootState } from "../../store";
-import '../../app.css'
+import "../../app.css";
+import axios from "axios";
+import { UpdateAllItems, UpdateSelectedItem } from "../../@features/ItemListSlice/ItemListSlice";
 const ReturnItems = () => {
-  const items = [
-    { ItemName: "سنی سرمئی", CostOfItem: 50, TotalQuantity: 500, TotalAmount: 50 * 500 },
-    { ItemName: "بادل", CostOfItem: 60, TotalQuantity: 320, TotalAmount: 60 * 320 },
-    { ItemName: "سکیٹنگ", CostOfItem: 90, TotalQuantity: 150333, TotalAmount: 90 * 150 },
-    { ItemName: "ٹویٹرا", CostOfItem: 60, TotalQuantity: 450, TotalAmount: 60 * 450 },
-    { ItemName: "کالا ماربل", CostOfItem: 150, TotalQuantity: 850, TotalAmount: 150 * 850 },
-  ];
-  const [selectedItem, setSelectedItem] = useState(items[0]);
+  let ItemState = useSelector((store: RootState) => store.Item);
   const [SelectQuantity, setSelectQuantity] = useState(1);
-  const [SelectPrice, setSelectPrice] = useState(60);
-  const [yourBill, setYourBill] = useState(60);
-  const [saleItem, setSaleItem] = useState([] as any);
-  const [ItemAddSpanShow, setItemAddSpanShow] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   let saleState = useSelector((store: RootState) => store.sale);
 
+  useEffect(() => {
+    axios.get("https://localhost:7005/api/Item").then((res) => {
+      dispatch(UpdateAllItems(res.data));
+      dispatch(UpdateSelectedItem(res.data[0]));
+    });
+  }, []);
+
   const ChangeDropdown = (val: any) => {
-    const selectedItem = items.find((item) => item.ItemName === val);
-    setSelectedItem(selectedItem as any);
-    setYourBill(60);
-    setSelectPrice(60);
+    const selectedItem = ItemState.ListOfItems.find((item: any) => item.itemName === val);
+    dispatch(UpdateSelectedItem(selectedItem as any));
     setSelectQuantity(1);
   };
+  
+  const handleSubmit = () => {
+    // {
+    //   Password != "test123"
+    //     ? alert("آپ اس سروس کو استعمال نہیں کر سکتے")
+    //     : axios
+    //         .put("https://localhost:7005/api/Customer/PayementRcv", CustomerData)
+    //         .then((res) => {
+    //           alert("آپ کی ادائیگی اور رعایت کامیابی کے ساتھ Update ہو گئی۔");
+    //         })
+    //         .catch((err) => {
+    //           alert("کچھ غلطی ہے، دوبارہ کوشش کریں۔");
+    //         });
+    // }
+  };
+
   return (
     <div className="">
       <DashboardLayout>
@@ -47,18 +59,17 @@ const ReturnItems = () => {
                 {" "}
                 <span className="fs6">
                   {" "}
-                  . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع  ورا ٘ ٹی دستیاب ہیں . <span>موبائل نمبر-03016428683</span>
+                  . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع ورا ٘ ٹی دستیاب ہیں .{" "}
+                  <span>موبائل نمبر-03016428683</span>
                 </span>
               </h5>
             </div>
           </div>
           <div className="my-2">
-          <div style={{ background: "#d9ede1" }} className="row">
-            <div className="col-12 text-center py-3">
-            <span>
-            ماربل کی واپسی کے لیے
-            </span>
-            </div>
+            <div style={{ background: "#d9ede1" }} className="row">
+              <div className="col-12 text-center py-3">
+                <span>ماربل کی واپسی کے لیے</span>
+              </div>
             </div>
           </div>
           <div className="row mt-1">
@@ -73,7 +84,9 @@ const ReturnItems = () => {
               <tbody>
                 <tr className="text-center">
                   <td>
-                    <Button variant="contained" className="ActiveEffect text-white">
+                    <Button variant="contained" className="ActiveEffect text-white"
+                    onClick={handleSubmit}
+                    >
                       <span className="mx-2">ماربل واپس</span>
                     </Button>
                   </td>
@@ -84,14 +97,9 @@ const ReturnItems = () => {
                       value={SelectQuantity}
                       min="0"
                       step="10"
-                      max={selectedItem.TotalQuantity}
+                      max={ItemState.SelectedItem.totalQuantity}
                       onChange={(e) => {
-                        if (
-                          parseInt(e.target.value) === selectedItem.TotalQuantity ||
-                          parseInt(e.target.value) < selectedItem.TotalQuantity
-                        ) {
-                          setSelectQuantity(parseInt(e.target.value));
-                        }
+                        setSelectQuantity(parseFloat(e.target.value));
                       }}
                     />
                   </td>
@@ -103,9 +111,9 @@ const ReturnItems = () => {
                         ChangeDropdown(e.target.value);
                       }}
                     >
-                      {items.map((item) => (
-                        <option key={item.ItemName} value={item.ItemName}>
-                          {item.ItemName}
+                      {ItemState.ListOfItems.map((item: any) => (
+                        <option key={item.itemName} value={item.itemName}>
+                          {item.itemName}
                         </option>
                       ))}
                     </select>

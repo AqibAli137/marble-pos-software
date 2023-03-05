@@ -21,7 +21,7 @@ const FirstTable = (props: { TableData: [] }) => {
             <th>منسوخ </th>
             <th>قیمت </th>
             <th>ریٹ </th>
-            <th>تعداد </th>
+            <th>تعداد / فٹ </th>
             <th>نام جنس </th>
           </tr>
         </thead>

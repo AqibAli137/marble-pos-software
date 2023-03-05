@@ -15,11 +15,7 @@ import axios from "axios";
 import { UpdateAllItems, UpdateSelectedItem } from "../@features/ItemListSlice/ItemListSlice";
 import { Item } from "../Models/Item";
 import { CustomerOrder } from "../Models/CustomerOrder";
-import {
-  UpdateAllGatPass,
-  UpdateCustomerGatPass,
-  UpdateGatPassNumber,
-} from "../@features/GatPass/GatPassSlice";
+import { UpdateAllGatPass, UpdateCustomerGatPass } from "../@features/GatPass/GatPassSlice";
 import { UpdateSelectedOrders } from "../@features/Orders/OrdersSlice";
 
 const SaleDashboard = () => {
@@ -217,23 +213,31 @@ const SaleDashboard = () => {
                   />
                 </td>
 
-                <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
-                  <input
-                    className="form-control text-center"
-                    type="number"
-                    value={SelectQuantity}
-                    min="0"
-                    step="10"
-                    max={ItemState.SelectedItem.totalQuantity}
-                    onChange={(e) => {
-                      if (
-                        parseInt(e.target.value) === ItemState.SelectedItem.totalQuantity ||
-                        parseInt(e.target.value) < ItemState.SelectedItem.totalQuantity
-                      ) {
-                        setSelectQuantity(parseInt(e.target.value));
-                      }
-                    }}
-                  />
+                <td style={{ maxWidth: "max-content", minWidth: "90px" }}>
+                  <div className="d-flex justify-content-between">
+                    <div
+                      style={{ maxWidth: "max-content", minWidth: "max-content" }}
+                      className="bg-white text-center"
+                    >
+                      {ItemState.SelectedItem.typeOfItem === "فٹ" ? "فٹ" : "عدد"}
+                    </div>
+                    <input
+                      className="form-control text-center"
+                      type="number"
+                      value={SelectQuantity}
+                      min="0"
+                      step="10"
+                      max={ItemState.SelectedItem.totalQuantity}
+                      onChange={(e) => {
+                        if (
+                          parseInt(e.target.value) === ItemState.SelectedItem.totalQuantity ||
+                          parseInt(e.target.value) < ItemState.SelectedItem.totalQuantity
+                        ) {
+                          setSelectQuantity(parseInt(e.target.value));
+                        }
+                      }}
+                    />
+                  </div>
                 </td>
                 <td style={{ maxWidth: "200px", minWidth: "max-content" }} className="form-control">
                   <select
@@ -274,7 +278,7 @@ const SaleDashboard = () => {
         <div className="col">
           <div style={{ height: "500px", overflow: "scroll" }}>
             {GatPassState.NewOrderGatPass.map((gatPass: any) => (
-                <GatePass gatPassNumber={gatPass.gatePassNo}  />
+              <GatePass gatPassNumber={gatPass.gatePassNo} />
             ))}
             <NewGatePass />
           </div>

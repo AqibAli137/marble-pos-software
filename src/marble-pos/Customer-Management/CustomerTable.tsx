@@ -14,6 +14,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { UpdateAllCustomers, UpdateNewOrderCustomer } from "../../@features/Customer/CustomerSlice";
+import { UpdateCustomerPaymentRcv } from "../../@features/Payment/PaymentSlice";
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([] as any);
@@ -52,18 +53,16 @@ const CustomerTable = () => {
   const handlePopOver = (dataa: any) => {
     console.log(dataa);
 
+    dispatch(UpdateCustomerPaymentRcv(dataa));
     setModalOpen(true);
     setAnchorEl(null);
   };
 
   const handleNewOrder = (dat: any) => {
     dispatch(UpdateNewOrderCustomer(dat)) && navigate("/sale");
-    // console.log(dat);
   };
-  // const handleDetails = (row: any) => {
-  //   navigate("/explore");
-  // };
   const handleReturns = (row: any) => {
+    dispatch(UpdateCustomerPaymentRcv(row)) &&
     navigate("/returns");
   };
 
@@ -83,17 +82,15 @@ const CustomerTable = () => {
     const ContinueRecord = allData.filter(
       (dat: any) => dat.pendingPayment != 0 && dat.totalBill != 0
     );
-    const ZeroRecord = allData.filter(
-      (dat: any) => dat.pendingPayment === 0 && dat.totalBill != 0
-    );
+    const ZeroRecord = allData.filter((dat: any) => dat.pendingPayment === 0 && dat.totalBill != 0);
 
-    dropdownData === "No Start" &&  setFilterCustomers(NotStart);
+    dropdownData === "No Start" && setFilterCustomers(NotStart);
 
-    dropdownData === "Continue" &&  setFilterCustomers(ContinueRecord);
+    dropdownData === "Continue" && setFilterCustomers(ContinueRecord);
 
-    dropdownData === "Zero" &&  setFilterCustomers(ZeroRecord);
+    dropdownData === "Zero" && setFilterCustomers(ZeroRecord);
 
-    dropdownData === "All Data" &&  setFilterCustomers(allData);
+    dropdownData === "All Data" && setFilterCustomers(allData);
   }, [dropdownData]);
 
   // const filteredData = data.filter(
@@ -145,7 +142,7 @@ const CustomerTable = () => {
       </Row>
       <Row>
         <Col md={12} className="urdu" style={{ height: "80vh", overflow: "scroll" }}>
-          <Table hover className="bg-transparent p-3 rounded-4 table-bordered h-100" responsive>
+          <Table hover className="bg-transparent rounded-4 table-bordered h-100" responsive>
             <thead>
               <tr className="text-center bg-white">
                 <th className="py-3">عمل</th>
@@ -162,9 +159,9 @@ const CustomerTable = () => {
               {FilterCustomers.map((dat: any, index: any) => (
                 <tr
                   className={
-                    dat.totalAmount === 0 && dat.pendingPayment === 0
+                    dat.totalBill === 0 && dat.pendingPayment === 0
                       ? "danger"
-                      : dat.pendingPayment === 0
+                      : dat.pendingPayment === 0 && dat.totalBill != 0
                       ? "success"
                       : "greyCol"
                   }
@@ -192,8 +189,8 @@ const CustomerTable = () => {
                         variant="text"
                         className="shadow-none ActiveEffect text-black buttonColor"
                       >
-                        <div className="" onClick={handleReturns.bind(this, dat)}>
-                          <span className=" urdu">آئٹمز واپس کریں۔</span>
+                        <div className="" onClick={()=>handleReturns(dat)}>
+                          <span className=" urdu">واپس کریں۔</span>
                           <ViewComfyIcon />
                         </div>
                       </Button>
@@ -283,11 +280,11 @@ const CustomerTable = () => {
                   </td>
                   <td>{dat.totalBill}</td>
                   <td className="text-end">
-                    {index === 3 || index === 0
-                      ? "ادا کردیا"
-                      : index === 2
-                      ? "ادا نہیں کیا"
-                      : "شروع نہیں"}
+                    {console.log(dat)}
+                    
+                    {dat.totalBill === 0 && dat.pendingPayment === 0 ? "شروع نہیں" :
+                    dat.pendingPayment === 0 && dat.totalBill != 0 ? "کھاتا نیل ہو گیا":
+                    'جاری رہے'}
                   </td>
 
                   <td>{dat.pendingPayment}</td>
