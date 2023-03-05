@@ -94,20 +94,6 @@ const CustomerTable = () => {
     dropdownData === "Zero" &&  setFilterCustomers(ZeroRecord);
 
     dropdownData === "All Data" &&  setFilterCustomers(allData);
-
-    
-
-      // const newList = allData.filter((dat: any) =>
-      //   dropdownData === "No Start"
-      //     ? dat.totalAmount === 0
-      //     : dropdownData === "continue"
-      //     ? dat.pendingPayment != 0 && dat.totalAmount != 0
-      //     : dropdownData === "Zero"
-      //     ? dat.pendingPayment === 0 && dat.totalAmount != 0
-      //     : dat.Id != 0
-      // );
-
-      // setFilterCustomers(newList);
   }, [dropdownData]);
 
   // const filteredData = data.filter(
