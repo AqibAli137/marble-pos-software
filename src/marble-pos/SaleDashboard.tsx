@@ -128,7 +128,7 @@ const SaleDashboard = () => {
           <div className="col-12 text-center">
             <h1 className="my-3">
               <span>
-                سبحان ماربل اینڈ گرینائٹ <span className="fs-6">جی ٹی روڈ کاموکی</span>
+                سبحان ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
               </span>
             </h1>
           </div>
@@ -137,8 +137,8 @@ const SaleDashboard = () => {
               {" "}
               <span className="fs6">
                 {" "}
-                . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع ورا ٘ ٹی دستیاب ہیں .{" "}
-                <span>موبائل نمبر-03016428683</span>
+               ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب ہے۔
+                <span>نوید اختر-03016428683</span>
               </span>
             </h5>
           </div>
@@ -219,7 +219,7 @@ const SaleDashboard = () => {
                       style={{ maxWidth: "max-content", minWidth: "max-content" }}
                       className="bg-white text-center"
                     >
-                      {ItemState.SelectedItem.typeOfItem === "فٹ" ? "فٹ" : "عدد"}
+                      {ItemState.SelectedItem.typeOfItem}
                     </div>
                     <input
                       className="form-control text-center"

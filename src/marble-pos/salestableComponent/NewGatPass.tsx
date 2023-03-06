@@ -15,9 +15,10 @@ const NewGatePass = () => {
   const [amountInTable, setAmountInTable] = useState(true);
   let OrderListState = useSelector((store: RootState) => store.sale);
   let NewCustomerState = useSelector((store: RootState) => store.Customer);
+  let ItemState = useSelector((store: RootState) => store.Item);
 
   const [saleItem, setSaleItem] = useState([] as any);
-  const [EditName, setEditName] = useState('empty');
+  const [EditName, setEditName] = useState("empty");
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const NewGatePass = () => {
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
   });
-  
+
   const handleApi = () => {
     axios
       .post(
@@ -48,23 +49,28 @@ const NewGatePass = () => {
     <div className="">
       <div ref={dataToPrintRef} className="container urdu fs-6 bg-white my-3 borders">
         <div className="pb-1">
-          <div className="gatepass text-center p-3  ">
-            <h3 className="fs-5">گیٹ پاس</h3>
-          </div>
           <div>
             <div style={{ background: "#d9ede1" }} className="row">
+              <div className="gatepass text-center pt-3">
+                <p className="fs-6">گیٹ پاس</p>
+              </div>
               <div className="coxl-12 text-center">
                 <h3 className="my-3">
                   <span>
-                    سبحان ماربل اینڈ گرینائٹ <span className="fs-6">جی ٹی روڈ کاموکی</span>
+                    سبحان ماربل اینڈ گرینائٹ{" "}
+                    <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
                   </span>
                 </h3>
               </div>
               <div className="col-12 text-center">
                 <h6 className="my-3">
-                  <span className="fs6">
-                    ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ کی وسیع ورا ٘ ٹی دستیاب ہیں .
-                    <span>موبائل نمبر-03016428683</span>
+                  <span className="fs-6">
+                    <p className="mb-3">
+                      ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب
+                      ہے۔
+                    </p>
+                    <br />
+                    <span>نوید اختر-03016428683</span>
                   </span>
                 </h6>
               </div>
@@ -100,12 +106,34 @@ const NewGatePass = () => {
                   {amountInTable && <td>{item.YourBill}</td>}
                   {amountInTable && <td>{item.SetPrice}</td>}
                   <td>
-                    {item.ItemQuantity}</td>
+                    <div className="d-flex justify-content-between">
+                      <div
+                        style={{ maxWidth: "max-content", minWidth: "max-content" }}
+                        className="bg-white text-center"
+                      >
+                        {ItemState.ListOfItems.map(
+                          (itemRecord: any, index: any) =>
+                            itemRecord.id === item.ItemId && (
+                              <span key={index}>{itemRecord.typeOfItem}</span>
+                            )
+                        )}
+                      </div>
+                      {/* <span>-</span> */}
+                      <p>{item.ItemQuantity}</p>
+                    </div>
+                  </td>
                   <td className="text-center">
-                    <div className="form-control text-center w-100 border-0"
-                    style={{maxWidth: "200px", minWidth: "200px" , overflow:"hidden", alignItems:"center"}}
-                    contentEditable="true">
-                    {item.ItemName}
+                    <div
+                      className="form-control text-center w-100 border-0"
+                      style={{
+                        maxWidth: "200px",
+                        minWidth: "200px",
+                        overflow: "hidden",
+                        alignItems: "center",
+                      }}
+                      contentEditable="true"
+                    >
+                      {item.ItemName}
                     </div>
                   </td>
                   <td>{new Date().toLocaleString() + ""}</td>
@@ -114,6 +142,11 @@ const NewGatePass = () => {
               {/* Add more rows here */}
             </tbody>
           </table>
+        </div>
+        <div
+          className="d-flex align-items-end mt-5"
+        >
+          <span className="mt-5">دستخط ۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔</span>
         </div>
       </div>
       <div className="d-flex justify-content-between px-3">

@@ -14,33 +14,15 @@ const KhataTafseel = () => {
   let saleState = useSelector((store: RootState) => store.sale);
   let NewCustomerState = useSelector((store: RootState) => store.Customer);
   let OrdersState = useSelector((store: RootState) => store.Orders);
-
-
-  // const [newSaleItem, setNewSaleItem] = useState(saleState.orderList);
-
-  // useEffect(() => {
-  //   setNewSaleItem(saleState.orderList);
-  // }, [saleState.orderList]);
+  let ItemState = useSelector((store: RootState) => store.Item);
 
   const dataToPrintRef = useRef<HTMLInputElement>(null);
   const [amountInTable, setAmountInTable] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
 
-
   const [withOutProfit, setWithOutProfit] = useState(true);
 
   let OrderListState = useSelector((store: RootState) => store.sale);
-  // const [saleItem, setSaleItem] = useState([] as any);
-  // const [headerShow, setHeaderShow] = useState(false);
-  // const [total, setTotal] = useState(0);
-
-  // useEffect(() => {
-  //   setSaleItem(OrderListState.orderList);
-  // }, [OrderListState.orderList]);
-  // useEffect(() => {
-  //   setSaleItem(OrderListState.orderList);
-  // }, []);
-  
 
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
@@ -60,7 +42,7 @@ const KhataTafseel = () => {
               <div className="coxl-12 text-center">
                 <h3 className="my-3">
                   <span>
-                    سبحان ماربل اینڈ گرینائٹ <span className="fs-6">جی ٹی روڈ کاموکی</span>
+                    سبحان ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
                   </span>
                 </h3>
               </div>
@@ -68,8 +50,8 @@ const KhataTafseel = () => {
                 <h6 className="my-3">
                   {" "}
                   <span className="fs6">
-                    <p className="mb-3"> . ہمارے ہاں ہر قسم کی ماربل اور گرینائٹ دستیاب ہیں </p>
-                    <p>موبائل نمبر-03016428683</p>
+                    <p className="mb-3"> ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب ہے۔  </p>
+                    <p>نوید اختر-03016428683</p>
                   </span>
                 </h6>
               </div>
@@ -96,7 +78,7 @@ const KhataTafseel = () => {
               </tr>
             </thead>
             <tbody>
-              {OrdersState.SelectedOrders.map((i:any) => (
+              {OrdersState.SelectedOrders.map((i: any) => (
                 <tr className="">
                   <td>
                     <p>{i.orderDate}</p>
@@ -112,10 +94,35 @@ const KhataTafseel = () => {
                     </td>
                   )}
                   <td>
-                    <p>{i.itemQuantity}</p>
+                    <div className="d-flex justify-content-between">
+                      <div
+                        style={{ maxWidth: "max-content", minWidth: "max-content" }}
+                        className="bg-white text-center"
+                      >
+                        {ItemState.ListOfItems.map(
+                          (itemRecord: any, index: any) =>
+                            itemRecord.id === i.itemId && (
+                              <span key={index}>{itemRecord.typeOfItem}</span>
+                            )
+                        )}
+                      </div>
+                      {/* <span>-</span> */}
+                      <p> {i.itemQuantity}</p>
+                    </div>
                   </td>
-                  <td>
-                    <p>{i.itemName}</p>
+                  <td className="text-center">
+                    <div
+                      className="form-control text-center w-100 border-0"
+                      style={{
+                        maxWidth: "120px",
+                        minWidth: "180px",
+                        overflow: "hidden",
+                        alignItems: "center",
+                      }}
+                      contentEditable="true"
+                    >
+                      {i.itemName}
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -123,6 +130,7 @@ const KhataTafseel = () => {
           </table>
           <Khatacard />
         </div>
+        
       </div>
       <div className="d-flex justify-content-between p-3">
         <div className="mt-2">
@@ -138,7 +146,7 @@ const KhataTafseel = () => {
           />
         </div>
         <div className="mt-2">
-        <span className="urdu main">بغیر بچت کے</span>
+          <span className="urdu main">بغیر بچت کے</span>
 
           {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}
           <Checkbox

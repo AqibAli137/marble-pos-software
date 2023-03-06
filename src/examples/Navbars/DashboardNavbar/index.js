@@ -9,7 +9,7 @@ import Icon from "@mui/material/Icon";
 import MDBox from "../../../components/MDBox";
 import Breadcrumbs from "../../Breadcrumbs";
 import NotificationItem from "../../Items/NotificationItem";
-import UserAvatar from "../../../assets/images/avatars/ahmedsb.png";
+import UserAvatar from "../../../assets/images/avatars/AqibAli.jpg";
 import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -121,7 +121,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 sx={navbarIconButton}
                 onClick={handleConfiguratorOpen}
               >
-                <Icon fontSize="medium" color="inherit">
+                <Icon fontSize="large" color="inherit">
                   settings
                 </Icon>
               </IconButton>
@@ -135,7 +135,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 variant="contained"
                 onClick={handleOpenMenu}
               >
-                <img alt="Logo" src={UserAvatar} height={40} className="rounded-3" />
+                <img alt="Logo" src={UserAvatar}
+              style={{ width: "50px", height: "50px", borderRadius: "100%" }}
+                
+                />
               </IconButton>
               {renderMenu()}
             </MDBox>

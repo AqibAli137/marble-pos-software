@@ -146,10 +146,10 @@ const CustomerTable = () => {
             <thead>
               <tr className="text-center bg-white">
                 <th className="py-3">عمل</th>
-                <th className="py-3">کل</th>
-                <th className="py-3"> زیر غور </th>
-                <th className="py-3">زیر التواء</th>
-                <th className="py-3">ادائیگی موصول</th>
+                <th className="py-3"> کل رقم</th>
+                <th className="py-3"> تفضیل </th>
+                <th className="py-3">رقم بکایا</th>
+                <th className="py-3">وصول رقم</th>
                 <th className="py-3">فون نمبر</th>
                 <th className="py-3">پتہ</th>
                 <th className="py-3">نام</th>
@@ -267,7 +267,7 @@ const CustomerTable = () => {
                       </Menu>
                       <Modal show={ModalOpen} onHide={closeModal}>
                         <Modal.Header>
-                          <Modal.Title> ادائیگی موصول </Modal.Title>
+                          <Modal.Title> وصول رقم </Modal.Title>
                         </Modal.Header>
                         <PayementRCV />
                         <Modal.Footer className="text-center">
@@ -301,7 +301,7 @@ const CustomerTable = () => {
       </Row>
       <Modal show={ModalOpen} onHide={closeModal}>
         <Modal.Header>
-          <Modal.Title> ادائیگی موصول </Modal.Title>
+          <Modal.Title> وصول رقم </Modal.Title>
         </Modal.Header>
         <PayementRCV />
         <Modal.Footer className="text-center">

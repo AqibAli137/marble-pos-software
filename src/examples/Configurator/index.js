@@ -1,25 +1,11 @@
-
-
 import { useState, useEffect } from "react";
-
-// react-github-btn
-import GitHubButton from "react-github-btn";
-
-// @mui material components
 import Divider from "@mui/material/Divider";
 import Switch from "@mui/material/Switch";
 import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
-
-// @mui icons
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
-
-// Material Dashboard 2 React components
-// Custom styles for the Configurator
-
-// Material Dashboard 2 React context
 import {
   useMaterialUIController,
   setOpenConfigurator,
@@ -33,6 +19,7 @@ import ConfiguratorRoot from "./ConfiguratorRoot";
 import MDBox from "../../components/MDBox";
 import MDTypography from "../../components/MDTypography";
 import MDButton from "../../components/MDButton";
+import "../../app.css";
 
 function Configurator() {
   const [controller, dispatch] = useMaterialUIController();
@@ -114,7 +101,13 @@ function Configurator() {
   });
 
   return (
-    <ConfiguratorRoot variant="permanent" ownerState={{ openConfigurator }}>
+    <ConfiguratorRoot
+      variant="permanent"
+      ownerState={{ openConfigurator }}
+      sx={() => ({
+        fontFamily: 'sans-serif',
+      })}
+    >
       <MDBox
         display="flex"
         justifyContent="space-between"
@@ -123,13 +116,17 @@ function Configurator() {
         pb={0.5}
         px={3}
       >
-        <MDBox>
-          <MDTypography variant="h5">Material UI Configurator</MDTypography>
-          <MDTypography variant="body2" color="text">
-            See our dashboard options.
+        <MDBox className="main urdu">
+          <MDTypography variant="h5">ویب سائٹ کی ترتیب</MDTypography>
+          <MDTypography variant="body2" color="text" className="main urdu"
+          sx={() => ({
+            fontFamily: 'sans-serif'
+          })}
+          >
+            ہمارے ڈیش بورڈ کے اختیارات دیکھیں
           </MDTypography>
         </MDBox>
-
+        {/* font-family: 'Noto Nastaliq Urdu' */}
         <Icon
           sx={({ typography: { size }, palette: { dark, white } }) => ({
             fontSize: `${size.lg} !important`,
@@ -271,7 +268,7 @@ function Configurator() {
           <Switch checked={darkMode} onChange={handleDarkMode} />
         </MDBox>
         <Divider />
-        <MDBox mt={3} mb={2}>
+        {/* <MDBox mt={3} mb={2}>
           <MDButton
             component={Link}
             href="https://www.creative-tim.com/learning-lab/react/quick-start/material-dashboard/"
@@ -283,8 +280,8 @@ function Configurator() {
           >
             view documentation
           </MDButton>
-        </MDBox>
-        <MDBox display="flex" justifyContent="center">
+        </MDBox> */}
+        {/* <MDBox display="flex" justifyContent="center">
           <GitHubButton
             href="https://github.com/creativetimofficial/material-dashboard-react"
             data-icon="octicon-star"
@@ -294,8 +291,8 @@ function Configurator() {
           >
             Star
           </GitHubButton>
-        </MDBox>
-        <MDBox mt={2} textAlign="center">
+        </MDBox> */}
+        {/* <MDBox mt={2} textAlign="center">
           <MDBox mb={0.5}>
             <MDTypography variant="h6">Thank you for sharing!</MDTypography>
           </MDBox>
@@ -324,7 +321,7 @@ function Configurator() {
               &nbsp; Share
             </MDButton>
           </MDBox>
-        </MDBox>
+        </MDBox> */}
       </MDBox>
     </ConfiguratorRoot>
   );

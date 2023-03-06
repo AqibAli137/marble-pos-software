@@ -53,7 +53,7 @@ const CustomerCreate = () => {
             <div className="col-12 text-center">
               <h1 className="my-3">
                 <span>
-                  سبحان ماربل اینڈ گرینائٹ <span className="fs-6">جی ٹی روڈ کاموکی</span>
+                  سبحان ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
                 </span>
               </h1>
             </div>
@@ -69,7 +69,7 @@ const CustomerCreate = () => {
                   />
                   <div className="d-flex justify-content-center">
                     <h3 style={{ lineHeight: "50px" }} className="col-12 text-center my-3">
-                      براہ کرم کسٹمر کی تفصیلات فراہم کریں۔۔
+                      براہ کرم کسٹمر کی تفصیلات فراہم کریں۔
                     </h3>
                   </div>
                 </div>

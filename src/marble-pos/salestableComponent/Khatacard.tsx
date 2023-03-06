@@ -8,7 +8,7 @@ const  Khatacard=()=> {
   let NewCustomerState = useSelector((store: RootState) => store.Customer);
 
   return (
-    <div className='my-3 row d-flex justify-content-center align-item-center '>
+    <div className='mb-2 row d-flex justify-content-center align-item-center '>
         <Card sx={{width:"90%"}} style={{fontFamily:"'Noto Nastaliq Urdu', serif"}}>
       <CardContent className='d-flex flex-row-reverse align-items-center'>
         <Typography className='mx-2' gutterBottom variant="h6" component="div" style={{fontFamily:"'Noto Nastaliq Urdu', serif"}}>
@@ -50,7 +50,11 @@ const  Khatacard=()=> {
         {NewCustomerState.NewOrderCustomer.profitFromCustomer}
         </Typography>
       </CardContent>}
-      
+      <div
+          className="d-flex align-items-end"
+        >
+          <span className="mt-2">دستخط ۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔</span>
+        </div>
     </Card>
     </div>
     
