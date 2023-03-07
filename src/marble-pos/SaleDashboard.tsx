@@ -17,6 +17,7 @@ import { Item } from "../Models/Item";
 import { CustomerOrder } from "../Models/CustomerOrder";
 import { UpdateAllGatPass, UpdateCustomerGatPass } from "../@features/GatPass/GatPassSlice";
 import { UpdateSelectedOrders } from "../@features/Orders/OrdersSlice";
+import LocalFooter from "../layouts/Advatisment/LocalFooter";
 
 const SaleDashboard = () => {
   let saleState = useSelector((store: RootState) => store.sale);
@@ -39,22 +40,30 @@ const SaleDashboard = () => {
   const [thisCustomer, setThisCustomer] = useState({} as any);
 
   const dispatch = useDispatch<AppDispatch>();
-
+const defaultItem : Item={
+  Id: 0,
+  ItemName: "اپنی اشیاء شامل کریں۔",
+  CostOfItem: 0,
+  RealItemCost: 0,
+  TotalQuantity: 0,
+  TotalAmount: 0,
+  TypeOfItem: ""
+}
   useEffect(() => {
     axios.get("https://localhost:7005/api/Item").then((res) => {
       dispatch(UpdateAllItems(res.data));
       dispatch(UpdateSelectedItem(res.data[0]));
-    });
+    }).catch(
+      ()=>{
+        dispatch(UpdateSelectedItem(defaultItem));
+      }
+    );
 
     axios.get("https://localhost:7005/api/GatePass").then((res) => {
       dispatch(UpdateAllGatPass(res.data));
-      // console.log(res.data);
-
       let gatPassFilter = res.data.filter(
         (item: any) => item.customerId === CustomerState.NewOrderCustomer.id
       );
-      // console.log(gatPassFilter);
-
       dispatch(UpdateCustomerGatPass(gatPassFilter));
     });
 
@@ -284,6 +293,9 @@ const SaleDashboard = () => {
           </div>
         </div>
       </div>
+      <div className="mt-5">
+          <LocalFooter />
+        </div>
     </>
   );
 };

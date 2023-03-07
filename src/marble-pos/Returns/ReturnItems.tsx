@@ -8,8 +8,12 @@ import { AppDispatch, RootState } from "../../store";
 import "../../app.css";
 import axios from "axios";
 import { UpdateAllItems, UpdateSelectedItem } from "../../@features/ItemListSlice/ItemListSlice";
+import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
+import { ReturnItem } from "../../Models/ReturnItem";
 const ReturnItems = () => {
   let ItemState = useSelector((store: RootState) => store.Item);
+  let CustomerState = useSelector((store: RootState) => store.Customer);
+
   const [SelectQuantity, setSelectQuantity] = useState(1);
   const dispatch = useDispatch<AppDispatch>();
   let saleState = useSelector((store: RootState) => store.sale);
@@ -26,25 +30,35 @@ const ReturnItems = () => {
     dispatch(UpdateSelectedItem(selectedItem as any));
     setSelectQuantity(1);
   };
-  
+
+  const CustomerData: ReturnItem = {
+    id: 0,
+    itemId: ItemState.SelectedItem.id,
+    customerId: CustomerState.ReturnItemCustomer.id,
+    returnQuantity: SelectQuantity,
+    returnPrice: 0,
+    totalAmount: 0,
+    returnDate: new Date().toLocaleString() + "",
+  };
+
   const handleSubmit = () => {
-    // {
-    //   Password != "test123"
-    //     ? alert("آپ اس سروس کو استعمال نہیں کر سکتے")
-    //     : axios
-    //         .put("https://localhost:7005/api/Customer/PayementRcv", CustomerData)
-    //         .then((res) => {
-    //           alert("آپ کی ادائیگی اور رعایت کامیابی کے ساتھ Update ہو گئی۔");
-    //         })
-    //         .catch((err) => {
-    //           alert("کچھ غلطی ہے، دوبارہ کوشش کریں۔");
-    //         });
-    // }
+    {
+      CustomerState.ReturnItemCustomer.id &&
+      axios
+        .post("https://localhost:7005/api/ReturnItem", CustomerData)
+        .then((res) => {
+          alert("آپ کی ادائیگی کامیابی کے ساتھ Update ہو گئی۔");
+        })
+        .catch((err) => {
+          alert("کچھ غلطی ہے، دوبارہ کوشش کریں۔");
+        });
+    }
   };
 
   return (
     <div className="">
       <DashboardLayout>
+        <DashboardNavbar />
         <div className="main urdu">
           <div style={{ background: "#d9ede1" }} className="row">
             <div className="col-12 text-center">
@@ -59,8 +73,8 @@ const ReturnItems = () => {
                 {" "}
                 <span className="fs6">
                   {" "}
-                  . ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب ہے  .{" "}
-                  <span>نوید اختر-03016428683</span>
+                  . ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب
+                  ہے . <span>نوید اختر-03016428683</span>
                 </span>
               </h5>
             </div>
@@ -84,8 +98,10 @@ const ReturnItems = () => {
               <tbody>
                 <tr className="text-center">
                   <td>
-                    <Button variant="contained" className="ActiveEffect text-white"
-                    onClick={handleSubmit}
+                    <Button
+                      variant="contained"
+                      className="ActiveEffect text-white"
+                      onClick={handleSubmit}
                     >
                       <span className="mx-2">ماربل واپس</span>
                     </Button>
@@ -124,70 +140,11 @@ const ReturnItems = () => {
             </table>
           </div>
         </div>
-        {/* <div>
-          <div className="d-flex justify-content-center">
-            <h2 className="fs-3 text-center">Return Items</h2>
+        <div>
+          <div className="mt-5">
+            <LocalFooter />
           </div>
-          <div className="row my-3">
-            <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-              <div className="d-flex justify-content-between">
-                <span>Select Item</span>
-                <span className="fw-bold d-block">
-                  <select
-                    onChange={(e) => {
-                      ChangeDropdown(e.target.value);
-                    }}
-                    className="form-control form-control-md px-3 rounded-3 fw-bold m-0"
-                    data-kt-select2="true"
-                    data-placeholder="Select option"
-                    data-allow-clear="true"
-                  >
-                    {items.map((item) => (
-                      <option key={item.ItemName} value={item.ItemName}>
-                        {item.ItemName}
-                      </option>
-                    ))}
-                  </select>
-                </span>
-              </div>
-            </div>
-
-            <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-              <div className="d-flex justify-content-between">
-                <span>Set Quantity</span>
-                <span className="fw-bold d-block">
-                  <input
-                    type="number"
-                    value={SelectQuantity}
-                    min="0"
-                    step="10"
-                    max={selectedItem.TotalQuantity}
-                    onChange={(e) => {
-                      if (
-                        parseInt(e.target.value) === selectedItem.TotalQuantity ||
-                        parseInt(e.target.value) < selectedItem.TotalQuantity
-                      ) {
-                        setSelectQuantity(parseInt(e.target.value));
-                      }
-                    }}
-                    className="form-control form-control-md text-center rounded-3 fw-bold m-0"
-                  />
-                </span>
-              </div>
-            </div>
-            <div className="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-              <div className="d-flex justify-content-between">
-                <span>Click for Returns</span>
-                <Button variant="contained" className="ActiveEffect text-white">
-                    <span className="mx-2">Return</span>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        {/* <div className="mt-5">
-          <LocalFooter />
-        </div> */}
+        </div>
       </DashboardLayout>
     </div>
   );

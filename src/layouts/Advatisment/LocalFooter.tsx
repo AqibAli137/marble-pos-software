@@ -9,7 +9,7 @@ const LocalFooter = () => {
   return (
     <>
 
-        <div className='text-white py-3 text-center gradientStyle'>
+        <div className='text-white py-3 text-center gradientStyle mt-5 align-self-end'>
           <div
             className='d-flex justify-content-center position-relative '
             style={{ top: '-16px' }}

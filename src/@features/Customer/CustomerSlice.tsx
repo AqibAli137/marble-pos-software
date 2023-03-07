@@ -4,6 +4,7 @@ const initialSaleCustomerstate = {
   isLoading: true,
   ListOfCustomers:[] as any,
   NewOrderCustomer:{} as any,
+  ReturnItemCustomer:{} as any,
   WithOutProfit:true
 }
 
@@ -19,6 +20,9 @@ export const CustomerSlice = createSlice({
     },
     UpdateProfitShow: (state, {payload}) => {
       state.WithOutProfit = payload
+    },
+    UpdateReturnItemCustomer: (state, {payload}) => {
+      state.ReturnItemCustomer = payload
     }
 
   },
@@ -28,6 +32,7 @@ export const CustomerSlice = createSlice({
 export const {
   UpdateAllCustomers,
   UpdateNewOrderCustomer,
-  UpdateProfitShow
+  UpdateProfitShow,
+  UpdateReturnItemCustomer
 } = CustomerSlice.actions
 export default CustomerSlice.reducer

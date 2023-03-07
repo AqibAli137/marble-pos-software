@@ -13,7 +13,7 @@ import "./customertable.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { UpdateAllCustomers, UpdateNewOrderCustomer } from "../../@features/Customer/CustomerSlice";
+import { UpdateAllCustomers, UpdateNewOrderCustomer, UpdateReturnItemCustomer } from "../../@features/Customer/CustomerSlice";
 import { UpdateCustomerPaymentRcv } from "../../@features/Payment/PaymentSlice";
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
@@ -62,7 +62,7 @@ const CustomerTable = () => {
     dispatch(UpdateNewOrderCustomer(dat)) && navigate("/sale");
   };
   const handleReturns = (row: any) => {
-    dispatch(UpdateCustomerPaymentRcv(row)) &&
+    dispatch(UpdateReturnItemCustomer(row)) &&
     navigate("/returns");
   };
 
