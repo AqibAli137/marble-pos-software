@@ -70,9 +70,7 @@ const ReturnItems = () => {
             </div>
             <div className="col-12 text-center">
               <h5 className="my-3">
-                {" "}
                 <span className="fs6">
-                  {" "}
                   . ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب
                   ہے . <span>نوید اختر-03016428683</span>
                 </span>
@@ -113,7 +111,7 @@ const ReturnItems = () => {
                       value={SelectQuantity}
                       min="0"
                       step="10"
-                      max={ItemState.SelectedItem.totalQuantity}
+                      // max={ItemState.SelectedItem.totalQuantity}
                       onChange={(e) => {
                         setSelectQuantity(parseFloat(e.target.value));
                       }}

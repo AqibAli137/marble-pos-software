@@ -40,6 +40,8 @@ const  Khatacard=()=> {
         </Typography>
         <Typography className='mx-2' variant="body2" color="text.secondary">
         {NewCustomerState.NewOrderCustomer.discount}
+        {console.log(NewCustomerState.NewOrderCustomer)
+        }
         </Typography>
       </CardContent>
       {NewCustomerState.WithOutProfit && <CardContent className='d-flex flex-row-reverse align-items-center'>

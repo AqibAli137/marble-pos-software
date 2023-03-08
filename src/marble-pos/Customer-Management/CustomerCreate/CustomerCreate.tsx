@@ -19,7 +19,7 @@ const CustomerCreate = () => {
     PhoneNo: phoneNo,
     PaymentRcv: advance,
     IsActive: true,
-    PendingPayment: 0,
+    PendingPayment:advance === 0 ? 0 : (advance - advance - advance),
     TotalBill: 0,
     Discount: 0,
     ProfitFromCustomer: 0

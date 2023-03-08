@@ -212,8 +212,8 @@ const defaultItem : Item={
                     step="1"
                     onChange={(e) => {
                       if (
-                        parseInt(e.target.value) === 100000 ||
-                        parseInt(e.target.value) < 100000
+                        parseFloat(e.target.value) === 1 ||
+                        parseFloat(e.target.value) > 1
                       ) {
                         setSelectPrice(parseFloat(e.target.value));
                       }
@@ -239,10 +239,10 @@ const defaultItem : Item={
                       max={ItemState.SelectedItem.totalQuantity}
                       onChange={(e) => {
                         if (
-                          parseInt(e.target.value) === ItemState.SelectedItem.totalQuantity ||
-                          parseInt(e.target.value) < ItemState.SelectedItem.totalQuantity
+                          parseFloat(e.target.value) === ItemState.SelectedItem.totalQuantity ||
+                          parseFloat(e.target.value) < ItemState.SelectedItem.totalQuantity
                         ) {
-                          setSelectQuantity(parseInt(e.target.value));
+                          setSelectQuantity(parseFloat(e.target.value));
                         }
                       }}
                     />
