@@ -158,14 +158,17 @@ const KhataTafseel = () => {
             }}
           />
         </div>
-        <IconButton
-          onClick={handlePrint}
-          style={{
-            color: "#2d709f",
-          }}
+        {ItemState.SelectedItem.id > 0 &&
+        
+        NewCustomerState.NewOrderCustomer.id && <IconButton
+        onClick={handlePrint}
+        style={{
+          color: "#2d709f",
+        }}
         >
           <LocalPrintshopIcon fontSize="large" />
         </IconButton>
+        }
       </div>
     </div>
   );

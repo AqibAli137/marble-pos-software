@@ -5,22 +5,58 @@ import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
 import "../../app.css";
 import axios from "axios";
-import { UpdateAllItems, UpdateSelectedItem } from "../../@features/ItemListSlice/ItemListSlice";
+import {
+  UpdateAllItems,
+  UpdateProfitItem,
+  UpdateSelectedItem,
+} from "../../@features/ItemListSlice/ItemListSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
+import { UpdateAllOrders } from "../../@features/Orders/OrdersSlice";
 
 const StockRecord = () => {
   let saleState = useSelector((store: RootState) => store.sale);
   let ItemState = useSelector((store: RootState) => store.Item);
-  
-  const dispatch = useDispatch<AppDispatch>();
+  let OrderState = useSelector((store: RootState) => store.Orders);
+  const [TotalProfit, setTotalProfit] = useState(0);
 
+  // const [ProfitList, setProfitList] = useState([] as any);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const defaultItem = [
+    {
+      id: -1,
+      itemName: "پہلے، آپ اشیاء شامل کریں",
+      costOfItem: 0,
+      realItemCost: 0,
+      totalQuantity: 0,
+      totalAmount: 0,
+      typeOfItem: "",
+    },
+  ];
+  const defaultProfit = [
+    {
+      itemId: -1,
+      profit: 0,
+    },
+  ];
   useEffect(() => {
     axios.get("https://localhost:7005/api/Item").then((res) => {
-      dispatch(UpdateAllItems(res.data));
-      dispatch(UpdateSelectedItem(res.data[0]));
+      res.data.length === 0
+        ? dispatch(UpdateAllItems(defaultItem))
+        : dispatch(UpdateAllItems(res.data));
+
+      res.data.length === 0
+        ? dispatch(UpdateSelectedItem(defaultItem[0]))
+        : dispatch(UpdateSelectedItem(res.data[0]));
+    });
+    axios.get("https://localhost:7005/api/CustomerOrder/ItemProfit").then((res) => {
+      res.data.length === 0
+        ? dispatch(UpdateProfitItem(defaultProfit))
+        : dispatch(UpdateProfitItem(res.data));
     });
   }, []);
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -49,14 +85,25 @@ const StockRecord = () => {
                 </tr>
               </thead>
               <tbody>
-                {ItemState.ListOfItems.map((dat : any, index : any) => (
-                  <tr className="text-end bg-white text-center" key={index}>
-                    <td>{dat.realTotalDiscount}</td>
-                    <td>{dat.totalAmount}</td>
-                    <td>{dat.totalQuantity}</td>
-                    <td>{dat.costOfItem}</td>
-                    <td>{dat.itemName}</td>
-                  </tr>
+                {ItemState.ListOfItems.map((dat: any, index: any) => (
+                  <>
+                    {/* {OrderState.ListOfOrders.map((i: any, index: any) => (
+                      <>{dat.id === i.itemId && AddProfit(i.profit)}</>
+                    ))} */}
+
+                    <tr className="text-end bg-white text-center" key={index}>
+                      <td>
+                        {ItemState.ProfitItem.map(
+                          (ip: any, ind: any) => ip.itemId === dat.id && <p>{ip.profit}</p>
+                        )}
+
+                      </td>
+                      <td>{dat.totalAmount}</td>
+                      <td>{dat.totalQuantity}</td>
+                      <td>{dat.costOfItem}</td>
+                      <td>{dat.itemName}</td>
+                    </tr>
+                  </>
                 ))}
               </tbody>
             </Table>

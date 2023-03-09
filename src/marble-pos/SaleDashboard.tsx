@@ -40,24 +40,30 @@ const SaleDashboard = () => {
   const [thisCustomer, setThisCustomer] = useState({} as any);
 
   const dispatch = useDispatch<AppDispatch>();
-const defaultItem : Item={
-  Id: 0,
-  ItemName: "اپنی اشیاء شامل کریں۔",
-  CostOfItem: 0,
-  RealItemCost: 0,
-  TotalQuantity: 0,
-  TotalAmount: 0,
-  TypeOfItem: ""
-}
+  const defaultItem = [
+    {
+      id: -1,
+      itemName: "پہلے، آپ اشیاء شامل کریں",
+      costOfItem: 0,
+      realItemCost: 0,
+      totalQuantity: 0,
+      totalAmount: 0,
+      typeOfItem: "",
+    },
+  ];
   useEffect(() => {
-    axios.get("https://localhost:7005/api/Item").then((res) => {
-      dispatch(UpdateAllItems(res.data));
-      dispatch(UpdateSelectedItem(res.data[0]));
-    }).catch(
-      ()=>{
-        dispatch(UpdateSelectedItem(defaultItem));
-      }
-    );
+    axios
+      .get("https://localhost:7005/api/Item")
+      .then((res) => {
+        res.data.length === 0
+          ? dispatch(UpdateAllItems(defaultItem))
+          : dispatch(UpdateAllItems(res.data));
+
+        res.data.length === 0
+          ? dispatch(UpdateSelectedItem(defaultItem[0]))
+          : dispatch(UpdateSelectedItem(res.data[0]));
+      })
+      .catch(() => {});
 
     axios.get("https://localhost:7005/api/GatePass").then((res) => {
       dispatch(UpdateAllGatPass(res.data));
@@ -73,7 +79,6 @@ const defaultItem : Item={
       );
       dispatch(UpdateSelectedOrders(filterCustomerorder));
     });
-    // console.log(GatPassState.NewOrderGatPass);
 
     setThisCustomer(CustomerState.NewOrderCustomer);
   }, []);
@@ -108,6 +113,7 @@ const defaultItem : Item={
     YourBill: yourBill,
     GatePassNumber: "",
     Profit: 0,
+    SecondOrderDate: new Date(),
   };
 
   const AddSaleItem = async () => {
@@ -146,7 +152,7 @@ const defaultItem : Item={
               {" "}
               <span className="fs6">
                 {" "}
-               ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب ہے۔
+                ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب ہے۔
                 <span>نوید اختر-03016428683</span>
               </span>
             </h5>
@@ -181,9 +187,15 @@ const defaultItem : Item={
                   style={{ maxWidth: "max-content", minWidth: "max-content" }}
                   className="text-center"
                 >
-                  <IconButton aria-label="delete" className="text-center">
-                    <AddTaskIcon fontSize="medium" className="text-success" onClick={AddSaleItem} />
-                  </IconButton>
+                  {ItemState.SelectedItem.id > 0 && CustomerState.NewOrderCustomer.id && (
+                    <IconButton aria-label="delete" className="text-center">
+                      <AddTaskIcon
+                        fontSize="medium"
+                        className="text-success"
+                        onClick={AddSaleItem}
+                      />
+                    </IconButton>
+                  )}
                 </td>
                 <td style={{ maxWidth: "80px", minWidth: "max-content" }}>
                   <div className="form-control text-center">{stockPrice}</div>
@@ -211,10 +223,7 @@ const defaultItem : Item={
                     min="0"
                     step="1"
                     onChange={(e) => {
-                      if (
-                        parseFloat(e.target.value) === 1 ||
-                        parseFloat(e.target.value) > 1
-                      ) {
+                      if (parseFloat(e.target.value) === 1 || parseFloat(e.target.value) > 1) {
                         setSelectPrice(parseFloat(e.target.value));
                       }
                     }}
@@ -259,7 +268,9 @@ const defaultItem : Item={
                       <>
                         <option key={item.itemName} value={item.itemName} className="py-2">
                           {item.itemName}
+                          {console.log(item)}
                         </option>
+
                         <Divider />
                       </>
                     ))}
@@ -294,8 +305,8 @@ const defaultItem : Item={
         </div>
       </div>
       <div className="mt-5">
-          <LocalFooter />
-        </div>
+        <LocalFooter />
+      </div>
     </>
   );
 };

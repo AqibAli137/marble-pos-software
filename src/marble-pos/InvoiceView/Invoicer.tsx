@@ -117,7 +117,7 @@ const Invoicer = () => {
       </div>
       <div className="d-flex justify-content-between px-3">
         <div className="mt-2">
-          <span>WithOut Amount</span>
+          <span>بغیر ریٹ کے</span>
           {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}
           <Checkbox
             {...label}

@@ -36,6 +36,7 @@ const GatePass = (prop: { gatPassNumber: string }) => {
 
   const dataToPrintRef = useRef<HTMLInputElement>(null);
   const [amountInTable, setAmountInTable] = useState(true);
+  const [GatPassInPrint, setGatPassInPrint] = useState(true);
 
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
@@ -49,14 +50,15 @@ const GatePass = (prop: { gatPassNumber: string }) => {
         <div className="pb-1">
           <div>
             <div style={{ background: "#d9ede1" }} className="row">
-          <div className="gatepass text-center pt-3">
-            <p className="fs-6"
-            >گیٹ پاس</p>
-          </div>
+              {GatPassInPrint && (
+                <div className="gatepass text-center pt-3">
+                  <p className="fs-6">گیٹ پاس</p>
+                </div>
+              )}
               <div className="coxl-12 text-center">
                 <h3 className="my-3">
                   <span>
-                    سبحان ماربل اینڈ گرینائٹ{" "}
+                    سبحان ماربل اینڈ گرینائٹ
                     <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
                   </span>
                 </h3>
@@ -157,15 +159,13 @@ const GatePass = (prop: { gatPassNumber: string }) => {
             </tbody>
           </table>
         </div>
-        <div
-          className="d-flex align-items-end mt-5"
-        >
+        <div className="d-flex align-items-end mt-5">
           <span className="mt-5">دستخط ۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔</span>
         </div>
       </div>
       <div className="d-flex justify-content-between px-3">
         <div className="mt-2">
-          <span>WithOut Amount</span>
+          <span>بغیر ریٹ کے</span>
           {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}
           <Checkbox
             {...label}
@@ -176,14 +176,28 @@ const GatePass = (prop: { gatPassNumber: string }) => {
             }}
           />
         </div>
-        <IconButton
-          onClick={handlePrint}
-          style={{
-            color: "#2d709f",
-          }}
-        >
-          <LocalPrintshopIcon fontSize="large" />
-        </IconButton>
+        <div className="mt-2">
+          <span className="urdu main">رسید کے لیے</span>
+          {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}
+          <Checkbox
+            {...label}
+            onChange={() => setGatPassInPrint(!GatPassInPrint)}
+            style={{
+              backgroundColor: "#2d705f",
+              marginLeft: "5px",
+            }}
+          />
+        </div>
+        {ItemState.SelectedItem.id > 0 && CustomerState.NewOrderCustomer.id && (
+          <IconButton
+            onClick={handlePrint}
+            style={{
+              color: "#2d709f",
+            }}
+          >
+            <LocalPrintshopIcon fontSize="large" />
+          </IconButton>
+        )}
       </div>
     </div>
   );

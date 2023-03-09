@@ -9,6 +9,7 @@ export type CustomerOrder = {
   YourBill: number;
   GatePassNumber: string;
   Profit: number;
+  SecondOrderDate : Date;
 };
 
 export const initialCustomerOrder: CustomerOrder = {
@@ -22,4 +23,5 @@ export const initialCustomerOrder: CustomerOrder = {
   ItemName: "",
   OrderDate: "",
   GatePassNumber: "",
+  SecondOrderDate: new Date(),
 };

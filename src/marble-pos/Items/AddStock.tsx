@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import { AppDispatch, RootState } from "../../store";
 import { Divider } from "@mui/material";
-import '../../app.css'
+import "../../app.css";
 import { Item } from "../../Models/Item";
 import axios from "axios";
 import { UpdateAllItems, UpdateSelectedItem } from "../../@features/ItemListSlice/ItemListSlice";
@@ -18,54 +18,63 @@ const AddStock = () => {
   const dispatch = useDispatch<AppDispatch>();
   let saleState = useSelector((store: RootState) => store.sale);
 
+  const defaultItem = [
+    {
+      id: -1,
+      itemName: "پہلے، آپ اشیاء شامل کریں",
+      costOfItem: 0,
+      realItemCost: 0,
+      totalQuantity: 0,
+      totalAmount: 0,
+      typeOfItem: "",
+    },
+  ];
+
   useEffect(() => {
     axios.get("https://localhost:7005/api/Item").then((res) => {
-      dispatch(UpdateAllItems(res.data))
-      dispatch(UpdateSelectedItem(res.data[0]))
-    })
-    // setThisCustomer(CustomerState.NewOrderCustomer)
+      res.data.length === 0
+        ? dispatch(UpdateAllItems(defaultItem))
+        : dispatch(UpdateAllItems(res.data));
 
-    // console.log(CustomerState.NewOrderCustomer);
+      res.data.length === 0
+        ? dispatch(UpdateSelectedItem(defaultItem[0]))
+        : dispatch(UpdateSelectedItem(res.data[0]));
+    });
   }, []);
-  
+
   useEffect(() => {
     setYourBill(SelectQuantity * SelectPrice);
   }, [SelectQuantity, SelectPrice]);
 
   const ChangeDropdown = (val: any) => {
-    const selectedItem = ItemState.ListOfItems.find((item:any) => item.itemName === val);
+    const selectedItem = ItemState.ListOfItems.find((item: any) => item.itemName === val);
     dispatch(UpdateSelectedItem(selectedItem as any));
     setYourBill(60);
     setSelectPrice(60);
     setSelectQuantity(1);
   };
-  // const newSaleItem = {
-  //   ItemName: ItemState.SelectedItem.itemName,
-  //   ItemQuantity: SelectQuantity,
-  //   SetPrice: SelectPrice,
-  //   YourBill: yourBill,
-  // };
 
-  const ItemRecord: Item={
+  const ItemRecord: Item = {
     Id: ItemState.SelectedItem.id,
     ItemName: ItemState.SelectedItem.itemName,
     CostOfItem: SelectPrice,
     RealItemCost: SelectPrice,
     TotalQuantity: SelectQuantity,
     TotalAmount: 0,
-    TypeOfItem: ""
-  }
+    TypeOfItem: "",
+  };
   const AddSaleItem = async () => {
-    // setSaleItem([...saleItem, newSaleItem])
     {
-     SelectQuantity === 0  || SelectPrice === 0
+      ItemState.SelectedItem.id < 0
+        ? alert("آپ کے پاس ریکارڈ میں کوئی چیز نہیں ہے۔")
+        : SelectQuantity === 0 || SelectPrice === 0
         ? alert("براہ کرم مکمل تفصیلات درج کریں۔")
         : axios
-            .put('https://localhost:7005/api/Item', ItemRecord)
+            .put("https://localhost:7005/api/Item", ItemRecord)
             .then((res) => {
               alert("آپ کا نیا آئٹم ریکارڈ کامیابی سے Save ہو گیا۔");
               setItemAddSpanShow(true);
-          
+
               setInterval(() => {
                 setItemAddSpanShow(false);
               }, 3000);
@@ -79,7 +88,6 @@ const AddStock = () => {
   return (
     <>
       <div>
-        {/* <h2 className="text-center justify-content-center">Stock Entry</h2> */}
         <div style={{ backgroundColor: "rgba(0, 128, 0, 0.164)" }} className="row p-3 mt-3 urdu">
           <h3 className="text-center">اپنا نیا اسٹاک شامل کریں۔</h3>
         </div>
@@ -97,10 +105,16 @@ const AddStock = () => {
             </thead>
             <tbody>
               <tr className="tr">
-              <td>
-                  <IconButton aria-label="delete">
-                    <AddTaskIcon fontSize="large" className="text-success" onClick={AddSaleItem} />
-                  </IconButton>
+                <td>
+                  {ItemState.SelectedItem.id > 0 && (
+                    <IconButton aria-label="delete">
+                      <AddTaskIcon
+                        fontSize="large"
+                        className="text-success"
+                        onClick={AddSaleItem}
+                      />
+                    </IconButton>
+                  )}
                 </td>
                 <td>
                   <div className="d-flex align-items-center justify-content-center">
@@ -158,38 +172,30 @@ const AddStock = () => {
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
-                    <div 
-                     style={{ maxWidth: "200px", minWidth:'max-content'}}
-                     className="form-control urdu"
+                    <div
+                      style={{ maxWidth: "200px", minWidth: "max-content" }}
+                      className="form-control urdu"
                     >
                       {/* <span className="fw-bold text-dark d-block form-control urdu border-0"> */}
                       <select
-                    className=" text-end w-100 border-0 mr-2 rounded-3 "
-                    onChange={(e) => {
-                      ChangeDropdown(e.target.value);
-                    }}
-                    >
-                    {ItemState.ListOfItems.map((item:any) => (
-                      <>
-                     
-                      <option 
-                      
-                      key={item.itemName} value={item.itemName} className="py-2">
-                        {item.itemName}
-                      </option>
-                        <Divider />
-                        </>
-                    ))}
-                  </select>
+                        className=" text-end w-100 border-0 mr-2 rounded-3 "
+                        onChange={(e) => {
+                          ChangeDropdown(e.target.value);
+                        }}
+                      >
+                        {ItemState.ListOfItems.map((item: any) => (
+                          <>
+                            <option key={item.itemName} value={item.itemName} className="py-2">
+                              {item.itemName}
+                            </option>
+                            <Divider />
+                          </>
+                        ))}
+                      </select>
                       {/* </span> */}
                     </div>
                   </div>
                 </td>
-               
-               
-               
-               
-               
               </tr>
             </tbody>
           </table>
