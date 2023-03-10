@@ -13,7 +13,11 @@ import "./customertable.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { UpdateAllCustomers, UpdateNewOrderCustomer, UpdateReturnItemCustomer } from "../../@features/Customer/CustomerSlice";
+import {
+  UpdateAllCustomers,
+  UpdateNewOrderCustomer,
+  UpdateReturnItemCustomer,
+} from "../../@features/Customer/CustomerSlice";
 import { UpdateCustomerPaymentRcv } from "../../@features/Payment/PaymentSlice";
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
@@ -62,8 +66,7 @@ const CustomerTable = () => {
     dispatch(UpdateNewOrderCustomer(dat)) && navigate("/sale");
   };
   const handleReturns = (row: any) => {
-    dispatch(UpdateReturnItemCustomer(row)) &&
-    navigate("/returns");
+    dispatch(UpdateReturnItemCustomer(row)) && navigate("/returns");
   };
 
   useEffect(() => {
@@ -156,7 +159,7 @@ const CustomerTable = () => {
               </tr>
             </thead>
             <tbody>
-              {FilterCustomers.map((dat: any, index: any) => (
+              {FilterCustomers.slice(0).reverse().map((dat: any, index: any) => (
                 <tr
                   className={
                     dat.totalBill === 0 && dat.pendingPayment === 0
@@ -189,7 +192,7 @@ const CustomerTable = () => {
                         variant="text"
                         className="shadow-none ActiveEffect text-black buttonColor"
                       >
-                        <div className="" onClick={()=>handleReturns(dat)}>
+                        <div className="" onClick={() => handleReturns(dat)}>
                           <span className=" urdu">واپس کریں۔</span>
                           <ViewComfyIcon />
                         </div>
@@ -281,10 +284,12 @@ const CustomerTable = () => {
                   <td>{dat.totalBill}</td>
                   <td className="text-end">
                     {console.log(dat)}
-                    
-                    {dat.totalBill === 0 && dat.pendingPayment === 0 ? "شروع نہیں" :
-                    dat.pendingPayment === 0 && dat.totalBill != 0 ? "کھاتا نیل ہو گیا":
-                    'جاری رہے'}
+
+                    {dat.totalBill === 0 && dat.pendingPayment === 0
+                      ? "شروع نہیں"
+                      : dat.pendingPayment === 0 && dat.totalBill != 0
+                      ? "کھاتا نیل ہو گیا"
+                      : "جاری رہے"}
                   </td>
 
                   <td>{dat.pendingPayment}</td>

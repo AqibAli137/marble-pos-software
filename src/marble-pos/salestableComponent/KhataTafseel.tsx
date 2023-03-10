@@ -70,19 +70,16 @@ const KhataTafseel = () => {
           <table className="table table-bordered">
             <thead>
               <tr className="fs-6 text-center">
-                <th> تاریخ</th>
                 {amountInTable && <th>رقم </th>}
                 {amountInTable && <th>ریٹ </th>}
                 <th>تعداد </th>
                 <th>نام جنس </th>
+                <th> تاریخ</th>
               </tr>
             </thead>
             <tbody>
               {OrdersState.SelectedOrders.map((i: any) => (
                 <tr className="">
-                  <td>
-                    <p>{i.orderDate}</p>
-                  </td>
                   {amountInTable && (
                     <td>
                       <p>{i.yourbill}</p>
@@ -123,6 +120,9 @@ const KhataTafseel = () => {
                     >
                       {i.itemName}
                     </div>
+                  </td>
+                  <td>
+                    <p>{i.orderDate}</p>
                   </td>
                 </tr>
               ))}

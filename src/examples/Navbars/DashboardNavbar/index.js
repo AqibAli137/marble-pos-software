@@ -136,7 +136,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 onClick={handleOpenMenu}
               >
                 <img alt="Logo" src={UserAvatar}
-              style={{ width: "50px", height: "50px", borderRadius: "100%" }}
+              style={{ width: "40px", height: "40px", borderRadius: "15%" }}
                 
                 />
               </IconButton>

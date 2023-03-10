@@ -44,7 +44,7 @@ const PayementRCV = () => {
 
   const handleSubmit = () => {
     {
-      Password != "test123"
+      Password != "Test123" || "Admin137" || "SubhanNaveed" || "SubhanMarbal" || "User123"
         ? alert("آپ اس سروس کو استعمال نہیں کر سکتے")
         : axios
             .put("https://localhost:7005/api/Customer/PayementRcv", CustomerData)
@@ -121,9 +121,9 @@ const PayementRCV = () => {
                 <div className="col col-12 col-sm-8 col-md-8 col-lg-8">
                   <input
                     type="password"
-                    step="1"
                     value={Password}
-                    min="100"
+                    autoComplete="off"
+                    placeholder="پاس ورڈ درج کریں"
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -136,8 +136,10 @@ const PayementRCV = () => {
               </div>
 
               <div className="d-flex justify-content-between">
-                <Button variant="contained" className="text-white ActiveEffect my-3 urdu"
-                onClick={handleSubmit}
+                <Button
+                  variant="contained"
+                  className="text-white ActiveEffect my-3 urdu"
+                  onClick={handleSubmit}
                 >
                   وصول کریں۔
                 </Button>

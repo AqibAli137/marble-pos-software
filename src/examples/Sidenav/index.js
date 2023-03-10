@@ -128,7 +128,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           {brand && 
           <Link to="/">
           <img alt="Logo" 
-                style={{width:'120px', height:'120px', borderRadius:"100%"}}
+                style={{width:'180px', height:'170px', borderRadius:"100%"}}
           src={subhanLogo} />
         </Link>
           }

@@ -149,9 +149,7 @@ const SaleDashboard = () => {
           </div>
           <div className="col-12 text-center">
             <h5 className="my-3">
-              {" "}
               <span className="fs6">
-                {" "}
                 ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب ہے۔
                 <span>نوید اختر-03016428683</span>
               </span>
@@ -287,7 +285,7 @@ const SaleDashboard = () => {
           <h3 className="text-center">ریکارڈ فہرست میں شامل کیا گیا ہے۔</h3>
         </div>
       )}
-      <FirstTable TableData={saleItem} />
+      { saleItem[0] && <FirstTable TableData={saleItem} />}
 
       <div className="row">
         <div className="col">
