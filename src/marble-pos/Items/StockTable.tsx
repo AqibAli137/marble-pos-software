@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { UpdateAllOrders } from "../../@features/Orders/OrdersSlice";
+import '../../otherTable.css';
 
 const StockRecord = () => {
   let saleState = useSelector((store: RootState) => store.sale);

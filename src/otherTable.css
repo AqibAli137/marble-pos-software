@@ -1,0 +1,5 @@
+.table-hover tbody tr:hover td {
+    /* background: rgb(39, 212, 212); */
+    color: white;
+    background-color: lightblue;
+  }

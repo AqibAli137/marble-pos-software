@@ -44,16 +44,20 @@ const PayementRCV = () => {
 
   const handleSubmit = () => {
     {
-      Password != "Test123" || "Admin137" || "SubhanNaveed" || "SubhanMarbal" || "User123"
-        ? alert("آپ اس سروس کو استعمال نہیں کر سکتے")
-        : axios
+      Password === "test123" ||
+      Password === "admin137" ||
+      Password === "SubhanNaveed" ||
+      Password === "SubhanMarbal" ||
+      Password === "User123"
+        ? axios
             .put("https://localhost:7005/api/Customer/PayementRcv", CustomerData)
             .then((res) => {
               alert("آپ کی ادائیگی اور رعایت کامیابی کے ساتھ Update ہو گئی۔");
             })
             .catch((err) => {
               alert("کچھ غلطی ہے، دوبارہ کوشش کریں۔");
-            });
+            })
+        : alert("آپ اس سروس کو استعمال نہیں کر سکتے");
     }
   };
 

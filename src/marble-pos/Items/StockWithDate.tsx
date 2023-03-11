@@ -22,6 +22,7 @@ import {
   UpdateFilterList,
   UpdateStartDate,
 } from "../../@features/StockWithDate/StockWithProfit";
+import "../../otherTable.css";
 
 const StockWithDate = () => {
   let DateChange = useSelector((store: RootState) => store.DateChange);
