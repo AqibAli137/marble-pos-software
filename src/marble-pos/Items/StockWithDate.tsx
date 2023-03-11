@@ -125,15 +125,15 @@ const StockWithDate = () => {
 
             <div className="col-sm-8 col-md-4 col-lg-4 col-xl-4 col-xxl-4 col-xxxl-4 d-flex align-items-center text-center justify-content-center my-3">
               <button
-                className="btn bg-primary text-white ActiveEffect urdu p-2 px-4"
+                className="btn bg-primary text-white ActiveEffect urdu p-2 px-4 py-3"
                 onClick={FilterData}
               >
-                جمع کرائیں
+                ریکارڈ چیک کریں
               </button>
             </div>
           </div>
         </div>
-        <div style={{ background: "#d9ede1" }} className="row">
+        <div style={{ background: "#d9ede1" }} className="row mt-4">
           <div className="col-12 text-center">
             <h1 className="my-3">
               <span>
