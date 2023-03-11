@@ -45,10 +45,10 @@ const PayementRCV = () => {
   const handleSubmit = () => {
     {
       Password === "test123" ||
-      Password === "admin137" ||
-      Password === "SubhanNaveed" ||
-      Password === "SubhanMarbal" ||
-      Password === "User123"
+      Password === "Admin001" ||
+      Password === "Subhan786" ||
+      Password === "Aqib137" ||
+      Password === "user456"
         ? axios
             .put("https://localhost:7005/api/Customer/PayementRcv", CustomerData)
             .then((res) => {
