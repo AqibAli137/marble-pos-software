@@ -6,6 +6,7 @@ import CustomerSlice from "./@features/Customer/CustomerSlice";
 import GatPassSlice from "./@features/GatPass/GatPassSlice";
 import OrdersSlice from "./@features/Orders/OrdersSlice";
 import PaymentRcvSlice from "./@features/Payment/PaymentSlice";
+import  StockWithDateSlice  from "./@features/StockWithDate/StockWithProfit";
 
 
 export const store = configureStore({
@@ -17,6 +18,7 @@ export const store = configureStore({
     GatPass:GatPassSlice,
     Orders:OrdersSlice,
     PaymentRcv: PaymentRcvSlice,
+    DateChange : StockWithDateSlice,
   },
 });
 

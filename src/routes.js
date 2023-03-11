@@ -4,6 +4,7 @@ import CustomerWraper from './marble-pos/Customer-Management';
 import CustomerCreate from "./marble-pos/Customer-Management/CustomerCreate/CustomerCreate";
 import ItemWrapper from './marble-pos/Items';
 import StockRecord from "./marble-pos/Items/StockTable";
+import StockWithDate from "./marble-pos/Items/StockWithDate";
 
 const routes = [
   {
@@ -47,6 +48,14 @@ const routes = [
     icon: <Icon fontSize="medium">production_quantity_limits_icon</Icon>,
     route: "/stock",
     component: <StockRecord />,
+  },
+  {
+    type: "collapse",
+    name: "Record",
+    key: "record",
+    icon: <Icon fontSize="medium">today_icon</Icon>,
+    route: "/record",
+    component: <StockWithDate />,
   }
   
 ];
