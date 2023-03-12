@@ -21,14 +21,14 @@ import {
   UpdateEndDate,
   UpdateFilterList,
   UpdateStartDate,
+  UpdateTotalProfit,
+  UpdateTotalSale,
 } from "../../@features/StockWithDate/StockWithProfit";
 import "../../otherTable.css";
+import StockCards from "./StockCards";
 
 const StockWithDate = () => {
   let DateChange = useSelector((store: RootState) => store.DateChange);
-  let ItemState = useSelector((store: RootState) => store.Item);
-  let OrderState = useSelector((store: RootState) => store.Orders);
-
   const dispatch = useDispatch<AppDispatch>();
   const defaultItem = [
     {
@@ -58,16 +58,6 @@ const StockWithDate = () => {
         : dispatch(UpdateSelectedItem(res.data[0]));
     });
 
-    axios.get("https://localhost:7005/api/CustomerOrder").then((res) => {
-      dispatch(UpdateAllOrders(res.data));
-      const filter = res.data.filter(
-        (order: any) =>
-          order.SecondOrderDate * 1000 >= Date.parse(Date()) &&
-          order.SecondOrderDate * 1000 <= Date.parse(Date())
-      );
-      dispatch(UpdateFilterList(filter));
-    });
-
     axios.get("https://localhost:7005/api/CustomerOrder/ItemProfit").then((res) => {
       res.data.length === 0
         ? dispatch(UpdateProfitItem(defaultProfit))
@@ -91,15 +81,17 @@ const StockWithDate = () => {
     dispatch(UpdateEndDate(new Date(dates[0].endDate).toLocaleDateString()));
   };
 
-  const FilterData = () => {
+  const ClickFilter = () => {
     axios
       .post("https://localhost:7005/api/Item/FilterWithDate", {
         DateFrom: DateChange.startDate,
         DateTo: DateChange.endDate,
       })
       .then((res) => {
-        dispatch(UpdateFilterList(res.data));
         console.log(res.data);
+        dispatch(UpdateFilterList(res.data.listItem));
+        dispatch(UpdateTotalSale(res.data.totalSale));
+        dispatch(UpdateTotalProfit(res.data.totalProfit));
       })
       .catch((err) => {
         alert("دو تاریخیں منتخب کریں, اور دوبارہ کوشش کریں۔");
@@ -127,7 +119,7 @@ const StockWithDate = () => {
             <div className="col-sm-8 col-md-4 col-lg-4 col-xl-4 col-xxl-4 col-xxxl-4 d-flex align-items-center text-center justify-content-center my-3">
               <button
                 className="btn bg-primary text-white ActiveEffect urdu p-2 px-4 py-3"
-                onClick={FilterData}
+                onClick={ClickFilter}
               >
                 ریکارڈ چیک کریں
               </button>
@@ -151,16 +143,60 @@ const StockWithDate = () => {
                   <th>آئٹم سے منافع</th>
                   <th>قیمت فروخت</th>
                   <th>فروخت کی مقدار</th>
-                  <th>شے کا نام</th>
+                  <th>آئٹم کا نام</th>
                 </tr>
               </thead>
               <tbody>
                 {DateChange.filterList.map((dat: any, index: any) => (
                   <>
                     <tr className="text-end bg-white text-center" key={index}>
-                      <td>{dat.costOfItem}</td>
-                      <td>{dat.totalQuantity}</td>
-                      <td>{dat.totalAmount}</td>
+                      <td>
+                        <div className="d-flex justify-content-center">
+                          <div
+                            style={{
+                              maxWidth: "max-content",
+                              minWidth: "max-content",
+                              marginRight: "10px",
+                            }}
+                            className="text-center"
+                          >
+                            <span>Rs:</span>
+                          </div>
+
+                          {dat.costOfItem}
+                        </div>
+                      </td>
+                      <td>
+                        <div className="d-flex justify-content-center">
+                          <div
+                            style={{
+                              maxWidth: "max-content",
+                              minWidth: "max-content",
+                              marginRight: "10px",
+                            }}
+                            className="text-center"
+                          >
+                            <span>Rs:</span>
+                          </div>
+
+                          {dat.totalAmount}
+                        </div>
+                      </td>
+                      <td>
+                        <div className="d-flex justify-content-center">
+                          <div
+                            style={{
+                              maxWidth: "max-content",
+                              minWidth: "max-content",
+                              marginRight: "10px",
+                            }}
+                            className="text-center"
+                          >
+                            {dat.typeOfItem}
+                          </div>
+                          <p>{dat.totalQuantity}</p>
+                        </div>
+                      </td>
                       <td>{dat.itemName}</td>
                     </tr>
                   </>
@@ -169,6 +205,7 @@ const StockWithDate = () => {
             </Table>
           </Col>
         </Row>
+        <StockCards TotalSale={DateChange.totalSale} TotalProfit={DateChange.totalProfit} />
       </div>
     </DashboardLayout>
   );

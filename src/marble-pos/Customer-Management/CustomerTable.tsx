@@ -159,147 +159,83 @@ const CustomerTable = () => {
               </tr>
             </thead>
             <tbody>
-              {FilterCustomers.slice(0).reverse().map((dat: any, index: any) => (
-                <tr
-                  className={
-                    dat.totalBill === 0 && dat.pendingPayment === 0
-                      ? "danger"
-                      : dat.pendingPayment === 0 && dat.totalBill != 0
-                      ? "success"
-                      : "greyCol"
-                  }
-                  style={{ textAlign: "center" }}
-                  key={index}
-                >
-                  <td className="d-flex justify-content-center">
-                    <div className="text-black buttonColor">
-                      <Button
-                        variant="text"
-                        className="shadow-none ActiveEffect text-black buttonColor"
-                      >
-                        <div
-                          className=""
-                          onClick={() => {
-                            handlePopOver(dat);
-                          }}
+              {FilterCustomers.slice(0)
+                .reverse()
+                .map((dat: any, index: any) => (
+                  <tr
+                    className={
+                      dat.totalBill === 0 && dat.pendingPayment === 0
+                        ? "danger"
+                        : dat.pendingPayment === 0 && dat.totalBill != 0
+                        ? "success"
+                        : "greyCol"
+                    }
+                    style={{ textAlign: "center" }}
+                    key={index}
+                  >
+                    <td className="d-flex justify-content-center">
+                      <div className="text-black buttonColor">
+                        <Button
+                          variant="text"
+                          className="shadow-none ActiveEffect text-black buttonColor"
                         >
-                          <span className=" urdu">ادائیگی</span>
-                          <ViewComfyIcon />
-                        </div>
-                      </Button>
-
-                      <Button
-                        variant="text"
-                        className="shadow-none ActiveEffect text-black buttonColor"
-                      >
-                        <div className="" onClick={() => handleReturns(dat)}>
-                          <span className=" urdu">واپس کریں۔</span>
-                          <ViewComfyIcon />
-                        </div>
-                      </Button>
-                      <Button
-                        variant="text"
-                        className="shadow-none ActiveEffect text-black buttonColor"
-                      >
-                        <div className="">
-                          <span
+                          <div
+                            className=""
                             onClick={() => {
-                              handleNewOrder(dat);
+                              handlePopOver(dat);
                             }}
-                            className=" urdu"
                           >
-                            نیا آرڈر
-                          </span>
-                          <ViewComfyIcon />
-                        </div>
-                      </Button>
-                    </div>
-                    {/* <div className="d-flex justify-content-center">
-                      <Button
-                        id="demo-positioned-button"
-                        aria-controls={open ? "demo-positioned-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={handleClick}
-                        className="text-black buttonColor"
-                      >
-                        Actions
-                      </Button>
-                      <Menu
-                        id="demo-positioned-menu"
-                        className="p-3"
-                        elevation={1}
-                        style={{ boxShadow: "none" }}
-                        aria-labelledby="demo-positioned-button"
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                          vertical: "top",
-                          horizontal: "right",
-                        }}
-                        transformOrigin={{
-                          vertical: "top",
-                          horizontal: "left",
-                        }}
-                      >
-                       
-                        <Button variant="text" type="button" className="shadow-none ActiveEffect ">
-                          <span className="mx-2 urdu" onClick={handlePopOver}>
-                            ادائیگی
-                          </span>
-                          <MonetizationOnIcon />
-                        </Button>
-                        <br />
-                        <Button variant="text" className="shadow-none ActiveEffect">
-                          <div className="" >
-                            <span onClick={()=>{handleNewOrder(dat.id)}} className="mx-2 urdu">نیا آرڈر</span>
+                            <span className=" urdu">ادائیگی</span>
                             <ViewComfyIcon />
                           </div>
                         </Button>
-                        <br />
-                       
-                        <br />
-                        <Button variant="text" className="shadow-none ActiveEffect">
-                          <div className="" onClick={handleReturns.bind(this, dat)}>
-                            <span className="mx-2 urdu">آئٹمز واپس کریں۔</span>
+
+                        <Button
+                          variant="text"
+                          className="shadow-none ActiveEffect text-black buttonColor"
+                        >
+                          <div className="" onClick={() => handleReturns(dat)}>
+                            <span className=" urdu">واپس کریں۔</span>
                             <ViewComfyIcon />
                           </div>
                         </Button>
-                        
-                      </Menu>
-                      <Modal show={ModalOpen} onHide={closeModal}>
-                        <Modal.Header>
-                          <Modal.Title> وصول رقم </Modal.Title>
-                        </Modal.Header>
-                        <PayementRCV />
-                        <Modal.Footer className="text-center">
-                          <div onClick={() => setModalOpen(false)}>
-                            <ExitToAppIcon color="error" fontSize="medium" />
+                        <Button
+                          variant="text"
+                          className="shadow-none ActiveEffect text-black buttonColor"
+                        >
+                          <div className="">
+                            <span
+                              onClick={() => {
+                                handleNewOrder(dat);
+                              }}
+                              className=" urdu"
+                            >
+                              نیا آرڈر
+                            </span>
+                            <ViewComfyIcon />
                           </div>
-                        </Modal.Footer>
-                      </Modal>
-                    </div> */}
-                  </td>
-                  <td>{dat.totalBill}</td>
-                  <td className="text-end">
-                    {console.log(dat)}
+                        </Button>
+                      </div>
+                    </td>
+                    <td>{dat.totalBill}</td>
+                    <td className="text-end">
+                      {console.log(dat)}
 
-                    {dat.totalBill === 0 && dat.pendingPayment === 0
-                      ? "شروع نہیں"
-                      : dat.pendingPayment === 0 && dat.totalBill != 0
-                      ? "کھاتا نیل ہو گیا"
-                      : "جاری رہے"}
-                  </td>
+                      {dat.totalBill === 0 && dat.pendingPayment === 0
+                        ? "شروع نہیں"
+                        : dat.pendingPayment === 0 && dat.totalBill != 0
+                        ? "کھاتا نیل ہو گیا"
+                        : "جاری رہے"}
+                    </td>
 
-                  <td>{dat.pendingPayment}</td>
-                  <td>{dat.paymentRcv}</td>
-                  <td>{dat.phoneNo}</td>
-                  <td className="text-end">{dat.address}</td>
+                    <td>{dat.pendingPayment}</td>
+                    <td>{dat.paymentRcv}</td>
+                    <td>{dat.phoneNo}</td>
+                    <td className="text-end">{dat.address}</td>
 
-                  <td className="text-end">{dat.name}</td>
-                </tr>
-              ))}
+                    <td className="text-end">{dat.name}</td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </Col>

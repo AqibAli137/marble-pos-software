@@ -13,7 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { UpdateAllOrders } from "../../@features/Orders/OrdersSlice";
-import '../../otherTable.css';
+import "../../otherTable.css";
 
 const StockRecord = () => {
   let saleState = useSelector((store: RootState) => store.sale);
@@ -82,7 +82,7 @@ const StockRecord = () => {
                   <th>کل رقم</th>
                   <th>کل مقدار</th>
                   <th>آئٹم کی قیمت</th>
-                  <th>شے کا نام</th>
+                  <th>آئٹم  کا نام</th>
                 </tr>
               </thead>
               <tbody>
@@ -97,10 +97,23 @@ const StockRecord = () => {
                         {ItemState.ProfitItem.map(
                           (ip: any, ind: any) => ip.itemId === dat.id && <p>{ip.profit}</p>
                         )}
-
                       </td>
                       <td>{dat.totalAmount}</td>
-                      <td>{dat.totalQuantity}</td>
+                      <td>
+                        <div className="d-flex justify-content-center">
+                          <div
+                            style={{
+                              maxWidth: "max-content",
+                              minWidth: "max-content",
+                              marginRight: "10px",
+                            }}
+                            className="text-center"
+                          >
+                            {dat.typeOfItem}
+                          </div>
+                          {dat.totalQuantity}
+                        </div>
+                      </td>
                       <td>{dat.costOfItem}</td>
                       <td>{dat.itemName}</td>
                     </tr>

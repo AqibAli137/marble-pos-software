@@ -12,6 +12,8 @@ const initialStockWithDateState = {
   startDate: "",
   endDate: "",
   filterList: [],
+  totalSale: 0,
+  totalProfit: 0,
 };
 
 export const StockWithDateSlice = createSlice({
@@ -31,9 +33,22 @@ export const StockWithDateSlice = createSlice({
     UpdateFilterList: (state, { payload }) => {
       state.filterList = payload;
     },
+    UpdateTotalSale: (state, { payload }) => {
+      state.totalSale = payload;
+    },
+    UpdateTotalProfit: (state, { payload }) => {
+      state.totalProfit = payload;
+    },
   },
   extraReducers: (builder) => {},
 });
 
-export const { DateUpdate, UpdateStartDate, UpdateEndDate,UpdateFilterList } = StockWithDateSlice.actions;
+export const {
+  DateUpdate,
+  UpdateStartDate,
+  UpdateEndDate,
+  UpdateFilterList,
+  UpdateTotalSale,
+  UpdateTotalProfit,
+} = StockWithDateSlice.actions;
 export default StockWithDateSlice.reducer;
