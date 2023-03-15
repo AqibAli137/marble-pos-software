@@ -106,9 +106,9 @@ const NewGatePass = () => {
             <tbody>
               {saleItem.map((item: any) => (
                 <tr>
-                  {amountInTable && <td>{item.YourBill}</td>}
-                  {amountInTable && <td>{item.SetPrice}</td>}
-                  <td>
+                  {amountInTable && <td  className="p-0 py-2 m-0 px-2 text-center">{item.YourBill}</td>}
+                  {amountInTable && <td  className="p-0 py-2 m-0 px-2 text-center">{item.SetPrice}</td>}
+                  <td  className="p-0 py-2 m-0 text-center px-2">
                     <div className="d-flex justify-content-between">
                       <div
                         style={{ maxWidth: "max-content", minWidth: "max-content" }}
@@ -125,7 +125,7 @@ const NewGatePass = () => {
                       <p>{item.ItemQuantity}</p>
                     </div>
                   </td>
-                  <td className="text-center">
+                  <td  className="p-0 py-2 m-0 text-center">
                     <div
                       className="form-control text-center w-100 border-0"
                       style={{
@@ -139,7 +139,7 @@ const NewGatePass = () => {
                       {item.ItemName}
                     </div>
                   </td>
-                  <td>{new Date().toLocaleString() + ""}</td>
+                  <td  className="p-0 py-2 m-0 text-center px-2">{new Date().toLocaleString() + ""}</td>
                 </tr>
               ))}
               {/* Add more rows here */}

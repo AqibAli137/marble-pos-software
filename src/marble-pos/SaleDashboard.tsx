@@ -18,6 +18,8 @@ import { CustomerOrder } from "../Models/CustomerOrder";
 import { UpdateAllGatPass, UpdateCustomerGatPass } from "../@features/GatPass/GatPassSlice";
 import { UpdateSelectedOrders } from "../@features/Orders/OrdersSlice";
 import LocalFooter from "../layouts/Advatisment/LocalFooter";
+import { UpdateCustomerPayments } from "../@features/Payment/PaymentSlice";
+import { UpdateNewOrderCustomer } from "../@features/Customer/CustomerSlice";
 
 const SaleDashboard = () => {
   let saleState = useSelector((store: RootState) => store.sale);
@@ -80,7 +82,21 @@ const SaleDashboard = () => {
       dispatch(UpdateSelectedOrders(filterCustomerorder));
     });
 
-    setThisCustomer(CustomerState.NewOrderCustomer);
+    axios
+      .get(
+        `https://localhost:7005/api/Customer/PayementById?customerId=${CustomerState.NewOrderCustomer.id}`
+      )
+      .then((res) => {
+        dispatch(UpdateCustomerPayments(res.data));
+      });
+
+      axios
+      .get(
+        `https://localhost:7005/api/Customer/${CustomerState.NewOrderCustomer.id}`
+      )
+      .then((res) => {
+        dispatch(UpdateNewOrderCustomer(res.data))
+      });
   }, []);
 
   useEffect(() => {
@@ -285,16 +301,16 @@ const SaleDashboard = () => {
           <h3 className="text-center">ریکارڈ فہرست میں شامل کیا گیا ہے۔</h3>
         </div>
       )}
-      { saleItem[0] && <FirstTable TableData={saleItem} />}
+      {saleItem[0] && <FirstTable TableData={saleItem} />}
 
       <div className="row">
         <div className="col">
-          <div style={{ height: "500px", overflow: "scroll" }}>
+          <div style={{ height: "700px", overflow: "scroll" }}>
             <KhataTafseel />
           </div>
         </div>
         <div className="col">
-          <div style={{ height: "500px", overflow: "scroll" }}>
+          <div style={{ height: "700px", overflow: "scroll" }}>
             {GatPassState.NewOrderGatPass.map((gatPass: any) => (
               <GatePass gatPassNumber={gatPass.gatePassNo} />
             ))}

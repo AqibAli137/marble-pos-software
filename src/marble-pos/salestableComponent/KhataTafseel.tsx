@@ -15,6 +15,7 @@ const KhataTafseel = () => {
   let NewCustomerState = useSelector((store: RootState) => store.Customer);
   let OrdersState = useSelector((store: RootState) => store.Orders);
   let ItemState = useSelector((store: RootState) => store.Item);
+  let PayementState = useSelector((store: RootState) => store.PaymentRcv);
 
   const dataToPrintRef = useRef<HTMLInputElement>(null);
   const [amountInTable, setAmountInTable] = useState(true);
@@ -34,15 +35,16 @@ const KhataTafseel = () => {
     <div className="">
       <div className="container urdu fs-6 bg-white my-3 border" ref={dataToPrintRef}>
         <div className="">
+          <div>
+            <div style={{ background: "#d9ede1" }} className="row">
           <div className="gatepass text-center p-3  ">
             <h3 className="fs-5">کھاتہ تفصیل</h3>
           </div>
-          <div>
-            <div style={{ background: "#d9ede1" }} className="row">
               <div className="coxl-12 text-center">
                 <h3 className="my-3">
                   <span>
-                    سبحان ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
+                    سبحان ماربل اینڈ گرینائٹ{" "}
+                    <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
                   </span>
                 </h3>
               </div>
@@ -50,7 +52,11 @@ const KhataTafseel = () => {
                 <h6 className="my-3">
                   {" "}
                   <span className="fs6">
-                    <p className="mb-3"> ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب ہے۔  </p>
+                    <p className="mb-3">
+                      {" "}
+                      ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب
+                      ہے۔{" "}
+                    </p>
                     <p>نوید اختر-03016428683</p>
                   </span>
                 </h6>
@@ -79,18 +85,18 @@ const KhataTafseel = () => {
             </thead>
             <tbody>
               {OrdersState.SelectedOrders.map((i: any) => (
-                <tr className="">
+                <tr>
                   {amountInTable && (
-                    <td>
+                    <td  className="p-0 py-1 m-0 text-center">
                       <p>{i.yourbill}</p>
                     </td>
                   )}
                   {amountInTable && (
-                    <td>
+                    <td  className="p-0 py-1 m-0 text-center">
                       <p>{i.setPrice}</p>
                     </td>
                   )}
-                  <td>
+                  <td  className="p-0 py-1 m-0 text-center">
                     <div className="d-flex justify-content-between">
                       <div
                         style={{ maxWidth: "max-content", minWidth: "max-content" }}
@@ -107,7 +113,7 @@ const KhataTafseel = () => {
                       <p> {i.itemQuantity}</p>
                     </div>
                   </td>
-                  <td className="text-center">
+                  <td className="p-0 py-1 m-0 text-center">
                     <div
                       className="form-control text-center w-100 border-0"
                       style={{
@@ -121,16 +127,47 @@ const KhataTafseel = () => {
                       {i.itemName}
                     </div>
                   </td>
-                  <td>
+                  <td  className="p-0 py-1 m-0 text-center">
                     <p>{i.orderDate}</p>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <div className="gatepass text-center p-3  ">
+            <h3 className="fs-5">وصول رقم کی تفصیل</h3>
+          </div>
+          <table className="table table-bordered">
+            <thead>
+              <tr className="fs-6 text-center">
+                <th> بقایا رقم</th>
+                <th> رعایت </th>
+                <th> وصول رقم</th>
+                <th> تاریخ</th>
+              </tr>
+            </thead>
+            <tbody>
+              {PayementState.CustomerPayments.map((i: any) => (
+                <tr className="">
+                  <td  className="p-0 py-1 m-0 text-center">
+                    <p>{i.pendingAmount}</p>
+                  </td>
+                  <td  className="p-0 py-1 m-0 text-center">
+                    <p> {i.discount}</p>
+                  </td>
+                  <td className="p-0 py-1 m-0 text-center">
+                    <p>{i.payementRcv}</p>
+                  </td>
+                  <td  className="p-0 py-1 m-0 text-center">
+                    <p>{i.payementDate}</p>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
           <Khatacard />
         </div>
-        
       </div>
       <div className="d-flex justify-content-between p-3">
         <div className="mt-2">
@@ -158,17 +195,16 @@ const KhataTafseel = () => {
             }}
           />
         </div>
-        {ItemState.SelectedItem.id > 0 &&
-        
-        NewCustomerState.NewOrderCustomer.id && <IconButton
-        onClick={handlePrint}
-        style={{
-          color: "#2d709f",
-        }}
-        >
-          <LocalPrintshopIcon fontSize="large" />
-        </IconButton>
-        }
+        {ItemState.SelectedItem.id > 0 && NewCustomerState.NewOrderCustomer.id && (
+          <IconButton
+            onClick={handlePrint}
+            style={{
+              color: "#2d709f",
+            }}
+          >
+            <LocalPrintshopIcon fontSize="large" />
+          </IconButton>
+        )}
       </div>
     </div>
   );

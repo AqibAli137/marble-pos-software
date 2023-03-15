@@ -58,7 +58,7 @@ const GatePass = (prop: { gatPassNumber: string }) => {
               <div className="coxl-12 text-center">
                 <h3 className="my-3">
                   <span>
-                    سبحان ماربل اینڈ گرینائٹ
+                    سبحان ماربل اینڈ گرینائٹ{" "}
                     <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
                   </span>
                 </h3>
@@ -106,19 +106,19 @@ const GatePass = (prop: { gatPassNumber: string }) => {
                   item.gatePassNumber === prop.gatPassNumber && (
                     <tr className="text-center" key={index}>
                       {amountInTable && (
-                        <td>
+                        <td className="p-0 py-2 px-2 m-0 text-center">
                           <p>{item.yourbill}</p>
                         </td>
                       )}
                       {amountInTable && (
-                        <td>
+                        <td className="p-0 py-2 m-0  text-center">
                           <p>{item.setPrice}</p>
                         </td>
                       )}
-                      {/* <td>
+                      {/* <td className="p-0 py-2 m-0 text-center">
                   <p>{item.itemQuantity}</p>
                 </td> */}
-                      <td>
+                      <td className="p-0 py-2 m-0 text-center">
                         <div className="d-flex justify-content-between">
                           <div
                             style={{ maxWidth: "max-content", minWidth: "max-content" }}
@@ -135,7 +135,7 @@ const GatePass = (prop: { gatPassNumber: string }) => {
                           <p>{item.itemQuantity}</p>
                         </div>
                       </td>
-                      <td className="text-center">
+                      <td  className="p-0 py-2 m-0 text-center">
                         <div
                           className="form-control text-center w-100 border-0"
                           style={{
@@ -149,7 +149,7 @@ const GatePass = (prop: { gatPassNumber: string }) => {
                           {item.itemName}
                         </div>
                       </td>
-                      <td>
+                      <td className="p-0 py-2 m-0 text-center">
                         <p>{item.orderDate}</p>
                       </td>
                     </tr>
