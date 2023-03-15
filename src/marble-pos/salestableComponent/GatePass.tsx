@@ -115,9 +115,6 @@ const GatePass = (prop: { gatPassNumber: string }) => {
                           <p>{item.setPrice}</p>
                         </td>
                       )}
-                      {/* <td className="p-0 py-2 m-0 text-center">
-                  <p>{item.itemQuantity}</p>
-                </td> */}
                       <td className="p-0 py-2 m-0 text-center">
                         <div className="d-flex justify-content-between">
                           <div
@@ -135,7 +132,7 @@ const GatePass = (prop: { gatPassNumber: string }) => {
                           <p>{item.itemQuantity}</p>
                         </div>
                       </td>
-                      <td  className="p-0 py-2 m-0 text-center">
+                      <td className="p-0 py-2 m-0 text-center">
                         <div
                           className="form-control text-center w-100 border-0"
                           style={{

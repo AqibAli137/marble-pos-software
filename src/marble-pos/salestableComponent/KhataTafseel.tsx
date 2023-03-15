@@ -8,7 +8,10 @@ import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import "../../app.css";
-import { UpdateProfitShow } from "../../@features/Customer/CustomerSlice";
+import {
+  UpdateProfitShow,
+  UpdatewithOutPayementDetail,
+} from "../../@features/Customer/CustomerSlice";
 
 const KhataTafseel = () => {
   let saleState = useSelector((store: RootState) => store.sale);
@@ -37,9 +40,9 @@ const KhataTafseel = () => {
         <div className="">
           <div>
             <div style={{ background: "#d9ede1" }} className="row">
-          <div className="gatepass text-center p-3  ">
-            <h3 className="fs-5">کھاتہ تفصیل</h3>
-          </div>
+              <div className="gatepass text-center p-3  ">
+                <h3 className="fs-5">کھاتہ تفصیل</h3>
+              </div>
               <div className="coxl-12 text-center">
                 <h3 className="my-3">
                   <span>
@@ -87,16 +90,16 @@ const KhataTafseel = () => {
               {OrdersState.SelectedOrders.map((i: any) => (
                 <tr>
                   {amountInTable && (
-                    <td  className="p-0 py-1 m-0 text-center">
+                    <td className="p-0 py-1 m-0 text-center">
                       <p>{i.yourbill}</p>
                     </td>
                   )}
                   {amountInTable && (
-                    <td  className="p-0 py-1 m-0 text-center">
+                    <td className="p-0 py-1 m-0 text-center">
                       <p>{i.setPrice}</p>
                     </td>
                   )}
-                  <td  className="p-0 py-1 m-0 text-center">
+                  <td className="p-0 py-1 m-0 text-center">
                     <div className="d-flex justify-content-between">
                       <div
                         style={{ maxWidth: "max-content", minWidth: "max-content" }}
@@ -127,44 +130,49 @@ const KhataTafseel = () => {
                       {i.itemName}
                     </div>
                   </td>
-                  <td  className="p-0 py-1 m-0 text-center">
+                  <td className="p-0 py-1 m-0 text-center">
                     <p>{i.orderDate}</p>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <div className="gatepass text-center p-3  ">
-            <h3 className="fs-5">وصول رقم کی تفصیل</h3>
-          </div>
-          <table className="table table-bordered">
-            <thead>
-              <tr className="fs-6 text-center">
-                <th> بقایا رقم</th>
-                <th> رعایت </th>
-                <th> وصول رقم</th>
-                <th> تاریخ</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PayementState.CustomerPayments.map((i: any) => (
-                <tr className="">
-                  <td  className="p-0 py-1 m-0 text-center">
-                    <p>{i.pendingAmount}</p>
-                  </td>
-                  <td  className="p-0 py-1 m-0 text-center">
-                    <p> {i.discount}</p>
-                  </td>
-                  <td className="p-0 py-1 m-0 text-center">
-                    <p>{i.payementRcv}</p>
-                  </td>
-                  <td  className="p-0 py-1 m-0 text-center">
-                    <p>{i.payementDate}</p>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+          {NewCustomerState.withOutPayementDetail && (
+            <>
+              <div className="gatepass text-center p-3  ">
+                <h3 className="fs-5">وصول رقم کی تفصیل</h3>
+              </div>
+              <table className="table table-bordered">
+                <thead>
+                  <tr className="fs-6 text-center">
+                    <th> بقایا رقم</th>
+                    <th> رعایت </th>
+                    <th> وصول رقم</th>
+                    <th> تاریخ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {PayementState.CustomerPayments.map((i: any) => (
+                    <tr className="">
+                      <td className="p-0 py-1 m-0 text-center">
+                        <p>{i.pendingAmount}</p>
+                      </td>
+                      <td className="p-0 py-1 m-0 text-center">
+                        <p> {i.discount}</p>
+                      </td>
+                      <td className="p-0 py-1 m-0 text-center">
+                        <p>{i.payementRcv}</p>
+                      </td>
+                      <td className="p-0 py-1 m-0 text-center">
+                        <p>{i.payementDate}</p>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
 
           <Khatacard />
         </div>
@@ -189,6 +197,21 @@ const KhataTafseel = () => {
           <Checkbox
             {...label}
             onChange={() => dispatch(UpdateProfitShow(!NewCustomerState.WithOutProfit))}
+            style={{
+              backgroundColor: "#2d705f",
+              marginLeft: "5px",
+            }}
+          />
+        </div>
+        <div className="mt-2">
+          <span className="urdu main">بغیر وصول رقم کے</span>
+
+          {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}
+          <Checkbox
+            {...label}
+            onChange={() =>
+              dispatch(UpdatewithOutPayementDetail(!NewCustomerState.withOutPayementDetail))
+            }
             style={{
               backgroundColor: "#2d705f",
               marginLeft: "5px",

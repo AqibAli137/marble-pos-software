@@ -5,7 +5,8 @@ const initialSaleCustomerstate = {
   ListOfCustomers:[] as any,
   NewOrderCustomer:{} as any,
   ReturnItemCustomer:{} as any,
-  WithOutProfit:true
+  WithOutProfit:true,
+  withOutPayementDetail:true,
 }
 
 export const CustomerSlice = createSlice({
@@ -21,6 +22,9 @@ export const CustomerSlice = createSlice({
     UpdateProfitShow: (state, {payload}) => {
       state.WithOutProfit = payload
     },
+    UpdatewithOutPayementDetail: (state, {payload}) => {
+      state.withOutPayementDetail = payload
+    },
     UpdateReturnItemCustomer: (state, {payload}) => {
       state.ReturnItemCustomer = payload
     }
@@ -33,6 +37,7 @@ export const {
   UpdateAllCustomers,
   UpdateNewOrderCustomer,
   UpdateProfitShow,
-  UpdateReturnItemCustomer
+  UpdateReturnItemCustomer,
+  UpdatewithOutPayementDetail
 } = CustomerSlice.actions
 export default CustomerSlice.reducer
