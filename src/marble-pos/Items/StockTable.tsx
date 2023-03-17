@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { UpdateAllOrders } from "../../@features/Orders/OrdersSlice";
 import "../../otherTable.css";
+import { BASE_URL } from "../../@features/Constents";
 
 const StockRecord = () => {
   let saleState = useSelector((store: RootState) => store.sale);
@@ -42,7 +43,7 @@ const StockRecord = () => {
     },
   ];
   useEffect(() => {
-    axios.get("https://localhost:7005/api/Item").then((res) => {
+    axios.get(`${BASE_URL}/api/Item`).then((res) => {
       res.data.length === 0
         ? dispatch(UpdateAllItems(defaultItem))
         : dispatch(UpdateAllItems(res.data));
@@ -51,7 +52,7 @@ const StockRecord = () => {
         ? dispatch(UpdateSelectedItem(defaultItem[0]))
         : dispatch(UpdateSelectedItem(res.data[0]));
     });
-    axios.get("https://localhost:7005/api/CustomerOrder/ItemProfit").then((res) => {
+    axios.get(`${BASE_URL}/api/CustomerOrder/ItemProfit`).then((res) => {
       res.data.length === 0
         ? dispatch(UpdateProfitItem(defaultProfit))
         : dispatch(UpdateProfitItem(res.data));

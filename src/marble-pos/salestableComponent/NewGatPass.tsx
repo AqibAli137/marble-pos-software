@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import axios from "axios";
 import { CustomerOrder } from "../../Models/CustomerOrder";
+import { BASE_URL } from "../../@features/Constents";
 // import "./invoicer.css";
 
 const NewGatePass = () => {
@@ -36,7 +37,7 @@ const NewGatePass = () => {
   const handleApi = () => {
     axios
       .post(
-        `https://localhost:7005/api/CustomerOrder/NewOrder/${NewCustomerState.NewOrderCustomer.id}`,
+        `${BASE_URL}/api/CustomerOrder/NewOrder/${NewCustomerState.NewOrderCustomer.id}`,
         OrderListState.orderList
       )
       .then((res) => {});
@@ -150,7 +151,7 @@ const NewGatePass = () => {
           <span className="mt-5">دستخط ۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔</span>
         </div>
       </div>
-      <div className="d-flex justify-content-between px-3">
+      <div className="d-flex justify-content-between px-3 urdu">
         <div className="mt-2">
           <span>بغیر ریٹ کے</span>
           {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}

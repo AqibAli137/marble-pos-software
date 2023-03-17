@@ -26,6 +26,7 @@ import {
 } from "../../@features/StockWithDate/StockWithProfit";
 import "../../otherTable.css";
 import StockCards from "./StockCards";
+import { BASE_URL } from "../../@features/Constents";
 
 const StockWithDate = () => {
   let DateChange = useSelector((store: RootState) => store.DateChange);
@@ -48,7 +49,7 @@ const StockWithDate = () => {
     },
   ];
   useEffect(() => {
-    axios.get("https://localhost:7005/api/Item").then((res) => {
+    axios.get(`${BASE_URL}/api/Item`).then((res) => {
       res.data.length === 0
         ? dispatch(UpdateAllItems(defaultItem))
         : dispatch(UpdateAllItems(res.data));
@@ -58,7 +59,7 @@ const StockWithDate = () => {
         : dispatch(UpdateSelectedItem(res.data[0]));
     });
 
-    axios.get("https://localhost:7005/api/CustomerOrder/ItemProfit").then((res) => {
+    axios.get(`${BASE_URL}/api/CustomerOrder/ItemProfit`).then((res) => {
       res.data.length === 0
         ? dispatch(UpdateProfitItem(defaultProfit))
         : dispatch(UpdateProfitItem(res.data));
@@ -83,7 +84,7 @@ const StockWithDate = () => {
 
   const ClickFilter = () => {
     axios
-      .post("https://localhost:7005/api/Item/FilterWithDate", {
+      .post(`${BASE_URL}/api/Item/FilterWithDate`, {
         DateFrom: DateChange.startDate,
         DateTo: DateChange.endDate,
       })

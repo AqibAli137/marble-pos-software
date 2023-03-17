@@ -8,6 +8,7 @@ import "../../app.css";
 import { Item } from "../../Models/Item";
 import axios from "axios";
 import { UpdateAllItems, UpdateSelectedItem } from "../../@features/ItemListSlice/ItemListSlice";
+import { BASE_URL } from "../../@features/Constents";
 
 const AddStock = () => {
   let ItemState = useSelector((store: RootState) => store.Item);
@@ -31,7 +32,7 @@ const AddStock = () => {
   ];
 
   useEffect(() => {
-    axios.get("https://localhost:7005/api/Item").then((res) => {
+    axios.get(`${BASE_URL}/api/Item`).then((res) => {
       res.data.length === 0
         ? dispatch(UpdateAllItems(defaultItem))
         : dispatch(UpdateAllItems(res.data));
@@ -70,7 +71,7 @@ const AddStock = () => {
         : SelectQuantity === 0 || SelectPrice === 0
         ? alert("براہ کرم مکمل تفصیلات درج کریں۔")
         : axios
-            .put("https://localhost:7005/api/Item", ItemRecord)
+            .put(`${BASE_URL}/api/Item`, ItemRecord)
             .then((res) => {
               alert("آپ کا نیا آئٹم ریکارڈ کامیابی سے Save ہو گیا۔");
               setItemAddSpanShow(true);

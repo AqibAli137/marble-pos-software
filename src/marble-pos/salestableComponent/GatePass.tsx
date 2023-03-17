@@ -160,7 +160,7 @@ const GatePass = (prop: { gatPassNumber: string }) => {
           <span className="mt-5">دستخط ۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔۔</span>
         </div>
       </div>
-      <div className="d-flex justify-content-between px-3">
+      <div className="d-flex justify-content-between px-3 urdu">
         <div className="mt-2">
           <span>بغیر ریٹ کے</span>
           {/* <input type="checkbox" defaultChecked={this.state.chkbox} onChange={this.handleChangeChk} /> */}

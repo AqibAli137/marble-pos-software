@@ -5,6 +5,7 @@ import DashboardLayout from "../../../examples/LayoutContainers/DashboardLayout"
 import DashboardNavbar from "../../../examples/Navbars/DashboardNavbar";
 import axios from "axios";
 import { Customer } from "../../../Models/Customer";
+import { BASE_URL } from "../../../@features/Constents";
 
 const CustomerCreate = () => {
   const [name, setName] = useState("");
@@ -29,7 +30,7 @@ const CustomerCreate = () => {
 
   name==='' || address ==='' || phoneNo === ''? alert('براہ کرم مکمل تفصیلات درج کریں۔'):
 
-  axios.post("https://localhost:7005/api/Customer",customerRecord).then(
+  axios.post(`${BASE_URL}/api/Customer`,customerRecord).then(
       (res)=>{alert("آپ کا نیا کسٹمر ریکارڈ کامیابی سے Save ہو گیا۔");
       setName('');
       setAddress('');

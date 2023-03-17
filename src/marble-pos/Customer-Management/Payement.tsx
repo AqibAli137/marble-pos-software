@@ -2,6 +2,7 @@ import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { BASE_URL } from "../../@features/Constents";
 import "../../app.css";
 import { Customer } from "../../Models/Customer";
 import { AppDispatch, RootState } from "../../store";
@@ -32,7 +33,7 @@ const PayementRCV = () => {
     //   Password != "test123"
     //     ? alert("آپ اس سروس کو استعمال نہیں کر سکتے")
     //     : axios
-    //         .put("https://localhost:7005/api/Customer/PayementRcv", CustomerData)
+    //         .put(`${BASE_URL}/api/Customer/PayementRcv`, CustomerData)
     //         .then((res) => {
     //           alert("آپ کی ادائیگی اور رعایت کامیابی کے ساتھ Update ہو گئی۔");
     //         })
@@ -50,7 +51,7 @@ const PayementRCV = () => {
       Password === "Aqib137" ||
       Password === "user456"
         ? axios
-            .put("https://localhost:7005/api/Customer/PayementRcv", CustomerData)
+            .put(`${BASE_URL}/api/Customer/PayementRcv`, CustomerData)
             .then((res) => {
               alert("آپ کی ادائیگی اور رعایت کامیابی کے ساتھ Update ہو گئی۔");
             })

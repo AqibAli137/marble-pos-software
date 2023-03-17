@@ -20,6 +20,7 @@ import { UpdateSelectedOrders } from "../@features/Orders/OrdersSlice";
 import LocalFooter from "../layouts/Advatisment/LocalFooter";
 import { UpdateCustomerPayments } from "../@features/Payment/PaymentSlice";
 import { UpdateNewOrderCustomer } from "../@features/Customer/CustomerSlice";
+import { BASE_URL } from "../@features/Constents";
 
 const SaleDashboard = () => {
   let saleState = useSelector((store: RootState) => store.sale);
@@ -55,7 +56,7 @@ const SaleDashboard = () => {
   ];
   useEffect(() => {
     axios
-      .get("https://localhost:7005/api/Item")
+      .get(`${BASE_URL}/api/Item`)
       .then((res) => {
         res.data.length === 0
           ? dispatch(UpdateAllItems(defaultItem))
@@ -67,7 +68,7 @@ const SaleDashboard = () => {
       })
       .catch(() => {});
 
-    axios.get("https://localhost:7005/api/GatePass").then((res) => {
+    axios.get(`${BASE_URL}/api/GatePass`).then((res) => {
       dispatch(UpdateAllGatPass(res.data));
       let gatPassFilter = res.data.filter(
         (item: any) => item.customerId === CustomerState.NewOrderCustomer.id
@@ -75,7 +76,7 @@ const SaleDashboard = () => {
       dispatch(UpdateCustomerGatPass(gatPassFilter));
     });
 
-    axios.get("https://localhost:7005/api/CustomerOrder").then((res) => {
+    axios.get(`${BASE_URL}/api/CustomerOrder`).then((res) => {
       let filterCustomerorder = res.data.filter(
         (item: any) => item.customerId === CustomerState.NewOrderCustomer.id
       );
@@ -83,20 +84,14 @@ const SaleDashboard = () => {
     });
 
     axios
-      .get(
-        `https://localhost:7005/api/Customer/PayementById?customerId=${CustomerState.NewOrderCustomer.id}`
-      )
+      .get(`${BASE_URL}/api/Customer/PayementById?customerId=${CustomerState.NewOrderCustomer.id}`)
       .then((res) => {
         dispatch(UpdateCustomerPayments(res.data));
       });
 
-      axios
-      .get(
-        `https://localhost:7005/api/Customer/${CustomerState.NewOrderCustomer.id}`
-      )
-      .then((res) => {
-        dispatch(UpdateNewOrderCustomer(res.data))
-      });
+    axios.get(`${BASE_URL}/api/Customer/${CustomerState.NewOrderCustomer.id}`).then((res) => {
+      dispatch(UpdateNewOrderCustomer(res.data));
+    });
   }, []);
 
   useEffect(() => {

@@ -10,6 +10,7 @@ import axios from "axios";
 import { UpdateAllItems, UpdateSelectedItem } from "../../@features/ItemListSlice/ItemListSlice";
 import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
 import { ReturnItem } from "../../Models/ReturnItem";
+import { BASE_URL } from "../../@features/Constents";
 const ReturnItems = () => {
   let ItemState = useSelector((store: RootState) => store.Item);
   let CustomerState = useSelector((store: RootState) => store.Customer);
@@ -19,7 +20,7 @@ const ReturnItems = () => {
   let saleState = useSelector((store: RootState) => store.sale);
 
   useEffect(() => {
-    axios.get("https://localhost:7005/api/Item").then((res) => {
+    axios.get(`${BASE_URL}/api/Item`).then((res) => {
       dispatch(UpdateAllItems(res.data));
       dispatch(UpdateSelectedItem(res.data[0]));
     });
@@ -45,7 +46,7 @@ const ReturnItems = () => {
     {
       CustomerState.ReturnItemCustomer.id &&
       axios
-        .post("https://localhost:7005/api/ReturnItem", CustomerData)
+        .post(`${BASE_URL}/api/ReturnItem`, CustomerData)
         .then((res) => {
           alert("آپ کی ادائیگی کامیابی کے ساتھ Update ہو گئی۔");
         })

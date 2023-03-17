@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import Logo from "../../assets/sm-assets/sm-logo2.jpg";
 import { Item } from "../../Models/Item";
 import axios from "axios";
+import { BASE_URL } from "../../@features/Constents";
 
 export function RegisterItem() {
   // const navigate = useNavigate()
@@ -31,7 +32,7 @@ export function RegisterItem() {
       itemName === "" || itemCost === 0 || itemType === "" || itemQuantity === 0
         ? alert("براہ کرم مکمل تفصیلات درج کریں۔")
         : axios
-            .post("https://localhost:7005/api/Item", ItemRecord)
+            .post(`${BASE_URL}/api/Item`, ItemRecord)
             .then((res) => {
               alert("آپ کا نیا آئٹم ریکارڈ کامیابی سے Save ہو گیا۔");
               setItemName("");

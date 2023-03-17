@@ -19,6 +19,7 @@ import {
   UpdateReturnItemCustomer,
 } from "../../@features/Customer/CustomerSlice";
 import { UpdateCustomerPaymentRcv } from "../../@features/Payment/PaymentSlice";
+import { BASE_URL } from "../../@features/Constents";
 const CustomerTable = () => {
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([] as any);
@@ -30,7 +31,7 @@ const CustomerTable = () => {
   const [allData, setAllData] = useState([] as any);
 
   useEffect(() => {
-    axios.get("https://localhost:7005/api/Customer").then((res) => {
+    axios.get(`${BASE_URL}/api/Customer`).then((res) => {
       setFilterCustomers(res.data);
       dispatch(UpdateAllCustomers(res.data));
       setAllData(res.data);
