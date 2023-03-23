@@ -13,6 +13,7 @@ import {
   UpdateSelectedOrders,
 } from "../../@features/Orders/OrdersSlice";
 // import "./invoicer.css";
+import subhanLogo from "../../assets/sm-assets/sm-logo2.jpg";
 
 const GatePass = (prop: { gatPassNumber: string }) => {
   const Number = prop.gatPassNumber;
@@ -55,25 +56,36 @@ const GatePass = (prop: { gatPassNumber: string }) => {
                   <p className="fs-6">گیٹ پاس</p>
                 </div>
               )}
-              <div className="coxl-12 text-center">
-                <h3 className="my-3">
-                  <span>
-                    سبحان ماربل اینڈ گرینائٹ{" "}
-                    <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
-                  </span>
-                </h3>
-              </div>
               <div className="col-12 text-center">
-                <h6 className="my-3">
-                  <span className="fs6">
-                    <p className="mb-3">
-                      ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب
-                      ہے۔
-                    </p>
-                    <br />
-                    <span>نوید اختر-03016428683</span>
+                <h1 className="my-3">
+                  <span>
+                    <img
+                      alt="Logo"
+                      style={{
+                        width: "70px",
+                        height: "70px",
+                        borderRadius: "100%",
+                        marginRight: "30px",
+                      }}
+                      src={subhanLogo}
+                    />
                   </span>
-                </h6>
+                  <span>سبحان ماربل اینڈ گرینائٹ</span>
+                </h1>
+              </div>
+              <div className="col-12 text-center urdu">
+                <span className="fs-6">
+                  نزد انمول سی این جی۔خان ٹاٶن جی ٹی روڑ کامونکی <span>نوید اختر-03016428683</span>
+                </span>
+              </div>
+              <div className="col-12 text-center mt-3" style={{ backgroundColor: "#bbd6b8" }}>
+                <h5 className="my-3">
+                  <span className="fs6">
+                    ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب
+                    ہے۔
+                    {/* <span>نوید اختر-03016428683</span> */}
+                  </span>
+                </h5>
               </div>
             </div>
           </div>

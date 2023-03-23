@@ -154,15 +154,20 @@ const SaleDashboard = () => {
           <div className="col-12 text-center">
             <h1 className="my-3">
               <span>
-                سبحان ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
+                سبحان ماربل اینڈ گرینائٹ 
               </span>
             </h1>
           </div>
-          <div className="col-12 text-center">
+          <div className="col-12 text-center urdu">
+            <span className="fs-6">
+              نزد انمول سی این جی۔خان ٹاٶن جی ٹی روڑ کامونکی <span>نوید اختر-03016428683</span>
+            </span>
+          </div>
+          <div className="col-12 text-center mt-3" style={{backgroundColor:'#bbd6b8'}}>
             <h5 className="my-3">
               <span className="fs6">
                 ہمارے ہاں ہر قسم کا ماربل, بارڈر, پٹی, پھول اور گر ینائٹ کی تمام ورائٹی دستیاب ہے۔
-                <span>نوید اختر-03016428683</span>
+                {/* <span>نوید اختر-03016428683</span> */}
               </span>
             </h5>
           </div>
@@ -306,10 +311,10 @@ const SaleDashboard = () => {
         </div>
         <div className="col">
           <div style={{ height: "700px", overflow: "scroll" }}>
+            <NewGatePass />
             {GatPassState.NewOrderGatPass.map((gatPass: any) => (
               <GatePass gatPassNumber={gatPass.gatePassNo} />
             ))}
-            <NewGatePass />
           </div>
         </div>
       </div>
