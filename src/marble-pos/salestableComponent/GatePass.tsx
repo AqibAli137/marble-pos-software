@@ -75,7 +75,7 @@ const GatePass = (prop: { gatPassNumber: string }) => {
               </div>
               <div className="col-12 text-center urdu">
                 <span className="fs-6">
-                  نزد انمول سی این جی۔خان ٹاٶن جی ٹی روڑ کامونکی <span>نوید اختر-03016428683</span>
+                  نزد انمول سی این جی۔خان ٹاٶن جی ٹی روڑ کامونکی /<span>نوید اختر-03016428683</span>
                 </span>
               </div>
               <div className="col-12 text-center mt-3" style={{ backgroundColor: "#bbd6b8" }}>
