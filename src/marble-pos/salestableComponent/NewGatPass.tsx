@@ -41,7 +41,12 @@ const NewGatePass = () => {
         `${BASE_URL}/api/CustomerOrder/NewOrder/${NewCustomerState.NewOrderCustomer.id}`,
         OrderListState.orderList
       )
-      .then((res) => {});
+      .then((res) => {
+        alert('آپ کا آرڈر کامیابی سے ہو گیا ہے۔')
+      }).catch((err) => {
+        alert('آپ کے آرڈر میں کچھ مسئلہ ہے..! تصدیق کریں.')
+      }
+      );
     // console.log(OrderListState.orderList);
     // console.log(NewCustomerState.NewOrderCustomer.id);
   };
@@ -73,7 +78,7 @@ const NewGatePass = () => {
                       src={subhanLogo}
                     />
                   </span>
-                  <span>سبحان ماربل اینڈ گرینائٹ</span>
+                  <span>رحمٰن ماربل اینڈ گرینائٹ</span>
                 </h1>
               </div>
               <div className="col-12 text-center urdu">

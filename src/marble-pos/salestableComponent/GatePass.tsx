@@ -70,7 +70,7 @@ const GatePass = (prop: { gatPassNumber: string }) => {
                       src={subhanLogo}
                     />
                   </span>
-                  <span>سبحان ماربل اینڈ گرینائٹ</span>
+                  <span>رحمٰن ماربل اینڈ گرینائٹ</span>
                 </h1>
               </div>
               <div className="col-12 text-center urdu">

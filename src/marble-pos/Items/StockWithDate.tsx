@@ -131,7 +131,7 @@ const StockWithDate = () => {
           <div className="col-12 text-center">
             <h1 className="my-3">
               <span>
-                سبحان ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
+                رحمٰن ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
               </span>
             </h1>
           </div>

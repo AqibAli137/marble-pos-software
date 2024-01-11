@@ -20,7 +20,7 @@ const LocalFooter = () => {
           </div>
           <p className='mt-5 urdu'>
           • تخلیق کردہ: نوید احمد • فون نمبر 03016428683 <br />
-          • ای میل # abc@gmail.com • کمپنی: سبحان ماربل
+          • ای میل # abc@gmail.com • کمپنی: رحمٰن ماربل
           </p>
         </div>
     </>

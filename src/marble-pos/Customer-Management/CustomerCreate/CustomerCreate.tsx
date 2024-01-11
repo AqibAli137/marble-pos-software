@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import React, { useState } from "react";
 import Logo from "../../../assets/sm-assets/sm-logo2.jpg";
 import DashboardLayout from "../../../examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "../../../examples/Navbars/DashboardNavbar";
@@ -54,7 +53,7 @@ const CustomerCreate = () => {
             <div className="col-12 text-center">
               <h1 className="my-3">
                 <span>
-                  سبحان ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
+                  رحمٰن ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
                 </span>
               </h1>
             </div>

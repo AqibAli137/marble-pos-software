@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
@@ -15,7 +15,6 @@ import {
 import subhanLogo from "../../assets/sm-assets/sm-logo2.jpg";
 
 const KhataTafseel = () => {
-  let saleState = useSelector((store: RootState) => store.sale);
   let NewCustomerState = useSelector((store: RootState) => store.Customer);
   let OrdersState = useSelector((store: RootState) => store.Orders);
   let ItemState = useSelector((store: RootState) => store.Item);
@@ -24,11 +23,6 @@ const KhataTafseel = () => {
   const dataToPrintRef = useRef<HTMLInputElement>(null);
   const [amountInTable, setAmountInTable] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
-
-  const [withOutProfit, setWithOutProfit] = useState(true);
-
-  let OrderListState = useSelector((store: RootState) => store.sale);
-
   const handlePrint = useReactToPrint({
     content: () => dataToPrintRef.current!,
   });
@@ -49,11 +43,11 @@ const KhataTafseel = () => {
                   <span>
                     <img
                       alt="Logo"
-                      style={{ width: "70px", height: "70px", borderRadius: "100%", marginRight:'30px' }}
+                      style={{ width: "70px", height: "70px", borderRadius: "100%", marginRight: '30px' }}
                       src={subhanLogo}
                     />
                   </span>
-                  <span>سبحان ماربل اینڈ گرینائٹ</span>{" "}
+                  <span>رحمٰن ماربل اینڈ گرینائٹ</span>{" "}
                 </h1>
               </div>
               <div className="col-12 text-center urdu">

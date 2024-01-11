@@ -13,7 +13,6 @@ import NewGatePass from "./salestableComponent/NewGatPass";
 import { Divider } from "@mui/material";
 import axios from "axios";
 import { UpdateAllItems, UpdateSelectedItem } from "../@features/ItemListSlice/ItemListSlice";
-import { Item } from "../Models/Item";
 import { CustomerOrder } from "../Models/CustomerOrder";
 import { UpdateAllGatPass, UpdateCustomerGatPass } from "../@features/GatPass/GatPassSlice";
 import { UpdateSelectedOrders } from "../@features/Orders/OrdersSlice";
@@ -27,20 +26,13 @@ const SaleDashboard = () => {
   let ItemState = useSelector((store: RootState) => store.Item);
   let CustomerState = useSelector((store: RootState) => store.Customer);
   let GatPassState = useSelector((store: RootState) => store.GatPass);
-  let OrdersState = useSelector((store: RootState) => store.Orders);
-
-  // const [selectedItem, setSelectedItem] = useState(AllItem[0]);
   const [SelectQuantity, setSelectQuantity] = useState(1);
   const [SelectPrice, setSelectPrice] = useState(60);
   const [yourBill, setYourBill] = useState(60);
-  const [selectItemCost, setSelectItemCost] = useState(60);
   const [stockPrice, setStockPrice] = useState(500 * 50);
-
   const [profit, setProfit] = useState(10);
   const [saleItem, setSaleItem] = useState([] as any);
   const [ItemAddSpanShow, setItemAddSpanShow] = useState(false);
-
-  const [thisCustomer, setThisCustomer] = useState({} as any);
 
   const dispatch = useDispatch<AppDispatch>();
   const defaultItem = [

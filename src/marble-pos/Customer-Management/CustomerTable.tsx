@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Table, FormControl, InputGroup, Form, Row, Col, Pagination } from "react-bootstrap";
+import { Table, FormControl, InputGroup, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@mui/material";
-import { Menu } from "@mui/material";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ViewComfyIcon from "@mui/icons-material/ViewComfy";
 import { Modal } from "react-bootstrap";
 import PayementRCV from "./Payement";
@@ -168,8 +166,8 @@ const CustomerTable = () => {
                       dat.totalBill === 0 && dat.pendingPayment === 0
                         ? "danger"
                         : dat.pendingPayment === 0 && dat.totalBill != 0
-                        ? "success"
-                        : "greyCol"
+                          ? "success"
+                          : "greyCol"
                     }
                     style={{ textAlign: "center" }}
                     key={index}
@@ -225,8 +223,8 @@ const CustomerTable = () => {
                       {dat.totalBill === 0 && dat.pendingPayment === 0
                         ? "شروع نہیں"
                         : dat.pendingPayment === 0 && dat.totalBill != 0
-                        ? "کھاتا نیل ہو گیا"
-                        : "جاری رہے"}
+                          ? "کھاتا نیل ہو گیا"
+                          : "جاری رہے"}
                     </td>
 
                     <td>{dat.pendingPayment}</td>

@@ -1,5 +1,4 @@
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
@@ -17,7 +16,6 @@ const ReturnItems = () => {
 
   const [SelectQuantity, setSelectQuantity] = useState(1);
   const dispatch = useDispatch<AppDispatch>();
-  let saleState = useSelector((store: RootState) => store.sale);
 
   useEffect(() => {
     axios.get(`${BASE_URL}/api/Item`).then((res) => {
@@ -65,7 +63,7 @@ const ReturnItems = () => {
             <div className="col-12 text-center">
               <h1 className="my-3">
                 <span>
-                  سبحان ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
+                  رحمٰن ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
                 </span>
               </h1>
             </div>

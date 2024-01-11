@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, FormControl, InputGroup, Form, Row, Col, Pagination } from "react-bootstrap";
+import { Table, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
@@ -12,18 +12,11 @@ import {
 } from "../../@features/ItemListSlice/ItemListSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { UpdateAllOrders } from "../../@features/Orders/OrdersSlice";
 import "../../otherTable.css";
 import { BASE_URL } from "../../@features/Constents";
 
 const StockRecord = () => {
-  let saleState = useSelector((store: RootState) => store.sale);
   let ItemState = useSelector((store: RootState) => store.Item);
-  let OrderState = useSelector((store: RootState) => store.Orders);
-  const [TotalProfit, setTotalProfit] = useState(0);
-
-  // const [ProfitList, setProfitList] = useState([] as any);
-
   const dispatch = useDispatch<AppDispatch>();
   const defaultItem = [
     {
@@ -68,7 +61,7 @@ const StockRecord = () => {
           <div className="col-12 text-center">
             <h1 className="my-3">
               <span>
-                سبحان ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
+                رحمٰن ماربل اینڈ گرینائٹ <span className="fs-6">خأن ٹاون جی ٹی روڈ کامونکی</span>
               </span>
             </h1>
           </div>

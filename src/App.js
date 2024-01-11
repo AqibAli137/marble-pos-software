@@ -96,7 +96,7 @@ export default function App() {
               
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? subhanLogo : subhanLogo}
-              // brandName="سبحان ماربل"
+              // brandName="رحمٰن ماربل"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
