@@ -146,7 +146,7 @@ const SaleDashboard = () => {
           <div className="col-12 text-center">
             <h1 className="my-3">
               <span>
-                سبحان ماربل اینڈ گرینائٹ 
+                رحمٰن ماربل اینڈ گرینائٹ 
               </span>
             </h1>
           </div>

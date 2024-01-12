@@ -54,6 +54,7 @@ const PayementRCV = () => {
               alert("آپ کی ادائیگی اور رعایت کامیابی کے ساتھ Update ہو گئی۔");
             })
             .catch((err) => {
+              console.log('error is:',err)
               alert("کچھ غلطی ہے، دوبارہ کوشش کریں۔");
             })
         : alert("آپ اس سروس کو استعمال نہیں کر سکتے۔");

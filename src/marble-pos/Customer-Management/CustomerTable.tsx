@@ -176,13 +176,14 @@ const CustomerTable = () => {
                       <div className="text-black buttonColor">
                         <Button
                           variant="text"
+                          onClick={() => {
+                            handlePopOver(dat);
+                          }}
                           className="shadow-none ActiveEffect text-black buttonColor"
                         >
                           <div
                             className=""
-                            onClick={() => {
-                              handlePopOver(dat);
-                            }}
+                            
                           >
                             <span className=" urdu">ادائیگی</span>
                             <ViewComfyIcon />
@@ -190,23 +191,24 @@ const CustomerTable = () => {
                         </Button>
 
                         <Button
+                        onClick={() => handleReturns(dat)}
                           variant="text"
                           className="shadow-none ActiveEffect text-black buttonColor"
                         >
-                          <div className="" onClick={() => handleReturns(dat)}>
+                          <div className="">
                             <span className=" urdu">واپس کریں۔</span>
                             <ViewComfyIcon />
                           </div>
                         </Button>
                         <Button
                           variant="text"
+                          onClick={() => {
+                            handleNewOrder(dat);
+                          }}
                           className="shadow-none ActiveEffect text-black buttonColor"
                         >
                           <div className="">
                             <span
-                              onClick={() => {
-                                handleNewOrder(dat);
-                              }}
                               className=" urdu"
                             >
                               نیا آرڈر

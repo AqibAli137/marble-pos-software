@@ -12,10 +12,6 @@ import {
 } from "../../@features/ItemListSlice/ItemListSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { UpdateAllOrders } from "../../@features/Orders/OrdersSlice";
-import { DateRange } from "react-date-range";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css";
 import {
   DateUpdate,
   UpdateEndDate,
@@ -65,28 +61,24 @@ const StockWithDate = () => {
         : dispatch(UpdateProfitItem(res.data));
     });
   }, []);
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
 
-  const DateProfit = (dates: any) => {
-    // console.log(dates);
-    setState(dates);
-    dispatch(DateUpdate(dates));
-    // console.log(DateChange.DateChange);
-    dispatch(UpdateStartDate(new Date(dates[0].startDate).toLocaleDateString()));
-    dispatch(UpdateEndDate(new Date(dates[0].endDate).toLocaleDateString()));
+
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [endDate, setEndDate] = useState<Date>(new Date());
+
+  const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setStartDate(new Date(`${event.target.value}T00:00:00`)); // Adjust to local timezone
   };
 
+  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEndDate(new Date(`${event.target.value}T00:00:00`)); // Adjust to local timezone
+  };
   const ClickFilter = () => {
+    console.log('start date:', startDate.toISOString(), 'endDate:', endDate.toISOString())
     axios
       .post(`${BASE_URL}/api/Item/FilterWithDate`, {
-        DateFrom: DateChange.startDate,
-        DateTo: DateChange.endDate,
+        DateFrom: startDate.toISOString(),
+        DateTo: endDate.toISOString(),
       })
       .then((res) => {
         console.log(res.data);
@@ -106,18 +98,7 @@ const StockWithDate = () => {
       <div className="urdu">
         <div className="text-center">
           <div className="d-flex justify-content-between row">
-            <div className="col-sm-8 col-md-4 col-lg-4 col-xl-4 col-xxl-4 col-xxxl-4">
-              <DateRange
-                //   style={{ margin: "2px" }}
-                editableDateInputs={true}
-                onChange={(item: any) => DateProfit([item.selection])}
-                moveRangeOnFirstSelection={false}
-                //   ranges={state}
-                ranges={state as any}
-              />
-            </div>
-
-            <div className="col-sm-8 col-md-4 col-lg-4 col-xl-4 col-xxl-4 col-xxxl-4 d-flex align-items-center text-center justify-content-center my-3">
+            <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-4 col-xxxl-4 d-flex align-items-center text-center justify-content-center my-3">
               <button
                 className="btn bg-primary text-white ActiveEffect urdu p-2 px-4 py-3"
                 onClick={ClickFilter}
@@ -125,6 +106,28 @@ const StockWithDate = () => {
                 ریکارڈ چیک کریں
               </button>
             </div>
+            <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-4 col-xxxl-4 my-3 d-flex align-items-center">
+              <InputGroup className="">
+                <FormControl
+                  type="date"
+                  value={endDate.toISOString().split('T')[0]}
+                  onChange={handleEndDateChange}
+                />
+                <Form.Label className="text-black mx-2">:تاریخ اختتام</Form.Label>
+              </InputGroup>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-4 col-xxxl-4 my-3 d-flex align-items-center">
+              <InputGroup className="">
+                <FormControl
+                  type="date"
+                  value={startDate.toISOString().split('T')[0]}
+                  onChange={handleStartDateChange}
+                />
+                <Form.Label className="text-black mx-2">:تاریخ شروع</Form.Label>
+              </InputGroup>
+            </div>
+
+
           </div>
         </div>
         <div style={{ background: "#d9ede1" }} className="row mt-4">
