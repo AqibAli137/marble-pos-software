@@ -69,7 +69,7 @@ function Basic() {
           <Link to="/">
               <img
                 src={subhanLogo}
-                alt="Subhan Marble"
+                alt="Rehman Marble"
                 style={{ width: "100px", height: "100px" }}
                 className="rounded-5"
               />

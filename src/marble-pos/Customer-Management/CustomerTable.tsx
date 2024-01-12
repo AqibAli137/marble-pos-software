@@ -95,19 +95,15 @@ const CustomerTable = () => {
     dropdownData === "All Data" && setFilterCustomers(allData);
   }, [dropdownData]);
 
-  // const filteredData = data.filter(
-  //   (dat) =>
-  //     dat.Name.toLowerCase().includes(search.toLowerCase()) ||
-  //     dat.PhoneNo.toLowerCase().includes(search.toLowerCase())
-  // );
-
-  // const indexOfLastData = currentPage * dataPerPage;
-  // const indexOfFirstData = indexOfLastData - dataPerPage;
-  // const currentData = filteredData.slice(indexOfFirstData, indexOfLastData);
-
-  // const paginate = (pageNumber: any) => {
-  //   console.log(pageNumber);
-  // };
+  const getBackgroundColor = (totalBill: number, pendingPayment: number): string => {
+    if (totalBill === 0 && pendingPayment === 0) {
+      return "rgb(243, 83, 83)"; // "danger"
+    } else if (pendingPayment === 0 && totalBill !== 0) {
+      return "rgb(35, 163, 157)"; // "success"
+    } else {
+      return "rgb(156, 156, 156)"; // "greyCol"
+    }
+  };
 
   return (
     <div>
@@ -163,12 +159,7 @@ const CustomerTable = () => {
                 .map((dat: any, index: any) => (
                   <tr
                     style={{
-                      backgroundColor:
-                        dat.totalBill === 0 && dat.pendingPayment === 0
-                          ? "rgb(243, 83, 83)" // "danger"
-                          : dat.pendingPayment === 0 && dat.totalBill !== 0
-                            ? "rgb(35, 163, 157)" // "success"
-                            : "rgb(156, 156, 156)" // "greyCol"
+                      backgroundColor: getBackgroundColor(dat.totalBill, dat.pendingPayment),
                     }}
                     key={index}
                     className="text-center"
