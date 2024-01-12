@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, FormControl, InputGroup, Form, Row, Col, Pagination } from "react-bootstrap";
+import { Table, FormControl, InputGroup, Form, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
@@ -13,10 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import {
-  DateUpdate,
-  UpdateEndDate,
   UpdateFilterList,
-  UpdateStartDate,
   UpdateTotalProfit,
   UpdateTotalSale,
 } from "../../@features/StockWithDate/StockWithProfit";

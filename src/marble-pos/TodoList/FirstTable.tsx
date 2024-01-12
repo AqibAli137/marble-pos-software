@@ -11,7 +11,7 @@ const FirstTable = (props: { TableData: [] }) => {
 
   let ItemState = useSelector((store: RootState) => store.Item);
 
-  const handleDeleteUser2 = async (tableRow: any) => {
+  const handleDeleteUser2 = async (tableRow: any, index: number) => {
     dispatch(updateLocalObj(tableRow));
   };
 
@@ -35,7 +35,7 @@ const FirstTable = (props: { TableData: [] }) => {
                   <HighlightOffIcon
                     fontSize="small"
                     className="text-danger"
-                    onClick={handleDeleteUser2.bind(this, item, index)}
+                    onClick={() => handleDeleteUser2(item, index)}
                   />
                 </IconButton>
               </td>

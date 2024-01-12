@@ -1,15 +1,14 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { BASE_URL } from "../../@features/Constents";
 import "../../app.css";
 import { Customer } from "../../Models/Customer";
-import { AppDispatch, RootState } from "../../store";
+import { RootState } from "../../store";
 
 const PayementRCV = () => {
   let PaymentRcvState = useSelector((store: RootState) => store.PaymentRcv);
-  const dispatch = useDispatch<AppDispatch>();
 
   const [PaymentRcv, setPaymentRcv] = useState(0);
   const [Discount, setDiscount] = useState(0);

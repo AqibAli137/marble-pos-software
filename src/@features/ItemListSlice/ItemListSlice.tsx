@@ -1,6 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { Item } from "../../Models/Item";
+import { createSlice} from "@reduxjs/toolkit";
 
 const initialSaleItemState = {
   isLoading: true,

@@ -1,18 +1,8 @@
 import { Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import MDBox from "../../components/MDBox";
 import ComplexStatisticsCard from "../../examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 const StockCards = (props) => {
-  let DateChange = useSelector((store) => store.DateChange);
-  const [TotalSale,setTotalSale]=useState(0);
-  const [TotalProfit,setTotalProfit]=useState(0);
-
-//   useEffect(() => {
-//     // setTotalSale()
-//     console.log(DateChange.filterList.totalSale);
-//   }, [DateChange.filterList]);
   return (
     <div>
       <MDBox py={3}>

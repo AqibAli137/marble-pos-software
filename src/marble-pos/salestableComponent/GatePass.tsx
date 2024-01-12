@@ -1,18 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Table } from "react-bootstrap";
 import { useReactToPrint } from "react-to-print";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import axios from "axios";
 import {
-  UpdateAllOrders,
   UpdateGatePassOrders,
-  UpdateSelectedOrders,
 } from "../../@features/Orders/OrdersSlice";
-// import "./invoicer.css";
 import subhanLogo from "../../assets/sm-assets/sm-logo2.jpg";
 
 const GatePass = (prop: { gatPassNumber: string }) => {
@@ -31,8 +26,6 @@ const GatePass = (prop: { gatPassNumber: string }) => {
       (item: any) => item.gatePassNumber === Number
     );
     UpdateGatePassOrders(gatPassOrders);
-    console.log(OrdersState.SelectedOrders);
-    console.log("ok");
   }, []);
 
   const dataToPrintRef = useRef<HTMLInputElement>(null);

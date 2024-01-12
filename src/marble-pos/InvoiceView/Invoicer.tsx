@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Table } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { OrderTableColumns } from "../ColumnData";
 import IconButton from "@mui/material/IconButton";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import Checkbox from "@mui/material/Checkbox";

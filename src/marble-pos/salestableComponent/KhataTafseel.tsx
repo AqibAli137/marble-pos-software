@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
 import { AppDispatch, RootState } from "../../store";

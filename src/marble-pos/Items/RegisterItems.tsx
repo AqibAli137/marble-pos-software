@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import {useNavigate} from 'react-router-dom'
-import { Button } from "@mui/material";
 import Logo from "../../assets/sm-assets/sm-logo2.jpg";
 import { Item } from "../../Models/Item";
 import axios from "axios";

@@ -1,5 +1,5 @@
-import { Divider } from '@mui/material'
 import React from 'react'
+import { Divider } from '@mui/material'
 import AddStock from './AddStock'
 import { RegisterItem } from './RegisterItems'
 
