@@ -162,15 +162,16 @@ const CustomerTable = () => {
                 .reverse()
                 .map((dat: any, index: any) => (
                   <tr
-                    className={
-                      dat.totalBill === 0 && dat.pendingPayment === 0
-                        ? "danger"
-                        : dat.pendingPayment === 0 && dat.totalBill != 0
-                          ? "success"
-                          : "greyCol"
-                    }
-                    style={{ textAlign: "center" }}
+                    style={{
+                      backgroundColor:
+                        dat.totalBill === 0 && dat.pendingPayment === 0
+                          ? "rgb(243, 83, 83)" // "danger"
+                          : dat.pendingPayment === 0 && dat.totalBill !== 0
+                            ? "rgb(35, 163, 157)" // "success"
+                            : "rgb(156, 156, 156)" // "greyCol"
+                    }}
                     key={index}
+                    className="text-center"
                   >
                     <td className="d-flex justify-content-center">
                       <div className="text-black buttonColor">
@@ -183,7 +184,7 @@ const CustomerTable = () => {
                         >
                           <div
                             className=""
-                            
+
                           >
                             <span className=" urdu">ادائیگی</span>
                             <ViewComfyIcon />
@@ -191,7 +192,7 @@ const CustomerTable = () => {
                         </Button>
 
                         <Button
-                        onClick={() => handleReturns(dat)}
+                          onClick={() => handleReturns(dat)}
                           variant="text"
                           className="shadow-none ActiveEffect text-black buttonColor"
                         >
