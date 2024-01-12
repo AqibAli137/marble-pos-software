@@ -10,38 +10,37 @@ const CustomerCreate = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
-  const [advance,SetAdvance]=useState(0);
+  const [advance, SetAdvance] = useState(0);
 
-  const customerRecord:Customer={
+  const customerRecord: Customer = {
     Id: 0,
     Name: name,
     Address: address,
     PhoneNo: phoneNo,
     PaymentRcv: advance,
     IsActive: true,
-    PendingPayment:advance === 0 ? 0 : (advance - advance - advance),
+    PendingPayment: advance === 0 ? 0 : (advance - advance - advance),
     TotalBill: 0,
     Discount: 0,
     ProfitFromCustomer: 0
   }
-  const handleSubmit =()=>{
-{
+  const handleSubmit = () => {
 
-  name==='' || address ==='' || phoneNo === ''? alert('براہ کرم مکمل تفصیلات درج کریں۔'):
+    name === '' || address === '' || phoneNo === '' ? alert('براہ کرم مکمل تفصیلات درج کریں۔') :
 
-  axios.post(`${BASE_URL}/api/Customer`,customerRecord).then(
-      (res)=>{alert("آپ کا نیا کسٹمر ریکارڈ کامیابی سے Save ہو گیا۔");
-      setName('');
-      setAddress('');
-      setPhoneNo('');
-      SetAdvance(0);
-    }
-    ).catch(
-      (err)=>{
-        alert("کچھ غلطی ہے، دوبارہ کوشش کریں۔")
-      }
-    )
-    }
+      axios.post(`${BASE_URL}/api/Customer`, customerRecord).then(
+        (res) => {
+          alert("آپ کا نیا کسٹمر ریکارڈ کامیابی سے Save ہو گیا۔");
+          setName('');
+          setAddress('');
+          setPhoneNo('');
+          SetAdvance(0);
+        }
+      ).catch(
+        (err) => {
+          alert("کچھ غلطی ہے، دوبارہ کوشش کریں۔")
+        }
+      )
   }
 
   return (
@@ -129,8 +128,8 @@ const CustomerCreate = () => {
                         type="text"
                         value={phoneNo}
                         onChange={(e) => {
-                          +e.target.value===+e.target.value &&
-                          setPhoneNo(e.target.value);
+                          +e.target.value === +e.target.value &&
+                            setPhoneNo(e.target.value);
                         }}
                         className="form-control form-control-lg rounded-3 text-center"
                       />
@@ -158,7 +157,7 @@ const CustomerCreate = () => {
                   </div>
                   <div className="d-flex justify-content-start">
                     <button className="btn bg-primary text-white ActiveEffect urdu p-2 px-4"
-                    onClick={handleSubmit}
+                      onClick={handleSubmit}
                     >
                       جمع کرائیں
                     </button>

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import Icon from "@mui/material/Icon";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import subhanLogo from "./assets/sm-assets/sm-logo2.jpg";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator,setDirection } from "./context";
@@ -11,9 +10,7 @@ import theme from "./assets/theme";
 import themeDark from "./assets/theme-dark";
 import Configurator from "./examples/Configurator";
 import Sidenav from "./examples/Sidenav";
-import MDBox from "./components/MDBox";
 import {useSelector} from 'react-redux'
-import Basic from "./layouts/authentication/sign-in";
 import { AppRoutes } from "./AppRoute/AppRoutes";
 import './app.css'
 
