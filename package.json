@@ -14,7 +14,7 @@
     "@mui/styled-engine": "5.4.1",
     "@mui/styles": "^5.11.9",
     "@reduxjs/toolkit": "^1.9.2",
-    "@testing-library/jest-dom": "5.16.2",
+    "@testing-library/jest-dom": "6.0.0",
     "@testing-library/react": "12.1.2",
     "@testing-library/user-event": "13.5.0",
     "@types/react": "^17.0.53",
